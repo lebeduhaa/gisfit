@@ -6,7 +6,6 @@ import { SelectComponent } from '../components/select/select.component';
 import { SharedModule } from '../../../modules/shared.module';
 import { MaterialModule } from '../../../modules/material.module';
 import { SelectOptionComponent } from '../components/select-option/select-option.component';
-import { SelectOptionDirective } from '../directives/select-option.directive';
 
 @NgModule({
   imports: [
@@ -16,8 +15,7 @@ import { SelectOptionDirective } from '../directives/select-option.directive';
   ],
   declarations: [
     SelectComponent,
-    SelectOptionComponent,
-    SelectOptionDirective
+    SelectOptionComponent
   ],
   exports: [
     SelectComponent,

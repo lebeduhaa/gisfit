@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Subject, Subscription } from 'rxjs';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { confirmPasswordValidator } from 'src/app/shared/validators/confirm-password.validation';
 import { parseError } from 'src/app/shared/helpers';
@@ -10,6 +11,7 @@ import { RouterHelper } from 'src/app/shared/services/router.service';
 import { APP } from 'src/app/shared/constants';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-sing-up',
   templateUrl: 'sign-up.component.html',
@@ -102,9 +104,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-    this.formSubscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 
 }
 

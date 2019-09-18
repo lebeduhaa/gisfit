@@ -8,21 +8,21 @@
       <input class="sign-in__fake" type="password" placeholder="password" name="password">
       <div class="sign-in__control">
         <app-input-text placeholder="Email Address" icon="mail_outline">
-          <input type="text" formControlName="email" [class.sign-in__control_invalid]="controlHasError('email')">
+          <input type="text" formControlName="email" [class.control_invalid]="controlHasError('email')">
         </app-input-text>
       </div>
       <div class="sign-in__control">
         <app-input-text placeholder="Password" icon="lock">
-          <input type="password" formControlName="password" [class.sign-in__control_invalid]="controlHasError('password')">
+          <input type="password" formControlName="password" [class.control_invalid]="controlHasError('password')">
         </app-input-text>
       </div>
       <div class="app__error" *ngIf="signInFormHasError() || error">{{error}}</div>
       <div class="sign-in__control">
-        <app-spinner-button 
+        <app-spinner-button
           caption="Sign In"
           (click)="signIn()"
           [spinnerStateSubject]="spinnerStateSubject"
-          [disabled]="!signInForm.valid"  
+          [disabled]="!signInForm.valid"
         ></app-spinner-button>
       </div>
       <div class="sign-in__forget">

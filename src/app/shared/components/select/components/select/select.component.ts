@@ -1,7 +1,21 @@
-import { Component, Input, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  AfterContentInit,
+  ContentChildren,
+  QueryList,
+  OnDestroy,
+  Output,
+  EventEmitter
+} from '@angular/core';
 
 import { expandAnimation } from 'src/app/shared/animations';
+import { SelectOptionComponent } from '../select-option/select-option.component';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { Subscription } from 'rxjs';
+import { flatEquality } from 'src/app/shared/helpers';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-select',
   templateUrl: 'select.component.html',
@@ -10,18 +24,27 @@ import { expandAnimation } from 'src/app/shared/animations';
     expandAnimation
   ]
 })
-export class SelectComponent {
+export class SelectComponent implements AfterContentInit, OnDestroy {
+
+  @Output() change = new EventEmitter<any>();
 
   @Input() placeholder: string;
   @Input() icon: string;
+  @Input() value: any;
+
+  @ContentChildren(SelectOptionComponent) selectOptions: QueryList<SelectOptionComponent>;
 
   public placeholderAtTop: boolean;
   public optionsVisibility: boolean;
   public currentValue: any;
 
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  private selectValueSubscriptions = new Subscription();
+
+  ngAfterContentInit() {
+    console.log(this.value);
+    this.subscribeToSelectValue();
+    this.checkCurrentValue();
+  }
 
   public onClickedOutside(): void {
     this.optionsVisibility = false;
@@ -31,12 +54,31 @@ export class SelectComponent {
     this.optionsVisibility = !this.optionsVisibility;
   }
 
-  public reactOnChangeCurrentValue(value: string): void {
-    if (value) {
-      this.currentValue = value;
-      this.optionsVisibility = false;
-      this.placeholderAtTop = true;
+  private subscribeToSelectValue(): void {
+    this.selectOptions.forEach(selectOptionComponent => {
+      this.selectValueSubscriptions.add(selectOptionComponent.selectedOption.subscribe(value => {
+        if (value) {
+          this.change.emit(value);
+          this.currentValue = selectOptionComponent.displayedValue;
+          this.optionsVisibility = false;
+          this.placeholderAtTop = true;
+        }
+      }));
+    });
+  }
+
+  private checkCurrentValue(): void {
+    if (this.value) {
+      this.selectOptions.forEach(selectOptionComponent => {
+        if (flatEquality(selectOptionComponent.value, this.value)) {
+          this.currentValue = selectOptionComponent.displayedValue;
+          this.optionsVisibility = false;
+          this.placeholderAtTop = true;
+        }
+      });
     }
   }
+
+  ngOnDestroy() {}
 
 }

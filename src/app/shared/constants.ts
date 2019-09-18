@@ -13,7 +13,8 @@ export const APP = {
     email: 'Email',
     password: 'Password',
     confirmPassword: 'Password confirmation',
-    nickname: 'Nickaname'
+    nickname: 'Nickaname',
+    oldPassword: 'Old password'
   },
   formStatuses: {
     valid: 'VALID',
@@ -29,7 +30,8 @@ export const APP = {
   },
   dialogs: {
     passwordReset: 'passwordReset',
-    cropper: 'cropper'
+    cropper: 'cropper',
+    changePassword: 'changePassword'
   },
   routesWithHeader: [
     'settings',

@@ -1,13 +1,16 @@
-<div class="system">
-  <div class="system__notification system__item">
-    <app-select icon="access_alarm" placeholder="Notification Time">
-      <app-select-option 
-        (selectedOption)="reactOnSelectHour($event)"
+<div class="system__progress" *ngIf="!user">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="system" *ngIf="user">
+  <div class="system__notification">
+    <app-select [value]="user.notificationTime" (change)="reactOnSelectHour($event)" icon="access_alarm" placeholder="Notification Time">
+      <app-select-option
         *ngFor="let hour of hours"
-        [value]="hour">{{hour.title}}</app-select-option>
+        [value]="hour"
+        [displayedValue]="hour.title"></app-select-option>
     </app-select>
   </div>
-  <div class="system__item">
-    <app-spinner-button caption="Change Password" [small]="true"></app-spinner-button>
+  <div class="system__change-pass">
+    <app-spinner-button caption="Change Password" [small]="true" appOpenChangePassword></app-spinner-button>
   </div>
 </div>

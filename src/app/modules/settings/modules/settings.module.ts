@@ -15,6 +15,8 @@ import { RadioGroupModule } from 'src/app/shared/components/radio-group/radio-gr
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { SelectModule } from 'src/app/shared/components/select/modules/select.module';
+import { OpenChangePasswordDirective } from '../directives/open-change-password.directive';
+import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,12 @@ import { SelectModule } from 'src/app/shared/components/select/modules/select.mo
   declarations: [
     SettingsComponent,
     PersonalComponent,
-    SystemComponent
+    SystemComponent,
+    ChangePasswordComponent,
+    OpenChangePasswordDirective
+  ],
+  entryComponents: [
+    ChangePasswordComponent
   ],
   exports: [
     SettingsComponent

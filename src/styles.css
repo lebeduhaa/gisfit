@@ -28,7 +28,7 @@ html {
 }
 .button .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
   height: 30px !important;
-  width: 30px !important; 
+  width: 30px !important;
 }
 .button_small .mat-progress-spinner svg {
   height: 20px !important;
@@ -84,6 +84,10 @@ html {
 *::-webkit-scrollbar-thumb {
   background-color: rgb(177, 177, 177);
   border-radius: 10px;
+}
+.control_invalid {
+  border: 1px solid #9d1d1d !important;
+  box-shadow: inset 0px 0px 5px #8d3939;
 }
 
 @keyframes popup {

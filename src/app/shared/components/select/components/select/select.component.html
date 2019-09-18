@@ -6,7 +6,7 @@
   <div class="select__icon" (click)="toggleOptionsVisibility()">
     <mat-icon color="primary">{{icon}}</mat-icon>
   </div>
-  <div class="select__options" @expandAnimation *ngIf="optionsVisibility" appSelectOption (currentValueEvent)="reactOnChangeCurrentValue($event)">
+  <div class="select__options" @expandAnimation *ngIf="optionsVisibility">
     <ng-content></ng-content>
   </div>
 </div>

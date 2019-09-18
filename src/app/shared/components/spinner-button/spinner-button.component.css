@@ -30,6 +30,6 @@
   background-color: #959595 !important;
   cursor: default;
 }
-.button:active {
+.button:active:not(.button_disabled) {
   box-shadow: inset 0 0 7px rgb(77, 77, 77);
 }

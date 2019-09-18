@@ -1,6 +1,9 @@
 import { Directive, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
+import { ChangePasswordComponent } from '../components/change-password/change-password.component';
+import { APP } from 'src/app/shared/constants';
+
 @Directive({
   selector: '[appOpenChangePassword]'
 })
@@ -12,7 +15,10 @@ export class OpenChangePasswordDirective {
 
   @HostListener('click')
   openChangePasswordDialog(): void {
-    this.dialog.open(ChangePass)
+    this.dialog.open(ChangePasswordComponent, {
+      width: '450px',
+      id: APP.dialogs.changePassword
+    });
   }
 
 }

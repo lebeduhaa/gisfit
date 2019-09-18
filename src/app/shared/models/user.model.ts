@@ -1,3 +1,5 @@
+import { Hour } from './hour';
+
 export interface User {
   nickname?: string;
   sex?: string;
@@ -10,4 +12,5 @@ export interface User {
   email?: string;
   password?: string;
   id?: string;
+  notificationTime?: Hour;
 }

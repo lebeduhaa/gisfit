@@ -5,7 +5,12 @@
 }
 .system__notification {
   width: 400px;
+  margin-top: 20px;
 }
-.system__item {
-  margin: 20px 0;
+.system__change-pass {
+  margin-top: 20px;
+}
+.system__progress {
+  position: absolute;
+  width: 100%;
 }

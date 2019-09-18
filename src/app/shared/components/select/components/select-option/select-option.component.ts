@@ -10,6 +10,7 @@ export class SelectOptionComponent {
   @Output() selectedOption = new EventEmitter<any>();
 
   @Input() value: any;
+  @Input() displayedValue: any;
 
   public select(): void {
     this.selectedOption.emit(this.value);

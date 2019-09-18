@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
+
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
-import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../../auth/services/auth.service';
+import { Hour } from 'src/app/shared/models/hour';
 
 @Injectable({
   providedIn: 'root'
@@ -64,8 +66,15 @@ export class SettingsService {
     });
   }
 
-  public updateUserPassword(password: string): Promise<any> {
-    return this.firebaseAuth.auth.currentUser.updatePassword(password);
+  public async updateUserPassword(oldPassword: string, newPassword: string): Promise<any> {
+    await this.firebaseAuth.auth.currentUser.reauthenticateWithCredential(
+      firebase.auth.EmailAuthProvider.credential(this.firebaseAuth.auth.currentUser.email, oldPassword)
+    );
+    await this.firebaseAuth.auth.currentUser.updatePassword(newPassword);
+  }
+
+  public async updateUserNotificationTime(notificationTime: Hour, userId: string): Promise<any> {
+    await this.firestore.collection('users').doc(userId).update({notificationTime});
   }
 
 }
