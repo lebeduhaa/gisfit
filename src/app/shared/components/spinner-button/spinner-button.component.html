@@ -1,0 +1,15 @@
+<button 
+  class="button" 
+  [ngClass]="{
+    'button_disabled': disabled,
+    'button_small': small
+  }"
+  (click)="onClick($event)"
+>
+  <span class="button__caption">
+    {{caption}}
+  </span>
+  <span class="button__spinner" *ngIf="spinnerVisibility">
+    <mat-spinner></mat-spinner>
+  </span>
+</button>

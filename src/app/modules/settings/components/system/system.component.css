@@ -1,0 +1,11 @@
+.system {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.system__notification {
+  width: 400px;
+}
+.system__item {
+  margin: 20px 0;
+}

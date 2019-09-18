@@ -1,0 +1,10 @@
+<div class="root">
+  <div class="root__header" *ngIf="headerVisibility">
+    <app-header></app-header>
+  </div>
+  <div class="root__content">
+    <router-outlet></router-outlet>
+  </div>
+  <div [ngClass]="getClassObject()" class="app__background" id="app__background"></div>
+  <app-notification></app-notification>
+</div>

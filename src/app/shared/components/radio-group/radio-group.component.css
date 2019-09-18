@@ -1,0 +1,13 @@
+.radio-group {
+  position: relative;
+}
+.radio-group__title {
+  font-size: 13px;
+  color: #bbbbbb;
+  position: absolute;
+  top: -30px;
+  left: 13px;
+}
+.mat-radio-button {
+  margin-left: 15px;  
+}

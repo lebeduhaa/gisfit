@@ -1,0 +1,4 @@
+<div class="input-file">
+  <app-spinner-button [caption]="caption" [small]="true" (click)="file.click()"></app-spinner-button>
+  <input type="file" #file [hidden]="true" (change)="reactOnFileSelect($event)">
+</div>

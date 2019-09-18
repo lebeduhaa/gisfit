@@ -1,0 +1,14 @@
+<div class="settings">
+  <div class="settings__title">Profile settings</div>
+  <div class="settings__content">
+    <div class="settings__content-wrapper">
+      <div [@settingsRouteAnimation]="prepareRoute(outlet)">
+        <router-outlet #outlet="outlet"></router-outlet>
+      </div>
+    </div>
+    <div class="settings__menu">
+      <div class="settings__menu-item" routerLink="/settings/personal" routerLinkActive="settings__menu-item_active">Personal</div>
+      <div class="settings__menu-item" routerLink="/settings/system" routerLinkActive="settings__menu-item_active">System</div>
+    </div>
+  </div>
+</div>

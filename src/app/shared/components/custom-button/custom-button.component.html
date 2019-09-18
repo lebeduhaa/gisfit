@@ -1,0 +1,11 @@
+<button 
+  class="button" 
+  [ngClass]="{
+    'button_disabled': disabled,
+    'button_accent': color === 'accent',
+    'button_warn': color === 'warn'
+  }"
+  (click)="onClick($event)"
+>
+  {{caption}}
+</button>

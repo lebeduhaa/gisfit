@@ -1,0 +1,33 @@
+.personal__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  font-size: 18px;
+  align-items: center;
+}
+.personal__row_single {
+  justify-content: center;
+}
+.settings__avatar {
+  margin-bottom: 10px;
+}
+.personal__row app-input-text {
+  width: 65%;
+}
+.personal__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+app-custom-button:first-child {
+  margin-right: 10px;
+}
+.personal__control {
+  width: 325px;
+}
+.personal__progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}

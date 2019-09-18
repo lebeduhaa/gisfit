@@ -1,0 +1,39 @@
+:host {
+  width: 100%;
+}
+.input {
+  height: 55px;
+  position: relative;
+  width: 100%;
+}
+.input__placeholder {
+  color: #bbbbbb;
+  position: absolute;
+  left: 25px;
+  top: 17px;
+  font-family: 'Lato';
+  font-size: 15px;
+  transition: .2s;
+}
+.input__icon {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+}
+.input /deep/ input {
+  background-color: #252429;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  color: white;
+  padding: 0 50px 0 25px;
+  font-size: 18px;
+}
+.input /deep/ input:hover {
+  border: .5px solid #504f57;
+}
+.input__placeholder_active {
+  transform: translate(-20px, -36px) scale(0.8);
+}

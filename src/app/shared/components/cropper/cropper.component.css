@@ -1,0 +1,44 @@
+.cropper {
+  color: white;
+  font-family: 'Lato';
+}
+.cropper__content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+mat-dialog-contnet {
+  padding: 20px;
+}
+.cropper__result {
+  width: 400px;
+  max-width: 400px;
+}
+.cropper__title {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+image-cropper {
+  padding: 0;
+}
+mat-dialog-actions {
+  padding: 10px;
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+.cropper__spinner {
+  position: relative;
+}
+.cropper__description {
+  font-size: 11px;
+  position: absolute;
+  width: 40px;
+  font-size: 11px;
+  top: 20px;
+  left: 29px;
+  animation-name: small-big;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}

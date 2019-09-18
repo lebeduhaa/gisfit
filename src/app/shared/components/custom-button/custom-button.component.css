@@ -1,0 +1,34 @@
+.button {
+  background-color: #5147da;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  color: #fff;
+  font-family: 'Lato';
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+  position: relative;
+}
+.button_accent {
+  background-color: #2bb4a0;
+}
+.button_warn {
+  background-color: #bf0048;
+}
+.button:hover {
+  background-color: #625adb;
+}
+.button_accent:hover {
+  background-color:#34bda8;
+}
+.button_warn:hover {
+  background-color: #ca0b54;
+}
+.button_disabled {
+  background-color: #959595 !important;
+  cursor: default;
+}
+.button:active:not(.button_disabled) {
+  box-shadow: inset 0 0 7px rgb(77, 77, 77);
+}

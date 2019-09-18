@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Gisfit</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <app-root></app-root>
+
+  <script>
+    setTimeout(function() {
+      var content = document.getElementById('app__background');
+      var lFollowX = 0,
+      lFollowY = 0,
+      x = 0,
+      y = 0,
+      friction = 1 / 30;
+
+      function moveBackground() {
+      x += (lFollowX - x) * friction;
+      y += (lFollowY - y) * friction;
+
+      translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+
+      content.style.transform = translate;
+
+      window.requestAnimationFrame(moveBackground);
+      }
+
+      window.addEventListener('mousemove', function(e) {
+
+      var lMouseX = Math.max(-100, Math.min(100, window.screen.width / 2 - e.clientX));
+      var lMouseY = Math.max(-100, Math.min(100, window.screen.height / 2 - e.clientY));
+      lFollowX = (10 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
+      lFollowY = (5 * lMouseY) / 100;
+
+      });
+
+      moveBackground();
+    }, 1000);
+  </script>
+</body>
+</html>

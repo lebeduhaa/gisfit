@@ -1,0 +1,42 @@
+.settings {
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  position: relative;
+  font-family: 'Lato';
+  padding-top: 20px;
+}
+.settings__content {
+  width: 700px;
+  margin: 20px auto;
+  position: relative;
+}
+.settings__content-wrapper {
+  min-height: 500px;
+  overflow: hidden;
+  width: 100%;
+}
+.settings__title {
+  font-size: 30px;
+  text-align: center;
+}
+.settings__menu {
+  position: absolute;
+  top: 0;
+  right: -150px;
+  font-size: 25px;
+  color: rgb(190, 190, 190);
+}
+.settings__menu-item {
+  padding: 10px;
+  transition: .4s;
+  outline: none;
+}
+.settings__menu-item:hover {
+  color: white;
+  cursor: pointer;
+  transform: translateX(-20px);
+}
+.settings__menu-item_active {
+  color: white;
+}

@@ -1,0 +1,13 @@
+<div class="system">
+  <div class="system__notification system__item">
+    <app-select icon="access_alarm" placeholder="Notification Time">
+      <app-select-option 
+        (selectedOption)="reactOnSelectHour($event)"
+        *ngFor="let hour of hours"
+        [value]="hour">{{hour.title}}</app-select-option>
+    </app-select>
+  </div>
+  <div class="system__item">
+    <app-spinner-button caption="Change Password" [small]="true"></app-spinner-button>
+  </div>
+</div>

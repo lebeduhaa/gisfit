@@ -1,0 +1,10 @@
+<div class="radio-group">
+  <div class="radio-group__title">
+    Male
+  </div>
+  <div class="radio-group__content">
+    <mat-radio-group (change)="reactOnSelect($event)" [(ngModel)]="twoWayBind.sex">
+      <mat-radio-button *ngFor="let option of options" [value]="option">{{option}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</div>

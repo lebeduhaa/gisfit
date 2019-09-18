@@ -1,0 +1,35 @@
+<div class="sign-in">
+  <div class="sign-in__title">
+    Get sign in to access your account
+  </div>
+  <div class="sign-in__content">
+    <form [formGroup]="signInForm" *ngIf="signInForm">
+      <input class="sign-in__fake" type="text" placeholder="login" name="login">
+      <input class="sign-in__fake" type="password" placeholder="password" name="password">
+      <div class="sign-in__control">
+        <app-input-text placeholder="Email Address" icon="mail_outline">
+          <input type="text" formControlName="email" [class.sign-in__control_invalid]="controlHasError('email')">
+        </app-input-text>
+      </div>
+      <div class="sign-in__control">
+        <app-input-text placeholder="Password" icon="lock">
+          <input type="password" formControlName="password" [class.sign-in__control_invalid]="controlHasError('password')">
+        </app-input-text>
+      </div>
+      <div class="app__error" *ngIf="signInFormHasError() || error">{{error}}</div>
+      <div class="sign-in__control">
+        <app-spinner-button 
+          caption="Sign In"
+          (click)="signIn()"
+          [spinnerStateSubject]="spinnerStateSubject"
+          [disabled]="!signInForm.valid"  
+        ></app-spinner-button>
+      </div>
+      <div class="sign-in__forget">
+        <div class="sign-in__forget-title" appOpenResetPassword>
+          Forget Password
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

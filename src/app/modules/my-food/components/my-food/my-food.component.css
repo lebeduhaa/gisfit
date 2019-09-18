@@ -1,0 +1,10 @@
+.my-food {
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.499);
+  color: white;
+  font-family: 'Lato';
+}
+.my-food__title {
+  text-align: center;
+  font-size: 25px;
+}

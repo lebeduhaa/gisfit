@@ -1,0 +1,55 @@
+<div class="personal__progress" *ngIf="progressBarVisibility">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="personal" *ngIf="user">
+  <div class="personal__row personal__row_single">
+    <div class="personal__avatar-wrapper">
+      <div class="settings__avatar">
+        <app-user-icon [fakeAvatar]="user.fakeAvatarUrl" [avatar]="user.avatar" [preload]="preloadedImg"></app-user-icon>
+      </div>
+      <app-input-file
+        caption="Change Avatar"
+        (change)="selectNewAvatar($event)"
+        [clearFilesSubject]="clearFilesSubject"
+      ></app-input-file>
+    </div>
+  </div>
+  <div class="personal__row">
+    <div class="personal__control">
+      <app-input-text placeholder="Nickname" icon="perm_identity">
+        <input type="text" [(ngModel)]="tempUser.nickname">
+      </app-input-text>
+    </div>
+    <div class="personal__control">
+      <app-input-text placeholder="Email" icon="mail_outline">
+        <input type="text" [(ngModel)]="tempUser.email">
+      </app-input-text>
+    </div>
+  </div>
+  <div class="personal__row">
+    <div class="personal__control">
+      <app-input-text placeholder="Height(sm)" icon="height">
+        <input type="text" [(ngModel)]="tempUser.height" appNumericControl>
+      </app-input-text>
+    </div>
+    <div class="personal__control">
+      <app-input-text placeholder="Weight(kg)" icon="fitness_center">
+        <input type="text" [(ngModel)]="tempUser.weight" appNumericControl>
+      </app-input-text>
+    </div>
+  </div>
+  <div class="personal__row">
+    <div class="personal__control">
+      <app-input-text placeholder="Age" icon="perm_identity">
+        <input type="text" [(ngModel)]="tempUser.age" appNumericControl>
+      </app-input-text>
+    </div>
+    <div class="personal__control">
+      <app-radio-group [options]="['male', 'female']" [twoWayBind]="tempUser"></app-radio-group>
+    </div>
+  </div>
+  <div class="personal__actions">
+    <app-custom-button color="accent" caption="Save" (click)="save()" [disabled]="disableButton()"></app-custom-button>
+    <app-custom-button color="warn" caption="Cancel" [disabled]="disableButton()"></app-custom-button>
+  </div>
+</div>
