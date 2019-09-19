@@ -35,11 +35,19 @@ export class SystemComponent implements OnInit, OnDestroy {
   }
 
   public async reactOnSelectHour(hour: Hour): Promise<any> {
-    await this.settingsService.updateUserNotificationTime(hour, this.user.id);
+    await this.settingsService.updateUserData({notificationTime: hour}, this.user.id);
   }
 
-  public reactOnSelectLanguage(language: string): void {
-    console.log(language);
+  public async reactOnSelectLanguage(language: string): Promise<any> {
+    await this.settingsService.updateUserData({interfaceLanguage: language}, this.user.id);
+  }
+
+  public async reactOnChangeNotificationSound(notificationSound): Promise<any> {
+    await this.settingsService.updateUserData({notificationSound}, this.user.id);
+  }
+
+  public async reactOnChangeSendDailyReportOnEmail(sendDailyReportOnEmail): Promise<any> {
+    await this.settingsService.updateUserData({sendDailyReportOnEmail}, this.user.id);
   }
 
   private subscribeToCurrentUser(): void {

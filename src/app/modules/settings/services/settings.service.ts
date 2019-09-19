@@ -10,6 +10,7 @@ import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from '../../auth/services/auth.service';
 import { Hour } from 'src/app/shared/models/hour.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class SettingsService {
     private auth: AngularFireAuth,
     private authService: AuthService,
     private firebaseAuth: AngularFireAuth,
+    private translateService: TranslateService
   ) {}
 
   public uploadAvatar(base64: string, user: User): Promise<any> {
@@ -73,8 +75,12 @@ export class SettingsService {
     await this.firebaseAuth.auth.currentUser.updatePassword(newPassword);
   }
 
-  public async updateUserNotificationTime(notificationTime: Hour, userId: string): Promise<any> {
-    await this.firestore.collection('users').doc(userId).update({notificationTime});
+  public async updateUserData(userData: User, userId: string): Promise<any> {
+    if (userData.interfaceLanguage) {
+      this.translateService.use(userData.interfaceLanguage);
+    }
+
+    await this.firestore.collection('users').doc(userId).update(userData);
   }
 
 }

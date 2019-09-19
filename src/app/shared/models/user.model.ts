@@ -13,4 +13,7 @@ export interface User {
   password?: string;
   id?: string;
   notificationTime?: Hour;
+  interfaceLanguage?: string;
+  notificationSound?: boolean;
+  sendDailyReportOnEmail?: boolean;
 }

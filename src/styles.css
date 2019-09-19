@@ -55,15 +55,29 @@ html {
   animation-duration: 3s;
   animation-iteration-count: infinite;
 }
-.app__background {
+.app__background, .app__fake-background {
   background-size: cover;
   background-position: center center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  z-index: -2;
+}
+.app__back-toner {
   z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.app__fake-background {
+  z-index: -3;
+}
+.app__background img, .app__fake-background img {
+  width: 100%;
+  height: 100%;
 }
 .mat-dialog-container {
   border-radius: 20px;

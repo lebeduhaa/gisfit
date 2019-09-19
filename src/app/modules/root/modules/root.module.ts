@@ -8,6 +8,8 @@ import { SettingsModule } from '../../settings/modules/settings.module';
 import { MyFoodModule } from '../../my-food/modules/my-food.module';
 import { HeaderModule } from 'src/app/shared/components/header/header.module';
 import { NotificationModule } from 'src/app/shared/components/notification/notification.module';
+import { MoveBackgroundDirective } from '../directives/move-background.directive';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -17,10 +19,12 @@ import { NotificationModule } from 'src/app/shared/components/notification/notif
     NotificationModule,
     AuthModule,
     SettingsModule,
-    MyFoodModule
+    MyFoodModule,
+    TranslateModule.forChild()
   ],
   declarations: [
-    RootComponent
+    RootComponent,
+    MoveBackgroundDirective
   ],
   exports: [
     RootComponent

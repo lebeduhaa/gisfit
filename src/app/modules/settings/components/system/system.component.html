@@ -3,7 +3,7 @@
 </div>
 <div class="system" *ngIf="user">
   <div class="system__notification">
-    <app-select [value]="user.notificationTime" (change)="reactOnSelectHour($event)" icon="access_alarm" placeholder="Notification Time">
+    <app-select [value]="user.notificationTime" (change)="reactOnSelectHour($event)" icon="access_alarm" placeholder="{{'settings.notification-time' | translate}}">
       <app-select-option
         *ngFor="let hour of hours"
         [value]="hour"
@@ -11,7 +11,7 @@
     </app-select>
   </div>
   <div class="system__notification">
-    <app-select [value]="user.interfaceLanguage" (change)="reactOnSelectLanguage($event)" icon="language" placeholder="Interface Language">
+    <app-select [value]="user.interfaceLanguage" (change)="reactOnSelectLanguage($event)" icon="language" placeholder="{{'settings.interface-language' | translate}}">
       <app-select-option
         *ngFor="let language of languages"
         [value]="language"
@@ -19,12 +19,12 @@
     </app-select>
   </div>
   <div class="system__toggles">
-    <app-toggle title="Notification sound"></app-toggle>
+    <app-toggle title="{{'settings.notification-sound' | translate}}" [value]="user.notificationSound" (change)="reactOnChangeNotificationSound($event)"></app-toggle>
   </div>
   <div class="system__toggles">
-    <app-toggle title="Send daily report on the email"></app-toggle>
+    <app-toggle title="{{'settings.send-report' | translate}}" [value]="user.sendDailyReportOnEmail" (change)="reactOnChangeSendDailyReportOnEmail($event)"></app-toggle>
   </div>
   <div class="system__change-pass">
-    <app-spinner-button caption="Change Password" [small]="true" appOpenChangePassword></app-spinner-button>
+    <app-spinner-button caption="{{'buttons.change-password' | translate}}" [small]="true" appOpenChangePassword></app-spinner-button>
   </div>
 </div>

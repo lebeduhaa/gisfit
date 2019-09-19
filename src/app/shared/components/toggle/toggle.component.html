@@ -1,8 +1,8 @@
 <div class="toggle__wrapper">
   <div class="toggle__content">
     <div class="toggle" (click)="toggle()" [class.toggle_on]="on">
-      <div class="toggle__on" *ngIf="on">on</div>
-      <div class="toggle__off" *ngIf="!on">off</div>
+      <div class="toggle__on" *ngIf="on">{{'toggle.on' | translate}}</div>
+      <div class="toggle__off" *ngIf="!on">{{'toggle.off' | translate}}</div>
       <div class="toggle__circle"></div>
     </div>
   </div>

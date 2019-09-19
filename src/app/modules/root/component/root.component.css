@@ -5,12 +5,3 @@
   overflow-x: hidden;
   min-height: 100vh;
 }
-.app__background_auth {
-  background-image: url('src/assets/img/backgrounds/auth.jpg');
-}
-.app__background_settings {
-  background-image: url('src/assets/img/backgrounds/settings.jpg');
-}
-.app__background_my-food {
-  background-image: url('src/assets/img/backgrounds/my-food.jpg');
-}

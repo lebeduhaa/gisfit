@@ -1,6 +1,5 @@
 .settings {
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
+  min-height: calc(100vh - 80px);
   color: white;
   position: relative;
   font-family: 'Lato';

@@ -1,3 +1,9 @@
+const { tmpdir } =  require('os');
+const { dirname } = require('path');
+const sharp = require('sharp');
+const fs = require('fs-extra');
+const admin = require('firebase-admin');
+
 module.exports = async object => {
   const bucket = admin.storage().bucket();
   const filePath = object.name;

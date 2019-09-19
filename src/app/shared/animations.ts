@@ -19,10 +19,10 @@ trigger('authRouteAnimations', [
     query(':leave', animateChild()),
     group([
       query(':leave', [
-        animate('300ms ease-out', style({ left: '-120%'}))
+        animate('200ms ease-out', style({ left: '-120%'}))
       ]),
       query(':enter', [
-        animate('300ms ease-out', style({ left: '0%'}))
+        animate('200ms ease-out', style({ left: '0%'}))
       ])
     ]),
     query(':enter', animateChild()),
@@ -43,10 +43,10 @@ trigger('authRouteAnimations', [
     query(':leave', animateChild()),
     group([
       query(':leave', [
-        animate('300ms ease-out', style({ left: '120%'}))
+        animate('200ms ease-out', style({ left: '120%'}))
       ]),
       query(':enter', [
-        animate('300ms ease-out', style({ left: '0%'}))
+        animate('200ms ease-out', style({ left: '0%'}))
       ])
     ]),
     query(':enter', animateChild()),

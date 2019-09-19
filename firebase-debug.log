@@ -1,0 +1,14 @@
+[debug] [2019-09-19T16:09:59.253Z] ----------------------------------------------------------------------
+[debug] [2019-09-19T16:09:59.258Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hryhory.lebedzev\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2019-09-19T16:09:59.258Z] CLI Version:   7.3.2
+[debug] [2019-09-19T16:09:59.259Z] Platform:      win32
+[debug] [2019-09-19T16:09:59.259Z] Node Version:  v8.11.1
+[debug] [2019-09-19T16:09:59.259Z] Time:          Thu Sep 19 2019 19:09:59 GMT+0300 (Russia TZ 2 Standard Time)
+[debug] [2019-09-19T16:09:59.259Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-09-19T16:09:59.273Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-19T16:09:59.274Z] > authorizing via signed-in user
+[debug] [2019-09-19T16:09:59.274Z] [iam] checking project gisfit-production for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-09-19T16:09:59.277Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-09-19T16:09:59.277Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>

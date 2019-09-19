@@ -31,3 +31,8 @@ app-custom-button:first-child {
   top: 0;
   width: 100%;
 }
+.personal__avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

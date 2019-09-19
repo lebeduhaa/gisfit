@@ -22,7 +22,11 @@ export class RealTimeDataService {
   public subscribeToCurrentUserData(): Observable<User> {
     const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
 
-    return this.firestore.collection('users').doc(userId).valueChanges();
+    if (userId) {
+      return this.firestore.collection('users').doc(userId).valueChanges();
+    }
+
+    return new Observable(observer => observer.next(null));
   }
 
 }

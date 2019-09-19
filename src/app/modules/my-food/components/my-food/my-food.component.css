@@ -1,6 +1,5 @@
 .my-food {
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.499);
+  min-height: calc(100vh - 80px);
   color: white;
   font-family: 'Lato';
 }

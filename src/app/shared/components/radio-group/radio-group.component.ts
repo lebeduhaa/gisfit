@@ -12,6 +12,8 @@ export class RadioGroupComponent {
 
   @Input() options: string[];
   @Input() twoWayBind: User;
+  @Input() caption: string;
+  @Input() type: string;
 
   public reactOnSelect(event): void {
     this.select.emit(event.value);

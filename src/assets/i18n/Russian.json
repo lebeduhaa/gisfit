@@ -1,0 +1,40 @@
+{
+  "menu-items": {
+    "my-food": "Моя Еда",
+    "settings": "Настройки",
+    "log-out": "Выйти"
+  },
+  "settings": {
+    "profile-settings": "Настройки профиля",
+    "personal": "Личные",
+    "system": "Системные",
+    "notification-time": "Время уведомления",
+    "interface-language": "Язык интерфейса",
+    "notification-sound": "Звук уведомлений",
+    "send-report": "Отправлять ежедневный отчёт на почту"
+  },
+  "controls": {
+    "nickname": "Имя пользователя",
+    "email": "Почта",
+    "height": "Рост(см)",
+    "weight": "Вес(кг)",
+    "age": "Возраст",
+    "male-title": "Пол",
+    "male": "мужской",
+    "female": "женский"
+  },
+  "buttons": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "change-avatar": "Изменить фотографию",
+    "change-password": "Изменить пароль"
+  },
+  "cropper": {
+    "preview": "Предпросмотр",
+    "wait": "Пожалуйста дождитесь обработки фото"
+  },
+  "toggle": {
+    "on": "вк",
+    "off": "вык"
+  }
+}

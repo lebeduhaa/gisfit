@@ -5,6 +5,11 @@
   <div class="root__content">
     <router-outlet></router-outlet>
   </div>
-  <div [ngClass]="getClassObject()" class="app__background" id="app__background"></div>
+  <div class="app__background" id="app__background" appMoveBackground>
+    <img [src]="backgroundImageUrl">
+  </div>
+  <div class="app__fake-background">
+    <img [src]="fakeBackgroundImageUrl">
+  </div>
   <app-notification></app-notification>
 </div>

@@ -1,0 +1,40 @@
+{
+  "menu-items": {
+    "my-food": "My Food",
+    "settings": "Settings",
+    "log-out": "Log Out"
+  },
+  "settings": {
+    "profile-settings": "Profile settings",
+    "personal": "Personal",
+    "system": "System",
+    "notification-time": "Notification Time",
+    "interface-language": "Interface Language",
+    "notification-sound": "Notification sound",
+    "send-report": "Send daily report on the email"
+  },
+  "controls": {
+    "nickname": "Nickname",
+    "email": "Email",
+    "height": "Height(sm)",
+    "weight": "Weight(kg)",
+    "age": "Age",
+    "male-title": "Male",
+    "male": "male",
+    "female": "female"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "change-avatar": "Change Avatar",
+    "change-password": "Change Password"
+  },
+  "cropper": {
+    "preview": "Preview",
+    "wait": "Please wait for the image processing"
+  },
+  "toggle": {
+    "on": "on",
+    "off": "off"
+  }
+}

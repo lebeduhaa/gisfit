@@ -75,8 +75,10 @@ export class AuthService {
     return this.firestore.collection('users').doc(id).set({
       nickname: user.nickname,
       email: user.email,
-      avatar: environment.unknownUserAvatar,
-      id
+      id,
+      interfaceLanguage: 'English',
+      notificationSound: true,
+      sendDailyReportOnEmail: false
     });
   }
 

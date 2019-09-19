@@ -8,7 +8,7 @@
         <app-user-icon [fakeAvatar]="user.fakeAvatarUrl" [avatar]="user.avatar" [preload]="preloadedImg"></app-user-icon>
       </div>
       <app-input-file
-        caption="Change Avatar"
+        caption="{{'buttons.change-avatar' | translate}}"
         (change)="selectNewAvatar($event)"
         [clearFilesSubject]="clearFilesSubject"
       ></app-input-file>
@@ -16,40 +16,40 @@
   </div>
   <div class="personal__row">
     <div class="personal__control">
-      <app-input-text placeholder="Nickname" icon="perm_identity">
+      <app-input-text placeholder="{{'controls.nickname' | translate}}" icon="perm_identity">
         <input type="text" [(ngModel)]="tempUser.nickname">
       </app-input-text>
     </div>
     <div class="personal__control">
-      <app-input-text placeholder="Email" icon="mail_outline">
+      <app-input-text placeholder="{{'controls.email' | translate}}" icon="mail_outline">
         <input type="text" [(ngModel)]="tempUser.email">
       </app-input-text>
     </div>
   </div>
   <div class="personal__row">
     <div class="personal__control">
-      <app-input-text placeholder="Height(sm)" icon="height">
+      <app-input-text placeholder="{{'controls.height' | translate}}" icon="height">
         <input type="text" [(ngModel)]="tempUser.height" appNumericControl>
       </app-input-text>
     </div>
     <div class="personal__control">
-      <app-input-text placeholder="Weight(kg)" icon="fitness_center">
+      <app-input-text placeholder="{{'controls.weight' | translate}}" icon="fitness_center">
         <input type="text" [(ngModel)]="tempUser.weight" appNumericControl>
       </app-input-text>
     </div>
   </div>
   <div class="personal__row">
     <div class="personal__control">
-      <app-input-text placeholder="Age" icon="perm_identity">
+      <app-input-text placeholder="{{'controls.age' | translate}}" icon="perm_identity">
         <input type="text" [(ngModel)]="tempUser.age" appNumericControl>
       </app-input-text>
     </div>
     <div class="personal__control">
-      <app-radio-group [options]="['male', 'female']" [twoWayBind]="tempUser"></app-radio-group>
+      <app-radio-group caption="{{'controls.male-title' | translate}}" type="male" [twoWayBind]="tempUser"></app-radio-group>
     </div>
   </div>
   <div class="personal__actions">
-    <app-custom-button color="accent" caption="Save" (click)="save()" [disabled]="disableButton()"></app-custom-button>
-    <app-custom-button color="warn" caption="Cancel" [disabled]="disableButton()"></app-custom-button>
+    <app-custom-button color="accent" caption="{{'buttons.save' | translate}}" (click)="save()" [disabled]="disableButton()"></app-custom-button>
+    <app-custom-button color="warn" caption="{{'buttons.cancel' | translate}}" [disabled]="disableButton()"></app-custom-button>
   </div>
 </div>

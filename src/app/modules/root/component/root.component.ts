@@ -1,37 +1,40 @@
-import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 
-import { APP } from 'src/app/shared/constants';
+import { Subscription } from 'rxjs';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
+import { APP } from 'src/app/shared/constants';
+import { TranslateService } from '@ngx-translate/core';
+import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
+
+
+@AutoUnsubscribe()
 @Component({
   selector: 'app-root',
   templateUrl: 'root.component.html',
   styleUrls: ['root.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RootComponent implements OnInit {
+export class RootComponent implements OnInit, OnDestroy {
 
   public headerVisibility: boolean;
-  public currentUrl: string;
+  public backgroundImageUrl: string;
+  public fakeBackgroundImageUrl: string;
+
+  private userSubscription: Subscription;
 
   constructor(
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
+    private translateService: TranslateService,
+    private realTimeDataService: RealTimeDataService
   ) {}
 
   ngOnInit() {
+    this.translateService.setDefaultLang('English');
     this.router.events
       .subscribe(event => this.parseRouterEvent(event));
-  }
-
-  public getClassObject(): any {
-    if (this.currentUrl) {
-      return {
-        'app__background_settings': this.currentUrl.includes('settings'),
-        'app__background_my-food': this.currentUrl.includes('my-food'),
-        'app__background_auth': this.currentUrl.includes('auth')
-      };
-    }
   }
 
   private parseRouterEvent(event: Event): void {
@@ -45,9 +48,36 @@ export class RootComponent implements OnInit {
       });
 
       this.headerVisibility = result;
-      this.currentUrl = event.url;
       this.changeDetectorRef.markForCheck();
+      this.setCurrentBackgroundImage(event.url);
+      this.setCurrentUserInterfaceLanguage();
     }
   }
+
+  private setCurrentBackgroundImage(currentUrl: string): void {
+    if (currentUrl.includes('settings')) {
+      this.backgroundImageUrl = 'assets/img/backgrounds/settings.jpg';
+      this.fakeBackgroundImageUrl = 'assets/img/backgrounds/settings-preview.jpg';
+    } else
+    if (currentUrl.includes('my-food')) {
+      this.backgroundImageUrl = 'assets/img/backgrounds/my-food.jpg';
+      this.fakeBackgroundImageUrl = 'assets/img/backgrounds/my-food-preview.jpg';
+    } else
+    if (currentUrl.includes('auth')) {
+      this.backgroundImageUrl = 'assets/img/backgrounds/auth.jpg';
+      this.fakeBackgroundImageUrl = 'assets/img/backgrounds/auth-preview.jpg';
+    }
+  }
+
+  private setCurrentUserInterfaceLanguage(): void {
+    this.realTimeDataService.subscribeToCurrentUserData()
+      .subscribe(user => {
+        if (user) {
+          this.translateService.use(user.interfaceLanguage);
+        }
+      });
+  }
+
+  ngOnDestroy() {}
 
 }
