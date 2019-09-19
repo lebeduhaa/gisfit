@@ -1,0 +1,53 @@
+.toggle {
+  border: 1px solid #767676;
+  width: 85px;
+  height: 36px;
+  border-radius: 17px;
+  position: relative;
+  background-color: #252429;
+  cursor: pointer;
+  transition: .3s;
+}
+.toggle__circle {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  height: 30px;
+  width: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: .2s;
+}
+.toggle_on {
+  background-color: #5147da;
+}
+.toggle_on .toggle__circle {
+  transform: translateX(48px);
+}
+.toggle__off {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 14px;
+  color: #bababa;
+}
+.toggle__on {
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #fff;
+  font-size: 14px;
+}
+.toggle__wrapper {
+  display: flex;
+  align-items: center;
+}
+.toggle__title {
+  margin-left: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}

@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
-import { Hour } from 'src/app/shared/models/hour';
+import { Hour } from 'src/app/shared/models/hour.model';
 import { APP } from 'src/app/shared/constants';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { User } from 'src/app/shared/models/user.model';
@@ -20,6 +20,7 @@ export class SystemComponent implements OnInit, OnDestroy {
   public hours: Hour[] = APP.hours;
   public user: User;
   public progressBarVisibility: boolean;
+  public languages: string[] = APP.languages;
 
   private currentUserSubscription: Subscription;
 
@@ -35,6 +36,10 @@ export class SystemComponent implements OnInit, OnDestroy {
 
   public async reactOnSelectHour(hour: Hour): Promise<any> {
     await this.settingsService.updateUserNotificationTime(hour, this.user.id);
+  }
+
+  public reactOnSelectLanguage(language: string): void {
+    console.log(language);
   }
 
   private subscribeToCurrentUser(): void {

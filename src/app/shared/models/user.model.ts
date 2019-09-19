@@ -1,4 +1,4 @@
-import { Hour } from './hour';
+import { Hour } from './hour.model';
 
 export interface User {
   nickname?: string;

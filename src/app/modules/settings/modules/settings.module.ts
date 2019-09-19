@@ -17,6 +17,7 @@ import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { SelectModule } from 'src/app/shared/components/select/modules/select.module';
 import { OpenChangePasswordDirective } from '../directives/open-change-password.directive';
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
+import { ToggleModule } from 'src/app/shared/components/toggle/toggle.module';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { ChangePasswordComponent } from '../components/change-password/change-pa
     RadioGroupModule,
     DirectivesModule,
     MaterialModule,
-    SelectModule
+    SelectModule,
+    ToggleModule
   ],
   declarations: [
     SettingsComponent,

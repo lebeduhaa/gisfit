@@ -10,6 +10,20 @@
         [displayedValue]="hour.title"></app-select-option>
     </app-select>
   </div>
+  <div class="system__notification">
+    <app-select [value]="user.interfaceLanguage" (change)="reactOnSelectLanguage($event)" icon="language" placeholder="Interface Language">
+      <app-select-option
+        *ngFor="let language of languages"
+        [value]="language"
+        [displayedValue]="language"></app-select-option>
+    </app-select>
+  </div>
+  <div class="system__toggles">
+    <app-toggle title="Notification sound"></app-toggle>
+  </div>
+  <div class="system__toggles">
+    <app-toggle title="Send daily report on the email"></app-toggle>
+  </div>
   <div class="system__change-pass">
     <app-spinner-button caption="Change Password" [small]="true" appOpenChangePassword></app-spinner-button>
   </div>

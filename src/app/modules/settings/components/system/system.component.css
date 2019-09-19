@@ -2,13 +2,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 400px;
+  margin: 0 auto;
 }
 .system__notification {
   width: 400px;
+  margin-top: 30px;
+}
+.system__toggles {
   margin-top: 20px;
+  align-self: flex-start;
+  padding-left: 5px;
 }
 .system__change-pass {
   margin-top: 20px;
+
 }
 .system__progress {
   position: absolute;

@@ -41,7 +41,6 @@ export class SelectComponent implements AfterContentInit, OnDestroy {
   private selectValueSubscriptions = new Subscription();
 
   ngAfterContentInit() {
-    console.log(this.value);
     this.subscribeToSelectValue();
     this.checkCurrentValue();
   }

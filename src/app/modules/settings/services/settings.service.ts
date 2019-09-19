@@ -9,7 +9,7 @@ import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from '../../auth/services/auth.service';
-import { Hour } from 'src/app/shared/models/hour';
+import { Hour } from 'src/app/shared/models/hour.model';
 
 @Injectable({
   providedIn: 'root'

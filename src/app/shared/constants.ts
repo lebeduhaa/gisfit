@@ -66,5 +66,9 @@ export const APP = {
     { title: '21:00', value: 21 },
     { title: '22:00', value: 22 },
     { title: '23:00', value: 23 }
+  ],
+  languages: [
+    'English',
+    'Russian'
   ]
 };
