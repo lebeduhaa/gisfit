@@ -5,7 +5,7 @@ import { Directive, HostListener } from '@angular/core';
 })
 export class NumericControlDirective {
 
-  private allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'];
+  private allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', '.'];
 
   @HostListener('keydown', ['$event'])
   inputHandler(event: KeyboardEvent): void {

@@ -3,7 +3,7 @@ import { transition, style, group, trigger, animateChild, query, animate } from 
 
 export const authRouteAnimation =
 trigger('authRouteAnimations', [
-  transition('sign-in => sign-up, personal => system', [
+  transition('sign-in => sign-up', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({
@@ -27,7 +27,7 @@ trigger('authRouteAnimations', [
     ]),
     query(':enter', animateChild()),
   ]),
-  transition('sign-up => sign-in, system => personal', [
+  transition('sign-up => sign-in', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({
@@ -55,7 +55,7 @@ trigger('authRouteAnimations', [
 
 export const settingsRouteAnimation =
 trigger('settingsRouteAnimation', [
-  transition('personal => system', [
+  transition('personal => system, my-food => add-product', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({
@@ -79,7 +79,7 @@ trigger('settingsRouteAnimation', [
     ]),
     query(':enter', animateChild()),
   ]),
-  transition('system => personal', [
+  transition('system => personal, add-product => my-food', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -10,17 +10,23 @@ import { APP } from '../../constants';
   templateUrl: 'cropper.component.html',
   styleUrls: ['cropper.component.css']
 })
-export class CropperComponent {
+export class CropperComponent implements OnInit {
 
   public imageChangedEvent: any = '';
   public croppedImage: string;
   public spinnerVisibility: boolean;
+  public round: boolean;
 
   constructor(
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) private dialogData
   ) {
     this.imageChangedEvent = dialogData.event;
+    this.round = dialogData.round;
+  }
+
+  ngOnInit() {
+    this.spinnerVisibility = true;
   }
 
   public close(): void {

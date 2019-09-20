@@ -1,0 +1,41 @@
+.add-product {
+  font-family: 'Lato', sans-serif;
+  color: white;
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+.add-product__title {
+  font-size: 25px;
+  text-align: center;
+}
+.add-product__control-row {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.add-product__control-row app-input-text:first-child {
+  margin-right: 15px;
+}
+.add-product__image {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.add-product__image-preload img {
+  width: 250px;
+  margin-bottom: 20px;
+  border: 8px solid #ffffff14;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ffffff4a;
+}
+.add-product__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.add-product__actions app-custom-button:first-child {
+  margin-right: 20px;
+}

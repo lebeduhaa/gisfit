@@ -15,6 +15,9 @@
   animation-duration: 2s;
   animation-iteration-count: infinite;
 }
+.notification_error {
+  background-color: #841616;
+}
 .notification__title {
   font-size: 17px;
   margin-bottom: 10px;

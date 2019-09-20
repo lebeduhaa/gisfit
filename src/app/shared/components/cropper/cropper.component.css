@@ -42,3 +42,7 @@ mat-dialog-actions {
   animation-duration: 3s;
   animation-iteration-count: infinite;
 }
+.cropper__preview img {
+  width: 170px;
+  border-radius: 5px;
+}

@@ -23,7 +23,9 @@ export const APP = {
   pages: {
     signIn: 'auth/sign-in',
     signUp: 'auth/sign-up',
-    settings: 'settings'
+    settings: 'settings',
+    myFood: 'my-food',
+    addProduct: 'add-product'
   },
   subjects: {
     notificationVisibility: 'notificationVisibility'
@@ -71,5 +73,15 @@ export const APP = {
   languages: [
     'English',
     'Russian'
+  ],
+  categories: [
+    'Vegetables',
+    'Fruits',
+    'Grains',
+    'Dairy',
+    'Oils',
+    'Meat',
+    'Fish',
+    'Other'
   ]
 };

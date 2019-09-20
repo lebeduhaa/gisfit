@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AuthComponent } from '../../auth/components/auth/auth.component';
 import { SettingsComponent } from '../../settings/components/settings/settings.component';
 import { MyFoodComponent } from '../../my-food/components/my-food/my-food.component';
-import { AddProductComponent } from '../../add-product/components/add-product/add-product.component';
+import { AddProductComponent } from '../../my-food/components/add-product/add-product.component';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { AddProductComponent } from '../../add-product/components/add-product/ad
       { path: 'auth', component: AuthComponent },
       { path: 'settings', component: SettingsComponent, data: {animation: 'settings'} },
       { path: 'my-food', component: MyFoodComponent, data: {animation: 'my-food'} },
-      { path: 'add-product', component: AddProductComponent }
+      { path: 'add-product', component: AddProductComponent, data: {animation: 'add-product'} }
     ])
   ],
   exports: [

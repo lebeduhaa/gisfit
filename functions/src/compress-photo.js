@@ -7,6 +7,7 @@ const admin = require('firebase-admin');
 module.exports = async object => {
   const bucket = admin.storage().bucket();
   const filePath = object.name;
+  const type = filePath.split('/')[0];
   const fileName = filePath.split('/').pop();
   const bucketDir = dirname(filePath);
   const workingDir = `${tmpdir()}/thumbs`;
@@ -14,15 +15,25 @@ module.exports = async object => {
   const imgName = object.name.split('/')[1];
 
   if (fileName.includes('thumb@')) {
-    const email = imgName.substring(imgName.indexOf('_') + 1, imgName.indexOf('.jpg'));
-    const user =  (await admin.firestore().collection('users').where('email', '==', email).get()).docs[0];
+    const identifier= imgName.substring(imgName.indexOf('_') + 1, imgName.indexOf('.jpg'));
     const url = (await bucket.file(filePath).getSignedUrl({action: 'read', expires: '03-09-2491'}))[0];
 
-    return user.ref.update({fakeAvatarUrl: url, fakeAvatarName: filePath});
+    switch (type) {
+      case 'avatars': {
+        const user =  (await admin.firestore().collection('users').where('email', '==', identifier).get()).docs[0];
+
+        return user.ref.update({fakeAvatarUrl: url, fakeAvatarName: filePath});
+      }
+      case 'products': {
+        const product = (await admin.firestore().collection('products').doc(identifier).get());
+
+        return product.ref.update({fakeImage: url});
+      }
+    }
   }
 
-  const email = imgName.substring(0, imgName.indexOf('.jpg'));
-  const user =  (await admin.firestore().collection('users').where('email', '==', email).get()).docs[0];
+  const identifier = imgName.substring(0, imgName.indexOf('.jpg'));
+  const url = (await bucket.file(filePath).getSignedUrl({action: 'read', expires: '03-09-2491'}))[0];
   const thumbName = `${(new Date()).valueOf()}thumb@${16}_${fileName}`;
   const thumbPath = `${workingDir}/${thumbName}`;
 
@@ -39,7 +50,16 @@ module.exports = async object => {
   });
   await fs.remove(workingDir);
 
-  const url = (await bucket.file(filePath).getSignedUrl({action: 'read', expires: '03-09-2491'}))[0];
+  switch (type) {
+    case 'avatars': {
+      const user =  (await admin.firestore().collection('users').where('email', '==', identifier).get()).docs[0];
 
-  return user.ref.update({avatar: url});
+      return user.ref.update({avatar: url});
+    }
+    case 'products': {
+      const product = (await admin.firestore().collection('products').doc(identifier).get());
+
+      return product.ref.update({image: url});
+    }
+  }
 }

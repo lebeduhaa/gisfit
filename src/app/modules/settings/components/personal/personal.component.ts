@@ -59,7 +59,8 @@ export class PersonalComponent implements OnInit, OnDestroy {
       width: '700px',
       id: APP.dialogs.cropper,
       data: {
-        event
+        event,
+        round: true
       }
     });
 

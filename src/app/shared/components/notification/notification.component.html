@@ -1,4 +1,4 @@
-<div @notificationAnimation class="notification" *ngIf="visibility" (click)="close()">
+<div @notificationAnimation class="notification" *ngIf="visibility" (click)="close()" [class.notification_error]="error">
   <div class="notification__title">{{title}}</div>
   <div class="notification__body">{{body}}</div>
 </div>

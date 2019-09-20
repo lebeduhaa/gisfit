@@ -20,6 +20,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
   public visibility: boolean;
   public title: string;
   public body: string;
+  public error: boolean;
 
   private subscription: Subscription;
   private timeout;
@@ -36,10 +37,11 @@ export class NotificationComponent implements OnInit, OnDestroy {
   private subscribeToVisibility(): void {
     this.subscription = this.subjectService.getSubject(APP.subjects.notificationVisibility)
       .subscribe((notification: Notification) => {
-        this.changeDetectorRef.markForCheck();
         this.visibility = true;
         this.title = notification.title;
         this.body = notification.body;
+        this.error = notification.error;
+        this.changeDetectorRef.markForCheck();
         this.timeout = setTimeout(() => {
           this.visibility = false;
           this.changeDetectorRef.markForCheck();

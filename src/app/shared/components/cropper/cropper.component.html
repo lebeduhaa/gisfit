@@ -7,7 +7,7 @@
           [aspectRatio]="1 / 1"
           (imageCropped)="imageCropped($event)"
           (startCropImage)="reactOnStartCropImage()"
-          [roundCropper]="true"
+          [roundCropper]="round"
         ></image-cropper>
       </div>
       <div class="cropper__preview">
@@ -16,7 +16,8 @@
           <mat-spinner></mat-spinner>
           <div class="cropper__description">{{'cropper.wait' | translate}}</div>
         </div>
-        <app-user-icon [preload]="croppedImage" *ngIf="!spinnerVisibility"></app-user-icon>
+        <app-user-icon [preload]="croppedImage" *ngIf="!spinnerVisibility && round"></app-user-icon>
+        <img [src]="croppedImage" *ngIf="!spinnerVisibility && !round">
       </div>
     </div>
   </div>

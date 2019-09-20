@@ -1,12 +1,13 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { Router, Event, NavigationEnd } from '@angular/router';
+import { Router, Event, NavigationEnd, RouterOutlet } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { TranslateService } from '@ngx-translate/core';
 
 import { APP } from 'src/app/shared/constants';
-import { TranslateService } from '@ngx-translate/core';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
+import { settingsRouteAnimation } from 'src/app/shared/animations';
 
 
 @AutoUnsubscribe()
@@ -14,7 +15,10 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
   selector: 'app-root',
   templateUrl: 'root.component.html',
   styleUrls: ['root.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    settingsRouteAnimation
+  ]
 })
 export class RootComponent implements OnInit, OnDestroy {
 
@@ -35,6 +39,10 @@ export class RootComponent implements OnInit, OnDestroy {
     this.translateService.setDefaultLang('English');
     this.router.events
       .subscribe(event => this.parseRouterEvent(event));
+  }
+
+  public prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 
   private parseRouterEvent(event: Event): void {
