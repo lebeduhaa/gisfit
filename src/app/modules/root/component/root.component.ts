@@ -56,7 +56,7 @@ export class RootComponent implements OnInit, OnDestroy {
 
   private setCurrentBackgroundImage(currentUrl: string): void {
     if (currentUrl.includes('settings')) {
-      this.backgroundImageUrl = 'assets/img/backgrounds/settings.jpg';
+      this.backgroundImageUrl = 'assets/img/backgrounds/settings2.jpg';
       this.fakeBackgroundImageUrl = 'assets/img/backgrounds/settings-preview.jpg';
     } else
     if (currentUrl.includes('my-food')) {
@@ -66,6 +66,9 @@ export class RootComponent implements OnInit, OnDestroy {
     if (currentUrl.includes('auth')) {
       this.backgroundImageUrl = 'assets/img/backgrounds/auth.jpg';
       this.fakeBackgroundImageUrl = 'assets/img/backgrounds/auth-preview.jpg';
+    } else
+    if (currentUrl.includes('add-product')) {
+      this.backgroundImageUrl = 'assets/img/backgrounds/my-food.jpg';
     }
   }
 

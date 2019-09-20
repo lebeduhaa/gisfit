@@ -32,7 +32,7 @@
 .auth__form-navigation {
   display: flex;
   font-size: 25px;
-  font-family: 'Sequel Sans Bold Display';
+  font-family: 'Sequel Sans Bold Display', sans-serif;
 }
 .auth__form-navigation-item {
   color: #525252;

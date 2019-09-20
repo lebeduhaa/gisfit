@@ -2,7 +2,7 @@
   min-height: calc(100vh - 80px);
   color: white;
   position: relative;
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
   padding-top: 20px;
 }
 .settings__content {

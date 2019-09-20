@@ -1,0 +1,11 @@
+.add-product {
+  font-family: 'Lato', sans-serif;
+  color: white;
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+.add-product__title {
+  font-size: 25px;
+  text-align: center;
+}

@@ -1,11 +1,9 @@
 .header {
   color: rgb(190, 190, 190);
-  background-color: rgba(0, 0, 0, 0.9);
-  font-family: 'Lato';
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: 'Lato', sans-serif;
   box-shadow: 0 0 30px #ffffff2e;
-}
-.header__logo {
-  margin-left: 40px;
+  border-bottom: .1px solid #686868;
 }
 .header__logo-img {
   height: 100%;

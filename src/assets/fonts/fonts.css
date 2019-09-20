@@ -6,3 +6,7 @@
   font-family: 'Sequel Sans Light Disp';
   src: url('../fonts/Sequel\ Sans\ Light\ Disp.ttf');
 }
+@font-face {
+  font-family: 'Niveau Grotesk ExtraLight';
+  src: url('../fonts/Niveau\ Grotesk\ ExtraLight.otf');
+}

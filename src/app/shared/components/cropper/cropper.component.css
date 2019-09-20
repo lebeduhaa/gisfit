@@ -1,6 +1,6 @@
 .cropper {
   color: white;
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
 }
 .cropper__content {
   display: flex;
