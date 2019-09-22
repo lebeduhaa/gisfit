@@ -1,31 +1,39 @@
-<div class="product__selection" @appearAnimation *ngIf="selectionVisibility" (clickOutside)="onClickedOutside()">
-  <div class="product__selection-title">How much did you eat?</div>
-  <app-input-text icon="grain" placeholder="{{weightKind ? 'Gram' : 'Amount'}}">
-    <input type="text" appNumericControl [(ngModel)]="resultProductSelection">
-  </app-input-text>
-  <div class="product__selection-kind">
-    <mat-radio-group (change)="reactOnSelectKind($event)">
-      <mat-radio-button [value]="'weight'" [checked]="true">weight</mat-radio-button>
-      <mat-radio-button [value]="'by the piece'" [checked]="false">by the piece</mat-radio-button>
-    </mat-radio-group>
-  </div>
-  <div class="product__selection-action">
-    <app-custom-button caption="Accept" (click)="acceptProduct()" [disabled]="!resultProductSelection"></app-custom-button>
-  </div>
-</div>
-<div class="product" appOpenProductInfo [product]="product">
-  <div class="product__actions" (click)="catchClick($event)">
-    <div class="product__action" (click)="selectProduct($event)">
-      <mat-icon color="primary">check</mat-icon>
+<div class="flip-card" [class.flip-card_flip]="selectionVisibility">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="product" appOpenProductInfo [product]="product">
+        <div class="product__actions" (click)="catchClick($event)">
+          <div class="product__action" (click)="selectProduct($event)">
+            <mat-icon color="primary">check</mat-icon>
+          </div>
+          <div class="product__action">
+            <mat-icon color="primary">delete</mat-icon>
+          </div>
+        </div>
+        <div class="product__image">
+          <img [src]="product.image">
+          <img [src]="product.fakeImage">
+          <div class="product__image-tonner"></div>
+        </div>
+        <div class="product__title">{{trimProductName()}}</div>
+      </div>
     </div>
-    <div class="product__action">
-      <mat-icon color="primary">delete</mat-icon>
+    <div class="flip-card-back">
+      <div class="product__selection" (clickOutside)="onClickedOutside()">
+        <div class="product__selection-title">How much did you eat?</div>
+        <app-input-text [small]="true" icon="grain" placeholder="{{weightKind ? 'Gram' : 'Amount'}}">
+          <input type="text" appNumericControl [(ngModel)]="resultProductSelection">
+        </app-input-text>
+        <div class="product__selection-kind">
+          <mat-radio-group (change)="reactOnSelectKind($event)">
+            <mat-radio-button [value]="'weight'" [checked]="true">weight</mat-radio-button>
+            <mat-radio-button [value]="'by the piece'" [checked]="false">by the piece</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="product__selection-action">
+          <app-custom-button caption="Accept" (click)="acceptProduct()" [disabled]="!resultProductSelection"></app-custom-button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="product__image">
-    <img [src]="product.image">
-    <img [src]="product.fakeImage">
-    <div class="product__image-tonner"></div>
-  </div>
-  <div class="product__title">{{trimProductName()}}</div>
 </div>

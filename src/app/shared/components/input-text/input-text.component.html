@@ -1,4 +1,4 @@
-<div class="input" #input (click)="targetFocus()">
+<div class="input" #input (click)="targetFocus()" [class.input_small]="small">
   <div class="input__placeholder" [class.input__placeholder_active]="placeholderAtTop">{{placeholder}}</div>
   <ng-content></ng-content>
   <div class="input__icon">

@@ -1,6 +1,3 @@
-:host {
-  position: relative;
-}
 .product {
   transition: .2s;
   overflow: hidden;
@@ -68,37 +65,38 @@
   margin-left: 5px;
   margin-right: 5px;
 }
+
+
 .product__selection {
-  position: absolute;
-  /* left: -40px;
-  top: -25px; */
-  left: 0;
-  top: 0;
-  transform: translateX(-40px);
-  transform: translateY(-25px);
-  width: 300px;
   background-color: black;
-  padding: 10px 20px 10px 20px;
-  z-index: 6;
-  box-shadow: 0 0 15px gray;
+  box-shadow: 0 0 15px #ffffffba;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.05);
+  position: relative;
+  z-index: 100;
+  padding: 10px 0;
 }
 .product__selection-kind {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 .product__selection-kind mat-radio-button {
-  margin-right: 15px;
+  margin-bottom: 10px;
 }
 .product__selection-action {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
 }
 .product__selection-title {
   text-align: center;
+  font-size: 13px;
   margin-bottom: 20px;
 }
+
+
+
+
 
 .product:hover .product__image-tonner {
   opacity: 0;

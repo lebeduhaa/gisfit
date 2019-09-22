@@ -6,6 +6,11 @@
   position: relative;
   width: 100%;
 }
+.input_small {
+  height: 35px;
+  width: 80%;
+  margin: 0 auto;
+}
 .input__placeholder {
   color: #bbbbbb;
   position: absolute;
@@ -15,10 +20,19 @@
   font-size: 15px;
   transition: .2s;
 }
+.input_small .input__placeholder {
+  left: 14px;
+  top: 9px;
+  font-size: 13px;
+}
 .input__icon {
   position: absolute;
   top: 15px;
   right: 25px;
+}
+.input_small .input__icon {
+  top: 6px;
+  right: 8px;
 }
 .input /deep/ input {
   background-color: #252429;
@@ -36,4 +50,7 @@
 }
 .input__placeholder_active {
   transform: translate(-20px, -36px) scale(0.8);
+}
+.input_small .input__placeholder_active {
+  transform: translate(-10px, -24px) scale(0.8);
 }

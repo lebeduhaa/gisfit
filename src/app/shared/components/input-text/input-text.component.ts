@@ -9,6 +9,7 @@ export class InputTextComponent implements OnInit {
 
   @Input() placeholder: string;
   @Input() icon: string;
+  @Input() small: boolean;
 
   @ViewChild('input') inputWrapper: ElementRef;
 

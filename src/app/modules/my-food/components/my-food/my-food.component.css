@@ -8,7 +8,7 @@
   justify-content: center;
 }
 .my-food__my-products {
-  width: 800px;
+  width: 830px;
 }
 .my-food__add {
   display: flex;
@@ -31,7 +31,7 @@
   margin-top: 10px;
   padding-top: 20px;
   height: calc(100vh - 177px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .my-food__product {
   flex-basis: 25%;
