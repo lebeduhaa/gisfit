@@ -1,20 +1,48 @@
 .my-food {
-  min-height: calc(100vh - 80px);
   color: white;
   font-family: 'Lato', sans-serif;
+  position: relative;
 }
 .my-food__content {
-  width: 1000px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.my-food__my-products {
+  width: 800px;
 }
 .my-food__add {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .my-food__description {
   color: silver;
   padding-top: 20px;
   text-align: center;
   font-weight: 400;
+}
+.my-food__progress-bar {
+  position: absolute;
+  width: 100%;
+}
+.my-food__products {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  padding-top: 20px;
+  height: calc(100vh - 177px);
+  overflow-y: scroll;
+}
+.my-food__product {
+  flex-basis: 25%;
+  margin-bottom: 30px;
+  height: 207px;
+  display: flex;
+  justify-content: center;
+}
+.my-food__current-eating {
+  width: 350px;
+}
+.my-food__current-progress {
+  width: 350px;
 }

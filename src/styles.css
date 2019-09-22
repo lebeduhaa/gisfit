@@ -13,10 +13,10 @@ html {
   overflow-x: hidden;
 }
 
-.input .mat-icon.mat-primary {
+.input .mat-icon.mat-primary, .product .mat-icon.mat-primary {
   color: #787878;
 }
-.select .mat-icon.mat-primary {
+.select .mat-icon.mat-primary, .product .mat-icon.mat-primary {
   color: #787878;
 }
 .button .mat-progress-spinner circle, .mat-spinner circle {

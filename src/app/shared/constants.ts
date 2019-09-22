@@ -28,7 +28,8 @@ export const APP = {
     addProduct: 'add-product'
   },
   subjects: {
-    notificationVisibility: 'notificationVisibility'
+    notificationVisibility: 'notificationVisibility',
+    newProduct: 'newProduct'
   },
   dialogs: {
     passwordReset: 'passwordReset',

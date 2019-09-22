@@ -1,10 +1,14 @@
 <div class="radio-group">
   <div class="radio-group__title">{{caption}}</div>
   <div class="radio-group__content">
-    <mat-radio-group (change)="reactOnSelect($event)" [(ngModel)]="twoWayBind.sex">
+    <mat-radio-group (change)="reactOnSelect($event)" [(ngModel)]="twoWayBind?.sex ? twoWayBind.sex : twoWayBind">
       <div class="radio-group__male" *ngIf="type === 'male'">
         <mat-radio-button [value]="'male'">{{'controls.male' | translate}}</mat-radio-button>
         <mat-radio-button [value]="'female'">{{'controls.female' | translate}}</mat-radio-button>
+      </div>
+      <div class="radio-group__male" *ngIf="type === 'product-selection'">
+        <mat-radio-button [value]="'weight'" [checked]="true">weight</mat-radio-button>
+        <mat-radio-button [value]="'by the piece'" [checked]="false">by the piece</mat-radio-button>
       </div>
     </mat-radio-group>
   </div>

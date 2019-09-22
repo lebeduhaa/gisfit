@@ -11,6 +11,12 @@ import { CustomButtonModule } from 'src/app/shared/components/custom-button/cust
 import { InputFileModule } from 'src/app/shared/components/input-file/input-file.module';
 import { AddProductComponent } from '../components/add-product/add-product.component';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
+import { ProductComponent } from '../components/product/product.component';
+import { ProductInfoComponent } from '../components/product-info/product-info.component';
+import { OpenProductInfoDirective } from '../directives/open-product-info.directive';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { RadioGroupModule } from 'src/app/shared/components/radio-group/radio-group.module';
+import { CurrentEatingComponent } from '../components/current-eating/current-eating.component';
 
 @NgModule({
   imports: [
@@ -23,11 +29,20 @@ import { MaterialModule } from 'src/app/shared/modules/material.module';
     CustomButtonModule,
     InputFileModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    ClickOutsideModule,
+    RadioGroupModule
   ],
   declarations: [
     MyFoodComponent,
-    AddProductComponent
+    AddProductComponent,
+    ProductComponent,
+    ProductInfoComponent,
+    OpenProductInfoDirective,
+    CurrentEatingComponent
+  ],
+  entryComponents: [
+    ProductInfoComponent
   ],
   exports: [
     MyFoodComponent

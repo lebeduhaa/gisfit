@@ -1,10 +1,26 @@
 <div class="my-food">
+  <div class="my-food__progress-bar" *ngIf="progressBarVisibility">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
   <div class="my-food__content">
-    <div class="my-food__description">
-      Here are your products. You can add your food, select it today and receive daily report at your according time.
+    <div class="my-food__current-eating">
+      <app-current-eating></app-current-eating>
     </div>
-    <div class="my-food__add">
-        <app-spinner-button caption="Add my product" [small]="true" routerLink="/add-product"></app-spinner-button>
+    <div class="my-food__my-products">
+      <div class="my-food__description">
+        Here are your products. You can add your food, select it today and receive daily report at your according time.
+      </div>
+      <div class="my-food__add">
+          <app-spinner-button caption="Add my product" [small]="true" routerLink="/add-product"></app-spinner-button>
+      </div>
+      <div class="my-food__products" *ngIf="!progressBarVisibility">
+        <div class="my-food__product" *ngFor="let product of products">
+          <app-product [product]="product"></app-product>
+        </div>
+      </div>
+    </div>
+    <div class="my-food__current-progress">
+      current progress
     </div>
   </div>
 </div>

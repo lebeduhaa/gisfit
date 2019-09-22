@@ -1,0 +1,26 @@
+<mat-dialog-content>
+  <div class="product-info">
+    <div class="product-info__title">{{product.productName}}</div>
+    <div class="product-info__img">
+      <img [src]="product.image">
+    </div>
+    <div class="product-info__value">
+      <div class="product-info__row">
+        <div class="product-info__row-key">Calories</div>
+        <div class="product-info__row-value">{{product.calories}}kcal</div>
+      </div>
+      <div class="product-info__row">
+        <div class="product-info__row-key">Protein</div>
+        <div class="product-info__row-value">{{product.protein}}g</div>
+      </div>
+      <div class="product-info__row">
+        <div class="product-info__row-key">Fats</div>
+        <div class="product-info__row-value">{{product.fats}}g</div>
+      </div>
+      <div class="product-info__row">
+        <div class="product-info__row-key">Carbohydrates</div>
+        <div class="product-info__row-value">{{product.carbohydrates}}g</div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

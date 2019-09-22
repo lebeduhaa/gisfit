@@ -189,3 +189,19 @@ trigger('expandAnimation', [
     animate('150ms ease-out', style({height: 0}))
   ])
 ]);
+
+export const appearAnimation =
+trigger('appearAnimation', [
+  transition(':enter', [
+    style({
+      transform: 'scale(0.1)'
+    }),
+    animate(100, style({transform: 'scale(1)'}))
+  ]),
+  transition(':leave', [
+    style({
+      transform: 'scale(1)'
+    }),
+    animate(100, style({transform: 'scale(0.1)'}))
+  ])
+]);

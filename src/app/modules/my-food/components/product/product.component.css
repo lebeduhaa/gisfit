@@ -1,0 +1,127 @@
+:host {
+  position: relative;
+}
+.product {
+  transition: .2s;
+  overflow: hidden;
+  position: relative;
+}
+.product__image {
+  width: 170px;
+  height: 170px;
+  position: relative;
+  overflow: hidden;
+}
+.product__actions {
+  position: absolute;
+  width: 100%;
+  top: -36px;
+  left: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: .2s;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.product__image img {
+  width: 100%;
+  z-index: 2;
+  position: relative;
+  transition: 4s;
+}
+.product__image img:last-of-type {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+.product__image-tonner {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, .3);
+  transition: .2s;
+}
+.product__title {
+  padding: 10px;
+  background-color: #3a6971;
+  text-align: center;
+  margin-top: -3px;
+  transition: .2s;
+  width: 170px;
+  height: 40px;
+  position: relative;
+  z-index: 4;
+  font-size: 13px;
+}
+.product__action {
+  border: 1px solid #787878;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.product__selection {
+  position: absolute;
+  /* left: -40px;
+  top: -25px; */
+  left: 0;
+  top: 0;
+  transform: translateX(-40px);
+  transform: translateY(-25px);
+  width: 300px;
+  background-color: black;
+  padding: 10px 20px 10px 20px;
+  z-index: 6;
+  box-shadow: 0 0 15px gray;
+}
+.product__selection-kind {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+.product__selection-kind mat-radio-button {
+  margin-right: 15px;
+}
+.product__selection-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.product__selection-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product:hover .product__image-tonner {
+  opacity: 0;
+}
+.product:hover {
+  box-shadow: 0 0 15px #ffffffba;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.product:hover .product__title {
+  background-color: #388896;
+}
+.product:hover .product__actions {
+  top: 0;
+}.product__action:hover {
+  border: 1px solid white;
+}
+.product__action:hover mat-icon {
+  color: white;
+}
+.product__actions:hover {
+  cursor: default;
+}
+.product__action:hover {
+  cursor: pointer;
+}

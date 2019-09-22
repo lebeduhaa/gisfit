@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import { Product } from 'src/app/shared/models/product.model';
@@ -27,6 +27,13 @@ export class MyFoodService {
     delete product.image;
     await this.firestore.collection('products').doc(id).set({...product, id, userId});
     await this.fireStorage.ref(`products/${id}.jpg`).putString(pureBase64.toString(), 'base64');
+  }
+
+  public async getMyProducts(): Promise<any> {
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const products = await this.firestore.collection('products').ref.where('userId', '==', userId).get();
+
+    return products.docs.map(doc => doc.data());
   }
 
 }

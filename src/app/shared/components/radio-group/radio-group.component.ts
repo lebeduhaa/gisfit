@@ -10,7 +10,6 @@ export class RadioGroupComponent {
 
   @Output() select = new EventEmitter<string>();
 
-  @Input() options: string[];
   @Input() twoWayBind: User;
   @Input() caption: string;
   @Input() type: string;
