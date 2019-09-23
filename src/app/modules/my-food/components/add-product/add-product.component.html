@@ -4,46 +4,59 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
   <div class="add-product__content" [formGroup]="productForm">
-    <div class="add-product__image">
-      <div class="add-product__image-preload">
-        <img [src]="productPreloadedPhoto" *ngIf="productPreloadedPhoto">
+    <div class="add-product__left">
+      <div class="add-product__control">
+        <app-input-text placeholder="Product Name" icon="create">
+          <input type="text" formControlName="productName">
+        </app-input-text>
       </div>
-      <app-input-file
-        caption="Upload image"
-        (change)="reactOnSelectProductImage($event)"
-        [clearFilesSubject]="clearFilesSubject"
-      ></app-input-file>
+      <div class="add-product__control">
+        <app-select (change)="reactOnSelectCategory($event)" icon="list_alt" placeholder="Category">
+          <app-select-option
+            *ngFor="let category of categories"
+            [value]="category"
+            [displayedValue]="category"></app-select-option>
+        </app-select>
+      </div>
+      <div class="add-product__control">
+        <app-input-text icon="bubble_chart" placeholder="Calories (kcal/100g)">
+          <input type="text" formControlName="calories" appNumericControl>
+        </app-input-text>
+      </div>
+      <div class="add-product__control">
+        <app-input-text icon="scatter_plot" placeholder="Protein (g/100g)">
+          <input type="text" formControlName="protein" appNumericControl>
+        </app-input-text>
+      </div>
+      <div class="add-product__control">
+        <app-input-text icon="share" placeholder="Fats (g/100g)">
+          <input type="text" formControlName="fats" appNumericControl>
+        </app-input-text>
+      </div>
+      <div class="add-product__control">
+        <app-input-text icon="grain" placeholder="Carbohydrates (g/100g)">
+          <input type="text" formControlName="carbohydrates" appNumericControl>
+        </app-input-text>
+      </div>
     </div>
-    <div class="add-product__control-row">
-      <app-input-text placeholder="Product Name" icon="create">
-        <input type="text" formControlName="productName">
-      </app-input-text>
-      <app-select (change)="reactOnSelectCategory($event)" icon="list_alt" placeholder="Category">
-        <app-select-option
-          *ngFor="let category of categories"
-          [value]="category"
-          [displayedValue]="category"></app-select-option>
-      </app-select>
-    </div>
-    <div class="add-product__control-row">
-      <app-input-text icon="bubble_chart" placeholder="Calories (kcal/100g)">
-        <input type="text" formControlName="calories" appNumericControl>
-      </app-input-text>
-      <app-input-text icon="scatter_plot" placeholder="Protein (g/100g)">
-        <input type="text" formControlName="protein" appNumericControl>
+    <div class="add-product__right">
+      <div class="add-product__image">
+        <div class="add-product__image-preload">
+          <img [src]="productPreloadedPhoto ? productPreloadedPhoto : 'assets/img/no-photo.jpg'">
+        </div>
+        <app-input-file
+          caption="Upload image"
+          (change)="reactOnSelectProductImage($event)"
+          [clearFilesSubject]="clearFilesSubject"
+        ></app-input-file>
+      </div>
+      <app-input-text icon="looks_one" placeholder="Average mass of one piece(g)">
+        <input type="text" formControlName="massOfOnePiece" appNumericControl>
       </app-input-text>
     </div>
-    <div class="add-product__control-row">
-      <app-input-text icon="share" placeholder="Fats (g/100g)">
-        <input type="text" formControlName="fats" appNumericControl>
-      </app-input-text>
-      <app-input-text icon="grain" placeholder="Carbohydrates (g/100g)">
-        <input type="text" formControlName="carbohydrates" appNumericControl>
-      </app-input-text>
-    </div>
-    <div class="add-product__actions">
-      <app-custom-button color="accent" caption="Save" [disabled]="productForm.invalid" (click)="save()"></app-custom-button>
-      <app-custom-button color="warn" caption="Back" routerLink="/my-food"></app-custom-button>
-    </div>
+  </div>
+  <div class="add-product__actions">
+    <app-custom-button color="accent" caption="Save" [disabled]="productForm.invalid" (click)="save()"></app-custom-button>
+    <app-custom-button color="warn" caption="Back" routerLink="/my-food"></app-custom-button>
   </div>
 </div>

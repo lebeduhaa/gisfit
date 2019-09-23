@@ -18,7 +18,6 @@ export class ProductComponent {
   @Input() product: Product;
 
   public selectionVisibility: boolean;
-  public productVisibility = true;
   public weightKind = true;
   public resultProductSelection: number;
 
@@ -37,10 +36,6 @@ export class ProductComponent {
 
   public selectProduct(): void {
     this.selectionVisibility = true;
-    // setTimeout(() => {
-    //   this.productVisibility = false;
-    //   this.changeDetectorRef.markForCheck();
-    // }, 800);
   }
 
   public catchClick(event: MouseEvent): void {
@@ -49,7 +44,6 @@ export class ProductComponent {
 
   public onClickedOutside(): void {
     this.selectionVisibility = false;
-    this.productVisibility = true;
   }
 
   public reactOnSelectKind(value): void {
@@ -60,14 +54,38 @@ export class ProductComponent {
     }
   }
 
-  public acceptProduct(): void {
+  public acceptProduct(event: MouseEvent): void {
+    const button = (event.target as HTMLElement);
+    const buttonCoordinates = button.getBoundingClientRect();
+
     this.selectionVisibility = false;
-    this.productVisibility = true;
     this.subjectService.emitSubject(APP.subjects.newProduct, {
       weight: this.weightKind,
       howMuch: this.resultProductSelection,
       product: this.product
     });
+    this.subjectService.emitSubject(APP.subjects.flyingProduct, {
+      startX: buttonCoordinates.left,
+      startY: buttonCoordinates.top,
+      image: this.product.image,
+      productName: this.trimProductName()
+    });
+    this.subjectService.emitSubject(APP.subjects.preview, {
+      calories: this.weightKind ?
+        (this.product.calories * this.resultProductSelection) / 100 :
+        (this.product.calories * (this.resultProductSelection * this.product.averageMassOfOnePiece)) / 100,
+      protein: this.weightKind ?
+        (this.product.protein * this.resultProductSelection) / 100 :
+        (this.product.protein * (this.resultProductSelection * this.product.averageMassOfOnePiece)) / 100,
+      fats: this.weightKind ?
+        (this.product.fats * this.resultProductSelection) / 100 :
+        (this.product.fats * (this.resultProductSelection * this.product.averageMassOfOnePiece)) / 100,
+      carbohydrates: this.weightKind ?
+        (this.product.carbohydrates * this.resultProductSelection) / 100 :
+        (this.product.carbohydrates * (this.resultProductSelection * this.product.averageMassOfOnePiece)) / 100,
+    });
+
+    this.resultProductSelection = null;
   }
 
 }

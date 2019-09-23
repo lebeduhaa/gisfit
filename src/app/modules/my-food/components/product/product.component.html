@@ -3,7 +3,7 @@
     <div class="flip-card-front">
       <div class="product" appOpenProductInfo [product]="product">
         <div class="product__actions" (click)="catchClick($event)">
-          <div class="product__action" (click)="selectProduct($event)">
+          <div class="product__action" (click)="selectProduct()">
             <mat-icon color="primary">check</mat-icon>
           </div>
           <div class="product__action">
@@ -31,7 +31,7 @@
           </mat-radio-group>
         </div>
         <div class="product__selection-action">
-          <app-custom-button caption="Accept" (click)="acceptProduct()" [disabled]="!resultProductSelection"></app-custom-button>
+          <app-custom-button caption="Accept" (click)="acceptProduct($event)" [disabled]="!resultProductSelection"></app-custom-button>
         </div>
       </div>
     </div>

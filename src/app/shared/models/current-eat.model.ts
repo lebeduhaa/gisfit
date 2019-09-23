@@ -1,6 +1,6 @@
 import { Product } from './product.model';
 
-export class CurrentEat {
+export interface CurrentEat {
   weight?: boolean;
   howMuch?: number;
   product?: Product;

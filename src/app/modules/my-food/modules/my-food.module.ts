@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { ClickOutsideModule } from 'ng-click-outside';
+
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { MyFoodComponent } from '../components/my-food/my-food.component';
 import { SpinnerButtonModule } from 'src/app/shared/components/spinner-button/spinner-button.module';
@@ -14,9 +16,11 @@ import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { ProductComponent } from '../components/product/product.component';
 import { ProductInfoComponent } from '../components/product-info/product-info.component';
 import { OpenProductInfoDirective } from '../directives/open-product-info.directive';
-import { ClickOutsideModule } from 'ng-click-outside';
 import { RadioGroupModule } from 'src/app/shared/components/radio-group/radio-group.module';
 import { CurrentEatingComponent } from '../components/current-eating/current-eating.component';
+import { FlyingProductComponent } from '../components/flying-product/flying-product.component';
+import { CurrentProgressComponent } from '../components/current-progress/current-progress.component';
+import { ProgressModule } from 'src/app/shared/components/progress/progress.module';
 
 @NgModule({
   imports: [
@@ -31,7 +35,8 @@ import { CurrentEatingComponent } from '../components/current-eating/current-eat
     RouterModule,
     MaterialModule,
     ClickOutsideModule,
-    RadioGroupModule
+    RadioGroupModule,
+    ProgressModule
   ],
   declarations: [
     MyFoodComponent,
@@ -39,7 +44,9 @@ import { CurrentEatingComponent } from '../components/current-eating/current-eat
     ProductComponent,
     ProductInfoComponent,
     OpenProductInfoDirective,
-    CurrentEatingComponent
+    CurrentEatingComponent,
+    FlyingProductComponent,
+    CurrentProgressComponent
   ],
   entryComponents: [
     ProductInfoComponent

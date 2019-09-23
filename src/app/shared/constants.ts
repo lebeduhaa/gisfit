@@ -29,7 +29,9 @@ export const APP = {
   },
   subjects: {
     notificationVisibility: 'notificationVisibility',
-    newProduct: 'newProduct'
+    newProduct: 'newProduct',
+    flyingProduct: 'flyingProduct',
+    preview: 'preview'
   },
   dialogs: {
     passwordReset: 'passwordReset',

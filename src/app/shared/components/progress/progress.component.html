@@ -1,0 +1,12 @@
+<div class="progress">
+  <div class="progress__wrapper">
+    <div class="progress__value" [ngStyle]="
+      {
+        'width': value + '%', 'background-color': color,
+        'border-top-right-radius': preview ? '0' : '15px',
+        'border-bottom-right-radius': preview ? '0' : '15px'
+      }"
+    ></div>
+    <div class="progress__preview" [ngStyle]="{'width': preview + '%', 'background-color': color}"></div>
+  </div>
+</div>

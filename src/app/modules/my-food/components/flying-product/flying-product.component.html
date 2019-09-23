@@ -1,0 +1,10 @@
+<div
+  *ngIf="flyingProductVisibility"
+  class="flying-product"
+  [ngStyle]="{'top': startY + 'px', 'left': startX + 'px'}"
+>
+  <div class="flying-product__header">
+    <img [src]="image">
+  </div>
+  <div class="flying-product__title">{{productName}}</div>
+</div>

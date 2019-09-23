@@ -82,7 +82,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
       protein: ['', Validators.required],
       fats: ['', Validators.required],
       carbohydrates: ['', Validators.required],
-      image: ['', Validators.required]
+      image: ['', Validators.required],
+      massOfOnePiece: ['', Validators.required]
     });
   }
 

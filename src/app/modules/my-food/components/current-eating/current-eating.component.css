@@ -1,7 +1,32 @@
 .current-eating {
-
+  height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 .current-eating__title {
-  font-size: 30px;
+  font-size: 25px;
   margin-top: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.current-eating__product-image {
+  width: 125px;
+  height: 125px;
+}
+.current-eating__product-image img {
+  width: 100%;
+}
+.current-eating__content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.current-eating__product {
+  margin-bottom: 8px;
+  width: 125px;
+  margin-right: 6px;
+  box-shadow: 0 0 2px white;
+}
+.current-eating__product-info {
+  font-size: 12px;
+  padding: 3px;
+  background-color: #4c4c4c;
 }

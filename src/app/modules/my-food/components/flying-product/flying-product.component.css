@@ -1,0 +1,22 @@
+.flying-product {
+  position: absolute;
+  transition: .6s;
+}
+.flying-product__header {
+  width: 130px;
+}
+.flying-product__header img {
+  width: 100%;
+}
+.flying-product__title {
+  width: 130px;
+  font-size: 13px;
+  background-color: #388896;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -5px;
+  font-family: 'Lato', sans-serif;
+  color: white;
+}

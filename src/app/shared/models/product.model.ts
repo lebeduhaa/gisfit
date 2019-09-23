@@ -9,4 +9,6 @@ export interface Product {
   fakeImage?: string;
   id?: string;
   userId?: string;
+  averageMassOfOnePiece?: number;
+  weight?: number;
 }

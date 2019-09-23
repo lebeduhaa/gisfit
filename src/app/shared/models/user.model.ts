@@ -1,4 +1,5 @@
 import { Hour } from './hour.model';
+import { Day } from './day.model';
 
 export interface User {
   nickname?: string;
@@ -16,4 +17,9 @@ export interface User {
   interfaceLanguage?: string;
   notificationSound?: boolean;
   sendDailyReportOnEmail?: boolean;
+  caloriesGoal?: number;
+  proteinGoal?: number;
+  fatsGoal?: number;
+  carbohydratesGoal?: number;
+  currentDay?: Day;
 }

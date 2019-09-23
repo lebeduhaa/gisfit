@@ -1,0 +1,21 @@
+<div class="progress">
+  <div class="progress__title">My Progress</div>
+  <div class="progress__content">
+    <div class="progress__item">
+      <div class="progress__item-title">Calories {{currentCalories}}/{{caloriesGoal}}ckal</div>
+      <app-progress [value]="currentCaloriesPercent" [preview]="caloriesPreview" color="#d4195e"></app-progress>
+    </div>
+    <div class="progress__item">
+      <div class="progress__item-title">Protein {{currentProtein}}/{{proteinGoal}}g</div>
+      <app-progress [value]="currentProteinPercent" [preview]="proteinPreview" color="#5147da"></app-progress>
+    </div>
+    <div class="progress__item">
+      <div class="progress__item-title">Fats {{currentFats}}/{{fatsGoal}}g</div>
+      <app-progress [value]="currentFatsPercent" [preview]="fatsPreview" color="#2fb5b5"></app-progress>
+    </div>
+    <div class="progress__item">
+      <div class="progress__item-title">Carbohydrates {{currentCarbohydrates}}/{{carbohydratesGoal}}g</div>
+      <app-progress [value]="currentCarbohydratesPercent" [preview]="carbohydratesPreview" color="#a79a00"></app-progress>
+    </div>
+  </div>
+</div>
