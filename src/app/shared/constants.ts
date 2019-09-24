@@ -36,7 +36,8 @@ export const APP = {
   dialogs: {
     passwordReset: 'passwordReset',
     cropper: 'cropper',
-    changePassword: 'changePassword'
+    changePassword: 'changePassword',
+    areYouSure: 'areYouSure'
   },
   routesWithHeader: [
     'settings',

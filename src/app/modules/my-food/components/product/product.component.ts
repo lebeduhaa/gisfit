@@ -4,6 +4,7 @@ import { Product } from 'src/app/shared/models/product.model';
 import { appearAnimation } from 'src/app/shared/animations';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
+import { MyFoodService } from '../../services/my-food.service';
 
 @Component({
   selector: 'app-product',
@@ -23,8 +24,16 @@ export class ProductComponent {
 
   constructor(
     private subjectService: SubjectService,
-    private changeDetectorRef: ChangeDetectorRef
+    private myFoodService: MyFoodService
   ) {}
+
+  public reactOnConfirmDeleteProduct(confirmation: boolean): void {
+    console.log(confirmation);
+  }
+
+  public deleteProduct(): void {
+    this.myFoodService.deleteProduct(this.product.id);
+  }
 
   public trimProductName(): string {
     if (this.product.productName.length > 20) {

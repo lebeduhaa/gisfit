@@ -6,7 +6,7 @@
           <div class="product__action" (click)="selectProduct()">
             <mat-icon color="primary">check</mat-icon>
           </div>
-          <div class="product__action">
+          <div class="product__action" (confirmationEvent)="reactOnConfirmDeleteProduct($event)" appOpenAreYouSure title="Do you really want to delete product '{{product.productName}}'?">
             <mat-icon color="primary">delete</mat-icon>
           </div>
         </div>

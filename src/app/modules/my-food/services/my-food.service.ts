@@ -18,6 +18,10 @@ export class MyFoodService {
     private fireStorage: AngularFireStorage
   ) {}
 
+  public deleteProduct(productId: string): void {
+    console.log(productId);
+  }
+
   public async createMyProduct(product: Product): Promise<any> {
     const id = this.firestore.createId();
     const base64 = product.image;

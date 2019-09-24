@@ -1,0 +1,12 @@
+.are-you-sure__title {
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  color: white
+}
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+app-custom-button:last-of-type {
+  margin-left: 15px;
+}

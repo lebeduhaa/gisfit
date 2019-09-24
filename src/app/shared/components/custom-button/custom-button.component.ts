@@ -11,6 +11,7 @@ export class CustomButtonComponent {
   @Input() caption: string;
   @Input() disabled: boolean;
   @Input() color: string;
+  @Input() small: boolean;
 
   public onClick(event: MouseEvent): void {
     if (this.disabled) {

@@ -21,6 +21,7 @@ import { CurrentEatingComponent } from '../components/current-eating/current-eat
 import { FlyingProductComponent } from '../components/flying-product/flying-product.component';
 import { CurrentProgressComponent } from '../components/current-progress/current-progress.component';
 import { ProgressModule } from 'src/app/shared/components/progress/progress.module';
+import { AreYouSureModule } from 'src/app/shared/components/are-you-sure/are-you-sure.module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { ProgressModule } from 'src/app/shared/components/progress/progress.modu
     MaterialModule,
     ClickOutsideModule,
     RadioGroupModule,
-    ProgressModule
+    ProgressModule,
+    AreYouSureModule
   ],
   declarations: [
     MyFoodComponent,
