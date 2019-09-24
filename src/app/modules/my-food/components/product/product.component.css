@@ -87,6 +87,7 @@
 .product__selection-action {
   display: flex;
   justify-content: center;
+  margin-top: 5px;
 }
 .product__selection-title {
   text-align: center;
@@ -122,4 +123,16 @@
 }
 .product__action:hover {
   cursor: pointer;
+}
+.product__selection-back {
+  position: absolute;
+  bottom: -2px;
+  left: 6px;
+  cursor: pointer;
+}
+.product__selection-back .mat-icon {
+  color: #787878;
+}
+.product__selection .mat-icon:hover {
+  color: white;
 }

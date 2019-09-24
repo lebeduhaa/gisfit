@@ -6,6 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Product } from 'src/app/shared/models/product.model';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { APP } from 'src/app/shared/constants';
+import { Day } from 'src/app/shared/models/day.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,25 @@ export class MyFoodService {
     private fireStorage: AngularFireStorage
   ) {}
 
-  public deleteProduct(productId: string): void {
-    console.log(productId);
+  public async submitCurrentEating(products: Product[]): Promise<any> {
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const user = await this.firestore.collection('users').doc(userId).get().toPromise();
+    const currentDay: Day = user.data().currentDay;
+
+    currentDay.products = currentDay.products.concat(products);
+
+    products.forEach(product => {
+      currentDay.currentCalories += Number(product.calories);
+      currentDay.currentProtein += Number(product.protein);
+      currentDay.currentFats += Number(product.fats);
+      currentDay.currentCarbohydrates += Number(product.carbohydrates);
+    });
+
+    await user.ref.update({currentDay});
+  }
+
+  public deleteProduct(productId: string): Promise<any> {
+    return this.firestore.collection('products').doc(productId).delete();
   }
 
   public async createMyProduct(product: Product): Promise<any> {
@@ -27,6 +45,11 @@ export class MyFoodService {
     const base64 = product.image;
     const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
     const pureBase64 = base64.slice(base64.toString().indexOf('base64,') + 7);
+
+    product.calories = Number(product.calories);
+    product.protein = Number(product.protein);
+    product.fats = Number(product.fats);
+    product.carbohydrates = Number(product.carbohydrates);
 
     delete product.image;
     await this.firestore.collection('products').doc(id).set({...product, id, userId});

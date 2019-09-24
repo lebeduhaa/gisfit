@@ -3,7 +3,7 @@
   height: 30px;
   border: 1px solid #828282;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 .progress__wrapper {
   width: 100%;
@@ -12,14 +12,10 @@
 }
 .progress__value {
   height: 100%;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
   transition: .5s;
 }
 .progress__preview {
   height: 100%;
   opacity: .4;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
   transition: .5s;
 }

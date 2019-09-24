@@ -15,7 +15,7 @@
       </div>
       <div class="my-food__products" *ngIf="!progressBarVisibility">
         <div class="my-food__product" *ngFor="let product of products">
-          <app-product [product]="product"></app-product>
+          <app-product [product]="product" (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
@@ -71,10 +71,17 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
   private subscribeToPreview(): void {
     this.previewSubscription = this.subjectService.getSubject(APP.subjects.preview)
       .subscribe((preview: Preview) => {
-        this.caloriesPreview += (100 * preview.calories) / this.caloriesGoal;
-        this.proteinPreview += (100 * preview.protein) / this.proteinGoal;
-        this.fatsPreview += (100 * preview.fats) / this.fatsGoal;
-        this.carbohydratesPreview += (100 * preview.carbohydrates) / this.carbohydratesGoal;
+        if (preview.add) {
+          this.caloriesPreview += (100 * preview.calories) / this.caloriesGoal;
+          this.proteinPreview += (100 * preview.protein) / this.proteinGoal;
+          this.fatsPreview += (100 * preview.fats) / this.fatsGoal;
+          this.carbohydratesPreview += (100 * preview.carbohydrates) / this.carbohydratesGoal;
+        } else {
+          this.caloriesPreview -= (100 * preview.calories) / this.caloriesGoal;
+          this.proteinPreview -= (100 * preview.protein) / this.proteinGoal;
+          this.fatsPreview -= (100 * preview.fats) / this.fatsGoal;
+          this.carbohydratesPreview -= (100 * preview.carbohydrates) / this.carbohydratesGoal;
+        }
       });
   }
 

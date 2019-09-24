@@ -31,7 +31,10 @@
           </mat-radio-group>
         </div>
         <div class="product__selection-action">
-          <app-custom-button caption="Accept" (click)="acceptProduct($event)" [disabled]="!resultProductSelection"></app-custom-button>
+          <app-custom-button [small]="true" caption="Accept" (click)="acceptProduct($event)" [disabled]="!resultProductSelection"></app-custom-button>
+        </div>
+        <div class="product__selection-back">
+          <mat-icon (click)="onClickedOutside()">undo</mat-icon>
         </div>
       </div>
     </div>

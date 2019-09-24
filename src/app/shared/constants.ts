@@ -87,5 +87,8 @@ export const APP = {
     'Meat',
     'Fish',
     'Other'
-  ]
+  ],
+  dataActions: {
+    removed: 'removed'
+  }
 };

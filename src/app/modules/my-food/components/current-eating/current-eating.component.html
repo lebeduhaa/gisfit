@@ -1,11 +1,17 @@
 <div class="current-eating" [hidden]="products.length === 0">
   <div class="current-eating__title">Current Eating</div>
+  <div class="current-eating__actions">
+    <app-custom-button caption="Submit" color="accent" (click)="submitCurrentEating()"></app-custom-button>
+  </div>
   <div class="current-eating__content">
-    <div class="current-eating__product" *ngFor="let product of products">
+    <div class="current-eating__product" *ngFor="let product of products;let i = index;">
       <div class="current-eating__product-image">
         <img [src]="product.image">
       </div>
       <div class="current-eating__product-info">
+        <div class="current-eating__remove">
+          <mat-icon (click)="removeCurrentEating(i)">close</mat-icon>
+        </div>
         <div class="current-eating__product-info-value">Calories: {{product.calories}}kcal</div>
         <div class="current-eating__product-info-value">Protein: {{product.protein}}g</div>
         <div class="current-eating__product-info-value">Fats: {{product.fats}}g</div>

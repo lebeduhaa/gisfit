@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 import { User } from '../models/user.model';
 import { LocalStorageHelper } from './local-storage.service';
@@ -24,6 +23,16 @@ export class RealTimeDataService {
 
     if (userId) {
       return this.firestore.collection('users').doc(userId).valueChanges();
+    }
+
+    return new Observable(observer => observer.next(null));
+  }
+
+  public subscribeToProducts(): Observable<DocumentChangeAction<unknown>[]> {
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+
+    if (userId) {
+      return this.firestore.collection('products').stateChanges();
     }
 
     return new Observable(observer => observer.next(null));

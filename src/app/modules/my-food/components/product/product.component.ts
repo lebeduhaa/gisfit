@@ -1,10 +1,9 @@
-import { Component, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { appearAnimation } from 'src/app/shared/animations';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
-import { MyFoodService } from '../../services/my-food.service';
 
 @Component({
   selector: 'app-product',
@@ -16,6 +15,8 @@ import { MyFoodService } from '../../services/my-food.service';
 })
 export class ProductComponent {
 
+  @Output() deleteProductEvent = new EventEmitter<string>();
+
   @Input() product: Product;
 
   public selectionVisibility: boolean;
@@ -23,16 +24,13 @@ export class ProductComponent {
   public resultProductSelection: number;
 
   constructor(
-    private subjectService: SubjectService,
-    private myFoodService: MyFoodService
+    private subjectService: SubjectService
   ) {}
 
   public reactOnConfirmDeleteProduct(confirmation: boolean): void {
-    console.log(confirmation);
-  }
-
-  public deleteProduct(): void {
-    this.myFoodService.deleteProduct(this.product.id);
+    if (confirmation) {
+      this.deleteProductEvent.emit(this.product.id);
+    }
   }
 
   public trimProductName(): string {
@@ -80,6 +78,7 @@ export class ProductComponent {
       productName: this.trimProductName()
     });
     this.subjectService.emitSubject(APP.subjects.preview, {
+      add: true,
       calories: this.weightKind ?
         (this.product.calories * this.resultProductSelection) / 100 :
         (this.product.calories * (this.resultProductSelection * this.product.averageMassOfOnePiece)) / 100,
