@@ -2,20 +2,23 @@
   <div class="progress__title">My Progress</div>
   <div class="progress__content">
     <div class="progress__item">
-      <div class="progress__item-title">Calories {{currentCalories}}/{{caloriesGoal}}ckal</div>
+      <div class="progress__item-title">Calories {{currentCalories}}<span class="progress__item-title-preview" *ngIf="caloriesPreviewNumber">(+{{caloriesPreviewNumber}})</span>/{{caloriesGoal}}ckal</div>
       <app-progress [value]="currentCaloriesPercent" [preview]="caloriesPreview" color="#d4195e"></app-progress>
     </div>
     <div class="progress__item">
-      <div class="progress__item-title">Protein {{currentProtein}}/{{proteinGoal}}g</div>
+      <div class="progress__item-title">Protein {{currentProtein}}<span class="progress__item-title-preview" *ngIf="proteinPreviewNumber">(+{{proteinPreviewNumber}})</span>/{{proteinGoal}}g</div>
       <app-progress [value]="currentProteinPercent" [preview]="proteinPreview" color="#5147da"></app-progress>
     </div>
     <div class="progress__item">
-      <div class="progress__item-title">Fats {{currentFats}}/{{fatsGoal}}g</div>
+      <div class="progress__item-title">Fats {{currentFats}}<span class="progress__item-title-preview" *ngIf="fatsPreviewNumber">(+{{fatsPreviewNumber}})</span>/{{fatsGoal}}g</div>
       <app-progress [value]="currentFatsPercent" [preview]="fatsPreview" color="#2fb5b5"></app-progress>
     </div>
     <div class="progress__item">
-      <div class="progress__item-title">Carbohydrates {{currentCarbohydrates}}/{{carbohydratesGoal}}g</div>
+      <div class="progress__item-title">Carbohydrates {{currentCarbohydrates}}<span class="progress__item-title-preview" *ngIf="carbohydratesPreviewNumber">(+{{carbohydratesPreviewNumber}})</span>/{{carbohydratesGoal}}g</div>
       <app-progress [value]="currentCarbohydratesPercent" [preview]="carbohydratesPreview" color="#a79a00"></app-progress>
     </div>
+  </div>
+  <div class="progress__actions">
+    <app-spinner-button caption="Custom goals" [small]="true" appOpenCustomGoals></app-spinner-button>
   </div>
 </div>

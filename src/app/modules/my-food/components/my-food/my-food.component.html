@@ -10,10 +10,11 @@
       <div class="my-food__description">
         Here are your products. You can add your food, select it today and receive daily report at your according time.
       </div>
-      <div class="my-food__add">
+      <div class="my-food__actions">
           <app-spinner-button caption="Add my product" [small]="true" routerLink="/add-product"></app-spinner-button>
+          <app-spinner-button caption="Search more" [small]="true"></app-spinner-button>
       </div>
-      <div class="my-food__products" *ngIf="!progressBarVisibility">
+      <div class="my-food__products" *ngIf="products">
         <div class="my-food__product" *ngFor="let product of products">
           <app-product [product]="product" (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
         </div>

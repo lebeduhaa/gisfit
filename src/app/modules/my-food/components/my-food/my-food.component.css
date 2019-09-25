@@ -10,10 +10,13 @@
 .my-food__my-products {
   width: 760px;
 }
-.my-food__add {
+.my-food__actions {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+.my-food__actions app-spinner-button:last-of-type {
+  margin-left: 20px;
 }
 .my-food__description {
   color: silver;
@@ -41,8 +44,8 @@
   justify-content: center;
 }
 .my-food__current-eating {
-  width: 400px;
+  width: 426px;
 }
 .my-food__current-progress {
-  width: 400px;
+  width: 426px;
 }

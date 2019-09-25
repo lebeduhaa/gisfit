@@ -5,8 +5,8 @@
   margin-bottom: 10px;
 }
 .current-eating__product-image {
-  width: 125px;
-  height: 125px;
+  width: 134px;
+  height: 134px;
 }
 .current-eating__product-image img {
   width: 100%;
@@ -19,8 +19,8 @@
 }
 .current-eating__product {
   margin-bottom: 8px;
-  width: 125px;
-  height: 206px;
+  width: 134px;
+  height: 214px;
   margin-right: 6px;
   box-shadow: 0 0 2px white;
 }
@@ -50,5 +50,8 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
+}
+.current-eating__actions app-spinner-button:last-of-type {
+  margin-left: 20px;
 }
 

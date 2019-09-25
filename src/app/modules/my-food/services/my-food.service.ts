@@ -33,6 +33,11 @@ export class MyFoodService {
       currentDay.currentCarbohydrates += Number(product.carbohydrates);
     });
 
+    currentDay.currentCalories = Number(currentDay.currentCalories.toFixed(3));
+    currentDay.currentProtein = Number(currentDay.currentProtein.toFixed(3));
+    currentDay.currentFats = Number(currentDay.currentFats.toFixed(3));
+    currentDay.currentCarbohydrates = Number(currentDay.currentCarbohydrates.toFixed(3));
+
     await user.ref.update({currentDay});
   }
 

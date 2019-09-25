@@ -1,6 +1,6 @@
 <div class="select" [class.select_opened]="optionsVisibility" (clickOutside)="onClickedOutside()">
   <div class="select__header" (click)="toggleOptionsVisibility()">
-    {{currentValue}}
+    {{trimCurrentValue()}}
   </div>
   <div class="select__placeholder" (click)="toggleOptionsVisibility()" [class.select__placeholder_active]="placeholderAtTop">{{placeholder}}</div>
   <div class="select__icon" (click)="toggleOptionsVisibility()">

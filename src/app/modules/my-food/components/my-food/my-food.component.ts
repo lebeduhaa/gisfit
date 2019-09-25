@@ -35,6 +35,8 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   }
 
   public reactOnDeleteProduct(productId: string): void {
+    this.progressBarVisibility = true;
+
     this.myFoodService.deleteProduct(productId)
       .then(() => {
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
@@ -68,6 +70,9 @@ export class MyFoodComponent implements OnInit, OnDestroy {
     this.productsSubscription = this.realTimeDataService.subscribeToProducts()
       .subscribe(data => {
         const actionType = data[0].type;
+
+        this.progressBarVisibility = false;
+
 
         switch (actionType) {
           case APP.dataActions.removed:

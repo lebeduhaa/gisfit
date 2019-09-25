@@ -28,6 +28,24 @@
   </div>
   <div class="personal__row">
     <div class="personal__control">
+      <app-select [value]="user.activity" (change)="reactOnSelectActivity($event)" icon="sports_basketball" placeholder="Activity">
+        <app-select-option
+          *ngFor="let activity of activities"
+          [value]="activity"
+          [displayedValue]="activity"></app-select-option>
+      </app-select>
+    </div>
+    <div class="personal__control">
+      <app-select [value]="user.goal" (change)="reactOnSelectGoal($event)" icon="event_available" placeholder="Goal">
+        <app-select-option
+          *ngFor="let goal of goals"
+          [value]="goal"
+          [displayedValue]="goal"></app-select-option>
+      </app-select>
+    </div>
+  </div>
+  <div class="personal__row">
+    <div class="personal__control">
       <app-input-text placeholder="{{'controls.height' | translate}}" icon="height">
         <input type="text" [(ngModel)]="tempUser.height" appNumericControl>
       </app-input-text>

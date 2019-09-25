@@ -36,7 +36,7 @@ export class SelectComponent implements AfterContentInit, OnDestroy {
 
   public placeholderAtTop: boolean;
   public optionsVisibility: boolean;
-  public currentValue: any;
+  public currentValue: string;
 
   private selectValueSubscriptions = new Subscription();
 
@@ -76,6 +76,14 @@ export class SelectComponent implements AfterContentInit, OnDestroy {
         }
       });
     }
+  }
+
+  public trimCurrentValue(): string {
+    if (this.currentValue && this.currentValue.length > 29) {
+      return `${this.currentValue.substr(0, 29)}...`;
+    }
+
+    return this.currentValue;
   }
 
   ngOnDestroy() {}

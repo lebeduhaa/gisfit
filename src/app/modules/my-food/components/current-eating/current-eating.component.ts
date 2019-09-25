@@ -31,6 +31,11 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
     this.subscribeToNewProduct();
   }
 
+  public clear(): void {
+    this.products = [];
+    this.subjectService.emitSubject(APP.subjects.clearPreview, {});
+  }
+
   public submitCurrentEating(): void {
     this.myFoodService.submitCurrentEating(this.products)
       .then(() => {
@@ -61,6 +66,10 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
       carbohydrates: product.carbohydrates
     });
     this.products.splice(index, 1);
+
+    if (this.products.length === 0) {
+      this.subjectService.emitSubject(APP.subjects.clearPreview, {});
+    }
   }
 
   private subscribeToNewProduct(): void {

@@ -11,5 +11,4 @@ export class ProgressComponent {
   @Input() preview: number;
   @Input() color: string;
 
-
 }

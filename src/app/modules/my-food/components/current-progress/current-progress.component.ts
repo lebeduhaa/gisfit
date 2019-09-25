@@ -32,9 +32,14 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
   public proteinPreview = 0;
   public fatsPreview = 0;
   public carbohydratesPreview = 0;
+  public caloriesPreviewNumber: string;
+  public proteinPreviewNumber: string;
+  public fatsPreviewNumber: string;
+  public carbohydratesPreviewNumber: string;
 
   private userSubscription: Subscription;
   private previewSubscription: Subscription;
+  private clearPreviewSubscription: Subscription;
 
   constructor(
     private realTimeDataService: RealTimeDataService,
@@ -44,6 +49,17 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribeToUser();
     this.subscribeToPreview();
+    this.subscribeToClearPreview();
+  }
+
+  private subscribeToClearPreview(): void {
+    this.clearPreviewSubscription = this.subjectService.getSubject(APP.subjects.clearPreview)
+      .subscribe(() => {
+        this.caloriesPreview = 0;
+        this.proteinPreview = 0;
+        this.fatsPreview = 0;
+        this.carbohydratesPreview = 0;
+      });
   }
 
   private subscribeToUser(): void {
@@ -65,12 +81,21 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
         this.proteinPreview = 0;
         this.fatsPreview = 0;
         this.carbohydratesPreview = 0;
+        this.caloriesPreviewNumber = '';
+        this.proteinPreviewNumber = '';
+        this.fatsPreviewNumber = '';
+        this.carbohydratesPreviewNumber = '';
       });
   }
 
   private subscribeToPreview(): void {
     this.previewSubscription = this.subjectService.getSubject(APP.subjects.preview)
       .subscribe((preview: Preview) => {
+        this.caloriesPreviewNumber = preview.calories.toFixed(3);
+        this.proteinPreviewNumber = preview.protein.toFixed(3);
+        this.fatsPreviewNumber = preview.fats.toFixed(3);
+        this.carbohydratesPreviewNumber = preview.carbohydrates.toFixed(3);
+
         if (preview.add) {
           this.caloriesPreview += (100 * preview.calories) / this.caloriesGoal;
           this.proteinPreview += (100 * preview.protein) / this.proteinGoal;

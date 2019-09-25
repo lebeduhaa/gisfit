@@ -11,3 +11,10 @@
 .progress__item {
   margin-bottom: 20px;
 }
+.progress__item-title-preview {
+  color: #00a040;
+}
+.progress__actions {
+  display: flex;
+  justify-content: center;
+}

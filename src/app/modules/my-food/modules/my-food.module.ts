@@ -22,6 +22,9 @@ import { FlyingProductComponent } from '../components/flying-product/flying-prod
 import { CurrentProgressComponent } from '../components/current-progress/current-progress.component';
 import { ProgressModule } from 'src/app/shared/components/progress/progress.module';
 import { AreYouSureModule } from 'src/app/shared/components/are-you-sure/are-you-sure.module';
+import { DirectivesModule } from 'src/app/shared/directives/directives.module';
+import { CustomGoalsComponent } from '../components/custom-goals/custom-goals.component';
+import { OpenCustomGoalsDirective } from '../directives/open-custom-goals.directive';
 
 @NgModule({
   imports: [
@@ -38,7 +41,8 @@ import { AreYouSureModule } from 'src/app/shared/components/are-you-sure/are-you
     ClickOutsideModule,
     RadioGroupModule,
     ProgressModule,
-    AreYouSureModule
+    AreYouSureModule,
+    DirectivesModule
   ],
   declarations: [
     MyFoodComponent,
@@ -48,10 +52,13 @@ import { AreYouSureModule } from 'src/app/shared/components/are-you-sure/are-you
     OpenProductInfoDirective,
     CurrentEatingComponent,
     FlyingProductComponent,
-    CurrentProgressComponent
+    CurrentProgressComponent,
+    CustomGoalsComponent,
+    OpenCustomGoalsDirective
   ],
   entryComponents: [
-    ProductInfoComponent
+    ProductInfoComponent,
+    CustomGoalsComponent
   ],
   exports: [
     MyFoodComponent

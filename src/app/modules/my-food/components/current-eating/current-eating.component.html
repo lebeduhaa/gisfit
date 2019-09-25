@@ -1,7 +1,8 @@
 <div class="current-eating" [hidden]="products.length === 0">
   <div class="current-eating__title">Current Eating</div>
   <div class="current-eating__actions">
-    <app-custom-button caption="Submit" color="accent" (click)="submitCurrentEating()"></app-custom-button>
+    <app-spinner-button caption="Submit" [small]="true" (click)="submitCurrentEating()"></app-spinner-button>
+    <app-spinner-button caption="Clear" [small]="true" (click)="clear()"></app-spinner-button>
   </div>
   <div class="current-eating__content">
     <div class="current-eating__product" *ngFor="let product of products;let i = index;">

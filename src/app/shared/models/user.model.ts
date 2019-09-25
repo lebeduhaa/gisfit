@@ -7,6 +7,8 @@ export interface User {
   age?: number;
   height?: number;
   weight?: number;
+  goal?: string;
+  activity?: string;
   avatar?: string;
   fakeAvatarUrl?: string;
   fakeAvatarName?: string;
@@ -22,4 +24,5 @@ export interface User {
   fatsGoal?: number;
   carbohydratesGoal?: number;
   currentDay?: Day;
+  ownGoal?: boolean;
 }

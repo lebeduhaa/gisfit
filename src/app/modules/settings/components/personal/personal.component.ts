@@ -22,6 +22,8 @@ export class PersonalComponent implements OnInit, OnDestroy {
   public preloadedImg: string | ArrayBuffer;
   public clearFilesSubject = new Subject<boolean>();
   public progressBarVisibility: boolean;
+  public goals = APP.goals;
+  public activities = APP.activities;
 
   private dialogSubscription: Subscription;
   private userDataSubscription: Subscription;
@@ -35,6 +37,14 @@ export class PersonalComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscribeToUser();
+  }
+
+  public reactOnSelectActivity(activity: string): void {
+    this.tempUser.activity = activity;
+  }
+
+  public reactOnSelectGoal(goal: string): void {
+    this.tempUser.goal = goal;
   }
 
   private subscribeToUser(): void {

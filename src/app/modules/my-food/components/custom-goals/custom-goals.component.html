@@ -1,0 +1,31 @@
+<mat-dialog-content>
+  <div class="goals">
+    <div class="goals__title">Customize your goals</div>
+    <div class="goals__description">You can create your custom goals for daily progress</div>
+    <div class="goals__content">
+      <div class="goals__control">
+        <app-input-text icon="bubble_chart" placeholder="Calories (kcal/100g)">
+          <input type="text" formControlName="calories" appNumericControl>
+        </app-input-text>
+      </div>
+      <div class="goals__control">
+        <app-input-text icon="scatter_plot" placeholder="Protein (g/100g)">
+          <input type="text" formControlName="protein" appNumericControl>
+        </app-input-text>
+      </div>
+      <div class="goals__control">
+        <app-input-text icon="share" placeholder="Fats (g/100g)">
+          <input type="text" formControlName="fats" appNumericControl>
+        </app-input-text>
+      </div>
+      <div class="goals__control">
+        <app-input-text icon="grain" placeholder="Carbohydrates (g/100g)">
+          <input type="text" formControlName="carbohydrates" appNumericControl>
+        </app-input-text>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <app-spinner-button caption="Accept" [small]="true"></app-spinner-button>
+</mat-dialog-actions>

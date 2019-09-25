@@ -49,6 +49,16 @@ export class SettingsService {
   }
 
   public updateUser(user: User, userId: string): Promise<any> {
+    if (user.age) {
+      user.age = Number(user.age);
+    }
+    if (user.height) {
+      user.height = Number(user.height);
+    }
+    if (user.weight) {
+      user.weight = Number(user.weight);
+    }
+
     const promises = [this.firestore.collection('users').doc(userId).update(user)];
 
     if (user.email) {

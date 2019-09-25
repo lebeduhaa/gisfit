@@ -31,13 +31,15 @@ export const APP = {
     notificationVisibility: 'notificationVisibility',
     newProduct: 'newProduct',
     flyingProduct: 'flyingProduct',
-    preview: 'preview'
+    preview: 'preview',
+    clearPreview: 'clearPreview'
   },
   dialogs: {
     passwordReset: 'passwordReset',
     cropper: 'cropper',
     changePassword: 'changePassword',
-    areYouSure: 'areYouSure'
+    areYouSure: 'areYouSure',
+    customGoals: 'customGoals'
   },
   routesWithHeader: [
     'settings',
@@ -90,5 +92,19 @@ export const APP = {
   ],
   dataActions: {
     removed: 'removed'
-  }
+  },
+  goals: [
+    'lose weight',
+    'maintain weight',
+    'gain weight'
+  ],
+  activities: [
+    'no physical activity',
+    '3 trainings per week',
+    '5 trainings per week',
+    '5 intense trainings per week',
+    'training every day',
+    'intense trainings every day or more than one time per day',
+    'daily physical activity plus physical work'
+  ]
 };
