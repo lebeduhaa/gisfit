@@ -9,8 +9,10 @@ export class ToggleComponent implements OnInit {
 
   @Output() change = new EventEmitter<boolean>();
 
-  @Input() title: string;
+  @Input() caption: string;
   @Input() value: boolean;
+  @Input() small: boolean;
+  @Input() disabled: boolean;
 
   public on: boolean;
 
@@ -19,8 +21,10 @@ export class ToggleComponent implements OnInit {
   }
 
   public toggle() {
-    this.on = !this.on;
-    this.change.emit(this.on);
+    if (!this.disabled) {
+      this.on = !this.on;
+      this.change.emit(this.on);
+    }
   }
 
 }

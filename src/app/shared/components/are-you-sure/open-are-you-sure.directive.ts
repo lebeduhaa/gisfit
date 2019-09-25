@@ -12,7 +12,7 @@ export class OpenAreYouSureDirective {
 
   @Output() confirmationEvent = new EventEmitter<boolean>();
 
-  @Input() title: string;
+  @Input() caption: string;
 
   constructor(
     private dialog: MatDialog
@@ -22,7 +22,7 @@ export class OpenAreYouSureDirective {
   openAreYouSure(): void {
     const dialogRef = this.dialog.open(AreYouSureComponent, {
       data: {
-        title: this.title
+        title: this.caption
       },
       id: APP.dialogs.areYouSure
     });

@@ -19,10 +19,10 @@
     </app-select>
   </div>
   <div class="system__toggles">
-    <app-toggle title="{{'settings.notification-sound' | translate}}" [value]="user.notificationSound" (change)="reactOnChangeNotificationSound($event)"></app-toggle>
+    <app-toggle caption="{{'settings.notification-sound' | translate}}" [value]="user.notificationSound" (change)="reactOnChangeNotificationSound($event)"></app-toggle>
   </div>
   <div class="system__toggles">
-    <app-toggle title="{{'settings.send-report' | translate}}" [value]="user.sendDailyReportOnEmail" (change)="reactOnChangeSendDailyReportOnEmail($event)"></app-toggle>
+    <app-toggle caption="{{'settings.send-report' | translate}}" [value]="user.sendDailyReportOnEmail" (change)="reactOnChangeSendDailyReportOnEmail($event)"></app-toggle>
   </div>
   <div class="system__change-pass">
     <app-spinner-button caption="{{'buttons.change-password' | translate}}" [small]="true" appOpenChangePassword></app-spinner-button>

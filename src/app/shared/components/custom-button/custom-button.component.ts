@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { APP } from '../../constants';
 
 @Component({
   selector: 'app-custom-button',

@@ -25,4 +25,8 @@ export interface User {
   carbohydratesGoal?: number;
   currentDay?: Day;
   ownGoal?: boolean;
+  customCaloriesGoal?: number;
+  customProteinGoal?: number;
+  customFatsGoal?: number;
+  customCarbohydratesGoal?: number;
 }

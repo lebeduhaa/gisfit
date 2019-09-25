@@ -25,6 +25,7 @@ import { AreYouSureModule } from 'src/app/shared/components/are-you-sure/are-you
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { CustomGoalsComponent } from '../components/custom-goals/custom-goals.component';
 import { OpenCustomGoalsDirective } from '../directives/open-custom-goals.directive';
+import { ToggleModule } from 'src/app/shared/components/toggle/toggle.module';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { OpenCustomGoalsDirective } from '../directives/open-custom-goals.direct
     RadioGroupModule,
     ProgressModule,
     AreYouSureModule,
-    DirectivesModule
+    DirectivesModule,
+    ToggleModule
   ],
   declarations: [
     MyFoodComponent,

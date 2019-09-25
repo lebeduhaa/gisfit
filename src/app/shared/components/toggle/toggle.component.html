@@ -1,4 +1,4 @@
-<div class="toggle__wrapper">
+<div class="toggle__wrapper" [ngClass]="{'toggle__wrapper_small': small, 'toggle__wrapper_disabled': disabled}">
   <div class="toggle__content">
     <div class="toggle" (click)="toggle()" [class.toggle_on]="on">
       <div class="toggle__on" *ngIf="on">{{'toggle.on' | translate}}</div>
@@ -6,5 +6,5 @@
       <div class="toggle__circle"></div>
     </div>
   </div>
-  <div class="toggle__title" (click)="toggle()">{{title}}</div>
+  <div class="toggle__title" (click)="toggle()">{{caption}}</div>
 </div>

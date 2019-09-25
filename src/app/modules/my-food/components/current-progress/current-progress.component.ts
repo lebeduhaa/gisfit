@@ -7,6 +7,8 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { Preview } from 'src/app/shared/models/preview.model';
 import { APP } from 'src/app/shared/constants';
+import { User } from 'src/app/shared/models/user.model';
+import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -36,6 +38,7 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
   public proteinPreviewNumber: string;
   public fatsPreviewNumber: string;
   public carbohydratesPreviewNumber: string;
+  public user: User;
 
   private userSubscription: Subscription;
   private previewSubscription: Subscription;
@@ -43,7 +46,8 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
 
   constructor(
     private realTimeDataService: RealTimeDataService,
-    private subjectService: SubjectService
+    private subjectService: SubjectService,
+    private settingsService: SettingsService
   ) {}
 
   ngOnInit() {
@@ -52,23 +56,37 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
     this.subscribeToClearPreview();
   }
 
+  public reactOnChangeGoal(ownGoal: boolean): void {
+    this.settingsService.updateUserData({ownGoal}, this.user.id)
+      .then(() => {
+        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+          title: ownGoal ? 'Custom goals' : 'Calculated goals',
+          body: ownGoal ? 'Now you use the custom goals' : 'Now you use the calculated goals',
+          duration: 5000
+        });
+      })
+      .catch(error => {
+        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+          title: 'ERROR',
+          body: error.message,
+          duration: 15000
+        });
+      });
+  }
+
   private subscribeToClearPreview(): void {
     this.clearPreviewSubscription = this.subjectService.getSubject(APP.subjects.clearPreview)
-      .subscribe(() => {
-        this.caloriesPreview = 0;
-        this.proteinPreview = 0;
-        this.fatsPreview = 0;
-        this.carbohydratesPreview = 0;
-      });
+      .subscribe(() => this.clear());
   }
 
   private subscribeToUser(): void {
     this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
-        this.caloriesGoal = user.caloriesGoal;
-        this.proteinGoal = user.proteinGoal;
-        this.fatsGoal = user.fatsGoal;
-        this.carbohydratesGoal = user.carbohydratesGoal;
+        this.user = user;
+        this.caloriesGoal = user.ownGoal ? user.customCaloriesGoal : user.caloriesGoal;
+        this.proteinGoal = user.ownGoal ? user.customProteinGoal : user.proteinGoal;
+        this.fatsGoal = user.ownGoal ? user.customFatsGoal : user.fatsGoal;
+        this.carbohydratesGoal = user.ownGoal ? user.customCarbohydratesGoal : user.carbohydratesGoal;
         this.currentCalories = user.currentDay.currentCalories;
         this.currentProtein = user.currentDay.currentProtein;
         this.currentFats = user.currentDay.currentFats;
@@ -77,15 +95,23 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
         this.currentProteinPercent = (100 * this.currentProtein) / this.proteinGoal;
         this.currentFatsPercent = (100 * this.currentFats) / this.fatsGoal;
         this.currentCarbohydratesPercent = (100 * this.currentCarbohydrates) / this.carbohydratesGoal;
-        this.caloriesPreview = 0;
-        this.proteinPreview = 0;
-        this.fatsPreview = 0;
-        this.carbohydratesPreview = 0;
-        this.caloriesPreviewNumber = '';
-        this.proteinPreviewNumber = '';
-        this.fatsPreviewNumber = '';
-        this.carbohydratesPreviewNumber = '';
+        this.clear();
       });
+  }
+
+  public disableGoalTrigger(): boolean {
+    return !(this.user && this.user.customCaloriesGoal && this.user.customProteinGoal && this.user.customFatsGoal && this.user.customCarbohydratesGoal);
+  }
+
+  private clear(): void {
+    this.caloriesPreview = 0;
+    this.proteinPreview = 0;
+    this.fatsPreview = 0;
+    this.carbohydratesPreview = 0;
+    this.caloriesPreviewNumber = '';
+    this.proteinPreviewNumber = '';
+    this.fatsPreviewNumber = '';
+    this.carbohydratesPreviewNumber = '';
   }
 
   private subscribeToPreview(): void {
