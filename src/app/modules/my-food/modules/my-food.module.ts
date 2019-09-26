@@ -26,6 +26,7 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { CustomGoalsComponent } from '../components/custom-goals/custom-goals.component';
 import { OpenCustomGoalsDirective } from '../directives/open-custom-goals.directive';
 import { ToggleModule } from 'src/app/shared/components/toggle/toggle.module';
+import { SearchModule } from 'src/app/shared/components/search/search.module';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { ToggleModule } from 'src/app/shared/components/toggle/toggle.module';
     ProgressModule,
     AreYouSureModule,
     DirectivesModule,
-    ToggleModule
+    ToggleModule,
+    SearchModule
   ],
   declarations: [
     MyFoodComponent,

@@ -1,0 +1,12 @@
+.search {
+  position :relative;
+}
+.search__content {
+  position: absolute;
+  padding: 30px 20px 20px 20px;
+  background-color: black;
+  top: -65px;
+  left: -140px;
+  width: 400px;
+  box-shadow: 0 0 5px white;
+}

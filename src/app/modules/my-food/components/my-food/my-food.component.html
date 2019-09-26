@@ -12,10 +12,11 @@
       </div>
       <div class="my-food__actions">
         <app-spinner-button caption="Add my product" [small]="true" routerLink="/add-product"></app-spinner-button>
-        <app-spinner-button caption="Search more" [small]="true"></app-spinner-button>
+        <app-spinner-button caption="Find more products" [small]="true"></app-spinner-button>
+        <app-search caption="Search" (searchEvent)="reactOnSearch($event)"></app-search>
       </div>
       <div class="my-food__products" *ngIf="products">
-        <div class="my-food__product" *ngFor="let product of products">
+        <div class="my-food__product" *ngFor="let product of displayedProducts">
           <app-product [product]="product" (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
         </div>
       </div>

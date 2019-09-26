@@ -21,6 +21,7 @@ export class MyFoodComponent implements OnInit, OnDestroy {
 
   public progressBarVisibility: boolean;
   public products: Product[];
+  public displayedProducts: Product[];
   public userFillRequiredData: boolean;
 
   private productsSubscription: Subscription;
@@ -38,6 +39,10 @@ export class MyFoodComponent implements OnInit, OnDestroy {
     this.getMyProducts();
     this.subscribeToProductChanges();
     this.subscribeToCurrentUser();
+  }
+
+  public reactOnSearch(searchKey: string): void {
+    this.displayedProducts = this.products.filter(product => product.productName.toLowerCase().includes(searchKey.toLowerCase()));
   }
 
   public reactOnDeleteProduct(productId: string): void {
@@ -79,6 +84,7 @@ export class MyFoodComponent implements OnInit, OnDestroy {
       .then(products => {
         this.progressBarVisibility = false;
         this.products = products;
+        this.displayedProducts = [...products];
         this.changeDetectorRef.markForCheck();
         this.getRouteState();
       });

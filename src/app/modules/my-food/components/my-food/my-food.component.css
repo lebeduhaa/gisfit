@@ -15,8 +15,8 @@
   justify-content: center;
   margin-top: 10px;
 }
-.my-food__actions app-spinner-button:last-of-type {
-  margin-left: 20px;
+.my-food__actions app-spinner-button {
+  margin-right: 20px;
 }
 .my-food__description {
   color: silver;
@@ -33,7 +33,7 @@
   flex-wrap: wrap;
   margin-top: 10px;
   padding-top: 20px;
-  height: calc(100vh - 177px);
+  max-height: calc(100vh - 177px);
   overflow-y: auto;
 }
 .my-food__product {
