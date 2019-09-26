@@ -19,14 +19,15 @@ module.exports = async (change, context) => {
     change.before.data().height === change.after.data().height &&
     change.before.data().weight === change.after.data().weight &&
     change.before.data().goal === change.after.data().goal &&
-    change.before.data().activity === change.after.data().activity
+    change.before.data().activity === change.after.data().activity &&
+    change.before.data().sex === change.after.data().sex
   ) {
     return new Promise((resolve, reject) => resolve());
   }
 
   if (!change.after.data().ownGoal) {
-    const { age, height, weight, goal, activity } = change.after.data();
-    const baseCalories = 10 * weight + 6.25 * height - 5 * age + 5;
+    const { age, height, weight, goal, activity, sex } = change.after.data();
+    const baseCalories = 10 * weight + 6.25 * height - 5 * age + (sex === 'male' ? 5 : -161);
     const caloriesGoal = Math.ceil((baseCalories * activities[activity]) * goals[goal]);
     const proteinGoal = Math.ceil((caloriesGoal / 6) / 4);
     const fatsGoal = Math.ceil((caloriesGoal / 6) / 9);

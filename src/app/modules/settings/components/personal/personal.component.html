@@ -9,7 +9,7 @@
       </div>
       <app-input-file
         caption="{{'buttons.change-avatar' | translate}}"
-        (change)="selectNewAvatar($event)"
+        (fileSelected)="selectNewAvatar($event)"
         [clearFilesSubject]="clearFilesSubject"
       ></app-input-file>
     </div>

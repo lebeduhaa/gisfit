@@ -2,6 +2,9 @@ import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ViewChild, E
 
 import { Subject, Subscription } from 'rxjs';
 
+import { SubjectService } from '../../services/subject.service';
+import { APP } from '../../constants';
+
 @Component({
   selector: 'app-input-file',
   templateUrl: 'input-file.component.html',
@@ -19,13 +22,28 @@ export class InputFileComponent implements OnInit, OnDestroy {
 
   private filesSubscription: Subscription;
 
+  constructor(
+    private subjectService: SubjectService
+  ) {}
+
   ngOnInit() {
     this.filesSubscription = this.clearFilesSubject
       .subscribe(event => this.clearFiles());
   }
 
   public reactOnFileSelect(event): void {
-    this.fileSelected.next(event.target.files[0]);
+    const kB = event.target.files[0].size / 1024;
+
+    if (kB > 5000) {
+      this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+        title: 'Image upload ERROR',
+        body: 'Image size should be less than 5mb!',
+        duration: 10000,
+        error: true
+      });
+    } else {
+      this.fileSelected.next(event);
+    }
   }
 
   private clearFiles(): void {

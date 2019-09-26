@@ -14,4 +14,8 @@ export class RouterHelper {
       this.router.navigate([path]);
     }
 
+    public navigateToPageWithState(path: string, stateData: any): void {
+      this.router.navigate([path], {state: {stateData}});
+    }
+
 }

@@ -58,10 +58,14 @@ export class FlyingProductComponent implements OnInit, OnDestroy {
   }
 
   private getFinishCoordinates(): void {
-    const finishCoordinates = document.querySelector('.current-eating').getBoundingClientRect();
+    const element = document.querySelector('.current-eating');
 
-    this.finishX = finishCoordinates.left + 70;
-    this.finishY = finishCoordinates.top + 150;
+    if (element) {
+      const finishCoordinates = element.getBoundingClientRect();
+
+      this.finishX = finishCoordinates.left + 70;
+      this.finishY = finishCoordinates.top + 150;
+    }
   }
 
   ngOnDestroy() {}

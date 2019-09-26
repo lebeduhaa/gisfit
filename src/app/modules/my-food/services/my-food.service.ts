@@ -59,6 +59,8 @@ export class MyFoodService {
     delete product.image;
     await this.firestore.collection('products').doc(id).set({...product, id, userId});
     await this.fireStorage.ref(`products/${id}.jpg`).putString(pureBase64.toString(), 'base64');
+
+    return id;
   }
 
   public async getMyProducts(): Promise<any> {

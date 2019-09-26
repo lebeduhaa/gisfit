@@ -51,8 +51,11 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this.changeDetectorRef.markForCheck();
 
     this.myFoodService.createMyProduct(this.productForm.value)
-      .then(() => {
-        this.routerHelper.navigateToPage(APP.pages.myFood);
+      .then(createdId => {
+        this.routerHelper.navigateToPageWithState(APP.pages.myFood, {
+          createdId,
+          image: this.productPreloadedPhoto
+        });
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Product was added successfully',
           body: 'You have added you product. Now you can use it as your food for the progress calculation.',

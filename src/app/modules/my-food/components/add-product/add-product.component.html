@@ -46,7 +46,7 @@
         </div>
         <app-input-file
           caption="Upload image"
-          (change)="reactOnSelectProductImage($event)"
+          (fileSelected)="reactOnSelectProductImage($event)"
           [clearFilesSubject]="clearFilesSubject"
         ></app-input-file>
       </div>

@@ -2,30 +2,31 @@
   <div class="goals">
     <div class="goals__title">Customize your goals</div>
     <div class="goals__description">You can create your custom goals for daily progress</div>
-    <div class="goals__content">
+    <div class="goals__content" *ngIf="tempUser">
       <div class="goals__control">
         <app-input-text icon="bubble_chart" placeholder="Calories (kcal/100g)">
-          <input type="text" formControlName="calories" appNumericControl>
+          <input type="text" (input)="reactOnInput($event, 'customCaloriesGoal')" [(ngModel)]="tempUser.customCaloriesGoal" appNumericControl>
         </app-input-text>
       </div>
       <div class="goals__control">
         <app-input-text icon="scatter_plot" placeholder="Protein (g/100g)">
-          <input type="text" formControlName="protein" appNumericControl>
+          <input type="text" (input)="reactOnInput($event, 'customProteinGoal')" [(ngModel)]="tempUser.customProteinGoal" appNumericControl>
         </app-input-text>
       </div>
       <div class="goals__control">
         <app-input-text icon="share" placeholder="Fats (g/100g)">
-          <input type="text" formControlName="fats" appNumericControl>
+          <input type="text" (input)="reactOnInput($event, 'customFatsGoal')" [(ngModel)]="tempUser.customFatsGoal" appNumericControl>
         </app-input-text>
       </div>
       <div class="goals__control">
         <app-input-text icon="grain" placeholder="Carbohydrates (g/100g)">
-          <input type="text" formControlName="carbohydrates" appNumericControl>
+          <input type="text" (input)="reactOnInput($event, 'customCarbohydratesGoal')" [(ngModel)]="tempUser.customCarbohydratesGoal" appNumericControl>
         </app-input-text>
       </div>
     </div>
+    <div class="app__error" *ngIf="error">{{error}}</div>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <app-spinner-button caption="Accept" [small]="true"></app-spinner-button>
+  <app-spinner-button [spinnerStateSubject]="spinnerStateSubject" *ngIf="tempUser" caption="Accept" [small]="true" [disabled]="disableAcceptButton" (click)="acceptCustomGoals()"></app-spinner-button>
 </mat-dialog-actions>

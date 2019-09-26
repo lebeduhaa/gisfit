@@ -78,7 +78,15 @@ export class AuthService {
       id,
       interfaceLanguage: 'English',
       notificationSound: true,
-      sendDailyReportOnEmail: false
+      sendDailyReportOnEmail: false,
+      ownGoal: false,
+      currentDay: {
+        currentCalories: 0,
+        currentProtein: 0,
+        currentFats: 0,
+        currentCarbohydrates: 0,
+        products: []
+      }
     });
   }
 

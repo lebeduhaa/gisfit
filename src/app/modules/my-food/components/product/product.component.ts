@@ -34,8 +34,8 @@ export class ProductComponent {
   }
 
   public trimProductName(): string {
-    if (this.product.productName.length > 20) {
-      return `${this.product.productName.substring(0, 20)}...`;
+    if (this.product.productName.length > 19) {
+      return `${this.product.productName.substring(0, 19)}...`;
     }
 
     return this.product.productName;

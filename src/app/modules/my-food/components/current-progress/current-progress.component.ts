@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
@@ -34,10 +34,10 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
   public proteinPreview = 0;
   public fatsPreview = 0;
   public carbohydratesPreview = 0;
-  public caloriesPreviewNumber: string;
-  public proteinPreviewNumber: string;
-  public fatsPreviewNumber: string;
-  public carbohydratesPreviewNumber: string;
+  public caloriesPreviewNumber = 0;
+  public proteinPreviewNumber = 0;
+  public fatsPreviewNumber = 0;
+  public carbohydratesPreviewNumber = 0;
   public user: User;
 
   private userSubscription: Subscription;
@@ -47,7 +47,8 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
   constructor(
     private realTimeDataService: RealTimeDataService,
     private subjectService: SubjectService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -96,6 +97,7 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
         this.currentFatsPercent = (100 * this.currentFats) / this.fatsGoal;
         this.currentCarbohydratesPercent = (100 * this.currentCarbohydrates) / this.carbohydratesGoal;
         this.clear();
+        this.changeDetectorRef.markForCheck();
       });
   }
 
@@ -108,31 +110,39 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
     this.proteinPreview = 0;
     this.fatsPreview = 0;
     this.carbohydratesPreview = 0;
-    this.caloriesPreviewNumber = '';
-    this.proteinPreviewNumber = '';
-    this.fatsPreviewNumber = '';
-    this.carbohydratesPreviewNumber = '';
+    this.caloriesPreviewNumber = 0;
+    this.proteinPreviewNumber = 0;
+    this.fatsPreviewNumber = 0;
+    this.carbohydratesPreviewNumber = 0;
   }
 
   private subscribeToPreview(): void {
     this.previewSubscription = this.subjectService.getSubject(APP.subjects.preview)
       .subscribe((preview: Preview) => {
-        this.caloriesPreviewNumber = preview.calories.toFixed(3);
-        this.proteinPreviewNumber = preview.protein.toFixed(3);
-        this.fatsPreviewNumber = preview.fats.toFixed(3);
-        this.carbohydratesPreviewNumber = preview.carbohydrates.toFixed(3);
-
         if (preview.add) {
           this.caloriesPreview += (100 * preview.calories) / this.caloriesGoal;
           this.proteinPreview += (100 * preview.protein) / this.proteinGoal;
           this.fatsPreview += (100 * preview.fats) / this.fatsGoal;
           this.carbohydratesPreview += (100 * preview.carbohydrates) / this.carbohydratesGoal;
+          this.caloriesPreviewNumber += preview.calories;
+          this.proteinPreviewNumber += preview.protein;
+          this.fatsPreviewNumber += preview.fats;
+          this.carbohydratesPreviewNumber += preview.carbohydrates;
         } else {
           this.caloriesPreview -= (100 * preview.calories) / this.caloriesGoal;
           this.proteinPreview -= (100 * preview.protein) / this.proteinGoal;
           this.fatsPreview -= (100 * preview.fats) / this.fatsGoal;
           this.carbohydratesPreview -= (100 * preview.carbohydrates) / this.carbohydratesGoal;
+          this.caloriesPreviewNumber -= preview.calories;
+          this.proteinPreviewNumber -= preview.protein;
+          this.fatsPreviewNumber -= preview.fats;
+          this.carbohydratesPreviewNumber -= preview.carbohydrates;
         }
+
+        this.caloriesPreviewNumber = Number(this.caloriesPreviewNumber.toFixed(3));
+        this.proteinPreviewNumber = Number(this.proteinPreviewNumber.toFixed(3));
+        this.fatsPreviewNumber = Number(this.fatsPreviewNumber.toFixed(3));
+        this.carbohydratesPreviewNumber = Number(this.carbohydratesPreviewNumber.toFixed(3));
       });
   }
 

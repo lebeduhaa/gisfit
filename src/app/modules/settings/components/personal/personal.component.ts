@@ -88,6 +88,10 @@ export class PersonalComponent implements OnInit, OnDestroy {
   }
 
   public disableButton(): boolean {
+    this.tempUser.height = this.tempUser.height ? Number(this.tempUser.height) : null;
+    this.tempUser.weight = this.tempUser.weight ? Number(this.tempUser.weight) : null;
+    this.tempUser.age = this.tempUser.age ? Number(this.tempUser.age) : null;
+
     return flatEquality(this.tempUser, this.user);
   }
 

@@ -3,16 +3,16 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
   <div class="my-food__content">
-    <div class="my-food__current-eating">
+    <div class="my-food__current-eating" [hidden]="!userFillRequiredData">
       <app-current-eating></app-current-eating>
     </div>
-    <div class="my-food__my-products">
+    <div class="my-food__my-products" [hidden]="!userFillRequiredData">
       <div class="my-food__description">
         Here are your products. You can add your food, select it today and receive daily report at your according time.
       </div>
       <div class="my-food__actions">
-          <app-spinner-button caption="Add my product" [small]="true" routerLink="/add-product"></app-spinner-button>
-          <app-spinner-button caption="Search more" [small]="true"></app-spinner-button>
+        <app-spinner-button caption="Add my product" [small]="true" routerLink="/add-product"></app-spinner-button>
+        <app-spinner-button caption="Search more" [small]="true"></app-spinner-button>
       </div>
       <div class="my-food__products" *ngIf="products">
         <div class="my-food__product" *ngFor="let product of products">
@@ -20,8 +20,14 @@
         </div>
       </div>
     </div>
-    <div class="my-food__current-progress">
+    <div class="my-food__current-progress" [hidden]="!userFillRequiredData">
       <app-current-progress></app-current-progress>
+    </div>
+  </div>
+  <div class="my-food__content" *ngIf="!userFillRequiredData && !progressBarVisibility">
+    <div class="my-food__description">
+      You have to set your personal data, to give for us ability to calculate your daily goals. Set it and start use application! <br><br>
+      <app-spinner-button caption="Go to settings" [small]="true" routerLink="/settings/personal"></app-spinner-button>
     </div>
   </div>
 </div>
