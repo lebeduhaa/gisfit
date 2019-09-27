@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import * as firebase from 'firebase';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { APP } from 'src/app/shared/constants';
 import { Day } from 'src/app/shared/models/day.model';
+import { User } from 'src/app/shared/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -63,11 +65,22 @@ export class MyFoodService {
     return id;
   }
 
-  public async getMyProducts(): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
-    const products = await this.firestore.collection('products').ref.where('userId', '==', userId).get();
+  public async getMyProducts(user: User): Promise<any> {
+    const products = await this.firestore.collection('products').get().toPromise();
 
-    return products.docs.map(doc => doc.data());
+    return products.docs.map(doc => doc.data()).filter(doc => doc.userId === user.id || user.addedProducts.includes(doc.id));
+  }
+
+  public async getNotMyProducts(user: User): Promise<any> {
+    const products = await this.firestore.collection('products').get().toPromise();
+
+    return products.docs.map(doc => doc.data()).filter(doc => doc.userId !== user.id && !user.addedProducts.includes(doc.id));
+  }
+
+  public addProductToMyFood(productId: string): Promise<any> {
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+
+    return this.firestore.collection('users').doc(userId).update({addedProducts: firebase.firestore.FieldValue.arrayUnion(productId)});
   }
 
 }

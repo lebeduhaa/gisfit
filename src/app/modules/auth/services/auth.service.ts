@@ -86,7 +86,8 @@ export class AuthService {
         currentFats: 0,
         currentCarbohydrates: 0,
         products: []
-      }
+      },
+      addedProducts: []
     });
   }
 

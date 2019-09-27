@@ -22,6 +22,9 @@
 .search__button:active:not(.search__button_active) {
   box-shadow: inset 0 0 7px rgb(77, 77, 77);
 }
+.search__input {
+  overflow: hidden;
+}
 .search__input input {
   background-color: transparent;
   font-family: 'Lato', sans-serif;

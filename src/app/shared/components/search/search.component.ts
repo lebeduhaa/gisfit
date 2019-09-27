@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { appearAnimation } from '../../animations';
+import { widthAnimation } from '../../animations';
 
 @Component({
   selector: 'app-search',
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.css'],
   animations: [
-    appearAnimation
+    widthAnimation
   ]
 })
 export class SearchComponent {

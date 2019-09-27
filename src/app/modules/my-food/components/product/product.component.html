@@ -6,7 +6,10 @@
           <div class="product__action" (click)="selectProduct()">
             <mat-icon color="primary">check</mat-icon>
           </div>
-          <div class="product__action" (confirmationEvent)="reactOnConfirmDeleteProduct($event)" appOpenAreYouSure caption="Do you really want to delete product '{{product.productName}}'?">
+          <div class="product__action" *ngIf="!my" (confirmationEvent)="reactOnConfirmAddProduct($event)" appOpenAreYouSure caption="Do you really want to add product '{{product.productName}}' to your food?">
+            <mat-icon color="primary">add</mat-icon>
+          </div>
+          <div *ngIf="my" class="product__action" (confirmationEvent)="reactOnConfirmDeleteProduct($event)" appOpenAreYouSure caption="Do you really want to delete product '{{product.productName}}'?">
             <mat-icon color="primary">delete</mat-icon>
           </div>
         </div>

@@ -26,6 +26,8 @@ export class MyFoodComponent implements OnInit, OnDestroy {
 
   private productsSubscription: Subscription;
   private currentUserSubscription: Subscription;
+  private user: User;
+  private currentSearch: string;
 
   constructor(
     private myFoodService: MyFoodService,
@@ -35,13 +37,60 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getMyProducts();
     this.subscribeToProductChanges();
     this.subscribeToCurrentUser();
   }
 
+  public findMoreProducts(): void {
+    this.myProducts = false;
+    this.progressBarVisibility = true;
+    this.myFoodService.getNotMyProducts(this.user)
+      .then(products => {
+        this.progressBarVisibility = false;
+        this.products = products;
+        this.displayedProducts = [...products];
+        this.changeDetectorRef.markForCheck();
+        this.getRouteState();
+      });
+  }
+
+  public goBackToMyProducts(): void {
+    this.myProducts = true;
+    this.getMyProducts();
+  }
+
   public reactOnSearch(searchKey: string): void {
-    this.displayedProducts = this.products.filter(product => product.productName.toLowerCase().includes(searchKey.toLowerCase()));
+    this.currentSearch = searchKey;
+
+    if (searchKey) {
+      this.displayedProducts = this.products.filter(product => product.productName.toLowerCase().includes(searchKey.toLowerCase()));
+    } else {
+      this.displayedProducts = [...this.products];
+    }
+  }
+
+  public reactOnAddProduct(productId: string): void {
+    this.myFoodService.addProductToMyFood(productId)
+    .then(() => {
+      const productIndex = this.products.findIndex(product => product.id === productId);
+
+      this.products.splice(productIndex, 1);
+      this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+        title: 'Product add',
+        body: 'Your product was added to your food successfully!',
+        duration: 10000
+      });
+      this.reactOnSearch(this.currentSearch);
+      this.changeDetectorRef.markForCheck();
+    })
+    .catch(error => {
+      this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+        title: 'Product addition error',
+        body: error.message,
+        duration: 20000,
+        error: true
+      });
+    });
   }
 
   public reactOnDeleteProduct(productId: string): void {
@@ -72,6 +121,12 @@ export class MyFoodComponent implements OnInit, OnDestroy {
           this.userFillRequiredData = true;
         }
 
+        this.user = user;
+
+        if (!this.products) {
+          this.getMyProducts();
+        }
+
         this.changeDetectorRef.markForCheck();
       });
   }
@@ -79,7 +134,7 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   private getMyProducts(): void {
     this.progressBarVisibility = true;
 
-    this.myFoodService.getMyProducts()
+    this.myFoodService.getMyProducts(this.user)
       .then(products => {
         this.progressBarVisibility = false;
         this.products = products;

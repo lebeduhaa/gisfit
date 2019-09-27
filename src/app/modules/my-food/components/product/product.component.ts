@@ -16,8 +16,10 @@ import { APP } from 'src/app/shared/constants';
 export class ProductComponent {
 
   @Output() deleteProductEvent = new EventEmitter<string>();
+  @Output() addProductEvent = new EventEmitter<string>();
 
   @Input() product: Product;
+  @Input() my: boolean;
 
   public selectionVisibility: boolean;
   public weightKind = true;
@@ -26,6 +28,12 @@ export class ProductComponent {
   constructor(
     private subjectService: SubjectService
   ) {}
+
+  public reactOnConfirmAddProduct(confirmation: boolean): void {
+    if (confirmation) {
+      this.addProductEvent.emit(this.product.id);
+    }
+  }
 
   public reactOnConfirmDeleteProduct(confirmation: boolean): void {
     if (confirmation) {

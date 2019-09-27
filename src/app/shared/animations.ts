@@ -205,3 +205,15 @@ trigger('appearAnimation', [
     animate(100, style({transform: 'scale(0.1)'}))
   ])
 ]);
+
+export const widthAnimation =
+trigger('widthAnimation', [
+  transition(':enter', [
+    style({width: 0}),
+    animate(200, style({width: '*'}))
+  ]),
+  transition(':leave', [
+    style({width: '*'}),
+    animate(200, style({width: 0}))
+  ])
+]);

@@ -29,4 +29,5 @@ export interface User {
   customProteinGoal?: number;
   customFatsGoal?: number;
   customCarbohydratesGoal?: number;
+  addedProducts?: string[];
 }
