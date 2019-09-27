@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
@@ -23,6 +22,7 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   public products: Product[];
   public displayedProducts: Product[];
   public userFillRequiredData: boolean;
+  public myProducts = true;
 
   private productsSubscription: Subscription;
   private currentUserSubscription: Subscription;
@@ -31,8 +31,7 @@ export class MyFoodComponent implements OnInit, OnDestroy {
     private myFoodService: MyFoodService,
     private changeDetectorRef: ChangeDetectorRef,
     private realTimeDataService: RealTimeDataService,
-    private subjectService: SubjectService,
-    private route: ActivatedRoute
+    private subjectService: SubjectService
   ) {}
 
   ngOnInit() {

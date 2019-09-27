@@ -12,7 +12,8 @@
       </div>
       <div class="my-food__actions">
         <app-spinner-button caption="Add my product" [small]="true" routerLink="/add-product"></app-spinner-button>
-        <app-spinner-button caption="Find more products" [small]="true"></app-spinner-button>
+        <app-spinner-button caption="Find more products" [small]="true" *ngIf="myProducts"></app-spinner-button>
+        <app-spinner-button caption="Go back to my products" [small]="true" *ngIf="!myProducts"></app-spinner-button>
         <app-search caption="Search" (searchEvent)="reactOnSearch($event)"></app-search>
       </div>
       <div class="my-food__products" *ngIf="products">
