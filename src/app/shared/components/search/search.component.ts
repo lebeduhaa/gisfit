@@ -23,8 +23,11 @@ export class SearchComponent {
     this.visibility = true;
   }
 
-  public close(): void {
+  public close(event: MouseEvent): void {
+    event.stopPropagation();
     this.visibility = false;
+    this.currentValue = '';
+    this.reactOnInput();
   }
 
   public reactOnInput(): void {

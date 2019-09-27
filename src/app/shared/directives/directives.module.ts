@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 
 import { NumericControlDirective } from './numeric-control.directive';
+import { ResizableInputDirective } from './resizable-input.directive';
 
 @NgModule({
   declarations: [
-    NumericControlDirective
+    NumericControlDirective,
+    ResizableInputDirective
   ],
   exports: [
-    NumericControlDirective
+    NumericControlDirective,
+    ResizableInputDirective
   ]
 })
 export class DirectivesModule {}

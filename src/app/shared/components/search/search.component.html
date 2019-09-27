@@ -1,10 +1,17 @@
-<div class="search" (clickOutside)="close()">
-  <div class="search__button">
-    <app-spinner-button [caption]="caption" [small]="true" (click)="open()"></app-spinner-button>
-  </div>
-  <div class="search__content" @appearAnimation *ngIf="visibility">
-    <app-input-text placeholder="Value" icon="search">
-      <input type="text" [(ngModel)]="currentValue" (input)="reactOnInput()">
-    </app-input-text>
-  </div>
+<div class="search">
+  <button
+    class="search__button"
+    (click)="open()"
+    [class.search__button_active]="visibility"
+  >
+    <span class="button__caption" *ngIf="!visibility">
+      {{caption}}
+    </span>
+    <div class="search__input" *ngIf="visibility">
+      <input type="text" appResizableInput (input)="reactOnInput()" [(ngModel)]="currentValue">
+    </div>
+    <div class="search__close" *ngIf="visibility" (click)="close($event)">
+      <mat-icon>close</mat-icon>
+    </div>
+  </button>
 </div>
