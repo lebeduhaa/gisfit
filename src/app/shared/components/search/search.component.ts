@@ -1,14 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { widthAnimation } from '../../animations';
-
 @Component({
   selector: 'app-search',
   templateUrl: 'search.component.html',
-  styleUrls: ['search.component.css'],
-  animations: [
-    widthAnimation
-  ]
+  styleUrls: ['search.component.css']
 })
 export class SearchComponent {
 

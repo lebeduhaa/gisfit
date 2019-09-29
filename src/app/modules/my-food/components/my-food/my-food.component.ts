@@ -9,6 +9,7 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
+import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -28,17 +29,46 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   private currentUserSubscription: Subscription;
   private user: User;
   private currentSearch: string;
+  private currentCategories: string[];
 
   constructor(
     private myFoodService: MyFoodService,
     private changeDetectorRef: ChangeDetectorRef,
     private realTimeDataService: RealTimeDataService,
-    private subjectService: SubjectService
+    private subjectService: SubjectService,
+    private settingsService: SettingsService
   ) {}
 
   ngOnInit() {
     this.subscribeToProductChanges();
     this.subscribeToCurrentUser();
+  }
+
+  public reactOnSelectCategoryEvent(selectedCategories: string[]): void {
+    this.currentCategories = selectedCategories;
+    this.filterProducts();
+  }
+
+  public reactOnChangeGoal(ownGoal: boolean): void {
+    this.settingsService.updateUserData({ownGoal}, this.user.id)
+      .then(() => {
+        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+          title: ownGoal ? 'Custom goals' : 'Calculated goals',
+          body: ownGoal ? 'Now you use the custom goals' : 'Now you use the calculated goals',
+          duration: 5000
+        });
+      })
+      .catch(error => {
+        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+          title: 'ERROR',
+          body: error.message,
+          duration: 15000
+        });
+      });
+  }
+
+  public disableGoalTrigger(): boolean {
+    return !(this.user && this.user.customCaloriesGoal && this.user.customProteinGoal && this.user.customFatsGoal && this.user.customCarbohydratesGoal);
   }
 
   public findMoreProducts(): void {
@@ -61,12 +91,7 @@ export class MyFoodComponent implements OnInit, OnDestroy {
 
   public reactOnSearch(searchKey: string): void {
     this.currentSearch = searchKey;
-
-    if (searchKey) {
-      this.displayedProducts = this.products.filter(product => product.productName.toLowerCase().includes(searchKey.toLowerCase()));
-    } else {
-      this.displayedProducts = [...this.products];
-    }
+    this.filterProducts();
   }
 
   public reactOnAddProduct(productId: string): void {
@@ -114,7 +139,27 @@ export class MyFoodComponent implements OnInit, OnDestroy {
       });
   }
 
+  private filterProducts(): void {
+    if (this.products) {
+      this.displayedProducts = this.products.filter(product => {
+        let category = true;
+        let search = true;
+
+        if (this.currentCategories && this.currentCategories.length !== 0) {
+          category = this.currentCategories.includes(product.category);
+        }
+
+        if (this.currentSearch) {
+          search = product.productName.toLowerCase().includes(this.currentSearch.toLowerCase());
+        }
+
+        return category && search;
+      });
+    }
+  }
+
   private subscribeToCurrentUser(): void {
+    this.progressBarVisibility = true;
     this.currentUserSubscription = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         if (user.height && user.weight && user.activity && user.goal && user.age && user.sex) {
@@ -125,6 +170,7 @@ export class MyFoodComponent implements OnInit, OnDestroy {
 
         if (!this.products) {
           this.getMyProducts();
+          this.filterProducts();
         }
 
         this.changeDetectorRef.markForCheck();
@@ -132,8 +178,6 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   }
 
   private getMyProducts(): void {
-    this.progressBarVisibility = true;
-
     this.myFoodService.getMyProducts(this.user)
       .then(products => {
         this.progressBarVisibility = false;

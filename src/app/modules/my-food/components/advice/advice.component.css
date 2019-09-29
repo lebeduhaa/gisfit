@@ -1,0 +1,19 @@
+.advice {
+  background-color: #28353b;
+  margin-bottom: 40px;
+  border-radius: 6px;
+  padding: 20px
+}
+.advice__title {
+  font-size: 25px;
+}
+.advice__title {
+  display: flex;
+  align-items: center;
+}
+.advice__title-value {
+  margin: 0 5px;
+}
+.advice__content {
+  padding: 5px;
+}

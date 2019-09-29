@@ -1,7 +1,6 @@
-.progress {}
 .progress__title {
-  font-size: 25px;
-  margin-top: 20px;
+  font-size: 20px;
+  margin-top: 5px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -9,7 +8,7 @@
   margin-bottom: 5px;
 }
 .progress__item {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .progress__item-title-preview {
   color: #00a040;

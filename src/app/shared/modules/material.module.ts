@@ -5,6 +5,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -12,14 +13,16 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatRadioModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatButtonModule
   ],
   exports: [
     MatIconModule,
     MatProgressSpinnerModule,
     MatDialogModule,
     MatRadioModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatButtonModule
   ]
 })
 export class MaterialModule {}

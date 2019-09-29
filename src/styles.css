@@ -133,6 +133,9 @@ html {
 .flip-card-back {
   transform: rotateY(180deg);
 }
+.advice .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  color: white;
+}
 
 @keyframes popup {
   20% {

@@ -7,7 +7,7 @@
     <span class="button__caption" *ngIf="!visibility">
       {{caption}}
     </span>
-    <div class="search__input" *ngIf="visibility" @widthAnimation>
+    <div class="search__input" *ngIf="visibility">
       <input type="text" appResizableInput (input)="reactOnInput()" [(ngModel)]="currentValue">
     </div>
     <div class="search__close" *ngIf="visibility" (click)="close($event)">

@@ -27,6 +27,8 @@ import { CustomGoalsComponent } from '../components/custom-goals/custom-goals.co
 import { OpenCustomGoalsDirective } from '../directives/open-custom-goals.directive';
 import { ToggleModule } from 'src/app/shared/components/toggle/toggle.module';
 import { SearchModule } from 'src/app/shared/components/search/search.module';
+import { CategoriesComponent } from '../components/categories/categories.component';
+import { AdviceComponent } from '../components/advice/advice.component';
 
 @NgModule({
   imports: [
@@ -58,7 +60,9 @@ import { SearchModule } from 'src/app/shared/components/search/search.module';
     FlyingProductComponent,
     CurrentProgressComponent,
     CustomGoalsComponent,
-    OpenCustomGoalsDirective
+    OpenCustomGoalsDirective,
+    CategoriesComponent,
+    AdviceComponent
   ],
   entryComponents: [
     ProductInfoComponent,

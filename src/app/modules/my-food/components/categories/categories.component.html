@@ -1,0 +1,11 @@
+<div class="categories">
+  <div class="categories__title">Categories</div>
+  <div class="categories__content">
+    <button 
+      class="categories__category"
+      [class.categories__category_selected]="categorySelected(category)"
+      *ngFor="let category of categories"
+      (click)="selectCategory(category)"
+    >{{category}}</button>
+  </div>
+</div>

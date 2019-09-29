@@ -46,6 +46,25 @@
 .my-food__current-eating {
   width: 426px;
 }
-.my-food__current-progress {
+.my-food__right-bar {
   width: 426px;
+  position: relative;
+}
+.my-food__options-title {
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0;
+}
+.progress__trigger {
+  margin: 10px 0;
+}
+.progress__actions {
+  display: flex;
+  justify-content: center;
+}
+.my-food__advice {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }

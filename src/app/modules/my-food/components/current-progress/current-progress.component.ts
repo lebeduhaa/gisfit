@@ -57,24 +57,6 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
     this.subscribeToClearPreview();
   }
 
-  public reactOnChangeGoal(ownGoal: boolean): void {
-    this.settingsService.updateUserData({ownGoal}, this.user.id)
-      .then(() => {
-        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
-          title: ownGoal ? 'Custom goals' : 'Calculated goals',
-          body: ownGoal ? 'Now you use the custom goals' : 'Now you use the calculated goals',
-          duration: 5000
-        });
-      })
-      .catch(error => {
-        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
-          title: 'ERROR',
-          body: error.message,
-          duration: 15000
-        });
-      });
-  }
-
   private subscribeToClearPreview(): void {
     this.clearPreviewSubscription = this.subjectService.getSubject(APP.subjects.clearPreview)
       .subscribe(() => this.clear());
@@ -99,10 +81,6 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
         this.clear();
         this.changeDetectorRef.markForCheck();
       });
-  }
-
-  public disableGoalTrigger(): boolean {
-    return !(this.user && this.user.customCaloriesGoal && this.user.customProteinGoal && this.user.customFatsGoal && this.user.customCarbohydratesGoal);
   }
 
   private clear(): void {

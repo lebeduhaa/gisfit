@@ -18,10 +18,4 @@
       <app-progress [value]="currentCarbohydratesPercent" [preview]="carbohydratesPreview" color="#a79a00"></app-progress>
     </div>
   </div>
-  <div class="progress__trigger" *ngIf="user">
-    <app-toggle caption="Use custom goals" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.ownGoal" (change)="reactOnChangeGoal($event)"></app-toggle>
-  </div>
-  <div class="progress__actions">
-    <app-spinner-button caption="Custom goals" [small]="true" appOpenCustomGoals></app-spinner-button>
-  </div>
 </div>
