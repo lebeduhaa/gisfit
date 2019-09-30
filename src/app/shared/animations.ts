@@ -217,3 +217,15 @@ trigger('widthAnimation', [
     animate(200, style({width: 0}))
   ])
 ]);
+
+export const toRightAnimation =
+trigger('toRightAnimation', [
+  transition(':enter', [
+    style({transform: 'translateX(100%)'}),
+    animate(200, style({transform: 'translateX(0)'}))
+  ]),
+  transition(':leave', [
+    style({transform: 'translateX(0)'}),
+    animate(200, style({transform: 'translateX(100%)'}))
+  ])
+]);

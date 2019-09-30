@@ -30,4 +30,5 @@ export interface User {
   customFatsGoal?: number;
   customCarbohydratesGoal?: number;
   addedProducts?: string[];
+  disableTips?: boolean;
 }

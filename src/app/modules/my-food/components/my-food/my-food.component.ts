@@ -10,12 +10,16 @@ import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
+import { toRightAnimation } from 'src/app/shared/animations';
 
 @AutoUnsubscribe()
 @Component({
   selector: 'app-my-food',
   templateUrl: 'my-food.component.html',
-  styleUrls: ['my-food.component.css']
+  styleUrls: ['my-food.component.css'],
+  animations: [
+    toRightAnimation
+  ]
 })
 export class MyFoodComponent implements OnInit, OnDestroy {
 
@@ -24,10 +28,10 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   public displayedProducts: Product[];
   public userFillRequiredData: boolean;
   public myProducts = true;
+  public user: User;
 
   private productsSubscription: Subscription;
   private currentUserSubscription: Subscription;
-  private user: User;
   private currentSearch: string;
   private currentCategories: string[];
 
@@ -42,6 +46,18 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribeToProductChanges();
     this.subscribeToCurrentUser();
+  }
+
+  public reactOnChangeTips(disableTips: boolean): void {
+    this.settingsService.updateUserData({disableTips}, this.user.id)
+      .then(() => this.user.disableTips = disableTips)
+      .catch(error => {
+        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+          title: 'ERROR',
+          body: error.message,
+          duration: 15000
+        });
+      });
   }
 
   public reactOnSelectCategoryEvent(selectedCategories: string[]): void {

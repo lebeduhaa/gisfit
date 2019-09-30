@@ -49,6 +49,7 @@
 .my-food__right-bar {
   width: 426px;
   position: relative;
+  height: calc(100vh - 80px);
 }
 .my-food__options-title {
   font-size: 20px;
