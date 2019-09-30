@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { APP } from 'src/app/shared/constants';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { settingsRouteAnimation } from 'src/app/shared/animations';
+import { RootService } from '../services/root.service';
 
 
 @AutoUnsubscribe()
@@ -32,13 +33,16 @@ export class RootComponent implements OnInit, OnDestroy {
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
     private translateService: TranslateService,
-    private realTimeDataService: RealTimeDataService
+    private realTimeDataService: RealTimeDataService,
+    private rootService: RootService
   ) {}
 
   ngOnInit() {
     this.translateService.setDefaultLang('English');
     this.router.events
       .subscribe(event => this.parseRouterEvent(event));
+
+    this.rootService.messages();
   }
 
   public prepareRoute(outlet: RouterOutlet) {

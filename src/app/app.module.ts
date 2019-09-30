@@ -14,6 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from 'src/environments/environment';
 import { RootModule } from './modules/root/modules/root.module';
 import { RootComponent } from './modules/root/component/root.component';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -28,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    AngularFireMessagingModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

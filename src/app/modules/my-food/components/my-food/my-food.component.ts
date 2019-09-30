@@ -30,7 +30,6 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   public myProducts = true;
   public user: User;
 
-  private productsSubscription: Subscription;
   private currentUserSubscription: Subscription;
   private currentSearch: string;
   private currentCategories: string[];
@@ -44,7 +43,6 @@ export class MyFoodComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.subscribeToProductChanges();
     this.subscribeToCurrentUser();
   }
 
@@ -139,11 +137,17 @@ export class MyFoodComponent implements OnInit, OnDestroy {
 
     this.myFoodService.deleteProduct(productId)
       .then(() => {
+        const productIndex = this.products.findIndex(product => product.id === productId);
+
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Product deletion',
           body: 'Your product was deleted successfully!',
           duration: 10000
         });
+        this.products.splice(productIndex, 1);
+        this.filterProducts();
+        this.progressBarVisibility = false;
+        this.changeDetectorRef.markForCheck();
       })
       .catch(error => {
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
@@ -152,6 +156,8 @@ export class MyFoodComponent implements OnInit, OnDestroy {
           duration: 20000,
           error: true
         });
+        this.progressBarVisibility = false;
+        this.changeDetectorRef.markForCheck();
       });
   }
 
@@ -201,26 +207,6 @@ export class MyFoodComponent implements OnInit, OnDestroy {
         this.displayedProducts = [...products];
         this.changeDetectorRef.markForCheck();
         this.getRouteState();
-      });
-  }
-
-  private subscribeToProductChanges(): void {
-    this.productsSubscription = this.realTimeDataService.subscribeToProducts()
-      .subscribe(data => {
-        const actionType = data[0].type;
-
-        this.progressBarVisibility = false;
-
-        switch (actionType) {
-          case APP.dataActions.removed: {
-            const id = (data[0].payload.doc.data() as User).id;
-            const productIndex = this.products.findIndex(product => product.id === id);
-            this.products.splice(productIndex, 1);
-            break;
-          }
-          default:
-            console.log('unknown data action');
-        }
       });
   }
 

@@ -8,7 +8,6 @@ export interface Product {
   image?: string | ArrayBuffer;
   fakeImage?: string;
   id?: string;
-  userId?: string;
   averageMassOfOnePiece?: number;
   weight?: number;
 }

@@ -21,6 +21,12 @@ export class MyFoodService {
     private fireStorage: AngularFireStorage
   ) {}
 
+  public deleteProduct(productId: string): Promise<any> {
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+
+    return this.firestore.collection('users').doc(userId).update({addedProducts: firebase.firestore.FieldValue.arrayRemove(productId)});
+  }
+
   public async submitCurrentEating(products: Product[]): Promise<any> {
     const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
     const user = await this.firestore.collection('users').doc(userId).get().toPromise();
@@ -43,14 +49,10 @@ export class MyFoodService {
     await user.ref.update({currentDay});
   }
 
-  public deleteProduct(productId: string): Promise<any> {
-    return this.firestore.collection('products').doc(productId).delete();
-  }
-
   public async createMyProduct(product: Product): Promise<any> {
     const id = this.firestore.createId();
-    const base64 = product.image;
     const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const base64 = product.image;
     const pureBase64 = base64.slice(base64.toString().indexOf('base64,') + 7);
 
     product.calories = Number(product.calories);
@@ -59,8 +61,12 @@ export class MyFoodService {
     product.carbohydrates = Number(product.carbohydrates);
 
     delete product.image;
-    await this.firestore.collection('products').doc(id).set({...product, id, userId});
-    await this.fireStorage.ref(`products/${id}.jpg`).putString(pureBase64.toString(), 'base64');
+
+    const promises = [
+      this.firestore.collection('products').doc(id).set({...product, id}),
+      this.firestore.collection('users').doc(userId).update({addedProducts: firebase.firestore.FieldValue.arrayUnion(id)}),
+      this.fireStorage.ref(`products/${id}.jpg`).putString(pureBase64.toString(), 'base64')
+    ];
 
     return id;
   }
@@ -68,13 +74,13 @@ export class MyFoodService {
   public async getMyProducts(user: User): Promise<any> {
     const products = await this.firestore.collection('products').get().toPromise();
 
-    return products.docs.map(doc => doc.data()).filter(doc => doc.userId === user.id || user.addedProducts.includes(doc.id));
+    return products.docs.map(doc => doc.data()).filter(doc => user.addedProducts.includes(doc.id));
   }
 
   public async getNotMyProducts(user: User): Promise<any> {
     const products = await this.firestore.collection('products').get().toPromise();
 
-    return products.docs.map(doc => doc.data()).filter(doc => doc.userId !== user.id && !user.addedProducts.includes(doc.id));
+    return products.docs.map(doc => doc.data()).filter(doc => !user.addedProducts.includes(doc.id));
   }
 
   public addProductToMyFood(productId: string): Promise<any> {

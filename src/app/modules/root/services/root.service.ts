@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
 
-// import * as firebase from 'firebase';
+import { AngularFireMessaging  } from '@angular/fire/messaging';
+import { mergeMapTo } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RootService {
 
-  // public messages(): void {
-  //   const messaging = firebase.messaging();
-  //   messaging.usePublicVapidKey('BOduJLZXiSldtqB7fEnh81PSPTYyenHDQvEv9GEUHzxtfWYLg5KCliKew9K2WqZmTvDd4mNpK80BuEKGKJnLFbw');
-  //   Notification.requestPermission().then(result => {
-  //     console.log(result);
-  //   });
 
-  //   messaging.getToken()
-  //     .then(currentToken => {
-  //       if (currentToken) {
-  //         console.log('token : ', currentToken);
-  //       }
-  //     });
+  constructor(
+    private messaging: AngularFireMessaging
+  ) {}
 
-  //   messaging.onMessage(payload => {
-  //     console.log(payload);
-  //   });
+  public async messages(): Promise<any> {
+    this.messaging.requestPermission
+      .pipe(mergeMapTo(this.messaging.tokenChanges))
+      .subscribe(
+        (token) => { console.log('Permission granted! Save to the server!', token); },
+        (error) => { console.error(error); }
+      );
 
-  //   Notification.requestPermission().then(result => console.log(result));
-  // }
+    // messaging.onMessage(payload => {
+    //   console.log(payload);
+    // });
+
+  }
 
 }
