@@ -43,7 +43,7 @@
           <app-spinner-button caption="Custom goals" [small]="true" appOpenCustomGoals></app-spinner-button>
         </div>
       </div>
-      <div class="my-food__advice" @toRightAnimation *ngIf="user?.disableTips">
+      <div class="my-food__advice" @toRightAnimation *ngIf="!user?.disableTips">
         <app-advice></app-advice>
       </div>
     </div>
