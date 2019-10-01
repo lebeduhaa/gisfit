@@ -84,12 +84,12 @@ export class SettingsService {
     await this.firebaseAuth.auth.currentUser.updatePassword(newPassword);
   }
 
-  public async updateUserData(userData: User, userId: string): Promise<any> {
+  public updateUserData(userData: User, userId: string): Promise<any> {
     if (userData.interfaceLanguage) {
       this.translateService.use(userData.interfaceLanguage);
     }
 
-    await this.firestore.collection('users').doc(userId).update(userData);
+    return this.firestore.collection('users').doc(userId).update(userData);
   }
 
 }

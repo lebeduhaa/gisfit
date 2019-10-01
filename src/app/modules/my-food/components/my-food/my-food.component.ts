@@ -11,6 +11,8 @@ import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { toRightAnimation } from 'src/app/shared/animations';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
 
 @AutoUnsubscribe()
 @Component({
@@ -21,7 +23,7 @@ import { toRightAnimation } from 'src/app/shared/animations';
     toRightAnimation
   ]
 })
-export class MyFoodComponent implements OnInit, OnDestroy {
+export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, OnDestroy {
 
   public progressBarVisibility: boolean;
   public products: Product[];
@@ -39,10 +41,14 @@ export class MyFoodComponent implements OnInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private realTimeDataService: RealTimeDataService,
     private subjectService: SubjectService,
-    private settingsService: SettingsService
-  ) {}
+    protected settingsService: SettingsService,
+    protected messaging: AngularFireMessaging
+  ) {
+    super(messaging, settingsService);
+  }
 
   ngOnInit() {
+    super.ngOnInit();
     this.subscribeToCurrentUser();
   }
 
