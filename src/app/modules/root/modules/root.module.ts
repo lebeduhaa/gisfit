@@ -11,6 +11,7 @@ import { MyFoodModule } from '../../my-food/modules/my-food.module';
 import { HeaderModule } from 'src/app/shared/components/header/header.module';
 import { NotificationModule } from 'src/app/shared/components/notification/notification.module';
 import { MoveBackgroundDirective } from '../directives/move-background.directive';
+import { DailyReportModule } from 'src/app/shared/components/daily-report/daily-report.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { MoveBackgroundDirective } from '../directives/move-background.directive
     AuthModule,
     SettingsModule,
     MyFoodModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    DailyReportModule
   ],
   declarations: [
     RootComponent,

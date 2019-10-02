@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import * as moment from 'moment';
 
 import { Hour } from 'src/app/shared/models/hour.model';
 import { APP } from 'src/app/shared/constants';
@@ -35,6 +36,14 @@ export class SystemComponent implements OnInit, OnDestroy {
   }
 
   public async reactOnSelectHour(hour: Hour): Promise<any> {
+    const utcDifference =  moment().utcOffset() / 60;
+
+    if (hour.value > 2) {
+      hour.utc = hour.value - utcDifference;
+    } else {
+      hour.utc = 24 - (utcDifference - hour.value);
+    }
+
     await this.settingsService.updateUserData({notificationTime: hour}, this.user.id);
   }
 

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { User } from 'src/app/shared/models/user.model';
-import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
+import * as moment from 'moment';
+
+import { User } from 'src/app/shared/models/user.model';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { APP } from 'src/app/shared/constants';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +88,12 @@ export class AuthService {
         currentCarbohydrates: 0,
         products: []
       },
-      addedProducts: []
+      addedProducts: [],
+      notificationTime: {
+        title: '21:00',
+        value: 21,
+        utc: 21 - (moment().utcOffset() / 60)
+      }
     });
   }
 

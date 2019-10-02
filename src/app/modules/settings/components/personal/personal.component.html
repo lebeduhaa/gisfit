@@ -2,7 +2,7 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 <div class="personal" *ngIf="user">
-  <div class="personal__row personal__row_single">
+  <div class="personal__row personal__row_single" *ngIf="!rerender">
     <div class="personal__avatar-wrapper">
       <div class="settings__avatar">
         <app-user-icon [fakeAvatar]="user.fakeAvatarUrl" [avatar]="user.avatar" [preload]="preloadedImg"></app-user-icon>
@@ -14,7 +14,7 @@
       ></app-input-file>
     </div>
   </div>
-  <div class="personal__row">
+  <div class="personal__row" *ngIf="!rerender">
     <div class="personal__control">
       <app-input-text placeholder="{{'controls.nickname' | translate}}" icon="perm_identity">
         <input type="text" [(ngModel)]="tempUser.nickname">
@@ -26,9 +26,9 @@
       </app-input-text>
     </div>
   </div>
-  <div class="personal__row">
+  <div class="personal__row" *ngIf="!rerender">
     <div class="personal__control">
-      <app-select [value]="user.activity" (change)="reactOnSelectActivity($event)" icon="sports_basketball" placeholder="Activity">
+      <app-select [value]="tempUser.activity" (change)="reactOnSelectActivity($event)" icon="sports_basketball" placeholder="Activity">
         <app-select-option
           *ngFor="let activity of activities"
           [value]="activity"
@@ -36,7 +36,7 @@
       </app-select>
     </div>
     <div class="personal__control">
-      <app-select [value]="user.goal" (change)="reactOnSelectGoal($event)" icon="event_available" placeholder="Goal">
+      <app-select [value]="tempUser.goal" (change)="reactOnSelectGoal($event)" icon="event_available" placeholder="Goal">
         <app-select-option
           *ngFor="let goal of goals"
           [value]="goal"
@@ -44,7 +44,7 @@
       </app-select>
     </div>
   </div>
-  <div class="personal__row">
+  <div class="personal__row" *ngIf="!rerender">
     <div class="personal__control">
       <app-input-text placeholder="{{'controls.height' | translate}}" icon="height">
         <input type="text" [(ngModel)]="tempUser.height" appNumericControl>
@@ -56,7 +56,7 @@
       </app-input-text>
     </div>
   </div>
-  <div class="personal__row">
+  <div class="personal__row" *ngIf="!rerender">
     <div class="personal__control">
       <app-input-text placeholder="{{'controls.age' | translate}}" icon="perm_identity">
         <input type="text" [(ngModel)]="tempUser.age" appNumericControl>
@@ -68,6 +68,6 @@
   </div>
   <div class="personal__actions">
     <app-custom-button color="accent" caption="{{'buttons.save' | translate}}" (click)="save()" [disabled]="disableButton()"></app-custom-button>
-    <app-custom-button color="warn" caption="{{'buttons.cancel' | translate}}" [disabled]="disableButton()"></app-custom-button>
+    <app-custom-button color="warn" caption="{{'buttons.cancel' | translate}}" (click)="cancel()" [disabled]="disableButton()"></app-custom-button>
   </div>
 </div>

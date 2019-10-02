@@ -13,6 +13,7 @@ import { SettingsService } from 'src/app/modules/settings/services/settings.serv
 import { toRightAnimation } from 'src/app/shared/animations';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
+import { MatDialog } from '@angular/material/dialog';
 
 @AutoUnsubscribe()
 @Component({
@@ -42,13 +43,13 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
     private realTimeDataService: RealTimeDataService,
     private subjectService: SubjectService,
     protected settingsService: SettingsService,
-    protected messaging: AngularFireMessaging
+    protected messaging: AngularFireMessaging,
+    protected dialog: MatDialog
   ) {
-    super(messaging, settingsService);
+    super(messaging, settingsService, dialog);
   }
 
   ngOnInit() {
-    super.ngOnInit();
     this.subscribeToCurrentUser();
   }
 
@@ -115,6 +116,8 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   }
 
   public reactOnAddProduct(productId: string): void {
+    this.progressBarVisibility = true;
+
     this.myFoodService.addProductToMyFood(productId)
     .then(() => {
       const productIndex = this.products.findIndex(product => product.id === productId);
@@ -125,6 +128,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
         body: 'Your product was added to your food successfully!',
         duration: 10000
       });
+      this.progressBarVisibility = false;
       this.reactOnSearch(this.currentSearch);
       this.changeDetectorRef.markForCheck();
     })
@@ -135,6 +139,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
         duration: 20000,
         error: true
       });
+      this.progressBarVisibility = false;
     });
   }
 
@@ -195,6 +200,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
         }
 
         this.user = user;
+        this.init(user);
 
         if (!this.products) {
           this.getMyProducts();

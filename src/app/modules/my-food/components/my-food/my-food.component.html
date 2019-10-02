@@ -37,7 +37,7 @@
           <app-toggle caption="Use custom goals" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.ownGoal" (change)="reactOnChangeGoal($event)"></app-toggle>
         </div>
         <div class="progress__trigger" *ngIf="user">
-          <app-toggle caption="Disable tips" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.disableTips" (change)="reactOnChangeTips($event)"></app-toggle>
+          <app-toggle caption="Disable tips" [small]="true" [value]="user.disableTips" (change)="reactOnChangeTips($event)"></app-toggle>
         </div>
         <div class="progress__actions">
           <app-spinner-button caption="Custom goals" [small]="true" appOpenCustomGoals></app-spinner-button>
