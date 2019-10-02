@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 const moment = require('moment');
-
+const Mailer = require('./lib/mailer');
 
 const getResultString = (attributeName, goal, result) => {
   const percent = Number(((result / goal) * 100).toFixed(3));
@@ -18,7 +18,7 @@ const getResultString = (attributeName, goal, result) => {
     return `Nice result. You almost reach the ${attributeName} goal. Your result: ${result}/${goal}\n`;
   } else
   if (percent < 100) {
-    return `Perfect! You too close to the goal. If you continue as well, you will look great =) Your result: ${result}/${goal}\n`;
+    return `Perfect! You too close to the ${attributeName} goal. If you continue as well, you will look great =) Your result: ${result}/${goal}\n`;
   } else
   if (percent < 110) {
     return `Almost good! You a bit overdid with ${attributeName}. Try to reduce it tomorrow. Your result: ${result}/${goal}\n`;
@@ -31,8 +31,8 @@ const getResult = user => {
   let resultString = '';
 
   resultString += getResultString('Calories', user.caloriesGoal, user.currentDay.currentCalories);
-  resultString += getResultString('Calories', user.proteinGoal, user.currentDay.currentProtein);
-  resultString += getResultString('Calories', user.fatsGoal, user.currentDay.currentFats);
+  resultString += getResultString('Protein', user.proteinGoal, user.currentDay.currentProtein);
+  resultString += getResultString('Fats', user.fatsGoal, user.currentDay.currentFats);
   resultString += getResultString('Carbohydrates', user.carbohydratesGoal, user.currentDay.currentCarbohydrates);
 
   return resultString;
@@ -42,19 +42,33 @@ module.exports = async (request, response) => {
   const currentHours = moment(new Date()).hours();
   const users = (await admin.firestore().collection('users').get()).docs.map(doc => doc.data());
   const promises = [];
+  const mailer = new Mailer('gisfitproduction@gmail.com', '4815162342lL');
 
   users.forEach(user => {
-    if (user.notificationTime && user.notificationTime.value === currentHours) {
+    if (user.notificationTime && user.notificationTime.utc === currentHours) {
+      const resultString = getResult(user);
       console.log('send to ' + user.nickname);
       promises.push(admin.messaging().sendToDevice(user.deviceToken, {
         notification: {
           title: 'Daily report about your progress',
-          body: getResult(user),
+          body: resultString,
           icon: 'favicon.ico',
           clickAction: 'https://gisfit-production.web.app/my-food',
           sound: 'notification.mp3'
         }
       }));
+
+      if (user.sendDailyReportOnEmail) {
+        let html = '<ul>';
+        let results = resultString.split('\n');
+        
+        for (let i = 0; i < results.length - 1; i++) {
+          html += `<li>${results[i]}</li>`;
+        }
+
+        html += '</ul>'
+        promises.push(mailer.sendMail('Daily report about your progress', html, user.email));
+      }
     }
   });
 

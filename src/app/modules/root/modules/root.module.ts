@@ -12,6 +12,7 @@ import { HeaderModule } from 'src/app/shared/components/header/header.module';
 import { NotificationModule } from 'src/app/shared/components/notification/notification.module';
 import { MoveBackgroundDirective } from '../directives/move-background.directive';
 import { DishesModule } from '../../dishes/modules/dishes.module';
+import { DailyReportModule } from 'src/app/shared/components/daily-report/daily-report.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,9 @@ import { DishesModule } from '../../dishes/modules/dishes.module';
     AuthModule,
     SettingsModule,
     MyFoodModule,
-    DishesModule
+    DishesModule,
+    TranslateModule.forChild(),
+    DailyReportModule
   ],
   declarations: [
     RootComponent,

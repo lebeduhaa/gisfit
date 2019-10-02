@@ -1,0 +1,9 @@
+<mat-dialog-content>
+  <div class="daily">
+    <div class="daily__title">{{title}}</div>
+    <div class="daily__body" *ngFor="let result of body;let i = index;"><li *ngIf="i !== body.length - 1">{{result}}</li></div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <app-spinner-button caption="Ok" [small]="true" (click)="close()"></app-spinner-button>
+</mat-dialog-actions>

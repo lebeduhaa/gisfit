@@ -39,7 +39,8 @@ export const APP = {
     cropper: 'cropper',
     changePassword: 'changePassword',
     areYouSure: 'areYouSure',
-    customGoals: 'customGoals'
+    customGoals: 'customGoals',
+    dailyReport: 'dailyReport'
   },
   routesWithHeader: [
     'settings',

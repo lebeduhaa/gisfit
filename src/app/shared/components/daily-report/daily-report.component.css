@@ -1,0 +1,17 @@
+.daily {
+  color: white;
+  font-family: 'Lato';
+}
+.daily__title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.daily__body {
+  margin-bottom: 10px;
+  list-style-type: disc;
+}
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+}

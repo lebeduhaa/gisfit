@@ -1,22 +1,56 @@
 import { AngularFireMessaging } from '@angular/fire/messaging';
 
-import { OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { APP } from '../constants';
+import { DailyReportComponent } from '../components/daily-report/daily-report.component';
+import { User } from '../models/user.model';
 
-export class FirebaseCloudMessaging implements OnInit {
+export class FirebaseCloudMessaging {
+
+  private tokenSubscription: Subscription;
+  private messageSubscription: Subscription;
 
   constructor(
     protected messaging: AngularFireMessaging,
-    protected settingsService: SettingsService
+    protected settingsService: SettingsService,
+    protected dialog: MatDialog
   ) {}
 
-  ngOnInit() {
-    this.messaging.requestToken
+  protected init(user: User): void {
+    this.unsubscribe();
+    this.tokenSubscription = this.messaging.requestToken
       .subscribe(token => this.updateUserDeviceToken(token));
+    this.messageSubscription = this.messaging.messages
+      .subscribe(message => {
+        const sound = new Audio('./assets/audio/notification.mp3');
+        const { body, title } = (message as any).notification;
 
-    this.messaging.messages
-      .subscribe(message => console.log(message));
+        this.dialog.open(DailyReportComponent, {
+          data: {
+            body,
+            title
+          },
+          id: APP.dialogs.dailyReport,
+          width: '650px'
+        });
+
+        if (user.notificationSound) {
+          sound.play();
+        }
+      });
+  }
+
+  private unsubscribe(): void {
+    if (this.tokenSubscription) {
+      this.tokenSubscription.unsubscribe();
+    }
+
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
   }
 
   private updateUserDeviceToken(token: string): void {

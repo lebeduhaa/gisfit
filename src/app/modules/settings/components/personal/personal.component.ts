@@ -24,6 +24,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
   public progressBarVisibility: boolean;
   public goals = APP.goals;
   public activities = APP.activities;
+  public rerender = false;
 
   private dialogSubscription: Subscription;
   private userDataSubscription: Subscription;
@@ -37,6 +38,16 @@ export class PersonalComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscribeToUser();
+  }
+
+  public cancel(): void {
+    this.tempUser = {...this.user};
+    this.rerender = true;
+
+    setTimeout(() => {
+      this.rerender = false;
+      this.changeDetectorRef.markForCheck();
+    }, 0);
   }
 
   public reactOnSelectActivity(activity: string): void {
