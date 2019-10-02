@@ -55,7 +55,7 @@ trigger('authRouteAnimations', [
 
 export const settingsRouteAnimation =
 trigger('settingsRouteAnimation', [
-  transition('personal => system, my-food => add-product', [
+  transition('personal => system, my-food => add-product, dishes => add-product', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({
@@ -79,59 +79,7 @@ trigger('settingsRouteAnimation', [
     ]),
     query(':enter', animateChild()),
   ]),
-  transition('system => personal, add-product => my-food', [
-    style({ position: 'relative' }),
-    query(':enter, :leave', [
-      style({
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%'
-      })
-    ]),
-    query(':enter', [
-      style({ left: '-100%'})
-    ]),
-    query(':leave', animateChild()),
-    group([
-      query(':leave', [
-        animate('400ms ease-out', style({ left: '100%'}))
-      ]),
-      query(':enter', [
-        animate('400ms ease-out', style({ left: '0%'}))
-      ])
-    ]),
-    query(':enter', animateChild()),
-  ])
-]);
-
-export const routeAnimation =
-trigger('routeAnimations', [
-  transition('my-food => settings', [
-    style({ position: 'relative' }),
-    query(':enter, :leave', [
-      style({
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%'
-      })
-    ]),
-    query(':enter', [
-      style({ left: '100%'})
-    ]),
-    query(':leave', animateChild()),
-    group([
-      query(':leave', [
-        animate('400ms ease-out', style({ left: '-100%'}))
-      ]),
-      query(':enter', [
-        animate('400ms ease-out', style({ left: '0%'}))
-      ])
-    ]),
-    query(':enter', animateChild()),
-  ]),
-  transition('settings => my-food', [
+  transition('system => personal, add-product => my-food, add-product => dishes', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({

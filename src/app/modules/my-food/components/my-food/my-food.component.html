@@ -14,7 +14,7 @@
         Here are your products. You can add your food, select it today and receive daily report at your according time.
       </div>
       <div class="my-food__actions">
-        <app-spinner-button caption="Add product" [small]="true" routerLink="/add-product"></app-spinner-button>
+        <app-spinner-button caption="Add product" [small]="true" routerLink="/add-product" [queryParams]="{previous: 'my-food'}"></app-spinner-button>
         <app-spinner-button caption="Find more" [small]="true" *ngIf="myProducts" (click)="findMoreProducts()"></app-spinner-button>
         <app-spinner-button caption="My products" [small]="true" *ngIf="!myProducts" (click)="goBackToMyProducts()"></app-spinner-button>
         <app-search caption="Search" (searchEvent)="reactOnSearch($event)"></app-search>

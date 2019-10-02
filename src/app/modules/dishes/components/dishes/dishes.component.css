@@ -1,0 +1,16 @@
+.dishes {
+  width: 1200px;
+  margin: 0 auto;
+  font-family: 'Lato';
+}
+.dishes__title {
+  color: silver;
+  padding-top: 20px;
+  text-align: center;
+  font-weight: 400;
+}
+.dishes__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

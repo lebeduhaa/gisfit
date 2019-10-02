@@ -10,6 +10,7 @@ import { APP } from 'src/app/shared/constants';
 import { MyFoodService } from '../../services/my-food.service';
 import { RouterHelper } from 'src/app/shared/services/router.service';
 import { SubjectService } from 'src/app/shared/services/subject.service';
+import { ActivatedRoute } from '@angular/router';
 
 @AutoUnsubscribe()
 @Component({
@@ -24,6 +25,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   public categories: string[] = APP.categories;
   public productForm: FormGroup;
   public progressBarVisibility: boolean;
+  public previousPage: string;
 
   private dialogSubscription: Subscription;
 
@@ -33,10 +35,12 @@ export class AddProductComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private myFoodService: MyFoodService,
     private routerHelper: RouterHelper,
-    private subjectService: SubjectService
+    private subjectService: SubjectService,
+    private router: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.detectPreviousPage();
     this.initForm();
   }
 
@@ -106,6 +110,10 @@ export class AddProductComponent implements OnInit, OnDestroy {
           this.productForm.controls.image.reset(base64);
           this.changeDetectorRef.markForCheck();
       });
+  }
+
+  private detectPreviousPage(): void {
+    this.previousPage = this.router.snapshot.queryParams.previous;
   }
 
   ngOnDestroy() {}

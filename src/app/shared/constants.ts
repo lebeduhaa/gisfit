@@ -44,7 +44,8 @@ export const APP = {
   routesWithHeader: [
     'settings',
     'my-food',
-    'add-product'
+    'add-product',
+    'dishes'
   ],
   cachedData: {
     userId: 'userId'

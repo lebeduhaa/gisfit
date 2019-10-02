@@ -1,5 +1,5 @@
 <div class="add-product">
-  <div class="add-product__title">Add new product</div>
+  <div class="add-product__title">{{previousPage === 'dishes' ? 'Add new dish' : 'Add new product'}}</div>
   <div class="add-product__progress-bar" *ngIf="progressBarVisibility">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
@@ -57,6 +57,6 @@
   </div>
   <div class="add-product__actions">
     <app-custom-button color="accent" caption="Save" [disabled]="productForm.invalid" (click)="save()"></app-custom-button>
-    <app-custom-button color="warn" caption="Back" routerLink="/my-food"></app-custom-button>
+    <app-custom-button color="warn" caption="Back" [routerLink]="'/' + previousPage"></app-custom-button>
   </div>
 </div>
