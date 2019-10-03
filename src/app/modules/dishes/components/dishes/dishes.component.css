@@ -19,3 +19,14 @@
   width: 100%;
   left: 0;
 }
+.dishes__content {
+  padding-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.dishes__dish {
+  margin-bottom: 30px;
+  flex-basis: 25%;
+  display: flex;
+  justify-content: center;
+}

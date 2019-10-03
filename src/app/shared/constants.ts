@@ -93,7 +93,8 @@ export const APP = {
     'Other'
   ],
   dataActions: {
-    removed: 'removed'
+    removed: 'removed',
+    modified: 'modified'
   },
   goals: [
     'lose weight',

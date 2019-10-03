@@ -1,7 +1,9 @@
 .dish {
-  width: 250px;
+  width: 270px;
   font-family: 'Lato', sans-serif;
   color: white;
+  cursor: pointer;
+  transition: .3s;
 }
 .dish__image {
   position: relative;
@@ -24,4 +26,32 @@
   align-items: center;
   height: 50px;
   margin-top: -3px;
+}
+.dish__header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #32445a;
+}
+.dish__header-icon {
+  margin-right: 15px;
+}
+.dish__info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.685);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  padding: 3px;
+}
+.dish__comment-icon {
+  margin-left: 5px;
+}
+.dish:hover {
+  box-shadow: 0 0 15px #ffffffba;
+  transform: scale(1.1);
 }

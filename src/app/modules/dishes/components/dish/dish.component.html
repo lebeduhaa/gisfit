@@ -1,11 +1,27 @@
 <div class="dish">
   <div class="dish__header">
-    <div class="dish__header-avatar"></div>
+    <div class="dish__header-icon">
+      <app-user-icon [small]="true" [fakeAvatar]="dish.user.fakeAvatarUrl" [avatar]="dish.user.avatar"></app-user-icon>
+    </div>
     <div class="dish__header-nickname">{{dish.user.nickname}}</div>
   </div>
   <div class="dish__image">
     <img [src]="dish.image">
-    <img [src]="dish.fakeImage" alt="">
+    <img [src]="dish.fakeImage">
+    <div class="dish__info">
+      <button mat-icon-button (click)="setLike()">
+        <mat-icon>{{likeAlreadySet() ? 'favorite' : 'favorite_border'}}</mat-icon>
+      </button>
+      <div class="dish__info-likes">
+        28 likes
+      </div>
+      <button mat-icon-button class="dish__comment-icon">
+        <mat-icon>chat</mat-icon>
+      </button>
+      <div class="dish__info-comments">
+        8 comments
+      </div>
+    </div>
   </div>
   <div class="dish__title">{{dish.productName}}</div>
 </div>
