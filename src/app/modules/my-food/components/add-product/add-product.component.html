@@ -1,16 +1,16 @@
 <div class="add-product">
-  <div class="add-product__title">{{previousPage === 'dishes' ? 'Add new dish' : 'Add new product'}}</div>
+  <div class="add-product__title">{{isProductPage ? 'Add new product' : 'Add new dish'}}</div>
   <div class="add-product__progress-bar" *ngIf="progressBarVisibility">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
   <div class="add-product__content" [formGroup]="productForm">
     <div class="add-product__left">
       <div class="add-product__control">
-        <app-input-text placeholder="Product Name" icon="create">
+        <app-input-text [placeholder]="isProductPage ? 'Product Name' : 'Dish Name'" icon="create">
           <input type="text" formControlName="productName">
         </app-input-text>
       </div>
-      <div class="add-product__control">
+      <div class="add-product__control" *ngIf="isProductPage">
         <app-select (change)="reactOnSelectCategory($event)" icon="list_alt" placeholder="Category">
           <app-select-option
             *ngFor="let category of categories"
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="add-product__right">
-      <div class="add-product__image">
+      <div class="add-product__image" [class.add-product__image_dish]="!isProductPage">
         <div class="add-product__image-preload">
           <img [src]="productPreloadedPhoto ? productPreloadedPhoto : 'assets/img/no-photo.jpg'">
         </div>
@@ -50,11 +50,12 @@
           [clearFilesSubject]="clearFilesSubject"
         ></app-input-file>
       </div>
-      <app-input-text icon="looks_one" placeholder="Average mass of one piece(g)">
+      <app-input-text icon="looks_one" [placeholder]="isProductPage ? 'Average mass of one piece(g)' : 'Average mass of serving'">
         <input type="text" formControlName="averageMassOfOnePiece" appNumericControl>
       </app-input-text>
     </div>
   </div>
+  <app-textarea></app-textarea>
   <div class="add-product__actions">
     <app-custom-button color="accent" caption="Save" [disabled]="productForm.invalid" (click)="save()"></app-custom-button>
     <app-custom-button color="warn" caption="Back" [routerLink]="'/' + previousPage"></app-custom-button>

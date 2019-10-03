@@ -1,0 +1,15 @@
+.textarea__value {
+  width: 100%;
+}
+textarea {
+  width: 100%;
+  min-height: 170px;
+  background-color: #252429;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 15px 25px;
+  font-size: 18px;
+  resize: none;
+}

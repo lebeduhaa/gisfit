@@ -29,6 +29,7 @@ import { ToggleModule } from 'src/app/shared/components/toggle/toggle.module';
 import { SearchModule } from 'src/app/shared/components/search/search.module';
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { AdviceComponent } from '../components/advice/advice.component';
+import { TextareaModule } from 'src/app/shared/components/textarea/textarea.module';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { AdviceComponent } from '../components/advice/advice.component';
     AreYouSureModule,
     DirectivesModule,
     ToggleModule,
-    SearchModule
+    SearchModule,
+    TextareaModule
   ],
   declarations: [
     MyFoodComponent,

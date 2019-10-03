@@ -1,3 +1,5 @@
+import { Comment } from './comment.model';
+
 export interface Product {
   productName?: string;
   category?: string;
@@ -10,4 +12,7 @@ export interface Product {
   id?: string;
   averageMassOfOnePiece?: number;
   weight?: number;
+  likes?: string[];
+  comments?: Comment[];
+  description?: string;
 }

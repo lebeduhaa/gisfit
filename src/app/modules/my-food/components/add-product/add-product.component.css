@@ -17,6 +17,9 @@
   margin-bottom: 30px;
   height: 395px;
 }
+.add-product__image_dish {
+  height: 310px;
+}
 .add-product__image-preload img {
   width: 250px;
   margin-bottom: 20px;

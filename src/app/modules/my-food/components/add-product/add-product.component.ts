@@ -11,6 +11,7 @@ import { MyFoodService } from '../../services/my-food.service';
 import { RouterHelper } from 'src/app/shared/services/router.service';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from 'src/app/shared/models/product.model';
 
 @AutoUnsubscribe()
 @Component({
@@ -26,6 +27,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   public productForm: FormGroup;
   public progressBarVisibility: boolean;
   public previousPage: string;
+  public isProductPage: boolean;
 
   private dialogSubscription: Subscription;
 
@@ -51,10 +53,16 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   public save(): void {
+    const product = {...this.productForm.value} as Product;
     this.progressBarVisibility = true;
     this.changeDetectorRef.markForCheck();
 
-    this.myFoodService.createMyProduct(this.productForm.value)
+    if (!this.isProductPage) {
+      product.likes = [];
+      product.comments = [];
+    }
+
+    this.myFoodService.createMyProduct(product)
       .then(createdId => {
         this.routerHelper.navigateToPageWithState(APP.pages.myFood, {
           createdId,
@@ -82,7 +90,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   private initForm(): void {
-    this.productForm = this.formBuilder.group({
+    const formControls = {
       productName: ['', Validators.required],
       category: ['', Validators.required],
       calories: ['', Validators.required],
@@ -91,7 +99,13 @@ export class AddProductComponent implements OnInit, OnDestroy {
       carbohydrates: ['', Validators.required],
       image: ['', Validators.required],
       averageMassOfOnePiece: ['', Validators.required]
-    });
+    };
+
+    if (!this.isProductPage) {
+      delete formControls.category;
+    }
+
+    this.productForm = this.formBuilder.group(formControls);
   }
 
   private openCropperDialog(): void {
@@ -105,15 +119,19 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
     this.dialogSubscription = dialogRef.afterClosed()
       .subscribe(async base64 => {
-          this.clearFilesSubject.next(true);
-          this.productPreloadedPhoto = base64;
-          this.productForm.controls.image.reset(base64);
-          this.changeDetectorRef.markForCheck();
+        this.clearFilesSubject.next(true);
+        this.productPreloadedPhoto = base64;
+        this.productForm.controls.image.reset(base64);
+        this.changeDetectorRef.markForCheck();
       });
   }
 
   private detectPreviousPage(): void {
     this.previousPage = this.router.snapshot.queryParams.previous;
+
+    if (this.previousPage === 'my-food') {
+      this.isProductPage = true;
+    }
   }
 
   ngOnDestroy() {}
