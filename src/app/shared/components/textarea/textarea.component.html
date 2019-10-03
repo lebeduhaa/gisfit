@@ -1,5 +1,6 @@
-<div class="textarea">
+<div class="textarea" (click)="toTop()" (clickOutside)="toBottom()">
+  <div class="textarea__placeholder" [class.textarea__placeholder_top]="placeholderAtTop">{{placeholder}}</div>
   <div class="textarea__value">
-    <textarea></textarea>
+    <ng-content></ng-content>
   </div>
 </div>

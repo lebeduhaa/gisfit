@@ -1,9 +1,9 @@
-<div class="add-product">
+<div class="add-product" [formGroup]="productForm">
   <div class="add-product__title">{{isProductPage ? 'Add new product' : 'Add new dish'}}</div>
   <div class="add-product__progress-bar" *ngIf="progressBarVisibility">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
-  <div class="add-product__content" [formGroup]="productForm">
+  <div class="add-product__content">
     <div class="add-product__left">
       <div class="add-product__control">
         <app-input-text [placeholder]="isProductPage ? 'Product Name' : 'Dish Name'" icon="create">
@@ -55,7 +55,9 @@
       </app-input-text>
     </div>
   </div>
-  <app-textarea></app-textarea>
+  <app-textarea placeholder="Describe your dish">
+    <textarea formControlName="description" #textarea appExtendableTextarea></textarea>
+  </app-textarea>
   <div class="add-product__actions">
     <app-custom-button color="accent" caption="Save" [disabled]="productForm.invalid" (click)="save()"></app-custom-button>
     <app-custom-button color="warn" caption="Back" [routerLink]="'/' + previousPage"></app-custom-button>

@@ -60,11 +60,12 @@ export class AddProductComponent implements OnInit, OnDestroy {
     if (!this.isProductPage) {
       product.likes = [];
       product.comments = [];
+      product.dish = true;
     }
 
     this.myFoodService.createMyProduct(product)
       .then(createdId => {
-        this.routerHelper.navigateToPageWithState(APP.pages.myFood, {
+        this.routerHelper.navigateToPageWithState(this.previousPage, {
           createdId,
           image: this.productPreloadedPhoto
         });
@@ -98,11 +99,14 @@ export class AddProductComponent implements OnInit, OnDestroy {
       fats: ['', Validators.required],
       carbohydrates: ['', Validators.required],
       image: ['', Validators.required],
-      averageMassOfOnePiece: ['', Validators.required]
+      averageMassOfOnePiece: ['', Validators.required],
+      description: ['', Validators.required]
     };
 
     if (!this.isProductPage) {
       delete formControls.category;
+    } else {
+      delete formControls.description;
     }
 
     this.productForm = this.formBuilder.group(formControls);

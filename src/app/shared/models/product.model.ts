@@ -15,4 +15,5 @@ export interface Product {
   likes?: string[];
   comments?: Comment[];
   description?: string;
+  dish?: boolean;
 }

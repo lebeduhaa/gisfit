@@ -39,6 +39,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 .add-product__actions app-custom-button:first-child {
   margin-right: 15px;
