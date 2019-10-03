@@ -1,0 +1,27 @@
+.dish {
+  width: 250px;
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+.dish__image {
+  position: relative;
+}
+.dish__image img {
+  width: 100%;
+  z-index: 1;
+  position: relative;
+}
+.dish__image img:last-of-type {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.dish__title {
+  background-color: #32445a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  margin-top: -3px;
+}

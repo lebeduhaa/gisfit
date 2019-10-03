@@ -1,7 +1,7 @@
 .dishes {
   width: 1200px;
   margin: 0 auto;
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
 }
 .dishes__title {
   color: silver;
@@ -13,4 +13,9 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+.dishes__progress-bar {
+  position: absolute;
+  width: 100%;
+  left: 0;
 }

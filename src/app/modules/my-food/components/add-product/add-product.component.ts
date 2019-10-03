@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { Subject, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,8 +11,9 @@ import { APP } from 'src/app/shared/constants';
 import { MyFoodService } from '../../services/my-food.service';
 import { RouterHelper } from 'src/app/shared/services/router.service';
 import { SubjectService } from 'src/app/shared/services/subject.service';
-import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/models/product.model';
+import { User } from 'src/app/shared/models/user.model';
+import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -30,6 +32,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
   public isProductPage: boolean;
 
   private dialogSubscription: Subscription;
+  private userSubscription: Subscription;
+  private user: User;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -38,11 +42,13 @@ export class AddProductComponent implements OnInit, OnDestroy {
     private myFoodService: MyFoodService,
     private routerHelper: RouterHelper,
     private subjectService: SubjectService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private realTimeDataService: RealTimeDataService
   ) {}
 
   ngOnInit() {
     this.detectPreviousPage();
+    this.subscribeToUser();
     this.initForm();
   }
 
@@ -61,6 +67,11 @@ export class AddProductComponent implements OnInit, OnDestroy {
       product.likes = [];
       product.comments = [];
       product.dish = true;
+      product.user = {
+        fakeAvatarUrl: this.user.fakeAvatarUrl,
+        avatar: this.user.avatar,
+        nickname: this.user.nickname
+      };
     }
 
     this.myFoodService.createMyProduct(product)
@@ -136,6 +147,11 @@ export class AddProductComponent implements OnInit, OnDestroy {
     if (this.previousPage === 'my-food') {
       this.isProductPage = true;
     }
+  }
+
+  private subscribeToUser(): void {
+    this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+      .subscribe(user => this.user = user);
   }
 
   ngOnDestroy() {}

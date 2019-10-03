@@ -1,6 +1,14 @@
 <div class="dishes">
-  <div class="dishes__title">You can add your dishes and use it as a product in your food. Discuss your dishes with other users. If you liked someone else’s dish you can use it as your food.</div>
-  <div class="dishes__actions">
+  <div class="dishes__progress-bar" *ngIf="progressBarVisibility">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div class="dishes__title" *ngIf="!progressBarVisibility">You can add your dishes and use it as a product in your food. Discuss your dishes with other users. If you liked someone else’s dish you can use it as your food.</div>
+  <div class="dishes__actions" *ngIf="!progressBarVisibility">
     <app-spinner-button caption="Add dish" [small]="true" routerLink="/add-product" [queryParams]="{previous: 'dishes'}"></app-spinner-button>
+  </div>
+  <div class="dishes__content" *ngIf="!progressBarVisibility">
+    <div class="dishes__dish" *ngFor="let dish of displayedDishes">
+      <app-dish [dish]="dish"></app-dish>
+    </div>
   </div>
 </div>

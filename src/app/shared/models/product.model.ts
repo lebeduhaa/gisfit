@@ -1,4 +1,5 @@
 import { Comment } from './comment.model';
+import { User } from './user.model';
 
 export interface Product {
   productName?: string;
@@ -16,4 +17,5 @@ export interface Product {
   comments?: Comment[];
   description?: string;
   dish?: boolean;
+  user?: User;
 }
