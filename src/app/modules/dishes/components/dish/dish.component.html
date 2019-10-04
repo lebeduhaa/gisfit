@@ -1,27 +1,56 @@
-<div class="dish">
-  <div class="dish__header">
-    <div class="dish__header-icon">
-      <app-user-icon [small]="true" [fakeAvatar]="dish.user.fakeAvatarUrl" [avatar]="dish.user.avatar"></app-user-icon>
-    </div>
-    <div class="dish__header-nickname">{{dish.user.nickname}}</div>
-  </div>
-  <div class="dish__image">
-    <img [src]="dish.image">
-    <img [src]="dish.fakeImage">
-    <div class="dish__info">
-      <button mat-icon-button (click)="setLike()">
-        <mat-icon>{{likeAlreadySet() ? 'favorite' : 'favorite_border'}}</mat-icon>
-      </button>
-      <div class="dish__info-likes">
-        28 likes
+
+<div class="flip-card" [class.flip-card_flip]="commentsVisibility">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="dish">
+        <div class="dish__header">
+          <div class="dish__header-icon">
+            <app-user-icon [small]="true" [fakeAvatar]="dish.user.fakeAvatarUrl" [avatar]="dish.user.avatar"></app-user-icon>
+          </div>
+          <div class="dish__header-nickname">{{dish.user.nickname}}</div>
+        </div>
+        <div class="dish__image">
+          <img [src]="dish.image">
+          <img [src]="dish.fakeImage">
+          <div class="dish__info">
+            <button mat-icon-button (click)="setLike()">
+              <mat-icon>{{likeAlreadySet() ? 'favorite' : 'favorite_border'}}</mat-icon>
+            </button>
+            <div class="dish__info-likes">
+              {{dish.likes.length}} likes
+            </div>
+            <button mat-icon-button class="dish__comment-icon" (click)="openComments($event)">
+              <mat-icon>chat</mat-icon>
+            </button>
+            <div class="dish__info-comments">
+              {{dish.comments.length}} comments
+            </div>
+          </div>
+        </div>
+        <div class="dish__title">{{dish.productName}}</div>
       </div>
-      <button mat-icon-button class="dish__comment-icon">
-        <mat-icon>chat</mat-icon>
-      </button>
-      <div class="dish__info-comments">
-        8 comments
+    </div>
+    <div class="flip-card-back">
+      <div class="dish__comments" (clickOutside)="closeComments()">
+        <div class="dish__comments-back">
+          <button mat-icon-button (click)="closeComments()">
+            <mat-icon>undo</mat-icon>
+          </button>
+        </div>
+        <div class="dish__comments-title">Comments</div>
+        <div class="dish__comments-chat">
+          <div class="dish__comments-comment" *ngFor="let comment of dish.comments">
+            <span class="dish__comments-comment-nickname">{{comment.nickname}}: </span>
+            <span class="dish__comments-comment-body">{{comment.body}}</span>
+          </div>
+        </div>
+        <div class="dish__comments-message">
+          <input [(ngModel)]="currentComment" type="text" (keydown.enter)="sendComment()">
+          <button mat-icon-button (click)="sendComment()">
+            <mat-icon>send</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>
-  <div class="dish__title">{{dish.productName}}</div>
 </div>

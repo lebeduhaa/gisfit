@@ -3,6 +3,8 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/product.model';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { APP } from 'src/app/shared/constants';
+import { DishesService } from '../../services/dishes.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-dish',
@@ -15,15 +17,29 @@ export class DishComponent implements OnInit {
   @Output() unsetLikeEvent = new EventEmitter<string>();
 
   @Input() dish: Product;
+  @Input() user: User;
+
+  public commentsVisibility: boolean;
+  public currentComment: string;
 
   private userId: string;
 
   constructor(
-    private localStorageHelper: LocalStorageHelper
+    private localStorageHelper: LocalStorageHelper,
+    private dishesService: DishesService
   ) {}
 
   ngOnInit() {
     this.getUserId();
+  }
+
+  public sendComment(): void {
+    Promise.resolve(this.dishesService.sendComment({
+      body: this.currentComment,
+      nickname: this.user.nickname,
+      timestamp: (new Date()).valueOf()
+    }, this.dish.id));
+    this.currentComment = '';
   }
 
   public likeAlreadySet(): boolean {
@@ -36,6 +52,15 @@ export class DishComponent implements OnInit {
     } else {
       this.unsetLikeEvent.emit(this.dish.id);
     }
+  }
+
+  public openComments(event: MouseEvent): void {
+    event.stopPropagation();
+    this.commentsVisibility = true;
+  }
+
+  public closeComments(): void {
+    this.commentsVisibility = false;
   }
 
   private getUserId(): void {

@@ -1,5 +1,6 @@
 .dish {
   width: 270px;
+  height: 390px;
   font-family: 'Lato', sans-serif;
   color: white;
   cursor: pointer;
@@ -54,4 +55,65 @@
 .dish:hover {
   box-shadow: 0 0 15px #ffffffba;
   transform: scale(1.1);
+}
+.dish__comments {
+  width: 270px;
+  height: 390px;
+  background-color: #222e35;
+  box-shadow: 0 0 15px #ffffffba;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  position: relative;
+  padding-top: 15px;
+}
+.dish__comments-title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.dish__comments-chat {
+  height: calc(100% - 85px);
+  overflow: auto;
+}
+.dish__comments-message {
+  height: 46px;
+  border-top: .5px solid #545454;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dish__comments-message input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: .5px solid gray;
+  color: rgb(230, 230, 230);
+  margin-left: 20px;
+  font-size: 16px;
+}
+.dish__comments-message mat-icon {
+  margin-top: -3px;
+  margin-right: -5px;
+  color: #787878;
+}
+.dish__comments-message mat-icon:hover {
+  color: white;
+}
+.dish__comments-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.dish__comments-back mat-icon {
+  color: #787878;
+}
+.dish__comments-back mat-icon:hover {
+  color: white;
+}
+.dish__comments-comment {
+  padding: 5px;
+}
+.dish__comments-comment-nickname {
+  margin-right: 5px;
+  font-weight: 600;
 }

@@ -99,6 +99,10 @@ html {
   background-color: rgb(177, 177, 177);
   border-radius: 10px;
 }
+.dish__comments-chat *::-webkit-scrollbar {
+  background-color: transparent;
+  width: 6px;
+}
 .control_invalid {
   border: 1px solid #9d1d1d !important;
   box-shadow: inset 0px 0px 5px #8d3939;

@@ -8,7 +8,7 @@
   </div>
   <div class="dishes__content" *ngIf="!progressBarVisibility">
     <div class="dishes__dish" *ngFor="let dish of displayedDishes">
-      <app-dish [dish]="dish" (setLikeEvent)="reactOnSetLike($event)" (unsetLikeEvent)="reactOnUnsetLike($event)"></app-dish>
+      <app-dish [user]="user" [dish]="dish" (setLikeEvent)="reactOnSetLike($event)" (unsetLikeEvent)="reactOnUnsetLike($event)"></app-dish>
     </div>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import * as recursiveDiff from 'recursive-diff';
 
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
 import { Product } from 'src/app/shared/models/product.model';
@@ -9,6 +10,10 @@ import { DishesService } from '../../services/dishes.service';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { APP } from 'src/app/shared/constants';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
+import { User } from 'src/app/shared/models/user.model';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { SettingsService } from 'src/app/modules/settings/services/settings.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @AutoUnsubscribe()
 @Component({
@@ -21,20 +26,25 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
   public dishes: Product[];
   public displayedDishes: Product[];
   public progressBarVisibility: boolean;
+  public user: User;
 
   private productSubscription: Subscription;
+  private userSubscription: Subscription;
 
   constructor(
     private dishesService: DishesService,
     private changeDetectorRef: ChangeDetectorRef,
     private realTimeDataService: RealTimeDataService,
-    private localStorageHelper: LocalStorageHelper
+    protected messaging: AngularFireMessaging,
+    protected settingsService: SettingsService,
+    protected dialog: MatDialog
   ) {
-    super(null, null, null);
+    super(messaging, settingsService, dialog);
   }
 
   ngOnInit() {
     this.getDishes();
+    this.subscribeToCurrentUser();
     this.subscribeToProductChanges();
   }
 
@@ -52,27 +62,6 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
       .then(dishes => {
         this.dishes = dishes;
         this.displayedDishes = dishes;
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
-        this.displayedDishes.push(dishes[0]);
         this.progressBarVisibility = false;
         this.changeDetectorRef.markForCheck();
       });
@@ -86,12 +75,20 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
             const dishData = changes[0].payload.doc.data() as Product;
             const dishMainIndex = this.dishes.findIndex(dish => dish.id === dishData.id);
             const dishDisplayedIndex = this.displayedDishes.findIndex(dish => dish.id === dishData.id);
+            const delta = recursiveDiff.getDiff(this.dishes[dishMainIndex], dishData);
 
-            this.dishes.splice(dishMainIndex, 1, dishData);
-            this.displayedDishes.splice(dishMainIndex, 1, dishData);
+            recursiveDiff.applyDiff(this.dishes[dishMainIndex], delta);
             this.changeDetectorRef.markForCheck();
           }
         }
+      });
+  }
+
+  private subscribeToCurrentUser(): void {
+    this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+      .subscribe(user => {
+        this.user = user;
+        this.changeDetectorRef.markForCheck();
       });
   }
 
