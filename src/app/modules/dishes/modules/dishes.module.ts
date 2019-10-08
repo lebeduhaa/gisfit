@@ -9,6 +9,7 @@ import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { UserIconModule } from 'src/app/shared/components/user-icon/user-icon.module';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { OpenDishDirective } from '../directives/open-dish.directive';
+import { ScrollToBottomDirective } from '../directives/scroll-to-bottom.directive';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { OpenDishDirective } from '../directives/open-dish.directive';
   declarations: [
     DishesComponent,
     DishComponent,
-    OpenDishDirective
+    OpenDishDirective,
+    ScrollToBottomDirective
   ],
   exports: [
     DishesComponent

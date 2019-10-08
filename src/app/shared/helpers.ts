@@ -40,3 +40,11 @@ export const collectChanges = (firstObject, secondObject) => {
 
   return result;
 };
+
+export const getClosestByClassName = (element: HTMLElement, className: string): HTMLElement => {
+  if (element.parentElement.classList.contains(className)) {
+    return element.parentElement;
+  } else {
+    return getClosestByClassName(element.parentElement, className);
+  }
+};

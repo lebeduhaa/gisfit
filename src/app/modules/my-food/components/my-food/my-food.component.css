@@ -69,3 +69,8 @@
   left: 0;
   width: 100%;
 }
+.my-food__products-not-found {
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
+}

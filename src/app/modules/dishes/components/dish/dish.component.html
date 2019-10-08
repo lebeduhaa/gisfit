@@ -19,7 +19,7 @@
             <div class="dish__info-likes">
               {{dish.likes.length}} likes
             </div>
-            <button mat-icon-button class="dish__comment-icon" (click)="openComments($event)">
+            <button mat-icon-button class="dish__comment-icon" (click)="openComments($event)" appScrollToBottom>
               <mat-icon>chat</mat-icon>
             </button>
             <div class="dish__info-comments">

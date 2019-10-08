@@ -25,7 +25,8 @@ export const APP = {
     signUp: 'auth/sign-up',
     settings: 'settings',
     myFood: 'my-food',
-    addProduct: 'add-product'
+    addProduct: 'add-product',
+    dishes: 'dishes'
   },
   subjects: {
     notificationVisibility: 'notificationVisibility',

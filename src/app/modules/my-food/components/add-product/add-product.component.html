@@ -55,7 +55,7 @@
       </app-input-text>
     </div>
   </div>
-  <app-textarea placeholder="Describe your dish">
+  <app-textarea placeholder="Describe your dish" *ngIf="!isProductPage">
     <textarea formControlName="description" #textarea appExtendableTextarea></textarea>
   </app-textarea>
   <div class="add-product__actions">

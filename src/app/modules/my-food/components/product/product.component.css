@@ -54,6 +54,12 @@
   z-index: 4;
   font-size: 13px;
 }
+.product_dish .product__title {
+  background-color: #32445a;
+}
+.product_dish:hover .product__title {
+  background-color: #3c5169;
+}
 .product__action {
   border: 1px solid #787878;
   border-radius: 50%;

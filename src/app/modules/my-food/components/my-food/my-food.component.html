@@ -20,6 +20,7 @@
         <app-search caption="Search" (searchEvent)="reactOnSearch($event)"></app-search>
       </div>
       <div class="my-food__products" *ngIf="products">
+        <div class="my-food__products-not-found" *ngIf="displayedProducts.length === 0">There are not products:(</div>
         <div class="my-food__product" *ngFor="let product of displayedProducts">
           <app-product
             [my]="myProducts"
@@ -34,16 +35,16 @@
       <div class="my-food__options">
         <div class="my-food__options-title">Food options</div>
         <div class="progress__trigger" *ngIf="user">
-          <app-toggle caption="Use custom goals" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.ownGoal" (change)="reactOnChangeGoal($event)"></app-toggle>
+          <app-toggle caption="Disable tips" [small]="true" [value]="user.disableTips" (change)="reactOnChangeTips($event)"></app-toggle>
         </div>
         <div class="progress__trigger" *ngIf="user">
-          <app-toggle caption="Disable tips" [small]="true" [value]="user.disableTips" (change)="reactOnChangeTips($event)"></app-toggle>
+          <app-toggle caption="Use custom goals" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.ownGoal" (change)="reactOnChangeGoal($event)"></app-toggle>
         </div>
         <div class="progress__actions">
           <app-spinner-button caption="Custom goals" [small]="true" appOpenCustomGoals></app-spinner-button>
         </div>
       </div>
-      <div class="my-food__advice" @toRightAnimation *ngIf="!user?.disableTips">
+      <div class="my-food__advice" @toRightAnimation *ngIf="user && !user?.disableTips">
         <app-advice></app-advice>
       </div>
     </div>

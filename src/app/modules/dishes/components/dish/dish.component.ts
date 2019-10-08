@@ -34,12 +34,14 @@ export class DishComponent implements OnInit {
   }
 
   public sendComment(): void {
-    Promise.resolve(this.dishesService.sendComment({
-      body: this.currentComment,
-      nickname: this.user.nickname,
-      timestamp: (new Date()).valueOf()
-    }, this.dish.id));
-    this.currentComment = '';
+    if (this.currentComment.trim()) {
+      Promise.resolve(this.dishesService.sendComment({
+        body: this.currentComment.trim(),
+        nickname: this.user.nickname,
+        timestamp: (new Date()).valueOf()
+      }, this.dish.id));
+      this.currentComment = '';
+    }
   }
 
   public likeAlreadySet(): boolean {

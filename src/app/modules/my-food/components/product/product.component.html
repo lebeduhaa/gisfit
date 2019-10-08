@@ -1,7 +1,7 @@
 <div class="flip-card" [class.flip-card_flip]="selectionVisibility">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <div class="product" appOpenProductInfo [product]="product">
+      <div class="product" appOpenProductInfo [product]="product" [class.product_dish]="product.dish">
         <div class="product__actions" (click)="catchClick($event)">
           <div class="product__action" (click)="selectProduct()">
             <mat-icon color="primary">check</mat-icon>

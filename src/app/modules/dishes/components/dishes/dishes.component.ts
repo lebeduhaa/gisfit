@@ -78,7 +78,11 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
             const delta = recursiveDiff.getDiff(this.dishes[dishMainIndex], dishData);
 
             recursiveDiff.applyDiff(this.dishes[dishMainIndex], delta);
+            recursiveDiff.applyDiff(this.displayedDishes[dishDisplayedIndex], delta);
             this.changeDetectorRef.markForCheck();
+            setTimeout(() => {
+              this.scrollToBottom();
+            }, 0);
           }
         }
       });
@@ -90,6 +94,14 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
         this.user = user;
         this.changeDetectorRef.markForCheck();
       });
+  }
+
+  private scrollToBottom(): void {
+    const chatComponents = document.querySelectorAll('.dish__comments-chat');
+
+    chatComponents.forEach(chatComponent => {
+      chatComponent.scrollTo({top: chatComponent.scrollHeight});
+    });
   }
 
   ngOnDestroy() {}
