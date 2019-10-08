@@ -1,11 +1,13 @@
 .textarea__value {
   width: 100%;
+  height: 100%;
 }
 .textarea {
   position: relative;
 }
 .textarea /deep/ textarea {
   width: 100%;
+  height: 100%;
   min-height: 100px;
   background-color: #252429;
   border-radius: 4px;

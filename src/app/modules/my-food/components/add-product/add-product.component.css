@@ -5,6 +5,9 @@
   margin: 0 auto;
   padding-top: 30px;
 }
+.add-product_dish {
+  width: 1030px;;
+}
 .add-product__title {
   font-size: 25px;
   text-align: center;
@@ -16,9 +19,6 @@
   align-items: center;
   margin-bottom: 30px;
   height: 395px;
-}
-.add-product__image_dish {
-  height: 310px;
 }
 .add-product__image-preload img {
   width: 250px;
@@ -46,4 +46,11 @@
 }
 .add-product__right, .add-product__left {
   width: 295px;
+}
+.add-product__dish {
+  width: 400px;
+}
+/deep/ .textarea {
+  height: 50%;
+  padding-bottom: 30px;
 }

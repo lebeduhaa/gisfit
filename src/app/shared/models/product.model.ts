@@ -16,6 +16,7 @@ export interface Product {
   likes?: string[];
   comments?: Comment[];
   description?: string;
+  recipe?: string;
   dish?: boolean;
   user?: User;
 }

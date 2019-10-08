@@ -111,13 +111,13 @@ export class AddProductComponent implements OnInit, OnDestroy {
       carbohydrates: ['', Validators.required],
       image: ['', Validators.required],
       averageMassOfOnePiece: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      recipe: ['']
     };
 
-    if (!this.isProductPage) {
-      delete formControls.category;
-    } else {
+    if (this.isProductPage) {
       delete formControls.description;
+      delete formControls.recipe;
     }
 
     this.productForm = this.formBuilder.group(formControls);

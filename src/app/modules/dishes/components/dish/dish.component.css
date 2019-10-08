@@ -1,6 +1,6 @@
 .dish {
   width: 270px;
-  height: 390px;
+  height: 387px;
   font-family: 'Lato', sans-serif;
   color: white;
   cursor: pointer;
@@ -8,6 +8,8 @@
 }
 .dish__image {
   position: relative;
+  height: 270px;
+  overflow: hidden;
 }
 .dish__image img {
   width: 100%;

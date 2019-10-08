@@ -63,6 +63,7 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
         this.dishes = dishes;
         this.displayedDishes = dishes;
         this.progressBarVisibility = false;
+        this.getRouteState();
         this.changeDetectorRef.markForCheck();
       });
   }
@@ -102,6 +103,16 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
     chatComponents.forEach(chatComponent => {
       chatComponent.scrollTo({top: chatComponent.scrollHeight});
     });
+  }
+
+  private getRouteState(): void {
+    const stateData = history.state.stateData;
+
+    if (stateData) {
+      const product = this.dishes.find(currentProduct => currentProduct.id === stateData.createdId);
+
+      product.image = stateData.image;
+    }
   }
 
   ngOnDestroy() {}
