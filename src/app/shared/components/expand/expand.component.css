@@ -1,0 +1,32 @@
+.expand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.expand__button button {
+  background-color: #5147da;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  padding: 12px 35px;
+  border-radius: 25px;
+  position: relative;
+  margin-bottom: 15px;
+}
+button mat-icon {
+  color: white;
+  position: absolute;
+  right: 9px;
+  top: 8px;
+}
+.expand__button button:hover {
+  background-color: #625adb;
+}
+.expand__content {
+  width: 100%;
+}

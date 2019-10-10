@@ -1,0 +1,24 @@
+<mat-dialog-content>
+  <div class="dish-details">
+    <div class="dish-details__title">Dish details: {{dish.productName}}</div>
+    <div class="dish-details__content">
+      <div class="dish-details__left">
+        <div class="dish-details__dish-image">
+          <img [src]="dish.image">
+        </div>
+      </div>
+      <div class="dish-details__right">
+        <div class="dish-details__info-item"><span class="dish-details__key">Description</span>: {{dish.description}}</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">Category</span>: {{dish.category}}</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">Calories</span>: {{dish.calories}}kcal</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">Protein</span>: {{dish.protein}}g</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">Fats</span>: {{dish.fats}}g</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">Carbohydrates</span>: {{dish.carbohydrates}}g</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">Mass of serving</span>: {{dish.averageMassOfOnePiece}}g</div>
+      </div>
+    </div>
+    <app-expand *ngIf="dish.recipe" caption="Open recipe" secondCaption="Close recipe">
+      <pre>{{dish.recipe}}</pre>
+    </app-expand>
+  </div>
+</mat-dialog-content>

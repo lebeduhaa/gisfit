@@ -5,7 +5,7 @@
   padding: 20px
 }
 .advice__title {
-  font-size: 22px;
+  font-size: 18px;
 }
 .advice__title {
   display: flex;
@@ -16,4 +16,5 @@
 }
 .advice__content {
   padding: 5px;
+  font-size: 13px;
 }

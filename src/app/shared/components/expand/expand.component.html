@@ -1,0 +1,11 @@
+<div class="expand">
+  <div class="expand__button">
+    <button (click)="toggleContentVisibility()">
+      {{contentVisibility ? secondCaption : caption}}
+      <mat-icon>expand_more</mat-icon>
+    </button>
+  </div>
+  <div class="expand__content" *ngIf="contentVisibility" @expandAnimation>
+    <ng-content></ng-content>
+  </div>
+</div>

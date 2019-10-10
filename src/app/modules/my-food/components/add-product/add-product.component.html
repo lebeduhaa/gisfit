@@ -4,7 +4,7 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
   <div class="add-product__content">
-    <div class="add-product__dish">
+    <div class="add-product__dish" *ngIf="!isProductPage">
       <app-textarea placeholder="Describe your dish" *ngIf="!isProductPage">
         <textarea formControlName="description" #textarea></textarea>
       </app-textarea>

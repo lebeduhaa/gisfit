@@ -48,7 +48,9 @@ export class DishComponent implements OnInit {
     return this.dish.likes.includes(this.userId);
   }
 
-  public setLike(): void {
+  public setLike(event: MouseEvent): void {
+    event.stopImmediatePropagation();
+
     if (!this.likeAlreadySet()) {
       this.setLikeEvent.emit(this.dish.id);
     } else {

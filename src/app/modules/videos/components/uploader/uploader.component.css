@@ -1,0 +1,45 @@
+.uploader {
+  font-family: 'Lato', sans-serif;
+  color: white;
+  padding-top: 30px;
+}
+.uploader__title {
+  font-size: 25px;
+  text-align: center;
+}
+.uploader__content  {
+  width: 600px;
+  margin: 30px auto;
+  display: flex;
+}
+.uploader__content-left, .uploader__content-right {
+  flex-basis: 50%;
+}
+.uploader__content-right {
+  margin-left: 20px;
+}
+.uploader__control {
+  margin-bottom: 30px;
+  width: 100%;
+}
+/deep/ .textarea {
+  height: 200px;
+  width: 100%;
+}
+.uploader__image-preload img {
+  width: 250px;
+  margin-bottom: 20px;
+  border: 8px solid #ffffff14;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ffffff4a;
+}
+.uploader__image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.uploader__content-right, .uploader__content-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

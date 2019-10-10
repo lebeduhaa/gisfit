@@ -2,7 +2,7 @@
 <div class="flip-card" [class.flip-card_flip]="commentsVisibility">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <div class="dish">
+      <div class="dish" appOpenDish [dish]="dish">
         <div class="dish__header">
           <div class="dish__header-icon">
             <app-user-icon [small]="true" [fakeAvatar]="dish.user.fakeAvatarUrl" [avatar]="dish.user.avatar"></app-user-icon>
@@ -13,7 +13,7 @@
           <img [src]="dish.image">
           <img [src]="dish.fakeImage">
           <div class="dish__info">
-            <button mat-icon-button (click)="setLike()">
+            <button mat-icon-button (click)="setLike($event)">
               <mat-icon>{{likeAlreadySet() ? 'favorite' : 'favorite_border'}}</mat-icon>
             </button>
             <div class="dish__info-likes">

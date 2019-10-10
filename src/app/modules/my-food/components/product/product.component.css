@@ -1,3 +1,7 @@
+.flip-card {
+  width: 170px;
+  height: 207px;
+}
 .product {
   transition: .2s;
   overflow: hidden;
@@ -55,10 +59,7 @@
   font-size: 13px;
 }
 .product_dish .product__title {
-  background-color: #32445a;
-}
-.product_dish:hover .product__title {
-  background-color: #3c5169;
+  background-color: #8e3939;
 }
 .product__action {
   border: 1px solid #787878;
@@ -115,6 +116,9 @@
 }
 .product:hover .product__title {
   background-color: #388896;
+}
+.product_dish:hover .product__title {
+  background-color: #a34040;
 }
 .product:hover .product__actions {
   top: 0;

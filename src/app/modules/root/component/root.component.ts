@@ -81,6 +81,9 @@ export class RootComponent implements OnInit, OnDestroy {
     } else
     if (currentUrl.includes('dishes')) {
       this.backgroundImageUrl = 'assets/img/backgrounds/settings3.jpg';
+    } else
+    if (currentUrl.includes('videos')) {
+      this.backgroundImageUrl = 'assets/img/backgrounds/settings3.jpg';
     }
   }
 

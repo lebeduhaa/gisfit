@@ -25,7 +25,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   public clearFilesSubject = new Subject<boolean>();
   public productPreloadedPhoto: string | ArrayBuffer;
-  public categories: string[] = APP.categories;
+  public categories: string[];
   public productForm: FormGroup;
   public progressBarVisibility: boolean;
   public previousPage: string;
@@ -47,6 +47,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.setCategories();
     this.detectPreviousPage();
     this.subscribeToUser();
     this.initForm();
@@ -152,6 +153,14 @@ export class AddProductComponent implements OnInit, OnDestroy {
   private subscribeToUser(): void {
     this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => this.user = user);
+  }
+
+  private setCategories(): void {
+    if (this.isProductPage) {
+      this.categories = APP.categories;
+    } else {
+      this.categories = APP.dishCategories;
+    }
   }
 
   ngOnDestroy() {}

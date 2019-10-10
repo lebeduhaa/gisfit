@@ -6,18 +6,21 @@ import { SettingsComponent } from '../../settings/components/settings/settings.c
 import { MyFoodComponent } from '../../my-food/components/my-food/my-food.component';
 import { AddProductComponent } from '../../my-food/components/add-product/add-product.component';
 import { DishesComponent } from '../../dishes/components/dishes/dishes.component';
+import { AuthGuard } from 'src/app/shared/auth.guard';
+import { VideosComponent } from '../../videos/components/videos/videos.component';
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
       { path: '', redirectTo: '/auth/sign-in', pathMatch: 'full' },
       { path: 'auth', redirectTo: '/auth/sign-in', pathMatch: 'full' },
-      { path: 'settings', redirectTo: '/settings/personal', pathMatch: 'full' },
+      { path: 'settings', redirectTo: '/settings/personal', pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'auth', component: AuthComponent },
-      { path: 'settings', component: SettingsComponent, data: {animation: 'settings'} },
-      { path: 'my-food', component: MyFoodComponent, data: {animation: 'my-food'} },
-      { path: 'add-product', component: AddProductComponent, data: {animation: 'add-product'} },
-      { path: 'dishes', component: DishesComponent, data: {animation: 'dishes'} }
+      { path: 'settings', component: SettingsComponent, data: {animation: 'settings'}, canActivate: [AuthGuard] },
+      { path: 'my-food', component: MyFoodComponent, data: {animation: 'my-food'}, canActivate: [AuthGuard] },
+      { path: 'add-product', component: AddProductComponent, data: {animation: 'add-product'}, canActivate: [AuthGuard] },
+      { path: 'dishes', component: DishesComponent, data: {animation: 'dishes'}, canActivate: [AuthGuard] },
+      { path: 'videos', component: VideosComponent, data: {animation: 'videos'}, canActivate: [AuthGuard] }
     ])
   ],
   exports: [

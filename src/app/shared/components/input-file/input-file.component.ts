@@ -17,6 +17,7 @@ export class InputFileComponent implements OnInit, OnDestroy {
 
   @Input() caption: string;
   @Input() clearFilesSubject: Subject<boolean>;
+  @Input() video: boolean;
 
   @ViewChild('file') input: ElementRef<HTMLInputElement>;
 
@@ -27,14 +28,13 @@ export class InputFileComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.filesSubscription = this.clearFilesSubject
-      .subscribe(event => this.clearFiles());
+    this.initSubscriptions();
   }
 
   public reactOnFileSelect(event): void {
     const kB = event.target.files[0].size / 1024;
 
-    if (kB > 5000) {
+    if (kB > 5000 && !this.video) {
       this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
         title: 'Image upload ERROR',
         body: 'Image size should be less than 5mb!',
@@ -50,8 +50,17 @@ export class InputFileComponent implements OnInit, OnDestroy {
     this.input.nativeElement.value = '';
   }
 
+  private initSubscriptions(): void {
+    if (this.filesSubscription) {
+      this.filesSubscription = this.clearFilesSubject
+        .subscribe(event => this.clearFiles());
+    }
+  }
+
   ngOnDestroy() {
-    this.filesSubscription.unsubscribe();
+    if (this.filesSubscription) {
+      this.filesSubscription.unsubscribe();
+    }
   }
 
 }

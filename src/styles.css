@@ -110,8 +110,6 @@ html {
 
 .flip-card {
   background-color: transparent;
-  width: 170px;
-  height: 207px;
   perspective: 1000px;
 }
 

@@ -47,7 +47,8 @@ export const APP = {
     'settings',
     'my-food',
     'add-product',
-    'dishes'
+    'dishes',
+    'videos'
   ],
   cachedData: {
     userId: 'userId'
@@ -91,6 +92,19 @@ export const APP = {
     'Oils',
     'Meat',
     'Fish',
+    'Other'
+  ],
+  dishCategories: [
+    'Soups',
+    'Salads',
+    'Sandwiches & Wraps',
+    'Pasta',
+    'Pizza',
+    'Breakfast',
+    'Drink',
+    'Dinner',
+    'Supper',
+    'Lunch',
     'Other'
   ],
   dataActions: {

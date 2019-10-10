@@ -31,7 +31,8 @@
       </div>
     </div>
     <div class="my-food__right-bar" [hidden]="!userFillRequiredData">
-      <app-categories (selectCategoryEvent)="reactOnSelectCategoryEvent($event)"></app-categories>
+      <app-categories (selectCategoryEvent)="reactOnSelectProductCategoryEvent($event)" caption="Product categories" [options]="productCategories"></app-categories>
+      <app-categories (selectCategoryEvent)="reactOnSelectDishCategoryEvent($event)" caption="Dish categories" [options]="dishCategories"></app-categories>
       <div class="my-food__options">
         <div class="my-food__options-title">Food options</div>
         <div class="progress__trigger" *ngIf="user">

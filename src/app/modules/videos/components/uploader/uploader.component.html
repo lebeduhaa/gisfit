@@ -1,0 +1,36 @@
+<div class="uploader">
+  <div class="uploader__title">Upload your video</div>
+  <div class="uploader__content">
+    <div class="uploader__content-left">
+      <div class="uploader__control">
+        <app-input-text placeholder="Title">
+          <input type="text">
+        </app-input-text>
+      </div>
+      <div class="uploader__control">
+        <app-textarea placeholder="Description">
+          <textarea #textarea></textarea>
+        </app-textarea>
+      </div>
+      <div class="uploader__video">
+        <img src="../../../../../assets/img/video-file.png" alt="">
+        <app-input-file
+          caption="Select video file"
+          (fileSelected)="reactOnSelectVideoFile($event)"
+          [video]="true"
+        ></app-input-file>
+      </div>
+    </div>
+    <div class="uploader__content-right">
+      <div class="uploader__image">
+        <div class="uploader__image-preload">
+          <img [src]="videoPreview ? videoPreview : 'assets/img/no-photo.jpg'">
+        </div>
+        <app-input-file
+          caption="Select video`s preview"
+          (fileSelected)="reactOnSelectPreviewFile($event)"
+        ></app-input-file>
+      </div>
+    </div>
+  </div>
+</div>

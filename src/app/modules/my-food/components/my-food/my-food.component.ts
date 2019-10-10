@@ -32,10 +32,13 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   public userFillRequiredData: boolean;
   public myProducts = true;
   public user: User;
+  public productCategories = APP.categories;
+  public dishCategories = APP.dishCategories;
 
   private currentUserSubscription: Subscription;
   private currentSearch: string;
-  private currentCategories: string[];
+  private currentProductCategories: string[];
+  private currentDishCategories: string[];
 
   constructor(
     private myFoodService: MyFoodService,
@@ -65,8 +68,13 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
       });
   }
 
-  public reactOnSelectCategoryEvent(selectedCategories: string[]): void {
-    this.currentCategories = selectedCategories;
+  public reactOnSelectProductCategoryEvent(selectedCategories: string[]): void {
+    this.currentProductCategories = selectedCategories;
+    this.filterProducts();
+  }
+
+  public reactOnSelectDishCategoryEvent(selectedCategories: string[]): void {
+    this.currentDishCategories = selectedCategories;
     this.filterProducts();
   }
 
@@ -175,18 +183,30 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   private filterProducts(): void {
     if (this.products) {
       this.displayedProducts = this.products.filter(product => {
-        let category = true;
+        let productCategory = false;
+        let dishCategory = false;
         let search = true;
 
-        if (this.currentCategories && this.currentCategories.length !== 0) {
-          category = this.currentCategories.includes(product.category);
+        if (this.currentProductCategories && this.currentProductCategories.length !== 0) {
+          productCategory = this.currentProductCategories.includes(product.category);
+        }
+
+        if (this.currentDishCategories && this.currentDishCategories.length !== 0) {
+          dishCategory = this.currentDishCategories.includes(product.category);
         }
 
         if (this.currentSearch) {
           search = product.productName.toLowerCase().includes(this.currentSearch.toLowerCase());
         }
 
-        return category && search;
+        if (
+          (typeof this.currentProductCategories === 'undefined' || !this.currentProductCategories.length) &&
+          (typeof this.currentDishCategories === 'undefined' || !this.currentDishCategories.length)
+        ) {
+          return search;
+        }
+
+        return search && (productCategory || dishCategory);
       });
     }
   }

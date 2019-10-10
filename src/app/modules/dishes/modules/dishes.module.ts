@@ -10,6 +10,8 @@ import { UserIconModule } from 'src/app/shared/components/user-icon/user-icon.mo
 import { ClickOutsideModule } from 'ng-click-outside';
 import { OpenDishDirective } from '../directives/open-dish.directive';
 import { ScrollToBottomDirective } from '../directives/scroll-to-bottom.directive';
+import { DishDetailsComponent } from '../components/dish-details/dish-details.component';
+import { ExpandModule } from 'src/app/shared/components/expand/expand.module';
 
 @NgModule({
   imports: [
@@ -18,13 +20,18 @@ import { ScrollToBottomDirective } from '../directives/scroll-to-bottom.directiv
     MaterialModule,
     ClickOutsideModule,
     SpinnerButtonModule,
-    UserIconModule
+    UserIconModule,
+    ExpandModule
   ],
   declarations: [
     DishesComponent,
     DishComponent,
     OpenDishDirective,
-    ScrollToBottomDirective
+    ScrollToBottomDirective,
+    DishDetailsComponent
+  ],
+  entryComponents: [
+    DishDetailsComponent
   ],
   exports: [
     DishesComponent

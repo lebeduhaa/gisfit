@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 import { APP } from 'src/app/shared/constants';
 
@@ -11,7 +11,9 @@ export class CategoriesComponent {
 
   @Output() selectCategoryEvent = new EventEmitter<string[]>();
 
-  public categories = APP.categories;
+  @Input() caption: string;
+  @Input() options: string[];
+
   public selectedCategories: string[] = [];
 
   public categorySelected(categoryName: string): boolean {

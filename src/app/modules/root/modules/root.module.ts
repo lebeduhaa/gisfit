@@ -13,6 +13,7 @@ import { NotificationModule } from 'src/app/shared/components/notification/notif
 import { MoveBackgroundDirective } from '../directives/move-background.directive';
 import { DishesModule } from '../../dishes/modules/dishes.module';
 import { DailyReportModule } from 'src/app/shared/components/daily-report/daily-report.module';
+import { VideosModule } from '../../videos/modules/videos.module';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { DailyReportModule } from 'src/app/shared/components/daily-report/daily-
     SettingsModule,
     MyFoodModule,
     DishesModule,
+    VideosModule,
     TranslateModule.forChild(),
     DailyReportModule
   ],
