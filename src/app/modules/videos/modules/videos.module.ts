@@ -7,6 +7,7 @@ import { SpinnerButtonModule } from 'src/app/shared/components/spinner-button/sp
 import { InputTextModule } from 'src/app/shared/components/input-text/input-text.module';
 import { TextareaModule } from 'src/app/shared/components/textarea/textarea.module';
 import { InputFileModule } from 'src/app/shared/components/input-file/input-file.module';
+import { MaterialModule } from 'src/app/shared/modules/material.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { InputFileModule } from 'src/app/shared/components/input-file/input-file
     SpinnerButtonModule,
     InputTextModule,
     TextareaModule,
-    InputFileModule
+    InputFileModule,
+    MaterialModule
   ],
   declarations: [
     VideosComponent,

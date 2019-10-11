@@ -9,6 +9,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class UploaderComponent implements OnInit {
 
   public videoPreview: string | ArrayBuffer;
+  public file;
 
   constructor(
     private fireStorage: AngularFireStorage,
@@ -21,7 +22,7 @@ export class UploaderComponent implements OnInit {
   }
 
   public reactOnSelectVideoFile(event): void {
-    console.log(event.target.files[0].filename);
+    this.file = event.target.files[0];
   }
 
   public reactOnSelectPreviewFile(event): void {

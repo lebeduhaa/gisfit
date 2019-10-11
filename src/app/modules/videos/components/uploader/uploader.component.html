@@ -13,7 +13,9 @@
         </app-textarea>
       </div>
       <div class="uploader__video">
-        <img src="../../../../../assets/img/video-file.png" alt="">
+        <div class="uploader__video-item" *ngIf="file">
+          <mat-icon>movie</mat-icon>{{file.name}}
+        </div>
         <app-input-file
           caption="Select video file"
           (fileSelected)="reactOnSelectVideoFile($event)"
