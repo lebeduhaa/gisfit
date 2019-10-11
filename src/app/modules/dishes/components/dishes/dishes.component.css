@@ -30,3 +30,6 @@
   display: flex;
   justify-content: center;
 }
+app-spinner-button {
+  margin-right: 10px;
+}

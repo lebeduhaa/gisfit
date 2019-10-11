@@ -8,6 +8,7 @@ import { AddProductComponent } from '../../my-food/components/add-product/add-pr
 import { DishesComponent } from '../../dishes/components/dishes/dishes.component';
 import { AuthGuard } from 'src/app/shared/auth.guard';
 import { VideosComponent } from '../../videos/components/videos/videos.component';
+import { UploaderComponent } from '../../videos/components/uploader/uploader.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { VideosComponent } from '../../videos/components/videos/videos.component
       { path: 'my-food', component: MyFoodComponent, data: {animation: 'my-food'}, canActivate: [AuthGuard] },
       { path: 'add-product', component: AddProductComponent, data: {animation: 'add-product'}, canActivate: [AuthGuard] },
       { path: 'dishes', component: DishesComponent, data: {animation: 'dishes'}, canActivate: [AuthGuard] },
-      { path: 'videos', component: VideosComponent, data: {animation: 'videos'}, canActivate: [AuthGuard] }
+      { path: 'videos', component: VideosComponent, data: {animation: 'videos'}, canActivate: [AuthGuard] },
+      { path: 'add-video', component: UploaderComponent, data: {animation: 'add-video'}, canActivate: [AuthGuard] }
     ])
   ],
   exports: [

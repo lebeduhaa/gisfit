@@ -12,6 +12,7 @@ import { OpenDishDirective } from '../directives/open-dish.directive';
 import { ScrollToBottomDirective } from '../directives/scroll-to-bottom.directive';
 import { DishDetailsComponent } from '../components/dish-details/dish-details.component';
 import { ExpandModule } from 'src/app/shared/components/expand/expand.module';
+import { SearchModule } from 'src/app/shared/components/search/search.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { ExpandModule } from 'src/app/shared/components/expand/expand.module';
     ClickOutsideModule,
     SpinnerButtonModule,
     UserIconModule,
-    ExpandModule
+    ExpandModule,
+    SearchModule
   ],
   declarations: [
     DishesComponent,

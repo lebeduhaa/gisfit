@@ -14,7 +14,7 @@ module.exports = async object => {
   const tmpFilePath = `${workingDir}/source.png`;
   const imgName = object.name.split('/')[1];
 
-  if (fileName.includes('thumb@')) {
+  if (fileName.includes('thumb@') && !object.contentType.includes('video')) {
     const identifier= imgName.substring(imgName.indexOf('_') + 1, imgName.indexOf('.jpg'));
     const url = (await bucket.file(filePath).getSignedUrl({action: 'read', expires: '03-09-2491'}))[0];
 
@@ -29,7 +29,20 @@ module.exports = async object => {
 
         return product.ref.update({fakeImage: url});
       }
+      default: {
+        const video = (await admin.firestore().collection('videos').doc(identifier).get());
+
+        return video.ref.update({fakeImage: url});
+      }
     }
+  }
+
+  if (object.contentType.includes('video')) {
+    const videoId = imgName.substring(0, 20);
+    const url = (await bucket.file(filePath).getSignedUrl({action: 'read', expires: '03-09-2491'}))[0];
+    const video = await admin.firestore().collection('videos').doc(videoId).get()
+
+    return video.ref.update({videoFile: url});
   }
 
   const identifier = imgName.substring(0, imgName.indexOf('.jpg'));
@@ -60,6 +73,11 @@ module.exports = async object => {
       const product = (await admin.firestore().collection('products').doc(identifier).get());
 
       return product.ref.update({image: url});
+    }
+    default: {
+      const video = (await admin.firestore().collection('videos').doc(identifier).get());
+
+      return video.ref.update({imageFile: url});
     }
   }
 }

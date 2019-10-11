@@ -3,17 +3,16 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import * as recursiveDiff from 'recursive-diff';
+import { MatDialog } from '@angular/material/dialog';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
 import { Product } from 'src/app/shared/models/product.model';
 import { DishesService } from '../../services/dishes.service';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { APP } from 'src/app/shared/constants';
-import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { User } from 'src/app/shared/models/user.model';
-import { AngularFireMessaging } from '@angular/fire/messaging';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @AutoUnsubscribe()
 @Component({
@@ -46,6 +45,14 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
     this.getDishes();
     this.subscribeToCurrentUser();
     this.subscribeToProductChanges();
+  }
+
+  public reactOnSearchEvent(key: string): void {
+    if (key) {
+      this.displayedDishes = this.dishes.filter(dish => dish.productName.includes(key));
+    } else {
+      this.displayedDishes = this.dishes;
+    }
   }
 
   public reactOnSetLike(dishId: string): void {

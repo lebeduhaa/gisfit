@@ -48,7 +48,8 @@ export const APP = {
     'my-food',
     'add-product',
     'dishes',
-    'videos'
+    'videos',
+    'add-video'
   ],
   cachedData: {
     userId: 'userId'

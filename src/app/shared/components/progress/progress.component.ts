@@ -10,5 +10,6 @@ export class ProgressComponent {
   @Input() value: number;
   @Input() preview: number;
   @Input() color: string;
+  @Input() pending: boolean;
 
 }

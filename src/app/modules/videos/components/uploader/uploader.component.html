@@ -1,38 +1,68 @@
-<div class="uploader">
+<div class="uploader" [formGroup]="videoForm">
   <div class="uploader__title">Upload your video</div>
-  <div class="uploader__content">
+  <div class="uploader__progress" *ngIf="progressVisibility">
+    <app-progress [value]="currentProgress" color="#5147da" [pending]="true"></app-progress>
+  </div>
+  <div class="uploader__content" *ngIf="!progressVisibility">
     <div class="uploader__content-left">
       <div class="uploader__control">
         <app-input-text placeholder="Title">
-          <input type="text">
+          <input type="text" formControlName="title">
         </app-input-text>
       </div>
       <div class="uploader__control">
         <app-textarea placeholder="Description">
-          <textarea #textarea></textarea>
+          <textarea #textarea formControlName="description"></textarea>
         </app-textarea>
       </div>
-      <div class="uploader__video">
-        <div class="uploader__video-item" *ngIf="file">
-          <mat-icon>movie</mat-icon>{{file.name}}
+      <div class="uploader__file-controls">
+        <div class="uploader__input-file">
+          <app-input-file
+            caption="Select video file"
+            (fileSelected)="reactOnSelectVideoFile($event)"
+            [video]="true"
+            [clearFilesSubject]="videoClearFilesSubject"
+          ></app-input-file>
         </div>
-        <app-input-file
-          caption="Select video file"
-          (fileSelected)="reactOnSelectVideoFile($event)"
-          [video]="true"
-        ></app-input-file>
+        <div class="uploader__input-file">
+          <app-input-file
+            caption="Select video`s preview"
+            (fileSelected)="reactOnSelectPreviewFile($event)"
+            [clearFilesSubject]="imageClearFilesSubject"
+          ></app-input-file>
+        </div>
       </div>
     </div>
     <div class="uploader__content-right">
       <div class="uploader__image">
         <div class="uploader__image-preload">
-          <img [src]="videoPreview ? videoPreview : 'assets/img/no-photo.jpg'">
+          <img *ngIf="!videoPreload || videoPreview" [src]="videoPreview ? videoPreview : 'assets/img/no-photo.jpg'">
+          <video *ngIf="videoPreload && !videoPreview" [src]="videoPreload"></video>
         </div>
-        <app-input-file
-          caption="Select video`s preview"
-          (fileSelected)="reactOnSelectPreviewFile($event)"
-        ></app-input-file>
       </div>
     </div>
+  </div>
+  <div class="uploader__content-files" *ngIf="!progressVisibility">
+    <div class="uploader__content-files-title" *ngIf="videoFile || previewFile">Your files :</div>
+    <div class="uploader__files">
+      <div class="uploader__file" *ngIf="videoFile">
+        <img src="../../../../../assets/img/video-file.png">
+        <span>{{getFileName(videoFile?.name)}}</span>
+        <button mat-icon-button (click)="removeVideoFile()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="uploader__file" *ngIf="previewFile">
+        <img src="../../../../../assets/img/image-file.png">
+        <span>{{getFileName(previewFile?.name)}}</span>
+        <button mat-icon-button (click)="removePreviewFile()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="uploader__actions" *ngIf="!progressVisibility">
+    <app-custom-button caption="Save" color="accent" [disabled]="videoForm.invalid" (click)="save()"></app-custom-button>
+    <app-custom-button caption="Back" color="warn" routerLink="/videos"></app-custom-button>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { VideosComponent } from '../components/videos/videos.component';
@@ -8,6 +9,10 @@ import { InputTextModule } from 'src/app/shared/components/input-text/input-text
 import { TextareaModule } from 'src/app/shared/components/textarea/textarea.module';
 import { InputFileModule } from 'src/app/shared/components/input-file/input-file.module';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
+import { CustomButtonModule } from 'src/app/shared/components/custom-button/custom-button.module';
+import { ProgressModule } from 'src/app/shared/components/progress/progress.module';
+import { SearchModule } from 'src/app/shared/components/search/search.module';
+import { VideoComponent } from '../components/video/video.component';
 
 @NgModule({
   imports: [
@@ -16,11 +21,16 @@ import { MaterialModule } from 'src/app/shared/modules/material.module';
     InputTextModule,
     TextareaModule,
     InputFileModule,
-    MaterialModule
+    MaterialModule,
+    CustomButtonModule,
+    RouterModule,
+    ProgressModule,
+    SearchModule
   ],
   declarations: [
     VideosComponent,
-    UploaderComponent
+    UploaderComponent,
+    VideoComponent
   ],
   exports: [
     VideosComponent

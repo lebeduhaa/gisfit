@@ -51,7 +51,7 @@ export class InputFileComponent implements OnInit, OnDestroy {
   }
 
   private initSubscriptions(): void {
-    if (this.filesSubscription) {
+    if (this.clearFilesSubject) {
       this.filesSubscription = this.clearFilesSubject
         .subscribe(event => this.clearFiles());
     }

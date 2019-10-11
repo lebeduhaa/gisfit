@@ -1,0 +1,30 @@
+.videos {
+  width: 1200px;
+  margin: 0 auto;
+  font-family: 'Lato', sans-serif;
+}
+.videos__description {
+  color: silver;
+  padding-top: 20px;
+  text-align: center;
+  font-weight: 400;
+}
+.videos__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+app-spinner-button {
+  margin-right: 10px;
+}
+.videos__progress-bar {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+.videos__items {
+  display: flex;
+}
+.videos__video {
+  width: 100px;
+}
