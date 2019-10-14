@@ -24,19 +24,22 @@
   height: 200px;
   width: 100%;
 }
-.uploader__image-preload {
+.uploader__image-wrapper {
   border: 8px solid #ffffff14;
   border-radius: 5px;
   box-shadow: 0 0 5px #ffffff4a;
-  height: 100%;
+  max-width: 606px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
-.uploader__image-preload img, .uploader__image-preload video {
-  height: 100%;
+.uploader__content-right img, .uploader__content-right video {
+  height: 404px;
 }
 .uploader__image {
   height: 100%;
 }
-.uploader__content-right, .uploader__content-left {
+.uploader__content-left {
   display: flex;
   flex-direction: column;
   align-items: center;

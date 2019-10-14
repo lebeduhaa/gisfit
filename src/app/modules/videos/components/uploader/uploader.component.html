@@ -34,11 +34,9 @@
       </div>
     </div>
     <div class="uploader__content-right">
-      <div class="uploader__image">
-        <div class="uploader__image-preload">
-          <img *ngIf="!videoPreload || videoPreview" [src]="videoPreview ? videoPreview : 'assets/img/no-photo.jpg'">
-          <video *ngIf="videoPreload && !videoPreview" [src]="videoPreload"></video>
-        </div>
+      <div class="uploader__image-wrapper">
+        <img *ngIf="!videoPreload || videoPreview" [src]="videoPreview ? videoPreview : 'assets/img/no-photo.jpg'">
+        <video *ngIf="videoPreload && !videoPreview" [src]="videoPreload"></video>
       </div>
     </div>
   </div>

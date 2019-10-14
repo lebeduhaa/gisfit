@@ -13,6 +13,7 @@ import { CustomButtonModule } from 'src/app/shared/components/custom-button/cust
 import { ProgressModule } from 'src/app/shared/components/progress/progress.module';
 import { SearchModule } from 'src/app/shared/components/search/search.module';
 import { VideoComponent } from '../components/video/video.component';
+import { CropperModule } from 'src/app/shared/components/cropper/cropper.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { VideoComponent } from '../components/video/video.component';
     CustomButtonModule,
     RouterModule,
     ProgressModule,
-    SearchModule
+    SearchModule,
+    CropperModule
   ],
   declarations: [
     VideosComponent,

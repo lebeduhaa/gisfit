@@ -1,3 +1,17 @@
+.video {
+  height: 100%;
+  box-shadow: 0 0 5px white;
+}
 img {
+  height: 100%;
+}
+video {
+  height: 100%;
+}
+.video__preview {
+  display: flex;
+  justify-content: center;
+  height: 100%;
   width: 100%;
+  overflow: hidden;
 }

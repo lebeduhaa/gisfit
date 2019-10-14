@@ -55,7 +55,7 @@ trigger('authRouteAnimations', [
 
 export const settingsRouteAnimation =
 trigger('settingsRouteAnimation', [
-  transition('personal => system, my-food => add-product, dishes => add-product', [
+  transition('personal => system, my-food => add-product, dishes => add-product, videos => add-video', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({
@@ -79,7 +79,7 @@ trigger('settingsRouteAnimation', [
     ]),
     query(':enter', animateChild()),
   ]),
-  transition('system => personal, add-product => my-food, add-product => dishes', [
+  transition('system => personal, add-product => my-food, add-product => dishes, add-video => videos', [
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({

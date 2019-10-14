@@ -1,5 +1,8 @@
 <div class="video">
   <div class="video__preview">
-    <img [src]="video.imageFile">
+    <img [src]="video.imageFile" *ngIf="video.imageFile">
+    <!-- <img [src]="video.fakeImage" *ngIf="video.imageFile"> -->
+    <video [src]="video.videoFile" *ngIf="!video.imageFile"></video>
   </div>
+  .video__title
 </div>

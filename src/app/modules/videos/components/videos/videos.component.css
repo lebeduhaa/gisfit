@@ -13,6 +13,7 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  margin-bottom: 30px;
 }
 app-spinner-button {
   margin-right: 10px;
@@ -24,7 +25,10 @@ app-spinner-button {
 }
 .videos__items {
   display: flex;
+  flex-wrap: wrap;
 }
 .videos__video {
-  width: 100px;
+  height: 166.6px;
+  width: 250px;
+  margin-right: 20px;
 }

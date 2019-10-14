@@ -16,6 +16,7 @@ export class CropperComponent implements OnInit {
   public croppedImage: string;
   public spinnerVisibility: boolean;
   public round: boolean;
+  public polygon: number;
 
   constructor(
     private dialog: MatDialog,
@@ -23,6 +24,7 @@ export class CropperComponent implements OnInit {
   ) {
     this.imageChangedEvent = dialogData.event;
     this.round = dialogData.round;
+    this.polygon = dialogData.polygon;
   }
 
   ngOnInit() {

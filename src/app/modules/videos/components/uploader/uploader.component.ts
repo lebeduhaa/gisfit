@@ -3,8 +3,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Subject, Subscription } from 'rxjs';
-import { VideosService } from '../../services/videos.service';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { MatDialog } from '@angular/material/dialog';
+
+import { VideosService } from '../../services/videos.service';
+import { APP } from 'src/app/shared/constants';
+import { CropperComponent } from 'src/app/shared/components/cropper/cropper.component';
+import { RouterHelper } from 'src/app/shared/services/router.service';
+import { SubjectService } from 'src/app/shared/services/subject.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -25,12 +31,16 @@ export class UploaderComponent implements OnInit, OnDestroy {
   public progressVisibility: boolean;
 
   private percentSubscription: Subscription;
+  private dialogSubscription: Subscription;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder,
-    private videosService: VideosService
+    private videosService: VideosService,
+    private dialog: MatDialog,
+    private routerHelper: RouterHelper,
+    private subjectService: SubjectService
   ) {}
 
   ngOnInit() {
@@ -43,6 +53,34 @@ export class UploaderComponent implements OnInit, OnDestroy {
       .subscribe(percent => {
         this.currentProgress = percent;
         this.changeDetectorRef.markForCheck();
+
+        if (percent === 100) {
+          this.routerHelper.navigateToPage(APP.pages.videos);
+          this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+            title: 'Videos',
+            body: 'Your video was added successfully!',
+            duration: 8000
+          });
+        }
+      });
+  }
+
+  private openCropperDialog(): void {
+    const dialogRef = this.dialog.open(CropperComponent, {
+      width: '700px',
+      id: APP.dialogs.cropper,
+      data: {
+        event,
+        polygon: true
+      }
+    });
+
+    this.dialogSubscription = dialogRef.afterClosed()
+      .subscribe(async base64 => {
+        this.imageClearFilesSubject.next(true);
+        this.videoPreview = base64;
+        this.changeDetectorRef.markForCheck();
+        this.videoForm.controls.imageFile.reset(base64);
       });
   }
 
@@ -56,16 +94,8 @@ export class UploaderComponent implements OnInit, OnDestroy {
     this.videoPreload = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(this.videoFile));
   }
   public reactOnSelectPreviewFile(event): void {
-    const fileReader = new FileReader();
-
-    fileReader.onload = () => {
-      this.videoPreview = fileReader.result;
-      this.previewFile = event.target.files[0];
-      this.videoForm.controls.imageFile.reset(this.previewFile);
-      this.changeDetectorRef.markForCheck();
-    };
-
-    fileReader.readAsDataURL(event.target.files[0]);
+    this.previewFile = event.target.files[0];
+    this.openCropperDialog();
   }
 
   public removeVideoFile(): void {

@@ -50,7 +50,7 @@
 .add-product__dish {
   width: 400px;
 }
-/deep/ .textarea {
+.add-product /deep/ .textarea {
   height: 50%;
   padding-bottom: 30px;
 }

@@ -4,7 +4,7 @@
       <div class="cropper__result">
         <image-cropper
           [imageChangedEvent]="imageChangedEvent"
-          [aspectRatio]="1 / 1"
+          [aspectRatio]="polygon ? 3 / 2 : 1 / 1"
           (imageCropped)="imageCropped($event)"
           (startCropImage)="reactOnStartCropImage()"
           [roundCropper]="round"

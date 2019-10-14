@@ -27,7 +27,9 @@ export class VideosService {
           const ref = this.storage.ref(`videos/${videoId}_${(video as any).videoFile.name}`);
 
           if (video.imageFile) {
-            this.storage.ref(`video-previews/${videoId}.jpg`).put(video.imageFile, {contentType: 'image'})
+            const pureBase64 = video.imageFile.slice(video.imageFile.indexOf('base64,') + 7);
+
+            this.storage.ref(`video-previews/${videoId}.jpg`).putString(pureBase64, 'base64', {contentType: 'image'})
             .then(() => {
 
               ref.put(video.videoFile, {contentType: 'video'}).percentageChanges()

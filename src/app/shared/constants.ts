@@ -26,7 +26,10 @@ export const APP = {
     settings: 'settings',
     myFood: 'my-food',
     addProduct: 'add-product',
-    dishes: 'dishes'
+    dishes: 'dishes',
+    addDish: 'add-dish',
+    videos: 'videos',
+    addVideo: 'add-video'
   },
   subjects: {
     notificationVisibility: 'notificationVisibility',
