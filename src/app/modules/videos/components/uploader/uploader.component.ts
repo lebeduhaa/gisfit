@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -20,6 +20,8 @@ import { SubjectService } from 'src/app/shared/services/subject.service';
 })
 export class UploaderComponent implements OnInit, OnDestroy {
 
+  @ViewChild('video') video: ElementRef<HTMLVideoElement>;
+
   public videoPreview: string | ArrayBuffer;
   public videoPreload: SafeResourceUrl;
   public videoFile;
@@ -32,6 +34,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
 
   private percentSubscription: Subscription;
   private dialogSubscription: Subscription;
+  private duration: number;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -45,6 +48,10 @@ export class UploaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
+  }
+
+  public reactOnDurationChange(event): void {
+    this.videoForm.controls.duration.reset(event.target.duration);
   }
 
   public save(): void {
@@ -115,7 +122,8 @@ export class UploaderComponent implements OnInit, OnDestroy {
       title: ['', Validators.required],
       description: ['', Validators.required],
       videoFile: ['', Validators.required],
-      imageFile: ''
+      imageFile: '',
+      duration: ['', Validators.required]
     });
   }
 

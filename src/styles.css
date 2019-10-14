@@ -138,6 +138,10 @@ html {
 .advice .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
   color: white;
 }
+.cdk-overlay-pane {
+  max-height: 100vh !important;
+  max-width: 100vw !important;
+}
 
 @keyframes popup {
   20% {

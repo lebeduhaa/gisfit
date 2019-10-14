@@ -36,7 +36,7 @@
     <div class="uploader__content-right">
       <div class="uploader__image-wrapper">
         <img *ngIf="!videoPreload || videoPreview" [src]="videoPreview ? videoPreview : 'assets/img/no-photo.jpg'">
-        <video *ngIf="videoPreload && !videoPreview" [src]="videoPreload"></video>
+        <video (durationchange)="reactOnDurationChange($event)" #video [hidden]="!videoPreload || videoPreview" [src]="videoPreload"></video>
       </div>
     </div>
   </div>

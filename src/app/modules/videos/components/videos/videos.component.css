@@ -28,7 +28,5 @@ app-spinner-button {
   flex-wrap: wrap;
 }
 .videos__video {
-  height: 166.6px;
-  width: 250px;
   margin-right: 20px;
 }

@@ -1,0 +1,33 @@
+<div class="play">
+  <div class="play__close">
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="play__video">
+    <video [src]="video.videoFile" autoplay></video>
+  </div>
+  <div class="play__info">
+    <div class="play__info-left">
+      <div class="play__title">{{video.title}}</div>
+      <div class="play__description">{{video.description}}</div>
+      <div class="play__description">{{getFormatedDate()}}</div>
+    </div>
+    <div class="play__info-right">
+      {{video.likes.length}}
+      <button mat-icon-button (click)="reactOnLikeClick()" [class.play__active-button]="likeSet()">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      {{video.dislikes.length}}
+      <button mat-icon-button (click)="reactOnDislikeClick()" [class.play__active-button]="dislikeSet()">
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+      <div class="play__title">{{video.views}} views</div>
+    </div>
+  </div>
+  <div class="play__comments">
+    <app-textarea placeholder="Leave comment">
+      <textarea #textarea></textarea>
+    </app-textarea>
+  </div>
+</div>

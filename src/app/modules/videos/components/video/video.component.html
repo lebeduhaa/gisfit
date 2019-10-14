@@ -1,8 +1,18 @@
-<div class="video">
+<div class="video" appOpenVideoPlay [video]="video" (mouseenter)="reactOnMouseEnter($event)" (mouseleave)="reactOnMouseLeave($event)" (click)="openVideo()">
   <div class="video__preview">
     <img [src]="video.imageFile" *ngIf="video.imageFile">
+    <div class="video__play">
+      <img src="assets/img/play.png" alt="">
+    </div>
     <!-- <img [src]="video.fakeImage" *ngIf="video.imageFile"> -->
-    <video [src]="video.videoFile" *ngIf="!video.imageFile"></video>
+    <video [src]="video.videoFile"></video>
+    <div class="video__title">
+      <div class="video__title-value">{{getTrimTitle()}}</div>
+      <div class="video__title-info">
+        <div class="video__title-info-item">Views: {{video.views}}</div>|
+        <div class="video__title-info-item">Likes: {{video.likes.length}}</div>|
+        <div class="video__title-info-item">Comments: {{video.comments.length}}</div>
+      </div>
+    </div>
   </div>
-  .video__title
 </div>

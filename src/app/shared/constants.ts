@@ -44,7 +44,8 @@ export const APP = {
     changePassword: 'changePassword',
     areYouSure: 'areYouSure',
     customGoals: 'customGoals',
-    dailyReport: 'dailyReport'
+    dailyReport: 'dailyReport',
+    videoPlay: 'videoPlay'
   },
   routesWithHeader: [
     'settings',

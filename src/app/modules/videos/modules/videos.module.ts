@@ -14,6 +14,8 @@ import { ProgressModule } from 'src/app/shared/components/progress/progress.modu
 import { SearchModule } from 'src/app/shared/components/search/search.module';
 import { VideoComponent } from '../components/video/video.component';
 import { CropperModule } from 'src/app/shared/components/cropper/cropper.module';
+import { VideoPlayComponent } from '../components/video-play/video-play.component';
+import { OpenVideoPlayDirective } from '../directives/open-video-play.directive';
 
 @NgModule({
   imports: [
@@ -32,7 +34,12 @@ import { CropperModule } from 'src/app/shared/components/cropper/cropper.module'
   declarations: [
     VideosComponent,
     UploaderComponent,
-    VideoComponent
+    VideoComponent,
+    VideoPlayComponent,
+    OpenVideoPlayDirective
+  ],
+  entryComponents: [
+    VideoPlayComponent
   ],
   exports: [
     VideosComponent

@@ -38,4 +38,14 @@ export class RealTimeDataService {
     return new Observable(observer => observer.next(null));
   }
 
+  public subscribeToVideos(): Observable<DocumentChangeAction<unknown>[]> {
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+
+    if (userId) {
+      return this.firestore.collection('videos').stateChanges();
+    }
+
+    return new Observable(observer => observer.next(null));
+  }
+
 }
