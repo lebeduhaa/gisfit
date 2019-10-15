@@ -16,6 +16,7 @@ import { VideoComponent } from '../components/video/video.component';
 import { CropperModule } from 'src/app/shared/components/cropper/cropper.module';
 import { VideoPlayComponent } from '../components/video-play/video-play.component';
 import { OpenVideoPlayDirective } from '../directives/open-video-play.directive';
+import { UserIconModule } from 'src/app/shared/components/user-icon/user-icon.module';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { OpenVideoPlayDirective } from '../directives/open-video-play.directive'
     RouterModule,
     ProgressModule,
     SearchModule,
-    CropperModule
+    CropperModule,
+    UserIconModule
   ],
   declarations: [
     VideosComponent,

@@ -1,4 +1,7 @@
-<div class="play">
+<div class="play__spinner" *ngIf="!contentVisibility">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="play" *ngIf="contentVisibility">
   <div class="play__close">
     <button mat-icon-button (click)="close()">
       <mat-icon>close</mat-icon>
@@ -6,6 +9,9 @@
   </div>
   <div class="play__video">
     <video [src]="video.videoFile" autoplay></video>
+    <div class="play__video-controls">
+      <div class="play__video-timeline"></div>
+    </div>
   </div>
   <div class="play__info">
     <div class="play__info-left">
@@ -27,7 +33,17 @@
   </div>
   <div class="play__comments">
     <app-textarea placeholder="Leave comment">
-      <textarea #textarea></textarea>
+      <textarea (keydown.enter)="sendComment()" [(ngModel)]="currentComment" #textarea></textarea>
     </app-textarea>
+    <app-spinner-button caption="Send" [small]="true" (click)="sendComment()"></app-spinner-button>
+    <div class="play__comments-items">
+      <div class="play__comment" *ngFor="let comment of video.comments">
+        <app-user-icon [small]="true" [avatar]="comment.userAvatar" [fakeAvatar]="comment.userFakeAvatar"></app-user-icon>
+        <div class="play__comment-info">
+          <div class="play__comment-nickname"><span class="play__comment-nickname-value">{{comment.nickname}}</span><span class="play__comment-timestamp">{{getCommentDate(comment.timestamp)}}</span></div>
+          <div class="play__comment-body">{{comment.body}}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

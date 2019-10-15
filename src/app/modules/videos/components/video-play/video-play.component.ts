@@ -1,35 +1,48 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { Video } from 'src/app/shared/models/video.model';
 import { APP } from 'src/app/shared/constants';
 import { VideosService } from '../../services/videos.service';
-import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
+import { User } from 'src/app/shared/models/user.model';
+import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-video-play',
   templateUrl: 'video-play.component.html',
   styleUrls: ['video-play.component.css']
 })
-export class VideoPlayComponent implements OnInit {
+export class VideoPlayComponent implements OnInit, OnDestroy {
 
   public video: Video;
+  public currentComment: string;
+  public contentVisibility: boolean;
 
-  private userId: string;
+  private user: User;
+  private userSubscription: Subscription;
+  private videoElement: HTMLVideoElement;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private dialogData,
     private dialog: MatDialog,
     private videosService: VideosService,
-    private localStorageHelper: LocalStorageHelper
+    private realTimeDataService: RealTimeDataService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.video = dialogData.video;
   }
 
   ngOnInit() {
-    this.getUserId();
+    this.subscribeToCurrentUser();
+  }
+
+  public getCommentDate(timestamp: number): string {
+    return moment(timestamp).fromNow();
   }
 
   public getFormatedDate(): string {
@@ -57,11 +70,32 @@ export class VideoPlayComponent implements OnInit {
   }
 
   public likeSet(): boolean {
-    return this.video.likes.includes(this.userId);
+    return this.video.likes.includes(this.user.id);
   }
 
   public dislikeSet(): boolean {
-    return this.video.dislikes.includes(this.userId);
+    return this.video.dislikes.includes(this.user.id);
+  }
+
+  public sendComment(): void {
+    this.videosService.sendComment({
+      body: this.currentComment,
+      nickname: this.user.nickname,
+      timestamp: new Date().valueOf(),
+      userAvatar: this.user.avatar,
+      userFakeAvatar: this.user.fakeAvatarUrl
+    }, this.video.id);
+    this.currentComment = '';
+  }
+
+  public subscribeToCurrentUser(): void {
+    this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+      .subscribe(user => {
+        this.user = user;
+        this.contentVisibility = true;
+        this.changeDetectorRef.markForCheck();
+        this.getVideoElement();
+      });
   }
 
   private setLike(): void {
@@ -80,8 +114,12 @@ export class VideoPlayComponent implements OnInit {
     Promise.resolve(this.videosService.unsetDislike(this.video.id));
   }
 
-  private getUserId(): void {
-    this.userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+  private getVideoElement(): void {
+    setTimeout(() => {
+      this.videoElement = document.querySelector('.play video');
+    }, 0);
   }
+
+  ngOnDestroy() {}
 
 }

@@ -1,3 +1,9 @@
+.play__spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .play {
   color: white;
   font-family: 'Lato', sans-serif;
@@ -8,6 +14,8 @@
   justify-content: center;
   padding: 20px;
   border-bottom: .5px solid rgb(88, 88, 88);
+  position: relative;
+  overflow: hidden;
 }
 .play__title {
   font-size: 25px;
@@ -47,7 +55,57 @@
 }
 .play__comments /deep/ .textarea {
   width: 50%;
+  margin-bottom: 10px;
 }
 .play__active-button mat-icon {
   color: #5147da;
+}
+.play__comment {
+  display: flex;
+  margin-bottom: 20px;
+  width: 50%;
+}
+.play__comment-info {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.play__comment-timestamp {
+  font-size: 12px;
+  margin-left: 10px;
+  color: rgb(173, 173, 173);
+}
+.play__comment-nickname {
+  display: flex;
+  align-items: center;
+}
+.play__comment-nickname-value {
+  font-weight: 600;
+}
+.play__comment-body {
+  font-size: 15px;
+  color: #c5c5c5;
+  margin-top: 6px;
+}
+.play__comments-items {
+  margin-top: 50px;
+}
+.play__video-controls {
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.692);
+  transition: .2s;
+  transform: translateY(60px);
+}
+.play__video-timeline {
+  width: 100%;
+  height: 5px;
+  background-color: #5147da;
+  border-radius: 2px;
+}
+.play__video:hover .play__video-controls {
+  transform: translateY(0);
 }

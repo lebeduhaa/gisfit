@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import { Video } from 'src/app/shared/models/video.model';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { APP } from 'src/app/shared/constants';
+import { Comment } from 'src/app/shared/models/comment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,12 @@ export class VideosService {
     private storage: AngularFireStorage,
     private localStorageHelper: LocalStorageHelper
   ) {}
+
+  public sendComment(comment: Comment, videoId: string): Promise<any> {
+    return this.firestore.collection('videos').doc(videoId).ref.update({
+      comments: firebase.firestore.FieldValue.arrayUnion(comment)
+    });
+  }
 
   public setLike(videoId: string): Promise<any> {
     const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
