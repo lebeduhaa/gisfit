@@ -8,9 +8,50 @@
     </button>
   </div>
   <div class="play__video">
-    <video [src]="video.videoFile" autoplay></video>
+    <video
+      id="qwe"
+      appListenToArrows
+      [src]="video.videoFile"
+      autoplay
+      (click)="playOrPause()"
+      (timeupdate)="reactOnVideoTimeUpdate()"
+    ></video>
     <div class="play__video-controls">
-      <div class="play__video-timeline"></div>
+      <div class="play__vide-timeline-wrapper">
+        <div
+          class="play__video-timeline"
+          [style.width]="currentTimelineWidth + '%'"
+        ></div>
+      </div>
+      <div class="play__control-panel">
+        <div class="play__control-panel-left">
+          <button mat-icon-button (click)="playOrPause()">
+            <mat-icon>{{playNow ? 'pause' : 'play_arrow'}}</mat-icon>
+          </button>
+          <button mat-icon-button (click)="skipPrev()">
+            <mat-icon>fast_rewind</mat-icon>
+          </button>
+          <button mat-icon-button (click)="skipNext()">
+            <mat-icon>fast_forward</mat-icon>
+          </button>
+          <button mat-icon-button (click)="toggleVolume()">
+            <mat-icon>{{volumeIsUp() ? 'volume_up' : 'volume_off'}}</mat-icon>
+          </button>
+          <mat-slider
+            [max]="100"
+            [min]="0"
+            [step]="1"
+            [thumbLabel]="true"
+            [(ngModel)]="tempVolume"
+            (change)="reactOnChangeVolume($event)">
+          </mat-slider>
+        </div>
+        <div class="play__control-panel-right">
+          <button mat-icon-button (click)="openFullScreen()">
+            <mat-icon>fullscreen</mat-icon>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="play__info">

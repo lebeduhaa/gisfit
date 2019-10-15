@@ -17,6 +17,7 @@ import { CropperModule } from 'src/app/shared/components/cropper/cropper.module'
 import { VideoPlayComponent } from '../components/video-play/video-play.component';
 import { OpenVideoPlayDirective } from '../directives/open-video-play.directive';
 import { UserIconModule } from 'src/app/shared/components/user-icon/user-icon.module';
+import { ListenToArrowsDirective } from '../directives/listen-to-arrows.directive';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { UserIconModule } from 'src/app/shared/components/user-icon/user-icon.mo
     UploaderComponent,
     VideoComponent,
     VideoPlayComponent,
-    OpenVideoPlayDirective
+    OpenVideoPlayDirective,
+    ListenToArrowsDirective
   ],
   entryComponents: [
     VideoPlayComponent

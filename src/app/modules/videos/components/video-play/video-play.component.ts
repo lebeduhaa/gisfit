@@ -22,10 +22,13 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
   public video: Video;
   public currentComment: string;
   public contentVisibility: boolean;
+  public playNow = true;
+  public currentTimelineWidth = 0;
 
   private user: User;
   private userSubscription: Subscription;
   private videoElement: HTMLVideoElement;
+  private tempVolume: number;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private dialogData,
@@ -39,6 +42,58 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscribeToCurrentUser();
+    this.setTempVolume();
+  }
+
+  public reactOnKeyDown(event): void {
+    console.log(event);
+  }
+
+  public skipNext(): void {
+    this.videoElement.currentTime += 5;
+  }
+
+  public skipPrev(): void {
+    this.videoElement.currentTime -= 5;
+  }
+
+  public reactOnVideoTimeUpdate(): void {
+    this.currentTimelineWidth = (this.videoElement.currentTime / this.videoElement.duration) * 100;
+  }
+
+  public reactOnChangeVolume(event): void {
+    this.tempVolume = event.value;
+    this.videoElement.volume = this.tempVolume / 100;
+  }
+
+  public volumeIsUp(): boolean {
+    if (this.videoElement) {
+      return !!this.videoElement.volume;
+    }
+
+    return true;
+  }
+
+  public openFullScreen(): void {
+    this.videoElement.requestFullscreen();
+  }
+
+  public playOrPause(): void {
+    if (this.playNow) {
+      this.videoElement.pause();
+    } else {
+      this.videoElement.play();
+    }
+
+    this.playNow = !this.playNow;
+  }
+
+  public toggleVolume(): void {
+    if (this.videoElement.volume) {
+      this.videoElement.volume = 0;
+    } else {
+      this.videoElement.volume = this.tempVolume / 100;
+    }
   }
 
   public getCommentDate(timestamp: number): string {
@@ -118,6 +173,10 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.videoElement = document.querySelector('.play video');
     }, 0);
+  }
+
+  private setTempVolume(): void {
+    this.tempVolume = 100;
   }
 
   ngOnDestroy() {}

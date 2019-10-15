@@ -90,22 +90,43 @@
   margin-top: 50px;
 }
 .play__video-controls {
-  padding: 10px;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 80px;
   background-color: rgba(0, 0, 0, 0.692);
   transition: .2s;
-  transform: translateY(60px);
+  transform: translateY(73px);
 }
 .play__video-timeline {
-  width: 100%;
   height: 5px;
   background-color: #5147da;
   border-radius: 2px;
+  transition: .2s;
 }
 .play__video:hover .play__video-controls {
   transform: translateY(0);
+  padding: 10px;
+}
+.play__control-panel {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+}
+.play__control-panel mat-icon {
+  color: #787878;
+}
+.play__control-panel button:hover mat-icon {
+  color: white;
+}
+.play__vide-timeline-wrapper {
+  width: 100%;
+  height: 7px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  background-color: #131d29;
+  cursor: pointer;
 }

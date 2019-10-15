@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatDialogModule,
     MatRadioModule,
     MatProgressBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSliderModule
   ],
   exports: [
     MatIconModule,
@@ -22,7 +24,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatDialogModule,
     MatRadioModule,
     MatProgressBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSliderModule
   ]
 })
 export class MaterialModule {}
