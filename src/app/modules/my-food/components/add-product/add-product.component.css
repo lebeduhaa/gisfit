@@ -51,6 +51,6 @@
   width: 400px;
 }
 .add-product /deep/ .textarea {
-  height: 50%;
+  height: 33.3%;
   padding-bottom: 30px;
 }

@@ -18,6 +18,7 @@ export class OpenDishDirective {
   openDialog(): void {
     this.dialog.open(DishDetailsComponent, {
       width: '700px',
+      maxWidth: '700px',
       data: {
         dish: this.dish
       }

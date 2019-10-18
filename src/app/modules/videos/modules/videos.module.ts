@@ -18,10 +18,12 @@ import { VideoPlayComponent } from '../components/video-play/video-play.componen
 import { OpenVideoPlayDirective } from '../directives/open-video-play.directive';
 import { UserIconModule } from 'src/app/shared/components/user-icon/user-icon.module';
 import { ListenToArrowsDirective } from '../directives/listen-to-arrows.directive';
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 
 @NgModule({
   imports: [
     SharedModule,
+    PipesModule,
     SpinnerButtonModule,
     InputTextModule,
     TextareaModule,

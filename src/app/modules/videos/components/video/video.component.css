@@ -23,6 +23,7 @@ video {
   height: 166.6px;
   width: 250px;
   overflow: hidden;
+  position: relative;
 }
 .video__title {
   position: absolute;
@@ -44,6 +45,9 @@ video {
 }
 .video:hover .video__preview img:not(.video__play) {
   top: 100%;
+}
+.video:hover .video__duration {
+  transform: translateY(100px);
 }
 .video__title-info {
   display: flex;
@@ -71,4 +75,14 @@ video {
 }
 .video:hover .video__play img {
   display: block;
+}
+.video__duration {
+  position: absolute;
+  bottom: 7px;
+  right: 7px;
+  background-color: rgb(15, 15, 15);
+  font-size: 11px;
+  padding: 5px;
+  border-radius: 2px;
+  transition: .3s;
 }

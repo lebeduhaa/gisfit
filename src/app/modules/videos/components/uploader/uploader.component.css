@@ -20,7 +20,7 @@
   margin-bottom: 30px;
   width: 100%;
 }
-/deep/ .textarea {
+.uploader /deep/ .textarea {
   height: 200px;
   width: 100%;
 }
@@ -62,7 +62,7 @@
 app-input-text {
   width: 350px;
 }
-/deep/ .input {
+.uploader /deep/ .input {
   width: 350px !important;
 }
 .uploader__file img {
@@ -116,4 +116,9 @@ app-input-text {
 .uploader__progress {
   width: 600px;
   margin: 50px auto;
+}
+.uploader__progress-title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }

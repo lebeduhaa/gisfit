@@ -50,6 +50,10 @@ export class UploaderComponent implements OnInit, OnDestroy {
     this.initForm();
   }
 
+  public getCurrentPercent(): string {
+    return this.currentProgress.toFixed(1);
+  }
+
   public reactOnDurationChange(event): void {
     this.videoForm.controls.duration.reset(event.target.duration);
   }
@@ -109,12 +113,15 @@ export class UploaderComponent implements OnInit, OnDestroy {
     this.videoFile = null;
     this.videoPreload = null;
     this.videoClearFilesSubject.next(true);
+    this.videoForm.controls.videoFile.reset(null);
   }
 
   public removePreviewFile(): void {
     this.previewFile = null;
     this.videoPreview = '';
     this.imageClearFilesSubject.next(true);
+    this.videoForm.controls.imageFile.reset(null);
+
   }
 
   private initForm(): void {

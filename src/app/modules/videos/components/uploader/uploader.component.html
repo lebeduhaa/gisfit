@@ -1,6 +1,7 @@
 <div class="uploader" [formGroup]="videoForm">
   <div class="uploader__title">Upload your video</div>
   <div class="uploader__progress" *ngIf="progressVisibility">
+    <div class="uploader__progress-title">{{currentProgress ? getCurrentPercent() : 0}} %</div>
     <app-progress [value]="currentProgress" color="#5147da" [pending]="true"></app-progress>
   </div>
   <div class="uploader__content" *ngIf="!progressVisibility">

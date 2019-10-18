@@ -49,7 +49,7 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
 
   public reactOnSearchEvent(key: string): void {
     if (key) {
-      this.displayedDishes = this.dishes.filter(dish => dish.productName.includes(key));
+      this.displayedDishes = this.dishes.filter(dish => dish.productName.toLowerCase().includes(key.toLowerCase()));
     } else {
       this.displayedDishes = this.dishes;
     }

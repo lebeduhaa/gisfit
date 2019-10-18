@@ -24,10 +24,10 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
   public contentVisibility: boolean;
   public playNow = true;
   public currentTimelineWidth = 0;
+  public videoElement: HTMLVideoElement;
 
   private user: User;
   private userSubscription: Subscription;
-  private videoElement: HTMLVideoElement;
   private tempVolume: number;
 
   constructor(
@@ -45,8 +45,10 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
     this.setTempVolume();
   }
 
-  public reactOnKeyDown(event): void {
-    console.log(event);
+  public setPosition(event: MouseEvent): void {
+    const progressWrapper = document.querySelector('.play__vide-timeline-wrapper') as HTMLElement;
+
+    this.videoElement.currentTime = (event.offsetX / progressWrapper.offsetWidth) * this.videoElement.duration;
   }
 
   public skipNext(): void {

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import * as moment from 'moment';
+
 import { Video } from 'src/app/shared/models/video.model';
 import { VideosService } from '../../services/videos.service';
 

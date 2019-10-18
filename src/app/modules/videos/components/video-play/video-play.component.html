@@ -17,14 +17,14 @@
       (timeupdate)="reactOnVideoTimeUpdate()"
     ></video>
     <div class="play__video-controls">
-      <div class="play__vide-timeline-wrapper">
+      <div class="play__vide-timeline-wrapper" (click)="setPosition($event)">
         <div
           class="play__video-timeline"
           [style.width]="currentTimelineWidth + '%'"
         ></div>
       </div>
       <div class="play__control-panel">
-        <div class="play__control-panel-left">
+        <div class="play__control-panel-left" *ngIf="videoElement">
           <button mat-icon-button (click)="playOrPause()">
             <mat-icon>{{playNow ? 'pause' : 'play_arrow'}}</mat-icon>
           </button>
@@ -45,6 +45,7 @@
             [(ngModel)]="tempVolume"
             (change)="reactOnChangeVolume($event)">
           </mat-slider>
+          <div class="play__duration">{{videoElement.currentTime | duration}} / {{videoElement.duration | duration}}</div>
         </div>
         <div class="play__control-panel-right">
           <button mat-icon-button (click)="openFullScreen()">

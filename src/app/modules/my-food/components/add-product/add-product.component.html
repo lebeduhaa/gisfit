@@ -8,6 +8,9 @@
       <app-textarea placeholder="Describe your dish" *ngIf="!isProductPage">
         <textarea formControlName="description" #textarea></textarea>
       </app-textarea>
+      <app-textarea placeholder="Ingredients" *ngIf="!isProductPage">
+        <textarea formControlName="ingredients" #textarea></textarea>
+      </app-textarea>
       <app-textarea placeholder="Describe recipe *" *ngIf="!isProductPage">
         <textarea formControlName="recipe" #textarea></textarea>
       </app-textarea>

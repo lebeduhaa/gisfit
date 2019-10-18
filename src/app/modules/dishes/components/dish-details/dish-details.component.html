@@ -17,8 +17,11 @@
         <div class="dish-details__info-item"><span class="dish-details__key">Mass of serving</span>: {{dish.averageMassOfOnePiece}}g</div>
       </div>
     </div>
-    <app-expand *ngIf="dish.recipe" caption="Open recipe" secondCaption="Close recipe">
-      <pre>{{dish.recipe}}</pre>
+    <app-expand *ngIf="dish.ingredients" caption="Ingredients" secondCaption="Close ingredients">
+      <div class="dish-details__recipe">{{dish.ingredients}}</div>
+    </app-expand>
+    <app-expand *ngIf="dish.recipe" caption="Recipe" secondCaption="Close recipe">
+      <div class="dish-details__recipe">{{dish.recipe}}</div>
     </app-expand>
   </div>
 </mat-dialog-content>

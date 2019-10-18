@@ -130,3 +130,10 @@
   background-color: #131d29;
   cursor: pointer;
 }
+.play__control-panel-left {
+  display: flex;
+  align-items: center;
+}
+.play__duration {
+  margin-left: 20px;
+}

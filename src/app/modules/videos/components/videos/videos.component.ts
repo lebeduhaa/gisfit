@@ -44,6 +44,14 @@ export class VideosComponent extends FirebaseCloudMessaging implements OnInit, O
     this.subscribeToRealTimeData();
   }
 
+  public reactOnSearchEvent(key: string): void {
+    if (key) {
+      this.displayedVideos = this.videos.filter(video => video.title.toLowerCase().includes(key.toLowerCase()));
+    } else {
+      this.displayedVideos = this.videos;
+    }
+  }
+
   private getVideos(): void {
     this.progressBarVisibility = true;
 
