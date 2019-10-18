@@ -87,6 +87,9 @@ export class RootComponent implements OnInit, OnDestroy {
     } else
     if (currentUrl.includes('add-video')) {
       this.backgroundImageUrl = 'assets/img/backgrounds/videos.jpg';
+    } else
+    if (currentUrl.includes('history')) {
+      this.backgroundImageUrl = 'assets/img/backgrounds/history.jpg';
     }
   }
 

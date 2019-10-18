@@ -1,0 +1,36 @@
+<div class="calendar">
+  <div class="calendar__content">
+    <div class="calendar__year-panel">
+      <button mat-icon-button color="primary" (click)="prevYear()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+      <div class="calendar__year">{{viewedYear}}</div>
+      <button mat-icon-button color="primary" (click)="nextYear()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+    <div class="calendar__months">
+      <div
+        class="calendar__month"
+        *ngFor="let month of months;let i = index;"
+        [class.calendar__month_active]="viewedMonth === i"
+        (click)="setMonth(i)"
+      >{{month}}</div>
+    </div>
+    <div class="calendar__days-of-week">
+      <div class="calendar__day-of-week" *ngFor="let dayOfWeek of daysOfWeek">{{dayOfWeek}}</div>
+    </div>
+    <div class="calendar__days">
+      <div class="calendar__day" *ngFor="let skippedDay of skippedDays"></div>
+      <div
+        [ngClass]="{
+          'calendar__day_now': isToday(day),
+          'calendar__day_current': isCurrent(day)
+        }"
+        class="calendar__day"
+        *ngFor="let day of days"
+        (click)="setDay(day)"
+      ><span class="calendar__day-wrapper">{{day}}</span></div>
+    </div>
+  </div>
+</div>

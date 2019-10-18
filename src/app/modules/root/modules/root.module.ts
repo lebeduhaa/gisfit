@@ -14,6 +14,7 @@ import { MoveBackgroundDirective } from '../directives/move-background.directive
 import { DishesModule } from '../../dishes/modules/dishes.module';
 import { DailyReportModule } from 'src/app/shared/components/daily-report/daily-report.module';
 import { VideosModule } from '../../videos/modules/videos.module';
+import { HistoryModule } from '../../history/modules/history.module';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { VideosModule } from '../../videos/modules/videos.module';
     DishesModule,
     VideosModule,
     TranslateModule.forChild(),
-    DailyReportModule
+    DailyReportModule,
+    HistoryModule
   ],
   declarations: [
     RootComponent,
@@ -38,6 +40,4 @@ import { VideosModule } from '../../videos/modules/videos.module';
     RootComponent
   ]
 })
-export class RootModule {
-
-}
+export class RootModule {}

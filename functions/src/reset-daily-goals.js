@@ -13,7 +13,10 @@ module.exports = async (request, response) => {
     products: []
   }}));
   const resultObject = {
-    stringRepresentation: moment(date).format('DD MMMM YYYY')
+    stringRepresentation: moment(date).format('DD MMMM YYYY'),
+    year: moment(date).year(),
+    month: moment(date).month(),
+    day: moment(date).date()
   }
   const users = [...usersRef.docs.map(doc => doc.data())];
 

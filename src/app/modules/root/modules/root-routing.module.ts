@@ -9,6 +9,7 @@ import { DishesComponent } from '../../dishes/components/dishes/dishes.component
 import { AuthGuard } from 'src/app/shared/auth.guard';
 import { VideosComponent } from '../../videos/components/videos/videos.component';
 import { UploaderComponent } from '../../videos/components/uploader/uploader.component';
+import { HistoryComponent } from '../../history/components/history/history.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { UploaderComponent } from '../../videos/components/uploader/uploader.com
       { path: 'add-product', component: AddProductComponent, data: {animation: 'add-product'}, canActivate: [AuthGuard] },
       { path: 'dishes', component: DishesComponent, data: {animation: 'dishes'}, canActivate: [AuthGuard] },
       { path: 'videos', component: VideosComponent, data: {animation: 'videos'}, canActivate: [AuthGuard] },
-      { path: 'add-video', component: UploaderComponent, data: {animation: 'add-video'}, canActivate: [AuthGuard] }
+      { path: 'add-video', component: UploaderComponent, data: {animation: 'add-video'}, canActivate: [AuthGuard] },
+      { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] }
     ])
   ],
   exports: [

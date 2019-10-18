@@ -47,8 +47,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.setCategories();
     this.detectPreviousPage();
+    this.setCategories();
     this.subscribeToUser();
     this.initForm();
   }
@@ -146,6 +146,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   private detectPreviousPage(): void {
     this.previousPage = this.router.snapshot.queryParams.previous;
+
 
     if (this.previousPage === 'my-food') {
       this.isProductPage = true;
