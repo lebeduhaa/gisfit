@@ -10,4 +10,5 @@ export interface History {
   resultFats?: number;
   resultCarbohydrates?: number;
   products?: Product[];
+  totalScore?: number;
 }

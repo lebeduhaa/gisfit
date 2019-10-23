@@ -33,6 +33,26 @@ export class CalendarComponent implements OnInit {
     this.initCurrentDate();
   }
 
+  public futureMonth(month: number): boolean {
+    if (this.viewedYear === this.nowYear && month > this.nowMonth) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public futureDay(day: number): boolean {
+    if (
+      this.viewedYear === this.nowYear &&
+      this.viewedMonth === this.nowMonth &&
+      day > this.nowDay
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
   public isCurrent(day: number): boolean {
     return this.currentYear === this.viewedYear &&
            this.currentMonth === this.viewedMonth &&

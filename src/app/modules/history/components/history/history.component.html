@@ -1,9 +1,24 @@
+<div class="history__spinner" *ngIf="progressBarVisibility">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 <div class="history">
   <div class="history__calendar">
     <app-calendar (select)="reactOnSelectDate($event)"></app-calendar>
+    <div class="history__actions">
+      <app-spinner-button caption="View daily statistics" [small]="true" appOpenDailyStatistics></app-spinner-button>
+      <app-spinner-button caption="View score statistics" [small]="true" appOpenScoreStatistics></app-spinner-button>
+    </div>
   </div>
-  <div class="history__current-day">
-    <div class="history__products">456</div>
-    <div class="history__progress"></div>
+  <div class="history__progress">
+    <app-current-progress [hidden]="progressBarVisibility || !history"></app-current-progress>
+    <div class="history__progress-total-score" *ngIf="history?.totalScore">
+      {{history.totalScore}} points
+    </div>
+    <div class="history__actions" *ngIf="!progressBarVisibility && history">
+      <app-spinner-button caption="View food" [small]="true" appOpenHistoryFood [products]="history.products"></app-spinner-button>
+    </div>
+    <div class="history-food__empty" *ngIf="!history && !progressBarVisibility">
+      That day you did not use gisfit yet
+    </div>
   </div>
 </div>

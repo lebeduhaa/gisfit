@@ -55,7 +55,7 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
       });
   }
 
-  public removeCurrentEating(index: number): void {
+  public reactOnDelete(index: number): void {
     const product = this.products[index];
 
     this.subjectService.emitSubject(APP.subjects.preview, {

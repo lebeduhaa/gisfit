@@ -5,7 +5,7 @@
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
       <div class="calendar__year">{{viewedYear}}</div>
-      <button mat-icon-button color="primary" (click)="nextYear()">
+      <button mat-icon-button color="primary" (click)="nextYear()" [style.visibility]="nowYear === viewedYear ? 'collapse' : 'visible'">
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </div>
@@ -13,7 +13,10 @@
       <div
         class="calendar__month"
         *ngFor="let month of months;let i = index;"
-        [class.calendar__month_active]="viewedMonth === i"
+        [ngClass]="{
+          'calendar__month_disabled': futureMonth(i),
+          'calendar__month_active': viewedMonth === i
+        }"
         (click)="setMonth(i)"
       >{{month}}</div>
     </div>
@@ -25,7 +28,8 @@
       <div
         [ngClass]="{
           'calendar__day_now': isToday(day),
-          'calendar__day_current': isCurrent(day)
+          'calendar__day_current': isCurrent(day),
+          'calendar__day_disabled': futureDay(day)
         }"
         class="calendar__day"
         *ngFor="let day of days"

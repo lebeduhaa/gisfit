@@ -38,6 +38,28 @@ const getResult = user => {
   return resultString;
 };
 
+const getTotalScore = (user) => {
+  let caloriesPercent = (user.currentDay.currentCalories / user.caloriesGoal) * 100;
+  let proteinPercent = (user.currentDay.currentProtein / user.proteinGoal) * 100;
+  let fatsPercent = (user.currentDay.currentFats / user.fatsGoal) * 100;
+  let carbohydratesPercent = (user.currentDay.currentCarbohydrates / user.carbohydratesGoal) * 100;
+
+  if (caloriesPercent > 100) {
+    caloriesPercent = 200 - caloriesPercent;
+  }
+  if (proteinPercent > 100) {
+    proteinPercent = 200 - proteinPercent;
+  }
+  if (fatsPercent > 100) {
+    fatsPercent = 200 - fatsPercent;
+  }
+  if (carbohydratesPercent > 100) {
+    carbohydratesPercent = 200 - carbohydratesPercent;
+  }
+
+  return Math.ceil((caloriesPercent + proteinPercent + fatsPercent + carbohydratesPercent) / 4);
+}
+
 module.exports = async (request, response) => {
   const currentHours = moment(new Date()).hours();
   const users = (await admin.firestore().collection('users').get()).docs.map(doc => doc.data());
@@ -46,7 +68,7 @@ module.exports = async (request, response) => {
 
   users.forEach(user => {
     if (user.notificationTime && user.notificationTime.utc === currentHours) {
-      const resultString = getResult(user);
+      const resultString = `Your total score today = ${getTotalScore(user)}\n${getResult(user)}`;
       console.log('send to ' + user.nickname);
       promises.push(admin.messaging().sendToDevice(user.deviceToken, {
         notification: {

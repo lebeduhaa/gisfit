@@ -1,3 +1,7 @@
+.progress {
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
 .progress__title {
   font-size: 20px;
   margin-top: 5px;
@@ -19,4 +23,7 @@
 }
 .progress__trigger {
   margin-bottom: 20px;
+}
+.progress__error {
+  color: #ff6a6a;
 }

@@ -19,7 +19,6 @@ import { OpenProductInfoDirective } from '../directives/open-product-info.direct
 import { RadioGroupModule } from 'src/app/shared/components/radio-group/radio-group.module';
 import { CurrentEatingComponent } from '../components/current-eating/current-eating.component';
 import { FlyingProductComponent } from '../components/flying-product/flying-product.component';
-import { CurrentProgressComponent } from '../components/current-progress/current-progress.component';
 import { ProgressModule } from 'src/app/shared/components/progress/progress.module';
 import { AreYouSureModule } from 'src/app/shared/components/are-you-sure/are-you-sure.module';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
@@ -30,6 +29,8 @@ import { SearchModule } from 'src/app/shared/components/search/search.module';
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { AdviceComponent } from '../components/advice/advice.component';
 import { TextareaModule } from 'src/app/shared/components/textarea/textarea.module';
+import { ProductCardModule } from 'src/app/shared/components/product-card/product-card.module';
+import { CurrentProgressModule } from 'src/app/shared/components/current-progress/current-progress.module';
 
 @NgModule({
   imports: [
@@ -50,7 +51,9 @@ import { TextareaModule } from 'src/app/shared/components/textarea/textarea.modu
     DirectivesModule,
     ToggleModule,
     SearchModule,
-    TextareaModule
+    TextareaModule,
+    ProductCardModule,
+    CurrentProgressModule
   ],
   declarations: [
     MyFoodComponent,
@@ -60,7 +63,6 @@ import { TextareaModule } from 'src/app/shared/components/textarea/textarea.modu
     OpenProductInfoDirective,
     CurrentEatingComponent,
     FlyingProductComponent,
-    CurrentProgressComponent,
     CustomGoalsComponent,
     OpenCustomGoalsDirective,
     CategoriesComponent,

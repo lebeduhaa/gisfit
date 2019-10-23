@@ -1,7 +1,7 @@
 .calendar {
   font-family: 'Lato', sans-serif;
   color: white;
-  background-color:rgba(0, 0, 0, 0.55);
+  background-color:rgba(0, 0, 0, 0.75);
 }
 .calendar__content {
   margin-top: 20px;
@@ -72,4 +72,10 @@
 }
 .calendar__day_now .calendar__day-wrapper {
   border: 1px solid #5147da;
+}
+.calendar__day_disabled {
+  display: none;
+}
+.calendar__month_disabled {
+  display: none;
 }

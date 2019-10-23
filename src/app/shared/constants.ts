@@ -36,7 +36,8 @@ export const APP = {
     newProduct: 'newProduct',
     flyingProduct: 'flyingProduct',
     preview: 'preview',
-    clearPreview: 'clearPreview'
+    clearPreview: 'clearPreview',
+    history: 'history'
   },
   dialogs: {
     passwordReset: 'passwordReset',

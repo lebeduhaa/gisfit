@@ -1,0 +1,23 @@
+.history-food {
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+.history-food__title {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.history-food__content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.history-food__product {
+  flex-basis: 33.3%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.history-food__empty {
+  text-align: center;
+  width: 100%;
+}

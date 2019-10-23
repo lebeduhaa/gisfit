@@ -1,14 +1,13 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { Preview } from 'src/app/shared/models/preview.model';
 import { APP } from 'src/app/shared/constants';
-import { User } from 'src/app/shared/models/user.model';
-import { SettingsService } from 'src/app/modules/settings/services/settings.service';
+import { History } from '../../models/history.model';
 
 @AutoUnsubscribe()
 @Component({
@@ -38,23 +37,42 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
   public proteinPreviewNumber = 0;
   public fatsPreviewNumber = 0;
   public carbohydratesPreviewNumber = 0;
-  public user: User;
 
   private userSubscription: Subscription;
   private previewSubscription: Subscription;
   private clearPreviewSubscription: Subscription;
+  private historySubscription: Subscription;
 
   constructor(
     private realTimeDataService: RealTimeDataService,
     private subjectService: SubjectService,
-    private settingsService: SettingsService,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
+    this.subscribeToHistory();
     this.subscribeToUser();
     this.subscribeToPreview();
     this.subscribeToClearPreview();
+  }
+
+  private subscribeToHistory(): void {
+    this.historySubscription = this.subjectService.getSubject(APP.subjects.history)
+      .subscribe((history: History) => {
+        this.caloriesGoal = history.caloriesGoal;
+        this.proteinGoal = history.proteinGoal;
+        this.fatsGoal = history.fatsGoal;
+        this.carbohydratesGoal = history.carbohydratesGoal;
+        this.currentCalories = history.resultCalories;
+        this.currentProtein = history.resultProtein;
+        this.currentFats =  history.resultFats;
+        this.currentCarbohydrates = history.resultCarbohydrates;
+        this.currentCaloriesPercent = (100 * this.currentCalories) / this.caloriesGoal;
+        this.currentProteinPercent = (100 * this.currentProtein) / this.proteinGoal;
+        this.currentFatsPercent = (100 * this.currentFats) / this.fatsGoal;
+        this.currentCarbohydratesPercent = (100 * this.currentCarbohydrates) / this.carbohydratesGoal;
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
   private subscribeToClearPreview(): void {
@@ -65,7 +83,6 @@ export class CurrentProgressComponent implements OnInit, OnDestroy {
   private subscribeToUser(): void {
     this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
-        this.user = user;
         this.caloriesGoal = user.ownGoal ? user.customCaloriesGoal : user.caloriesGoal;
         this.proteinGoal = user.ownGoal ? user.customProteinGoal : user.proteinGoal;
         this.fatsGoal = user.ownGoal ? user.customFatsGoal : user.fatsGoal;

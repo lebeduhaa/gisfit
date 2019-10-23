@@ -1,0 +1,15 @@
+<div class="current-eating__product">
+  <div class="current-eating__product-image">
+    <img [src]="product.image">
+  </div>
+  <div class="current-eating__product-info">
+    <div class="current-eating__remove" *ngIf="!history">
+      <mat-icon (click)="reactOnDelete()">close</mat-icon>
+    </div>
+    <div class="current-eating__product-info-value">Calories: {{product.calories}}kcal</div>
+    <div class="current-eating__product-info-value">Protein: {{product.protein}}g</div>
+    <div class="current-eating__product-info-value">Fats: {{product.fats}}g</div>
+    <div class="current-eating__product-info-value">Carbohydrates: {{product.carbohydrates}}g</div>
+    <div class="current-eating__product-info-value">Weight: {{product.weight}}g</div>
+  </div>
+</div>

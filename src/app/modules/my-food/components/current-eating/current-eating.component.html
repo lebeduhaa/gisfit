@@ -6,19 +6,7 @@
   </div>
   <div class="current-eating__content">
     <div class="current-eating__product" *ngFor="let product of products;let i = index;">
-      <div class="current-eating__product-image">
-        <img [src]="product.image">
-      </div>
-      <div class="current-eating__product-info">
-        <div class="current-eating__remove">
-          <mat-icon (click)="removeCurrentEating(i)">close</mat-icon>
-        </div>
-        <div class="current-eating__product-info-value">Calories: {{product.calories}}kcal</div>
-        <div class="current-eating__product-info-value">Protein: {{product.protein}}g</div>
-        <div class="current-eating__product-info-value">Fats: {{product.fats}}g</div>
-        <div class="current-eating__product-info-value">Carbohydrates: {{product.carbohydrates}}g</div>
-        <div class="current-eating__product-info-value">Weight: {{product.weight}}g</div>
-      </div>
+      <app-product-card [product]="product" (delete)="reactOnDelete(i)"></app-product-card>
     </div>
   </div>
 </div>

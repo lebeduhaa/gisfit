@@ -1,6 +1,28 @@
 const admin = require('firebase-admin');
 const moment = require('moment');
 
+const getTotalScore = (user) => {
+  let caloriesPercent = (user.currentDay.currentCalories / user.caloriesGoal) * 100;
+  let proteinPercent = (user.currentDay.currentProtein / user.proteinGoal) * 100;
+  let fatsPercent = (user.currentDay.currentFats / user.fatsGoal) * 100;
+  let carbohydratesPercent = (user.currentDay.currentCarbohydrates / user.carbohydratesGoal) * 100;
+
+  if (caloriesPercent > 100) {
+    caloriesPercent = 200 - caloriesPercent;
+  }
+  if (proteinPercent > 100) {
+    proteinPercent = 200 - proteinPercent;
+  }
+  if (fatsPercent > 100) {
+    fatsPercent = 200 - fatsPercent;
+  }
+  if (carbohydratesPercent > 100) {
+    carbohydratesPercent = 200 - carbohydratesPercent;
+  }
+
+  return Math.ceil((caloriesPercent + proteinPercent + fatsPercent + carbohydratesPercent) / 4);
+}
+
 module.exports = async (request, response) => {
   const date = new Date();
   const storeKey = date.valueOf();
@@ -30,7 +52,8 @@ module.exports = async (request, response) => {
       resultProtein: user.currentDay.currentProtein,
       resultFats: user.currentDay.currentFats,
       resultCarbohydrates: user.currentDay.currentCarbohydrates,
-      products: user.currentDay.products
+      products: user.currentDay.products,
+      totalScore: getTotalScore(user)
     }
   });
 
