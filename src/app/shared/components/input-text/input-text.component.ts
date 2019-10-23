@@ -1,20 +1,26 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
+import { Subject, Subscription } from 'rxjs';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+
+@AutoUnsubscribe()
 @Component({
   selector: 'app-input-text',
   templateUrl: 'input-text.component.html',
   styleUrls: ['input-text.component.css']
 })
-export class InputTextComponent implements OnInit {
+export class InputTextComponent implements OnInit, OnDestroy {
 
   @Input() placeholder: string;
   @Input() icon: string;
   @Input() small: boolean;
+  @Input() detectChanges: Subject<void>;
 
   @ViewChild('input') inputWrapper: ElementRef;
 
   public placeholderAtTop: boolean;
 
+  private changesSubscription: Subscription;
   private input: HTMLInputElement;
 
   constructor(
@@ -26,6 +32,7 @@ export class InputTextComponent implements OnInit {
     this.registerFocusListener();
     this.registerBlurListener();
     this.checkDefaultValue();
+    this.subscribeToChanges();
   }
 
   public targetFocus(): void {
@@ -50,6 +57,13 @@ export class InputTextComponent implements OnInit {
     this.changeDetectorRef.markForCheck();
   }
 
+  private subscribeToChanges(): void {
+    if (this.detectChanges) {
+      this.changesSubscription = this.detectChanges
+        .subscribe(() => this.calcCurrentPlaceholderPosition());
+    }
+  }
+
   private checkDefaultValue(): void {
     setTimeout(() => {
       if (this.input.value) {
@@ -57,5 +71,7 @@ export class InputTextComponent implements OnInit {
       }
     }, 0);
   }
+
+  ngOnDestroy() {}
 
 }

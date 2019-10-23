@@ -1,5 +1,7 @@
 import { Component, Input, ContentChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 
+import { Subscription, Subject } from 'rxjs';
+
 @Component({
   selector: 'app-textarea',
   templateUrl: 'textarea.component.html',
@@ -8,14 +10,17 @@ import { Component, Input, ContentChild, ElementRef, AfterViewInit, OnDestroy } 
 export class TextareaComponent implements AfterViewInit, OnDestroy {
 
   @Input() placeholder: string;
+  @Input() detectChanges: Subject<void>;
 
   @ContentChild('textarea') textarea: ElementRef<HTMLTextAreaElement>;
 
   public placeholderAtTop: boolean;
 
   private focusListener;
+  private detectChangesSubscription: Subscription;
 
   ngAfterViewInit() {
+    this.subscribeToChanges();
     this.focusListener = this.textarea.nativeElement.addEventListener('focus', () => {
       this.toTop();
     });
@@ -30,6 +35,13 @@ export class TextareaComponent implements AfterViewInit, OnDestroy {
       this.placeholderAtTop = true;
     } else {
       this.placeholderAtTop = false;
+    }
+  }
+
+  private subscribeToChanges(): void {
+    if (this.detectChanges) {
+      this.detectChangesSubscription = this.detectChanges
+        .subscribe(() => this.toTop());
     }
   }
 

@@ -14,6 +14,7 @@ import { SubjectService } from 'src/app/shared/services/subject.service';
 import { Product } from 'src/app/shared/models/product.model';
 import { User } from 'src/app/shared/models/user.model';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
+import { Calculation } from 'src/app/shared/models/calculation.model';
 
 @AutoUnsubscribe()
 @Component({
@@ -30,7 +31,9 @@ export class AddProductComponent implements OnInit, OnDestroy {
   public progressBarVisibility: boolean;
   public previousPage: string;
   public isProductPage: boolean;
+  public detectChangesSubject = new Subject<void>();
 
+  private formChangesSubscription: Subscription;
   private dialogSubscription: Subscription;
   private userSubscription: Subscription;
   private user: User;
@@ -51,6 +54,15 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this.setCategories();
     this.subscribeToUser();
     this.initForm();
+    this.subscribeToFormChanges();
+  }
+
+  public reactOnCalculation(calculation: Calculation): void {
+    this.productForm.controls.calories.reset(calculation.caloriesPer100Gram);
+    this.productForm.controls.protein.reset(calculation.proteinPer100Gram);
+    this.productForm.controls.fats.reset(calculation.fatsPer100Gram);
+    this.productForm.controls.carbohydrates.reset(calculation.carbohydratesPer100Gram);
+    this.generateIngredients(calculation);
   }
 
   public reactOnSelectProductImage(event): void {
@@ -164,6 +176,21 @@ export class AddProductComponent implements OnInit, OnDestroy {
     } else {
       this.categories = APP.dishCategories;
     }
+  }
+
+  private subscribeToFormChanges(): void {
+    this.formChangesSubscription = this.productForm.valueChanges
+      .subscribe(() => this.detectChangesSubject.next());
+  }
+
+  private generateIngredients(calculation: Calculation): void {
+    let resultString = '';
+
+    calculation.products.forEach((product, index) => {
+      resultString += `${index}) ${product.productName} (${product.weight} грамм)\n`;
+    });
+
+    this.productForm.controls.ingredients.reset(resultString);
   }
 
   ngOnDestroy() {}

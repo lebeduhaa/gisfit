@@ -43,17 +43,19 @@ module.exports = async (request, response) => {
   const users = [...usersRef.docs.map(doc => doc.data())];
 
   users.forEach(user => {
-    resultObject[user.id] = {
-      caloriesGoal: user.caloriesGoal,
-      proteinGoal: user.proteinGoal,
-      fatsGoal: user.fatsGoal,
-      carbohydratesGoal: user.carbohydratesGoal,
-      resultCalories: user.currentDay.currentCalories,
-      resultProtein: user.currentDay.currentProtein,
-      resultFats: user.currentDay.currentFats,
-      resultCarbohydrates: user.currentDay.currentCarbohydrates,
-      products: user.currentDay.products,
-      totalScore: getTotalScore(user)
+    if (user.id === 'YgqnP0j1v7UsuD1bZLUx') {
+      resultObject[user.id] = {
+        caloriesGoal: user.ownGoal ? user.customCaloriesGoal : user.caloriesGoal,
+        proteinGoal: user.ownGoal ? user.customProteinGoal : user.proteinGoal,
+        fatsGoal: user.ownGoal ? user.customFatsGoal : user.fatsGoal,
+        carbohydratesGoal: user.ownGoal ? user.customCarbohydratesGoal : user.carbohydratesGoal,
+        resultCalories: user.ownGoal ? user.customCaloriesGoal : user.currentDay.currentCalories,
+        resultProtein: user.currentDay.currentProtein,
+        resultFats: user.currentDay.currentFats,
+        resultCarbohydrates: user.currentDay.currentCarbohydrates,
+        products: user.currentDay.products,
+        totalScore: getTotalScore(user)
+      }
     }
   });
 

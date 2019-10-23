@@ -46,7 +46,8 @@ export const APP = {
     areYouSure: 'areYouSure',
     customGoals: 'customGoals',
     dailyReport: 'dailyReport',
-    videoPlay: 'videoPlay'
+    videoPlay: 'videoPlay',
+    autoCalc: 'autoCalc'
   },
   routesWithHeader: [
     'settings',

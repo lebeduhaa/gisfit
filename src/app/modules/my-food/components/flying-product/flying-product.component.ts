@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
@@ -14,6 +14,8 @@ import { FlyingProduct } from 'src/app/shared/models/flying-product.model';
   styleUrls: ['flying-product.component.css']
 })
 export class FlyingProductComponent implements OnInit, OnDestroy {
+
+  @Input() selection: boolean;
 
   public startX: number;
   public startY: number;
@@ -64,7 +66,7 @@ export class FlyingProductComponent implements OnInit, OnDestroy {
       const finishCoordinates = element.getBoundingClientRect();
 
       this.finishX = finishCoordinates.left + 70;
-      this.finishY = finishCoordinates.top + 150;
+      this.finishY = finishCoordinates.top + (this.selection ? 0 : 150);
     }
   }
 

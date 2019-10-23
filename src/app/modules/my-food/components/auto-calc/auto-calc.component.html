@@ -1,10 +1,14 @@
 <mat-dialog-content>
   <div class="auto-calc">
     <div class="auto-calc__title">Select products for your dish</div>
-    <div class="auto-calc__content" *ngIf="displayedProducts">
+    <div class="auto-calc__spinner" *ngIf="!displayedProducts">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="auto-calc__content" [hidden]="!displayedProducts">
       <div class="auto-calc__selection">
         <div class="auto-calc__selection-title">Selected products</div>
-        <app-current-eating></app-current-eating>
+        <div class="auto-calc__selection-empty" *ngIf="!selectedProducts?.length">You have not selected products yet</div>
+        <app-current-eating [selection]="true" (selectProducts)="reactOnselectProducts($event)"></app-current-eating>
       </div>
       <div class="auto-calc__products">
         <div class="auto-calc__product" *ngFor="let product of displayedProducts">
@@ -17,4 +21,9 @@
       </div>
     </div>
   </div>
+  <app-flying-product [selection]="true"></app-flying-product>
 </mat-dialog-content>
+<mat-dialog-actions>
+  <app-custom-button [disabled]="!selectedProducts?.length" caption="Calculate" color="accent" (click)="calculate()"></app-custom-button>
+  <app-custom-button caption="Back" color="warn" (click)="close()"></app-custom-button>
+</mat-dialog-actions>

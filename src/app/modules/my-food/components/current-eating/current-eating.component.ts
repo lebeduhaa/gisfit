@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
@@ -16,6 +16,10 @@ import { MyFoodService } from '../../services/my-food.service';
   styleUrls: ['current-eating.component.css']
 })
 export class CurrentEatingComponent implements OnInit, OnDestroy {
+
+  @Output() selectProducts = new EventEmitter<Product[]>();
+
+  @Input() selection: boolean;
 
   public products: Product[] = [];
 
@@ -98,6 +102,7 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
             }
           }
 
+          this.selectProducts.emit(this.products);
           this.changeDetectorRef.markForCheck();
         }, 700);
       });

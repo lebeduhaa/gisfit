@@ -8,7 +8,7 @@
       <app-textarea placeholder="Describe your dish" *ngIf="!isProductPage">
         <textarea formControlName="description" #textarea></textarea>
       </app-textarea>
-      <app-textarea placeholder="Ingredients" *ngIf="!isProductPage">
+      <app-textarea [detectChanges]="detectChangesSubject" placeholder="Ingredients" *ngIf="!isProductPage">
         <textarea formControlName="ingredients" #textarea></textarea>
       </app-textarea>
       <app-textarea placeholder="Describe recipe *" *ngIf="!isProductPage">
@@ -30,22 +30,22 @@
         </app-select>
       </div>
       <div class="add-product__control">
-        <app-input-text icon="bubble_chart" placeholder="Calories (kcal/100g)">
-          <input type="text" formControlName="calories" appNumericControl>
+        <app-input-text [detectChanges]="detectChangesSubject" icon="bubble_chart" placeholder="Calories (kcal/100g)">
+          <input (change)="reactOnInput()" type="text" formControlName="calories" appNumericControl>
         </app-input-text>
       </div>
       <div class="add-product__control">
-        <app-input-text icon="scatter_plot" placeholder="Protein (g/100g)">
+        <app-input-text [detectChanges]="detectChangesSubject" icon="scatter_plot" placeholder="Protein (g/100g)">
           <input type="text" formControlName="protein" appNumericControl>
         </app-input-text>
       </div>
       <div class="add-product__control">
-        <app-input-text icon="share" placeholder="Fats (g/100g)">
+        <app-input-text [detectChanges]="detectChangesSubject" icon="share" placeholder="Fats (g/100g)">
           <input type="text" formControlName="fats" appNumericControl>
         </app-input-text>
       </div>
       <div class="add-product__control">
-        <app-input-text icon="grain" placeholder="Carbohydrates (g/100g)">
+        <app-input-text [detectChanges]="detectChangesSubject" icon="grain" placeholder="Carbohydrates (g/100g)">
           <input type="text" formControlName="carbohydrates" appNumericControl>
         </app-input-text>
       </div>
@@ -60,7 +60,7 @@
           (fileSelected)="reactOnSelectProductImage($event)"
           [clearFilesSubject]="clearFilesSubject"
         ></app-input-file>
-        <app-spinner-button appOpenAutoCalc caption="calculate attributes automatically" [small]="true"></app-spinner-button>
+        <app-spinner-button appOpenAutoCalc (calculation)="reactOnCalculation($event)" caption="calculate attributes automatically" [small]="true"></app-spinner-button>
       </div>
       <app-input-text icon="looks_one" [placeholder]="isProductPage ? 'Average mass of one piece(g)' : 'Average mass of serving'">
         <input type="text" formControlName="averageMassOfOnePiece" appNumericControl>
