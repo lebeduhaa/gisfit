@@ -31,6 +31,8 @@ import { AdviceComponent } from '../components/advice/advice.component';
 import { TextareaModule } from 'src/app/shared/components/textarea/textarea.module';
 import { ProductCardModule } from 'src/app/shared/components/product-card/product-card.module';
 import { CurrentProgressModule } from 'src/app/shared/components/current-progress/current-progress.module';
+import { AutoCalcComponent } from '../components/auto-calc/auto-calc.component';
+import { OpenAutoCalcDirective } from '../directives/open-auto-calc.directive';
 
 @NgModule({
   imports: [
@@ -60,17 +62,20 @@ import { CurrentProgressModule } from 'src/app/shared/components/current-progres
     AddProductComponent,
     ProductComponent,
     ProductInfoComponent,
-    OpenProductInfoDirective,
     CurrentEatingComponent,
     FlyingProductComponent,
     CustomGoalsComponent,
-    OpenCustomGoalsDirective,
     CategoriesComponent,
-    AdviceComponent
+    AdviceComponent,
+    AutoCalcComponent,
+    OpenProductInfoDirective,
+    OpenCustomGoalsDirective,
+    OpenAutoCalcDirective
   ],
   entryComponents: [
     ProductInfoComponent,
-    CustomGoalsComponent
+    CustomGoalsComponent,
+    AutoCalcComponent
   ],
   exports: [
     MyFoodComponent

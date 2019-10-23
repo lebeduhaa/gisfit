@@ -1,0 +1,20 @@
+<mat-dialog-content>
+  <div class="auto-calc">
+    <div class="auto-calc__title">Select products for your dish</div>
+    <div class="auto-calc__content" *ngIf="displayedProducts">
+      <div class="auto-calc__selection">
+        <div class="auto-calc__selection-title">Selected products</div>
+        <app-current-eating></app-current-eating>
+      </div>
+      <div class="auto-calc__products">
+        <div class="auto-calc__product" *ngFor="let product of displayedProducts">
+          <app-product
+            [selection]="true"
+            [product]="product"
+            (addProductEvent)="reactOnAddProduct($event)"
+            (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

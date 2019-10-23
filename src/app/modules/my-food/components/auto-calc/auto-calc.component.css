@@ -1,0 +1,35 @@
+.auto-calc {
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+.auto-calc__title {
+  font-size: 20px;
+  text-align: center;
+}
+.auto-calc__content {
+  display: flex;
+}
+.auto-calc__selection {
+  width: 426px;
+}
+.auto-calc__products {
+  width: 760px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  padding-top: 20px;
+  overflow-y: auto;
+}
+.auto-calc__selection-title {
+  color: silver;
+  padding-top: 20px;
+  text-align: center;
+  font-weight: 400;
+}
+.auto-calc__product {
+  flex-basis: 25%;
+  margin-bottom: 30px;
+  height: 207px;
+  display: flex;
+  justify-content: center;
+}

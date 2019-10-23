@@ -20,6 +20,7 @@ export class ProductComponent {
 
   @Input() product: Product;
   @Input() my: boolean;
+  @Input() selection: boolean;
 
   public selectionVisibility: boolean;
   public weightKind = true;

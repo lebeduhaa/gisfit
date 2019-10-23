@@ -60,6 +60,7 @@
           (fileSelected)="reactOnSelectProductImage($event)"
           [clearFilesSubject]="clearFilesSubject"
         ></app-input-file>
+        <app-spinner-button appOpenAutoCalc caption="calculate attributes automatically" [small]="true"></app-spinner-button>
       </div>
       <app-input-text icon="looks_one" [placeholder]="isProductPage ? 'Average mass of one piece(g)' : 'Average mass of serving'">
         <input type="text" formControlName="averageMassOfOnePiece" appNumericControl>

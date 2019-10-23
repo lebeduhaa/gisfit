@@ -89,4 +89,10 @@ export class MyFoodService {
     return this.firestore.collection('users').doc(userId).update({addedProducts: firebase.firestore.FieldValue.arrayUnion(productId)});
   }
 
+  public async getAllProducts(): Promise<Product[]> {
+    const products = await this.firestore.collection('products').get().toPromise();
+
+    return products.docs.map(doc => doc.data());
+  }
+
 }
