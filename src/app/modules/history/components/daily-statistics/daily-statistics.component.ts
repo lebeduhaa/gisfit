@@ -19,8 +19,9 @@ am4core.useTheme(am4themes_animated);
 })
 export class DailyStatisticsComponent implements AfterViewInit, OnDestroy {
 
+  public statisticsData: Statistics[];
+
   private chart: am4charts.XYChart;
-  private statisticsData: Statistics[];
 
   constructor(
     private ngZone: NgZone,

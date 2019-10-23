@@ -40,10 +40,10 @@ export class HistoryService {
     const currentUser: User = (await this.firestore.collection('users').doc(userId).get().toPromise()).data();
 
     return {
-      caloriesGoal: currentUser.caloriesGoal,
-      proteinGoal: currentUser.proteinGoal,
-      fatsGoal: currentUser.fatsGoal,
-      carbohydratesGoal: currentUser.carbohydratesGoal,
+      caloriesGoal: currentUser.ownGoal ? currentUser.customCaloriesGoal : currentUser.caloriesGoal,
+      proteinGoal: currentUser.ownGoal ? currentUser.customProteinGoal : currentUser.proteinGoal,
+      fatsGoal: currentUser.ownGoal ? currentUser.customFatsGoal : currentUser.fatsGoal,
+      carbohydratesGoal: currentUser.ownGoal ? currentUser.customCarbohydratesGoal :  currentUser.carbohydratesGoal,
       resultCalories: currentUser.currentDay.currentCalories,
       resultProtein: currentUser.currentDay.currentProtein,
       resultFats: currentUser.currentDay.currentFats,

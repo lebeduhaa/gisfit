@@ -11,6 +11,7 @@
       <app-search caption="Search video" (searchEvent)="reactOnSearchEvent($event)"></app-search>
     </div>
     <div class="videos__items">
+      <div class="videos__empty" *ngIf="!displayedVideos.length">There are not videos:(</div>
       <div class="videos__video" *ngFor="let video of displayedVideos">
         <app-video [video]="video"></app-video>
       </div>

@@ -18,8 +18,9 @@ am4core.useTheme(am4themes_animated);
 })
 export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
 
+  public chartData: ScoreChartData[];
+
   private chart: am4charts.XYChart;
-  private chartData: ScoreChartData[];
 
   constructor(
     private historyService: HistoryService,
@@ -34,6 +35,7 @@ export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
 
   private async getChartData(): Promise<any> {
     this.chartData = await this.historyService.getScoreStatistics();
+    console.log(this.chartData);
   }
 
   private async initChart(): Promise<any> {

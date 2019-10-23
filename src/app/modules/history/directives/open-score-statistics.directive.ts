@@ -16,7 +16,7 @@ export class OpenScoreStatisticsDirective {
   @HostListener('click')
   openScoreStatistics(): void {
     this.dialog.open(ScoreStatisticsComponent, {
-      width: '1200px',
+      width: '1200px'
     });
   }
 

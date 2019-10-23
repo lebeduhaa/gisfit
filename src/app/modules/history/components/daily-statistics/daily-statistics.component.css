@@ -1,3 +1,12 @@
 #chartdiv {
   height: 550px;
 }
+.daily__empty {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+}
+.daily__spinner {
+  display: flex;
+  justify-content: center;
+}
