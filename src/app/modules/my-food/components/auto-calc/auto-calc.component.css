@@ -1,3 +1,6 @@
+mat-dialog-content {
+  max-height: none;
+}
 .auto-calc {
   font-family: 'Lato', sans-serif;
   color: white;
@@ -5,6 +8,7 @@
 .auto-calc__title {
   font-size: 20px;
   text-align: center;
+  margin-bottom: 15px;
 }
 .auto-calc__content {
   display: flex;
@@ -16,17 +20,9 @@
   width: 760px;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
-  padding-top: 20px;
+  padding-top: 15px;
   overflow-y: auto;
-  height: 518px;
-}
-.auto-calc__selection-title {
-  color: silver;
-  padding-top: 20px;
-  text-align: center;
-  font-weight: 400;
-  margin-bottom: 20px;
+  height: calc(80vh - 170px);
 }
 .auto-calc__product {
   flex-basis: 25%;
@@ -47,10 +43,21 @@ app-custom-button:first-of-type {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  position: absolute;
+  width: 100%;
+  left: 0;
 }
 .auto-calc__selection-empty {
   margin-top: 30px;
   font-size: 13px;
   color: silver;
   text-align: center;
+}
+.auto-calc__search {
+  display: flex;
+  justify-content: center;
+}
+.auto-calc /deep/ .current-eating__product {
+  flex-basis: 33.3%;
+  margin-bottom: 10px;
 }

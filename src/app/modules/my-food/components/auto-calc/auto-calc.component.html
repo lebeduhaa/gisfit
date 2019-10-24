@@ -1,22 +1,27 @@
 <mat-dialog-content>
   <div class="auto-calc">
-    <div class="auto-calc__title">Select products for your dish</div>
-    <div class="auto-calc__spinner" *ngIf="!displayedProducts">
+    <div class="auto-calc__spinner" *ngIf="!products">
       <mat-spinner></mat-spinner>
     </div>
-    <div class="auto-calc__content" [hidden]="!displayedProducts">
+    <div class="auto-calc__content" [style.visibility]="products ? 'visible' : 'hidden'">
       <div class="auto-calc__selection">
-        <div class="auto-calc__selection-title">Selected products</div>
+        <div class="auto-calc__title">Selected products</div>
         <div class="auto-calc__selection-empty" *ngIf="!selectedProducts?.length">You have not selected products yet</div>
         <app-current-eating [selection]="true" (selectProducts)="reactOnselectProducts($event)"></app-current-eating>
       </div>
-      <div class="auto-calc__products">
-        <div class="auto-calc__product" *ngFor="let product of displayedProducts">
-          <app-product
-            [selection]="true"
-            [product]="product"
-            (addProductEvent)="reactOnAddProduct($event)"
-            (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
+      <div class="auto-calc__products-wrapper">
+        <div class="auto-calc__title">Select products for your dish</div>
+        <div class="auto-calc__search">
+          <app-search caption="Search products" (searchEvent)="reactOnSearchEvent($event)"></app-search>
+        </div>
+        <div class="auto-calc__products">
+          <div class="auto-calc__product" *ngFor="let product of displayedProducts">
+            <app-product
+              [selection]="true"
+              [product]="product"
+              (addProductEvent)="reactOnAddProduct($event)"
+              (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
+          </div>
         </div>
       </div>
     </div>

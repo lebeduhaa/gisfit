@@ -14,10 +14,9 @@ import { TotalCalculation, Calculation } from 'src/app/shared/models/calculation
 })
 export class AutoCalcComponent implements OnInit {
 
+  public selectedProducts: Product[];
   public displayedProducts: Product[];
-
-  private products: Product[];
-  private selectedProducts: Product[];
+  public products: Product[];
 
   constructor(
     private myFoodService: MyFoodService,
@@ -26,6 +25,14 @@ export class AutoCalcComponent implements OnInit {
 
   ngOnInit() {
     this.getAllProducts();
+  }
+
+  public reactOnSearchEvent(key: string): void {
+    if (key) {
+      this.displayedProducts = this.products.filter(product => product.productName.toLowerCase().includes(key.toLowerCase()));
+    } else {
+      this.displayedProducts = this.products;
+    }
   }
 
   public calculate(): void {

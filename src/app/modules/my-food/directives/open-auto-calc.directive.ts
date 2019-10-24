@@ -20,6 +20,7 @@ export class OpenAutoCalcDirective {
   openAutoCalc(): void {
     const dialogRef = this.dialog.open(AutoCalcComponent, {
       width: '1300px',
+      height: '80vh',
       id: APP.dialogs.autoCalc
     });
 
