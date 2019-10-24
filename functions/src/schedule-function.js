@@ -30,10 +30,10 @@ const getResultString = (attributeName, goal, result) => {
 const getResult = user => {
   let resultString = '';
 
-  resultString += getResultString('Calories', user.caloriesGoal, user.currentDay.currentCalories);
-  resultString += getResultString('Protein', user.proteinGoal, user.currentDay.currentProtein);
-  resultString += getResultString('Fats', user.fatsGoal, user.currentDay.currentFats);
-  resultString += getResultString('Carbohydrates', user.carbohydratesGoal, user.currentDay.currentCarbohydrates);
+  resultString += getResultString('Calories', user.ownGoal ? user.customCaloriesGoal : user.caloriesGoal, user.currentDay.currentCalories);
+  resultString += getResultString('Protein', user.ownGoal ? user.customProteinGoal : user.proteinGoal, user.currentDay.currentProtein);
+  resultString += getResultString('Fats', user.ownGoal ? user.customFatsGoal : user.fatsGoal, user.currentDay.currentFats);
+  resultString += getResultString('Carbohydrates', user.ownGoal ? user.customCarbohydratesGoal : user.carbohydratesGoal, user.currentDay.currentCarbohydrates);
 
   return resultString;
 };
