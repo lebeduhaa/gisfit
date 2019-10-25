@@ -10,6 +10,10 @@
 }
 .header__logo {
   height: 60px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
 }
 .header__items {
   display: flex;
@@ -44,4 +48,11 @@
   text-shadow: 0 0 4px white;
   transform: scale(1.2);
   color: white;
+}
+.header__logo-title {
+  font-size: 40px;
+  line-height: 45px;
+  color: #5147da;
+  font-family: 'Niveau Grotesk ExtraLight';
+  margin-left: 10px;
 }

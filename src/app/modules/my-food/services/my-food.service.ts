@@ -62,6 +62,14 @@ export class MyFoodService {
 
     delete product.image;
 
+    if (!product.user) {
+      product.user = {
+        id: userId
+      };
+    } else {
+      product.user.id = userId;
+    }
+
     const promises = [
       this.firestore.collection('products').doc(id).set({...product, id}),
       this.firestore.collection('users').doc(userId).update({addedProducts: firebase.firestore.FieldValue.arrayUnion(id)}),

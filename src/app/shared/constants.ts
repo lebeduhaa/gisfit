@@ -47,7 +47,8 @@ export const APP = {
     customGoals: 'customGoals',
     dailyReport: 'dailyReport',
     videoPlay: 'videoPlay',
-    autoCalc: 'autoCalc'
+    autoCalc: 'autoCalc',
+    editProduct: 'editProduct'
   },
   routesWithHeader: [
     'settings',

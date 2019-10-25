@@ -1,9 +1,10 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { appearAnimation } from 'src/app/shared/animations';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
+import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-product',
@@ -13,7 +14,7 @@ import { APP } from 'src/app/shared/constants';
     appearAnimation
   ]
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
 
   @Output() deleteProductEvent = new EventEmitter<string>();
   @Output() addProductEvent = new EventEmitter<string>();
@@ -25,10 +26,16 @@ export class ProductComponent {
   public selectionVisibility: boolean;
   public weightKind = true;
   public resultProductSelection: number;
+  public userId: string;
 
   constructor(
-    private subjectService: SubjectService
+    private subjectService: SubjectService,
+    private localStorageHelper: LocalStorageHelper
   ) {}
+
+  ngOnInit() {
+    this.getUserId();
+  }
 
   public reactOnConfirmAddProduct(confirmation: boolean): void {
     if (confirmation) {
@@ -103,6 +110,10 @@ export class ProductComponent {
     });
 
     this.resultProductSelection = null;
+  }
+
+  private getUserId(): void {
+    this.userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
   }
 
 }

@@ -15,13 +15,18 @@
   align-items: center;
 }
 .auth__logo {
-  width: 200px;
+  width: 210px;
+  display: flex;
+  align-items: center;
 }
 .auth__logo-img {
+  width: 100px;
+}
+.auth__logo-img img {
   width: 100%;
 }
 .auth__form {
-  margin-top: 30px;
+  margin-top: 10px;
   background-color: #0c0b10ef;
   padding: 45px 35px;
   width: 400px;
@@ -50,3 +55,19 @@
 .auth__form-navigation-item_active {
   color: #dfdfdf;
 }
+.auth__logo-text {
+  margin-left: 20px;
+}
+.auth__logo-title {
+  font-size: 50px;
+  line-height: 45px;
+  color: #5147da;
+  font-family: 'Niveau Grotesk ExtraLight';
+}
+.auth__logo-description {
+  color: silver;
+  font-family: 'Lato';
+  margin-left: 5px;
+  margin-top: -5px;
+}
+

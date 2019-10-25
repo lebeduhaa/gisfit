@@ -20,4 +20,5 @@ export interface Product {
   recipe?: string;
   dish?: boolean;
   user?: User;
+  amount?: number;
 }

@@ -33,6 +33,8 @@ import { ProductCardModule } from 'src/app/shared/components/product-card/produc
 import { CurrentProgressModule } from 'src/app/shared/components/current-progress/current-progress.module';
 import { AutoCalcComponent } from '../components/auto-calc/auto-calc.component';
 import { OpenAutoCalcDirective } from '../directives/open-auto-calc.directive';
+import { EditProductComponent } from '../components/edit-product/edit-product.component';
+import { OpenEditProductDirective } from '../directives/open-edit-product.directive';
 
 @NgModule({
   imports: [
@@ -68,14 +70,17 @@ import { OpenAutoCalcDirective } from '../directives/open-auto-calc.directive';
     CategoriesComponent,
     AdviceComponent,
     AutoCalcComponent,
+    EditProductComponent,
     OpenProductInfoDirective,
     OpenCustomGoalsDirective,
-    OpenAutoCalcDirective
+    OpenAutoCalcDirective,
+    OpenEditProductDirective
   ],
   entryComponents: [
     ProductInfoComponent,
     CustomGoalsComponent,
-    AutoCalcComponent
+    AutoCalcComponent,
+    EditProductComponent
   ],
   exports: [
     MyFoodComponent

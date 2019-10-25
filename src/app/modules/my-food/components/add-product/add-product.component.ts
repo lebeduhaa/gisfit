@@ -186,11 +186,27 @@ export class AddProductComponent implements OnInit, OnDestroy {
   private generateIngredients(calculation: Calculation): void {
     let resultString = '';
 
-    calculation.products.forEach((product, index) => {
-      resultString += `${index}) ${product.productName} (${product.weight} грамм)\n`;
+    this.groupIngredients(calculation.products).forEach((product, index) => {
+      resultString += `${index}) ${product.productName} (${product.weight} грамм) ${product.amount === 1 ? '' : `${product.amount} шт`}\n`;
     });
 
     this.productForm.controls.ingredients.reset(resultString);
+  }
+
+  private groupIngredients(products: Product[]): Product[] {
+    const result: Product[] = [];
+
+    products.forEach(product => {
+      const index = result.findIndex(resultProduct => resultProduct.productName === product.productName);
+
+      if (index === -1) {
+        result.push({...product, amount: 1});
+      } else {
+        result[index].amount += 1;
+      }
+    });
+
+    return result;
   }
 
   ngOnDestroy() {}
