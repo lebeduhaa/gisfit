@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../../modules/shared.module';
 import { HeaderComponent } from './header.component';
+import { OpenActivityDirective } from './open-activity.directive';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { HeaderComponent } from './header.component';
     RouterModule
   ],
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    OpenActivityDirective
   ],
   exports: [
     HeaderComponent

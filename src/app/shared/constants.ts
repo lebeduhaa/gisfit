@@ -29,7 +29,8 @@ export const APP = {
     dishes: 'dishes',
     addDish: 'add-dish',
     videos: 'videos',
-    addVideo: 'add-video'
+    addVideo: 'add-video',
+    activity: 'activity'
   },
   subjects: {
     notificationVisibility: 'notificationVisibility',
@@ -58,7 +59,8 @@ export const APP = {
     'dishes',
     'videos',
     'add-video',
-    'history'
+    'history',
+    'activity'
   ],
   cachedData: {
     userId: 'userId'

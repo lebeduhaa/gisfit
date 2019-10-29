@@ -15,6 +15,7 @@ import { DishesModule } from '../../dishes/modules/dishes.module';
 import { DailyReportModule } from 'src/app/shared/components/daily-report/daily-report.module';
 import { VideosModule } from '../../videos/modules/videos.module';
 import { HistoryModule } from '../../history/modules/history.module';
+import { ActivityModule } from '../../activity/modules/activity.module';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { HistoryModule } from '../../history/modules/history.module';
     VideosModule,
     TranslateModule.forChild(),
     DailyReportModule,
-    HistoryModule
+    HistoryModule,
+    ActivityModule
   ],
   declarations: [
     RootComponent,

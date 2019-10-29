@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { RouterHelper } from '../../services/router.service';
 import { APP } from '../../constants';
+import { ActivityService } from 'src/app/modules/activity/services/activity.service';
 
 @Component({
   selector: 'app-header',

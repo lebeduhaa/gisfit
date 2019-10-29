@@ -10,6 +10,7 @@ import { AuthGuard } from 'src/app/shared/auth.guard';
 import { VideosComponent } from '../../videos/components/videos/videos.component';
 import { UploaderComponent } from '../../videos/components/uploader/uploader.component';
 import { HistoryComponent } from '../../history/components/history/history.component';
+import { ActivityComponent } from '../../activity/components/activity/activity.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { HistoryComponent } from '../../history/components/history/history.compo
       { path: 'dishes', component: DishesComponent, data: {animation: 'dishes'}, canActivate: [AuthGuard] },
       { path: 'videos', component: VideosComponent, data: {animation: 'videos'}, canActivate: [AuthGuard] },
       { path: 'add-video', component: UploaderComponent, data: {animation: 'add-video'}, canActivate: [AuthGuard] },
-      { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] }
+      { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] },
+      { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] }
     ])
   ],
   exports: [

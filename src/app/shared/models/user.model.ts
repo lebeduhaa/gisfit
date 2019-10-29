@@ -32,4 +32,5 @@ export interface User {
   customCarbohydratesGoal?: number;
   addedProducts?: string[];
   disableTips?: boolean;
+  accessToken?: string;
 }

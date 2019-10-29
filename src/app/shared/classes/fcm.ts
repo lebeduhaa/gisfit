@@ -56,8 +56,7 @@ export class FirebaseCloudMessaging {
   private updateUserDeviceToken(token: string): void {
     const userId = JSON.parse(localStorage.getItem(APP.cachedData.userId));
 
-    this.settingsService.updateUserData({deviceToken: token}, userId)
-      .then(() => console.log(token));
+    Promise.resolve(this.settingsService.updateUserData({deviceToken: token}, userId));
   }
 
 }
