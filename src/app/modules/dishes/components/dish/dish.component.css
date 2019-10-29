@@ -34,11 +34,28 @@
   height: 50px;
   margin-top: -3px;
 }
+.dish__edit-icon {
+  display: none;
+}
+.dish:hover .dish__edit-icon {
+  display: block;
+}
+.dish__edit-icon mat-icon {
+  color: #787878;
+}
+.dish__edit-icon mat-icon:hover {
+  color: white;
+}
+.dish__header-user {
+  display: flex;
+  align-items: center;
+}
 .dish__header {
   display: flex;
   align-items: center;
   padding: 10px;
   background-color: #32445a;
+  justify-content: space-between;
 }
 .dish__header-icon {
   margin-right: 15px;

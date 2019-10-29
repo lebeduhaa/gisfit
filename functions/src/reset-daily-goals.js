@@ -48,7 +48,7 @@ module.exports = async (request, response) => {
       proteinGoal: user.ownGoal ? user.customProteinGoal : user.proteinGoal,
       fatsGoal: user.ownGoal ? user.customFatsGoal : user.fatsGoal,
       carbohydratesGoal: user.ownGoal ? user.customCarbohydratesGoal : user.carbohydratesGoal,
-      resultCalories: user.ownGoal ? user.customCaloriesGoal : user.currentDay.currentCalories,
+      resultCalories: user.currentDay.currentCalories,
       resultProtein: user.currentDay.currentProtein,
       resultFats: user.currentDay.currentFats,
       resultCarbohydrates: user.currentDay.currentCarbohydrates,

@@ -21,8 +21,7 @@ export class DishComponent implements OnInit {
 
   public commentsVisibility: boolean;
   public currentComment: string;
-
-  private userId: string;
+  public userId: string;
 
   constructor(
     private localStorageHelper: LocalStorageHelper,
@@ -31,6 +30,10 @@ export class DishComponent implements OnInit {
 
   ngOnInit() {
     this.getUserId();
+  }
+
+  public trimDishName(): string {
+    return this.dish.productName.length > 25 ? `${this.dish.productName.substr(0, 25)}...` : this.dish.productName;
   }
 
   public sendComment(): void {

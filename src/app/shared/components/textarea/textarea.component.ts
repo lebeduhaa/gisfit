@@ -24,6 +24,7 @@ export class TextareaComponent implements AfterViewInit, OnDestroy {
     this.focusListener = this.textarea.nativeElement.addEventListener('focus', () => {
       this.toTop();
     });
+    this.toBottom();
   }
 
   public toTop(): void {

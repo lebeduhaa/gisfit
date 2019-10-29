@@ -60,9 +60,9 @@
           (fileSelected)="reactOnSelectProductImage($event)"
           [clearFilesSubject]="clearFilesSubject"
         ></app-input-file>
-        <app-spinner-button *ngIf="!isProductPage" appOpenAutoCalc (calculation)="reactOnCalculation($event)" caption="calculate attributes automatically" [small]="true"></app-spinner-button>
+        <app-spinner-button *ngIf="!isProductPage" appOpenAutoCalc (calculation)="reactOnCalculation($event)" caption="Calculate attributes automatically" [small]="true"></app-spinner-button>
       </div>
-      <app-input-text icon="looks_one" [placeholder]="isProductPage ? 'Average mass of one piece(g)' : 'Average mass of serving'">
+      <app-input-text [detectChanges]="detectChangesSubject" icon="looks_one" [placeholder]="isProductPage ? 'Average mass of one piece(g)' : 'Average mass of serving'">
         <input type="text" formControlName="averageMassOfOnePiece" appNumericControl>
       </app-input-text>
     </div>

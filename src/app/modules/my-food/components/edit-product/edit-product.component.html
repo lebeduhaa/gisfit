@@ -1,5 +1,12 @@
 <mat-dialog-content>
-  hello world
+  <div class="product-edit">
+    <div class="product-edit__title">Edit product</div>
+    <div class="product-edit__content" [formGroup]="productEditForm">
+      <app-input-text placeholder="Product Name" icon="create">
+        <input type="text" formControlName="productName">
+      </app-input-text>
+    </div>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <app-spinner-button [small]="true" caption="Edit product" (click)="edit()" [spinnerStateSubject]="spinnerSubject"></app-spinner-button>

@@ -5,6 +5,7 @@ export interface Calculation {
   proteinPer100Gram?: number;
   fatsPer100Gram?: number;
   carbohydratesPer100Gram?: number;
+  totalWeight?: number;
   products?: Product[];
 }
 

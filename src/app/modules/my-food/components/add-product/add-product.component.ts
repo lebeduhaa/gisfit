@@ -62,6 +62,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this.productForm.controls.protein.reset(calculation.proteinPer100Gram);
     this.productForm.controls.fats.reset(calculation.fatsPer100Gram);
     this.productForm.controls.carbohydrates.reset(calculation.carbohydratesPer100Gram);
+    this.productForm.controls.averageMassOfOnePiece.reset(calculation.totalWeight);
     this.generateIngredients(calculation);
   }
 
@@ -187,7 +188,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     let resultString = '';
 
     this.groupIngredients(calculation.products).forEach((product, index) => {
-      resultString += `${index}) ${product.productName} (${product.weight} грамм) ${product.amount === 1 ? '' : `${product.amount} шт`}\n`;
+      resultString += `${index + 1}) ${product.productName} (${product.weight} грамм) ${product.amount === 1 ? '' : `${product.amount} шт`}\n`;
     });
 
     this.productForm.controls.ingredients.reset(resultString);

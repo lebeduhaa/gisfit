@@ -1,0 +1,30 @@
+<mat-dialog-content>
+  <div class="edit-dish">
+    <div class="edit-dish__title">Edit dish</div>
+    <div class="edit-dish__content" [formGroup]="editDishForm">
+      <div class="edit-dish__control">
+        <app-input-text placeholder="Dish Name" icon="create">
+          <input type="text" formControlName="productName">
+        </app-input-text>
+      </div>
+      <div class="edit-dish__control">
+        <app-textarea placeholder="Describe your dish">
+          <textarea formControlName="description" #textarea></textarea>
+        </app-textarea>
+      </div>
+      <div class="edit-dish__control">
+        <app-textarea placeholder="Ingredients">
+          <textarea formControlName="ingredients" #textarea></textarea>
+        </app-textarea>
+      </div>
+      <div class="edit-dish__control">
+        <app-textarea placeholder="Describe recipe *">
+          <textarea formControlName="recipe" #textarea></textarea>
+        </app-textarea>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <app-spinner-button (click)="edit()" [spinnerStateSubject]="spinnerStateSubject" [disabled]="disabledEditButton()" caption="Edit dish" [small]="true"></app-spinner-button>
+</mat-dialog-actions>

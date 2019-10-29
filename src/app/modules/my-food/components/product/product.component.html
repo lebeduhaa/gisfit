@@ -7,15 +7,15 @@
             <div class="product__action" (click)="selectProduct()">
               <mat-icon color="primary">check</mat-icon>
             </div>
-            <div class="product__action" *ngIf="!my && !selection" (confirmationEvent)="reactOnConfirmAddProduct($event)" appOpenAreYouSure caption="Do you really want to add product '{{product.productName}}' to your food?">
-              <mat-icon color="primary">add</mat-icon>
-            </div>
             <div class="product__action" *ngIf="product.user.id === userId">
               <mat-icon color="primary" appEditProduct [product]="product">edit</mat-icon>
             </div>
           </div>
           <div *ngIf="my && !selection" class="product__action" (confirmationEvent)="reactOnConfirmDeleteProduct($event)" appOpenAreYouSure caption="Do you really want to delete product '{{product.productName}}'?">
             <mat-icon color="primary">delete</mat-icon>
+          </div>
+          <div class="product__action" *ngIf="!my && !selection" (confirmationEvent)="reactOnConfirmAddProduct($event)" appOpenAreYouSure caption="Do you really want to add product '{{product.productName}}' to your food?">
+            <mat-icon color="primary">add</mat-icon>
           </div>
         </div>
         <div class="product__image">

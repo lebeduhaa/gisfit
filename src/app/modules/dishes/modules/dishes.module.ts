@@ -13,6 +13,10 @@ import { ScrollToBottomDirective } from '../directives/scroll-to-bottom.directiv
 import { DishDetailsComponent } from '../components/dish-details/dish-details.component';
 import { ExpandModule } from 'src/app/shared/components/expand/expand.module';
 import { SearchModule } from 'src/app/shared/components/search/search.module';
+import { EditDishComponent } from '../components/edit-dish/edit-dish.component';
+import { OpenEditDishDirective } from '../directives/open-edit-dish.directive';
+import { InputTextModule } from 'src/app/shared/components/input-text/input-text.module';
+import { TextareaModule } from 'src/app/shared/components/textarea/textarea.module';
 
 @NgModule({
   imports: [
@@ -23,17 +27,22 @@ import { SearchModule } from 'src/app/shared/components/search/search.module';
     SpinnerButtonModule,
     UserIconModule,
     ExpandModule,
-    SearchModule
+    SearchModule,
+    InputTextModule,
+    TextareaModule
   ],
   declarations: [
     DishesComponent,
     DishComponent,
+    DishDetailsComponent,
+    EditDishComponent,
     OpenDishDirective,
-    ScrollToBottomDirective,
-    DishDetailsComponent
+    OpenEditDishDirective,
+    ScrollToBottomDirective
   ],
   entryComponents: [
-    DishDetailsComponent
+    DishDetailsComponent,
+    EditDishComponent
   ],
   exports: [
     DishesComponent

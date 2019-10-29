@@ -1,0 +1,16 @@
+.edit-dish {
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+.edit-dish__control {
+  margin-bottom: 30px;
+}
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+.edit-dish__title {
+  font-size: 23px;
+  margin-bottom: 30px;
+  text-align: center;
+}

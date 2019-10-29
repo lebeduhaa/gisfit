@@ -103,4 +103,8 @@ export class MyFoodService {
     return products.docs.map(doc => doc.data());
   }
 
+  public async editProduct(productId: string, productChanges: Product): Promise<any> {
+    await this.firestore.collection('products').doc(productId).update(productChanges);
+  }
+
 }

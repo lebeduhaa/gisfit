@@ -1,0 +1,18 @@
+.product-edit {
+  color: white;
+  font-family: 'Lato', sans-serif;
+}
+.product-edit__title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.product-edit__content {
+  width: 80%;
+  margin: 0 auto;
+}
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}

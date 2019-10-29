@@ -4,10 +4,17 @@
     <div class="flip-card-front">
       <div class="dish" appOpenDish [dish]="dish">
         <div class="dish__header">
-          <div class="dish__header-icon">
-            <app-user-icon [small]="true" [fakeAvatar]="dish.user.fakeAvatarUrl" [avatar]="dish.user.avatar"></app-user-icon>
+          <div class="dish__header-user">
+            <div class="dish__header-icon">
+              <app-user-icon [small]="true" [fakeAvatar]="dish.user.fakeAvatarUrl" [avatar]="dish.user.avatar"></app-user-icon>
+            </div>
+            <div class="dish__header-nickname">{{dish.user.nickname}}</div>
           </div>
-          <div class="dish__header-nickname">{{dish.user.nickname}}</div>
+          <div class="dish__edit-icon">
+            <button mat-icon-button appOpenEditDish [dish]="dish" *ngIf="dish.user.id === userId">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
         </div>
         <div class="dish__image">
           <img [src]="dish.image">
@@ -27,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="dish__title">{{dish.productName}}</div>
+        <div class="dish__title">{{trimDishName()}}</div>
       </div>
     </div>
     <div class="flip-card-back">

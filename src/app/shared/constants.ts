@@ -48,7 +48,8 @@ export const APP = {
     dailyReport: 'dailyReport',
     videoPlay: 'videoPlay',
     autoCalc: 'autoCalc',
-    editProduct: 'editProduct'
+    editProduct: 'editProduct',
+    editDish: 'editDish'
   },
   routesWithHeader: [
     'settings',

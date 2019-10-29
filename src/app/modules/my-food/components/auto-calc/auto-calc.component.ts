@@ -50,6 +50,7 @@ export class AutoCalcComponent implements OnInit {
       totalCalculation.totalFats += product.fats;
       totalCalculation.totalCarbohydrates += product.carbohydrates;
       totalCalculation.totalWeight += Number(product.weight);
+
     });
 
     this.close({
@@ -57,6 +58,7 @@ export class AutoCalcComponent implements OnInit {
       proteinPer100Gram: Number(((totalCalculation.totalProtein * 100) / totalCalculation.totalWeight).toFixed(1)),
       fatsPer100Gram: Number(((totalCalculation.totalFats * 100) / totalCalculation.totalWeight).toFixed(1)),
       carbohydratesPer100Gram: Number(((totalCalculation.totalCarbohydrates * 100) / totalCalculation.totalWeight).toFixed(1)),
+      totalWeight: totalCalculation.totalWeight,
       products: this.selectedProducts
     });
   }

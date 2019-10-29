@@ -2,7 +2,7 @@
   <div class="progress__title">My Progress</div>
   <div class="progress__content">
     <div class="progress__item">
-      <div class="progress__item-title" [class.progress__error]="currentCalories > caloriesGoal">Calories {{currentCalories}}<span class="progress__item-title-preview" *ngIf="caloriesPreviewNumber">(+{{caloriesPreviewNumber}})</span>/{{caloriesGoal}}ckal</div>
+      <div class="progress__item-title" [class.progress__error]="currentCalories > caloriesGoal">Calories {{currentCalories}}<span class="progress__item-title-preview" *ngIf="caloriesPreviewNumber">(+{{caloriesPreviewNumber}})</span>/{{caloriesGoal}}kcal</div>
       <app-progress [value]="currentCaloriesPercent" [preview]="caloriesPreview" color="#d4195e"></app-progress>
     </div>
     <div class="progress__item">
