@@ -1,5 +1,5 @@
 .activity {
-  width: 1000px;
+  width: 1200px;
   margin: 0 auto;
   font-family: 'Lato', sans-serif;
   color: white;
@@ -7,10 +7,19 @@
 .activity__title {
   font-size: 23px;
   text-align: center;
-  margin: 20px;
+  margin: 15px 0 7px 0;
 }
 .activity__description {
   font-size: 17px;
   color: silver;
   text-align: center;
+}
+.activity__progress-bar {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 80px;
+}
+.activity__item {
+  margin-top: 20px;
 }

@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { ActivityComponent } from '../components/activity/activity.component';
-import { WeightComponent } from '../components/weight/weight.component';
+import { MaterialModule } from 'src/app/shared/modules/material.module';
+import { ChartComponent } from '../components/chart/chart.component';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   declarations: [
     ActivityComponent,
-    WeightComponent
+    ChartComponent
   ],
   exports: [
     ActivityComponent

@@ -10,6 +10,7 @@ export interface Point {
   originDataSourceId?: string;
   value?: {
     fpVal?: number;
+    intVal?: number;
     mapVal?: any[];
   }[];
 }

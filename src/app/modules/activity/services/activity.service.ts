@@ -44,13 +44,18 @@ export class ActivityService {
 
   public async getActivity(accessToken: string): Promise<any> {
     const activity = await this.http.post('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
-      aggregateBy : [{
-        dataSourceId: 'derived:com.google.weight:com.google.android.gms:merge_weight'
-      },
-      {
-        dataTypeName: 'com.google.step_count.delta',
-        dataSourceId: 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps'
-      }],
+      aggregateBy : [
+        {
+          dataSourceId: 'derived:com.google.weight:com.google.android.gms:merge_weight'
+        },
+        {
+          dataTypeName: 'com.google.step_count.delta',
+          dataSourceId: 'derived:com.google.step_count.delta:com.google.android.gms:estimated_steps'
+        },
+        {
+          dataSourceId: 'derived:com.google.heart_rate.bpm:com.google.android.gms:merge_heart_rate_bpm'
+        }
+      ],
         startTimeMillis: moment().subtract(89, 'd').valueOf(),
         endTimeMillis: new Date().valueOf()
       }, {

@@ -1,48 +1,55 @@
-import { Component, Input, OnDestroy, AfterContentInit, NgZone, DoCheck } from '@angular/core';
+import { Component, Input, OnDestroy, AfterContentInit, NgZone, DoCheck, ChangeDetectorRef } from '@angular/core';
 
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import am4themes_dark from '@amcharts/amcharts4/themes/amchartsdark';
+import { Subject, Subscription } from 'rxjs';
 
 import { ActivityChartData } from 'src/app/shared/models/activity-chart-data.model';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 am4core.useTheme(am4themes_dark);
 am4core.useTheme(am4themes_animated);
 
+@AutoUnsubscribe()
 @Component({
-  selector: 'app-weight',
-  templateUrl: 'weight.component.html',
-  styleUrls: ['weight.component.css']
+  selector: 'app-chart',
+  templateUrl: 'chart.component.html',
+  styleUrls: ['chart.component.css']
 })
-export class WeightComponent implements  AfterContentInit, DoCheck, OnDestroy {
+export class ChartComponent implements  AfterContentInit, OnDestroy {
 
-  @Input() weightChartData: ActivityChartData[];
+  @Input() chartData: ActivityChartData[];
+  @Input() caption: string;
+  @Input() axisTitle: string;
+  @Input() chartId: string;
+  @Input() renderSubject: Subject<void>;
 
   private chart: am4charts.XYChart;
+  private renderSubscription: Subscription;
 
   constructor(
     private ngZone: NgZone
   ) {}
 
   ngAfterContentInit() {
+    this.subscribeToRender();
     setTimeout(async () => {
       await this.initChart();
     }, 200);
   }
 
-  ngDoCheck() {
-    this.initChart();
-  }
-
   private async initChart(): Promise<any> {
     this.disposeChart();
-    this.chart = am4core.create('chartdiv', am4charts.XYChart);
-    this.chart.data = this.weightChartData;
+    this.chart = am4core.create(this.chartId, am4charts.XYChart);
+    this.chart.data = this.chartData;
     const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.minGridDistance = 50;
 
     const valueAxis = this.chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.title.text = this.axisTitle;
+    valueAxis.title.rotation = 0;
 
     const series = this.chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = 'data';
@@ -62,6 +69,11 @@ export class WeightComponent implements  AfterContentInit, DoCheck, OnDestroy {
     this.chart.cursor = new am4charts.XYCursor();
     this.chart.cursor.xAxis = dateAxis;
     this.chart.cursor.snapToSeries = series;
+  }
+
+  private subscribeToRender(): void {
+    this.renderSubscription = this.renderSubject
+      .subscribe(() => this.initChart());
   }
 
   private disposeChart(): void {
