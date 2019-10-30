@@ -3,4 +3,9 @@
   <div class="activity__description">
     If you have such fitness tracker as smartphone, smart watches or fitness bracelet you have ability to synchronize your data with gisfit! You just need to sync this data with Google Fit application for your smartphone and click "synchronize" button in this page.
   </div>
+  <div class="activity__content">
+    <div class="activity__item">
+      <app-weight [weightChartData]="weight" *ngIf="weight.length"></app-weight>
+    </div>
+  </div>
 </div>

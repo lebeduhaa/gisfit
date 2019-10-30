@@ -1,32 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-import * as moment from 'moment';
 
 import { ActivityService } from '../../services/activity.service';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { User } from 'src/app/shared/models/user.model';
 import { GoogleFit } from 'src/app/shared/models/google-fit.model';
+import { ActivityChartData } from 'src/app/shared/models/activity-chart-data.model';
 
 @Component({
   selector: 'app-activity',
   templateUrl: 'activity.component.html',
   styleUrls: ['activity.component.css']
 })
-export class ActivityComponent implements OnInit {
+export class ActivityComponent implements OnInit, OnDestroy {
 
-  public weight: any[] = [];
+  public weight: ActivityChartData[] = [];
 
   private currentUserSubscription: Subscription;
   private user: User;
+  private intervalId;
 
   constructor(
     private activityService: ActivityService,
-    private realTimeDataService: RealTimeDataService
+    private realTimeDataService: RealTimeDataService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.subscribeToCurrentUser();
+    this.getActualData();
   }
 
   private async getActivity(): Promise<any> {
@@ -44,15 +47,29 @@ export class ActivityComponent implements OnInit {
   }
 
   private groupActivity(googleFit: GoogleFit[]): void {
+    const tempWeight: ActivityChartData[] = [];
+
     googleFit[0].point.forEach(weightPoint => {
-      console.log(weightPoint.startTimeNanos / 100000000);
-      console.log(moment(weightPoint.startTimeNanos).format('MMMM Do YYYY'));
-      this.weight.push({
-        value: weightPoint.value[0].fpVal
+      tempWeight.push({
+        data: weightPoint.value[0].fpVal,
+        date: new Date(weightPoint.startTimeNanos / 1000000)
       });
     });
 
-    console.log(this.weight);
+    if (tempWeight.length !== this.weight.length) {
+      this.weight = tempWeight;
+      this.changeDetectorRef.markForCheck();
+    }
+  }
+
+  private getActualData(): void {
+    this.intervalId = setInterval(() => {
+      this.getActivity();
+    }, 10000);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
   }
 
 }
