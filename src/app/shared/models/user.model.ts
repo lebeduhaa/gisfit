@@ -33,4 +33,6 @@ export interface User {
   addedProducts?: string[];
   disableTips?: boolean;
   accessToken?: string;
+  refreshToken?: string;
+  accessTokenExpiresIn?: number;
 }

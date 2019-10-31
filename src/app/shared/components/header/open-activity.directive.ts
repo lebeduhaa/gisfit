@@ -1,9 +1,10 @@
 import { Directive, HostListener, OnDestroy, OnInit } from '@angular/core';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 
 import { RealTimeDataService } from '../../services/real-time-data.service';
-import { Subscription } from 'rxjs';
 import { User } from '../../models/user.model';
 import { RouterHelper } from '../../services/router.service';
 import { APP } from '../../constants';
@@ -37,7 +38,11 @@ export class OpenActivityDirective implements OnDestroy, OnInit {
     } else {
       const result = await this.activityService.googleSignIn();
 
-      await this.settingsService.updateUserData({accessToken: result.credential.accessToken}, this.user.id);
+      await this.settingsService.updateUserData({
+        accessToken: result.credential.accessToken,
+        refreshToken: result.user.refreshToken,
+        accessTokenExpiresIn: moment().add(1, 'h').valueOf()
+      }, this.user.id);
       this.routerHelper.navigateToPage(APP.pages.activity);
     }
   }

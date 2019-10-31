@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as moment from 'moment';
+
+import { environment } from 'src/environments/environment';
+import { Refresh } from 'src/app/shared/models/refresh.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +46,15 @@ export class ActivityService {
     return signInResult;
   }
 
-  public getExpiration(token): void {
-    this.http.get(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${token}`)
-      .subscribe(expiration => console.log(expiration));
+  public refreshToken(): Observable<Refresh> {
+    return this.http.post(
+      `https://securetoken.googleapis.com/v1/token?key=${environment.firebase.apiKey}`,
+      `grant_type=refresh_token&refresh_token=${this.auth.auth.currentUser.refreshToken}`,
+      {
+        headers: {
+          ['Content-Type']: 'application/x-www-form-urlencoded'
+        }
+      });
   }
 
   public async getActivity(accessToken: string): Promise<any> {

@@ -10,6 +10,9 @@
             <div class="product__action" *ngIf="product.user.id === userId">
               <mat-icon color="primary" appEditProduct [product]="product">edit</mat-icon>
             </div>
+            <div class="product__action" *ngIf="product.dish">
+              <mat-icon color="primary" appEditProduct [product]="product">info</mat-icon>
+            </div>
           </div>
           <div *ngIf="my && !selection" class="product__action" (confirmationEvent)="reactOnConfirmDeleteProduct($event)" appOpenAreYouSure caption="Do you really want to delete product '{{product.productName}}'?">
             <mat-icon color="primary">delete</mat-icon>
