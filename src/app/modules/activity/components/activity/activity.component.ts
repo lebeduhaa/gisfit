@@ -7,6 +7,7 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
 import { User } from 'src/app/shared/models/user.model';
 import { GoogleFit } from 'src/app/shared/models/google-fit.model';
 import { ActivityChartData } from 'src/app/shared/models/activity-chart-data.model';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-activity',
@@ -19,9 +20,9 @@ export class ActivityComponent implements OnInit, OnDestroy {
   public steps: ActivityChartData[] = [];
   public heartRate: ActivityChartData[] = [];
   public progressBarVisibility: boolean;
-  public weightSubject = new Subject<void>();
-  public stepsSubject = new Subject<void>();
-  public heartSubject = new Subject<void>();
+  public weightSubject = new Subject<ActivityChartData[]>();
+  public stepsSubject = new Subject<ActivityChartData[]>();
+  public heartSubject = new Subject<ActivityChartData[]>();
 
   private currentUserSubscription: Subscription;
   private user: User;
@@ -30,7 +31,8 @@ export class ActivityComponent implements OnInit, OnDestroy {
   constructor(
     private activityService: ActivityService,
     private realTimeDataService: RealTimeDataService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private auth: AngularFireAuth
   ) {}
 
   ngOnInit() {
@@ -57,6 +59,8 @@ export class ActivityComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
+        console.log(this.auth.auth.currentUser.refreshToken);
+        this.activityService.getExpiration(this.user.accessToken);
         this.getActivity(true);
       });
   }
@@ -73,7 +77,9 @@ export class ActivityComponent implements OnInit, OnDestroy {
 
     if (tempHeartRate.length !== this.heartRate.length) {
       this.heartRate = tempHeartRate;
-      this.heartSubject.next();
+      setTimeout(() => {
+        this.heartSubject.next(this.heartRate);
+      }, 0);
     }
   }
 
@@ -89,7 +95,9 @@ export class ActivityComponent implements OnInit, OnDestroy {
 
     if (tempWeight.length !== this.weight.length) {
       this.weight = tempWeight;
-      this.weightSubject.next();
+      setTimeout(() => {
+        this.weightSubject.next(this.weight);
+      }, 0);
     }
   }
 
@@ -116,7 +124,9 @@ export class ActivityComponent implements OnInit, OnDestroy {
 
     if (this.steps.length !== tempSteps.length || this.steps[this.steps.length - 1].data !== tempSteps[tempSteps.length - 1].data) {
       this.steps = tempSteps;
-      this.stepsSubject.next();
+      setTimeout(() => {
+        this.stepsSubject.next(this.steps);
+      }, 0);
     }
   }
 

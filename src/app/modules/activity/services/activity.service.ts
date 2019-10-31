@@ -42,6 +42,11 @@ export class ActivityService {
     return signInResult;
   }
 
+  public getExpiration(token): void {
+    this.http.get(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${token}`)
+      .subscribe(expiration => console.log(expiration));
+  }
+
   public async getActivity(accessToken: string): Promise<any> {
     const activity = await this.http.post('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
       aggregateBy : [

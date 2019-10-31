@@ -20,30 +20,27 @@ am4core.useTheme(am4themes_animated);
 })
 export class ChartComponent implements  AfterContentInit, OnDestroy {
 
-  @Input() chartData: ActivityChartData[];
   @Input() caption: string;
   @Input() axisTitle: string;
   @Input() chartId: string;
-  @Input() renderSubject: Subject<void>;
+  @Input() renderSubject: Subject<ActivityChartData[]>;
 
   private chart: am4charts.XYChart;
   private renderSubscription: Subscription;
 
   constructor(
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngAfterContentInit() {
     this.subscribeToRender();
-    setTimeout(async () => {
-      await this.initChart();
-    }, 200);
   }
 
-  private async initChart(): Promise<any> {
+  private async initChart(chartData: ActivityChartData[]): Promise<any> {
     this.disposeChart();
     this.chart = am4core.create(this.chartId, am4charts.XYChart);
-    this.chart.data = this.chartData;
+    this.chart.data = chartData;
     const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.minGridDistance = 50;
 
@@ -73,7 +70,10 @@ export class ChartComponent implements  AfterContentInit, OnDestroy {
 
   private subscribeToRender(): void {
     this.renderSubscription = this.renderSubject
-      .subscribe(() => this.initChart());
+      .subscribe(chartData => {
+        this.initChart(chartData);
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
   private disposeChart(): void {

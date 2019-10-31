@@ -2,19 +2,19 @@
   <div class="activity__progress-bar" *ngIf="progressBarVisibility">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
-  <!-- <div class="activity__title">Your activity</div>
+  <div class="activity__title">Your activity</div>
   <div class="activity__description">
     If you have such fitness tracker as smartphone, smart watches or fitness bracelet you have ability to synchronize your data with gisfit! You just need to sync this data with Google Fit application for your smartphone and click "synchronize" button in this page.
-  </div> -->
+  </div>
   <div class="activity__content" *ngIf="!progressBarVisibility">
     <div class="activity__item">
-      <app-chart [renderSubject]="weightSubject" [chartData]="weight" chartId="weightChart" caption="Weight" axisTitle="Kg" *ngIf="weight.length"></app-chart>
+      <app-chart [renderSubject]="weightSubject" chartId="weightChart" caption="Weight" axisTitle="Kg" [hidden]="!weight.length"></app-chart>
     </div>
     <div class="activity__item">
-      <app-chart [renderSubject]="stepsSubject" [chartData]="steps" chartId="stepsChart" caption="Steps" axisTitle="Steps" *ngIf="steps.length"></app-chart>
+      <app-chart [renderSubject]="stepsSubject" chartId="stepsChart" caption="Steps" axisTitle="Steps" [hidden]="!steps.length"></app-chart>
     </div>
     <div class="activity__item">
-      <app-chart [renderSubject]="heartSubject" [chartData]="heartRate" chartId="heartRate" caption="Heart rate" axisTitle="Bits" *ngIf="heartRate.length"></app-chart>
+      <app-chart [renderSubject]="heartSubject" chartId="heartRate" caption="Heart rate" axisTitle="Bits" [hidden]="!heartRate.length"></app-chart>
     </div>
   </div>
 </div>
