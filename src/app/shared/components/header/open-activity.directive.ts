@@ -10,6 +10,7 @@ import { RouterHelper } from '../../services/router.service';
 import { APP } from '../../constants';
 import { ActivityService } from 'src/app/modules/activity/services/activity.service';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
+import { GoogleApiService } from '../../services/gapi.service';
 
 @AutoUnsubscribe()
 @Directive({
@@ -23,8 +24,8 @@ export class OpenActivityDirective implements OnDestroy, OnInit {
   constructor(
     private realTimeDataService: RealTimeDataService,
     private routerHelper: RouterHelper,
-    private activityService: ActivityService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private googleApiService: GoogleApiService
   ) {}
 
   ngOnInit() {
@@ -36,14 +37,20 @@ export class OpenActivityDirective implements OnDestroy, OnInit {
     if (this.user.accessToken) {
       this.routerHelper.navigateToPage(APP.pages.activity);
     } else {
-      const result = await this.activityService.googleSignIn();
+      this.googleApiService.singIn()
+        .subscribe(async auth => {
+          const authResponse = await auth.signIn();
 
-      await this.settingsService.updateUserData({
-        accessToken: result.credential.accessToken,
-        refreshToken: result.user.refreshToken,
-        accessTokenExpiresIn: moment().add(1, 'h').valueOf()
-      }, this.user.id);
-      this.routerHelper.navigateToPage(APP.pages.activity);
+          console.log(authResponse.getAuthResponse());
+        });
+
+
+      // await this.settingsService.updateUserData({
+      //   accessToken: result.credential.accessToken,
+      //   refreshToken: result.user.refreshToken,
+      //   accessTokenExpiresIn: moment().add(1, 'h').valueOf()
+      // }, this.user.id);
+      // this.routerHelper.navigateToPage(APP.pages.activity);
     }
   }
 

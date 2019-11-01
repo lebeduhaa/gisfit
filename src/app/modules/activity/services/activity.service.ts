@@ -43,18 +43,25 @@ export class ActivityService {
 
     const signInResult = await this.auth.auth.signInWithPopup(provider);
 
+    console.log(signInResult);
+
     return signInResult;
   }
 
-  public refreshToken(): Observable<Refresh> {
-    return this.http.post(
-      `https://securetoken.googleapis.com/v1/token?key=${environment.firebase.apiKey}`,
-      `grant_type=refresh_token&refresh_token=${this.auth.auth.currentUser.refreshToken}`,
-      {
-        headers: {
-          ['Content-Type']: 'application/x-www-form-urlencoded'
-        }
-      });
+  public refreshToken(accessToken: string): Observable<Refresh> {
+  //   return this.http.post(
+  //     `https://accounts.google.com/o/oauth2/token?key=${environment.firebase.apiKey}`,
+  //     `grant_type=refresh_token&refresh_token=${this.auth.auth.currentUser.refreshToken}`,
+  // );
+
+      return this.http.post(
+        `https://securetoken.googleapis.com/v1/token?key=${environment.firebase.apiKey}`,
+        `grant_type=refresh_token&refresh_token=${this.auth.auth.currentUser.refreshToken}`,
+        {
+          headers: {
+            ['Content-Type']: 'application/x-www-form-urlencoded'
+          }
+        });
   }
 
   public async getActivity(accessToken: string): Promise<any> {

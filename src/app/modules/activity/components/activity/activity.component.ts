@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
 import { Subscription, Subject } from 'rxjs';
 import * as moment from 'moment';
+import * as firebase from 'firebase';
 
 import { ActivityService } from '../../services/activity.service';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
@@ -9,6 +10,8 @@ import { User } from 'src/app/shared/models/user.model';
 import { GoogleFit } from 'src/app/shared/models/google-fit.model';
 import { ActivityChartData } from 'src/app/shared/models/activity-chart-data.model';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
+import { HttpClient } from '@angular/common/http';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-activity',
@@ -33,7 +36,9 @@ export class ActivityComponent implements OnInit, OnDestroy {
     private activityService: ActivityService,
     private realTimeDataService: RealTimeDataService,
     private changeDetectorRef: ChangeDetectorRef,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private http: HttpClient,
+    private auth: AngularFireAuth
   ) {}
 
   ngOnInit() {
@@ -46,8 +51,15 @@ export class ActivityComponent implements OnInit, OnDestroy {
 
     console.log(expirationTime);
 
-    if (expirationTime < 5) {
-      const refreshResult = await this.activityService.refreshToken().toPromise();
+    if (expirationTime < 2) {
+      const refreshResult = await this.activityService.refreshToken(this.user.accessToken).toPromise();
+
+      console.log({
+        accessToken: refreshResult.access_token,
+        refreshToken: refreshResult.refresh_token,
+        accessTokenExpiresIn: moment().add(1, 'h').valueOf(),
+        token_type: refreshResult.token_type
+      });
 
       await this.settingsService.updateUserData({
         accessToken: refreshResult.access_token,
@@ -77,6 +89,9 @@ export class ActivityComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
+        console.log(this.auth.auth.currentUser);
+        // this.auth.auth.currentUser.getIdToken(true).then(result => console.log(result));
+        // this.activityService.refreshToken(this.user.accessToken).toPromise().then(console.log);
         this.getActivity(true);
       });
   }

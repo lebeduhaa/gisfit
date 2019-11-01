@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-
+import { GoogleApiModule, NG_GAPI_CONFIG} from 'ng-gapi';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -36,6 +36,17 @@ export function HttpLoaderFactory(http: HttpClient) {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
+      }
+    }),
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: {
+        client_id: '256573430882-kqp0jdg4cv3nav20jqd5iefuu500e6vc.apps.googleusercontent.com',
+        discoveryDocs: [],
+        scope: [
+        'https://www.googleapis.com/auth/analytics.readonly',
+        'https://www.googleapis.com/auth/analytics'
+        ].join(' ')
       }
     })
   ],
