@@ -7,11 +7,11 @@
             <div class="product__action" (click)="selectProduct()">
               <mat-icon color="primary">check</mat-icon>
             </div>
-            <div class="product__action" *ngIf="product.user.id === userId">
-              <mat-icon color="primary" appEditProduct [product]="product">edit</mat-icon>
+            <div class="product__action" appEditProduct [product]="product" *ngIf="product.user.id === userId">
+              <mat-icon color="primary">edit</mat-icon>
             </div>
-            <div class="product__action" *ngIf="product.dish">
-              <mat-icon color="primary" appEditProduct [product]="product">info</mat-icon>
+            <div class="product__action" *ngIf="product.dish" appOpenDish [dish]="product">
+              <mat-icon color="primary">priority_high</mat-icon>
             </div>
           </div>
           <div *ngIf="my && !selection" class="product__action" (confirmationEvent)="reactOnConfirmDeleteProduct($event)" appOpenAreYouSure caption="Do you really want to delete product '{{product.productName}}'?">

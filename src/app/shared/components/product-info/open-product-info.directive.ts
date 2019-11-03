@@ -1,7 +1,7 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ProductInfoComponent } from '../components/product-info/product-info.component';
+import { ProductInfoComponent } from './product-info.component';
 import { Product } from 'src/app/shared/models/product.model';
 
 @Directive({
@@ -10,6 +10,7 @@ import { Product } from 'src/app/shared/models/product.model';
 export class OpenProductInfoDirective {
 
   @Input() product: Product;
+  @Input() disabled: boolean;
 
   constructor(
     private dialog: MatDialog
@@ -17,13 +18,15 @@ export class OpenProductInfoDirective {
 
   @HostListener('click')
   openProductDetails(): void {
-    this.dialog.open(ProductInfoComponent, {
-      data: {
-        product: this.product
-      },
-      width: '400px',
-      height: 'auto'
-    });
+    if (!this.disabled) {
+      this.dialog.open(ProductInfoComponent, {
+        data: {
+          product: this.product
+        },
+        width: '400px',
+        height: 'auto'
+      });
+    }
   }
 
 }

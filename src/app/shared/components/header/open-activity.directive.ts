@@ -19,6 +19,7 @@ import { GoogleApiService } from '../../services/gapi.service';
 export class OpenActivityDirective implements OnDestroy, OnInit {
 
   private currentUserSubscription: Subscription;
+  private signInSubscription: Subscription;
   private user: User;
 
   constructor(
@@ -37,20 +38,16 @@ export class OpenActivityDirective implements OnDestroy, OnInit {
     if (this.user.accessToken) {
       this.routerHelper.navigateToPage(APP.pages.activity);
     } else {
-      this.googleApiService.singIn()
+      this.signInSubscription = this.googleApiService.singIn()
         .subscribe(async auth => {
-          const authResponse = await auth.signIn();
+          const authResponse = (await auth.signIn()).getAuthResponse();
 
-          console.log(authResponse.getAuthResponse());
+          await this.settingsService.updateUserData({
+            accessToken: authResponse.access_token,
+            accessTokenExpiresIn: moment().add(1, 'h').valueOf()
+          }, this.user.id);
+          this.routerHelper.navigateToPage(APP.pages.activity);
         });
-
-
-      // await this.settingsService.updateUserData({
-      //   accessToken: result.credential.accessToken,
-      //   refreshToken: result.user.refreshToken,
-      //   accessTokenExpiresIn: moment().add(1, 'h').valueOf()
-      // }, this.user.id);
-      // this.routerHelper.navigateToPage(APP.pages.activity);
     }
   }
 

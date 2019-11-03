@@ -16,4 +16,15 @@ export class GoogleApiService {
     return this.googleAuth.getAuth();
   }
 
+  public async refreshAccessToken(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.googleAuth.getAuth().toPromise().then(async auth => {
+        const user = auth.currentUser.get();
+        const response = await user.reloadAuthResponse();
+
+        resolve(response.access_token);
+      });
+    });
+  }
+
 }

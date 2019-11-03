@@ -1,7 +1,9 @@
 import { Directive, HostListener, Input } from '@angular/core';
+
 import { MatDialog } from '@angular/material/dialog';
-import { DishDetailsComponent } from '../components/dish-details/dish-details.component';
+
 import { Product } from 'src/app/shared/models/product.model';
+import { DishDetailsComponent } from './dish-details.component';
 
 @Directive({
   selector: '[appOpenDish]'
@@ -14,8 +16,9 @@ export class OpenDishDirective {
     private dialog: MatDialog
   ) {}
 
-  @HostListener('click')
-  openDialog(): void {
+  @HostListener('click', ['$event'])
+  openDialog(event: MouseEvent): void {
+    event.stopPropagation();
     this.dialog.open(DishDetailsComponent, {
       width: '700px',
       maxWidth: '700px',

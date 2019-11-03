@@ -14,8 +14,6 @@ import { InputFileModule } from 'src/app/shared/components/input-file/input-file
 import { AddProductComponent } from '../components/add-product/add-product.component';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { ProductComponent } from '../components/product/product.component';
-import { ProductInfoComponent } from '../components/product-info/product-info.component';
-import { OpenProductInfoDirective } from '../directives/open-product-info.directive';
 import { RadioGroupModule } from 'src/app/shared/components/radio-group/radio-group.module';
 import { CurrentEatingComponent } from '../components/current-eating/current-eating.component';
 import { FlyingProductComponent } from '../components/flying-product/flying-product.component';
@@ -35,6 +33,8 @@ import { AutoCalcComponent } from '../components/auto-calc/auto-calc.component';
 import { OpenAutoCalcDirective } from '../directives/open-auto-calc.directive';
 import { EditProductComponent } from '../components/edit-product/edit-product.component';
 import { OpenEditProductDirective } from '../directives/open-edit-product.directive';
+import { DishDetailsModule } from 'src/app/shared/components/dish-details/dish-details.module';
+import { ProductInfoModule } from 'src/app/shared/components/product-info/product-info.module';
 
 @NgModule({
   imports: [
@@ -57,13 +57,14 @@ import { OpenEditProductDirective } from '../directives/open-edit-product.direct
     SearchModule,
     TextareaModule,
     ProductCardModule,
-    CurrentProgressModule
+    CurrentProgressModule,
+    DishDetailsModule,
+    ProductInfoModule
   ],
   declarations: [
     MyFoodComponent,
     AddProductComponent,
     ProductComponent,
-    ProductInfoComponent,
     CurrentEatingComponent,
     FlyingProductComponent,
     CustomGoalsComponent,
@@ -71,13 +72,11 @@ import { OpenEditProductDirective } from '../directives/open-edit-product.direct
     AdviceComponent,
     AutoCalcComponent,
     EditProductComponent,
-    OpenProductInfoDirective,
     OpenCustomGoalsDirective,
     OpenAutoCalcDirective,
     OpenEditProductDirective
   ],
   entryComponents: [
-    ProductInfoComponent,
     CustomGoalsComponent,
     AutoCalcComponent,
     EditProductComponent
