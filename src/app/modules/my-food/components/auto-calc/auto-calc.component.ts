@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 
@@ -10,7 +10,8 @@ import { TotalCalculation, Calculation } from 'src/app/shared/models/calculation
 @Component({
   selector: 'app-auto-calc',
   templateUrl: 'auto-calc.component.html',
-  styleUrls: ['auto-calc.component.css']
+  styleUrls: ['auto-calc.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutoCalcComponent implements OnInit {
 
@@ -20,7 +21,8 @@ export class AutoCalcComponent implements OnInit {
 
   constructor(
     private myFoodService: MyFoodService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -50,7 +52,6 @@ export class AutoCalcComponent implements OnInit {
       totalCalculation.totalFats += product.fats;
       totalCalculation.totalCarbohydrates += product.carbohydrates;
       totalCalculation.totalWeight += Number(product.weight);
-
     });
 
     this.close({
@@ -74,6 +75,7 @@ export class AutoCalcComponent implements OnInit {
   private async getAllProducts(): Promise<void> {
     this.products = await this.myFoodService.getAllProducts();
     this.displayedProducts = this.products;
+    this.changeDetectorRef.markForCheck();
   }
 
 }
