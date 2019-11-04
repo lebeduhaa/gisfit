@@ -44,8 +44,10 @@ export function HttpLoaderFactory(http: HttpClient) {
         client_id: '256573430882-kqp0jdg4cv3nav20jqd5iefuu500e6vc.apps.googleusercontent.com',
         discoveryDocs: [],
         scope: [
-        'https://www.googleapis.com/auth/analytics.readonly',
-        'https://www.googleapis.com/auth/analytics'
+          'https://www.googleapis.com/auth/fitness.activity.read',
+          'https://www.googleapis.com/auth/fitness.activity.write',
+          'https://www.googleapis.com/auth/fitness.body.read',
+          'https://www.googleapis.com/auth/fitness.body.write'
         ].join(' ')
       }
     })

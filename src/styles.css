@@ -148,7 +148,10 @@ html {
 .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label, .mat-accent .mat-slider-track-fill {
   background-color: #5147da;
 }
-
+.scrollable-content {
+  display: flex;
+  flex-wrap: wrap;
+}
 @keyframes popup {
   20% {
     box-shadow: 0 0 15px #ffffff52;

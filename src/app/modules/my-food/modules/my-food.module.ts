@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ClickOutsideModule } from 'ng-click-outside';
+import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { MyFoodComponent } from '../components/my-food/my-food.component';
@@ -59,7 +60,8 @@ import { ProductInfoModule } from 'src/app/shared/components/product-info/produc
     ProductCardModule,
     CurrentProgressModule,
     DishDetailsModule,
-    ProductInfoModule
+    ProductInfoModule,
+    VirtualScrollerModule
   ],
   declarations: [
     MyFoodComponent,
