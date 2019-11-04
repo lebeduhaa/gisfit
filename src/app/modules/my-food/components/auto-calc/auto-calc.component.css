@@ -16,13 +16,10 @@ mat-dialog-content {
 .auto-calc__selection {
   width: 460px;
 }
-.auto-calc__products {
+virtual-scroller {
   width: 760px;
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 15px;
   overflow-y: auto;
-  height: calc(80vh - 170px);
+  height: calc(80vh - 180px);
 }
 .auto-calc__product {
   flex-basis: 25%;
@@ -56,6 +53,7 @@ app-custom-button:first-of-type {
 .auto-calc__search {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 .auto-calc /deep/ .current-eating__product {
   flex-basis: 33.3%;

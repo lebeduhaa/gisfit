@@ -1,7 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, ViewChild } from '@angular/core';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
+import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
 
 import { MyFoodService } from '../../services/my-food.service';
 import { Product } from 'src/app/shared/models/product.model';
@@ -25,6 +26,8 @@ import { MatDialog } from '@angular/material/dialog';
   ]
 })
 export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, OnDestroy {
+
+  @ViewChild('scroll') scroll: VirtualScrollerComponent;
 
   public progressBarVisibility: boolean;
   public products: Product[];

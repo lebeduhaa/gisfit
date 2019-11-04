@@ -36,5 +36,24 @@
   "toggle": {
     "on": "on",
     "off": "off"
+  },
+  "my-food": {
+    "my-progress": "My progress",
+    "calories": "Calories",
+    "protein": "Protein",
+    "fats": "Fats",
+    "carbohydrates": "Carbohydrates",
+    "kcal": "kcal",
+    "g": "g",
+    "my-food-description": "Here are your products. You can add your food, select it today and receive daily report at your according time.",
+    "add-product": "Add product",
+    "find-more": "Find-more",
+    "search": "Search",
+    "product-categories": "Product categories",
+    "dish-categories": "Dish categories",
+    "food-options": "Food options",
+    "disable-tips": "Disable tips",
+    "use-custom-goals": "Use custom goals.",
+    "custom-goals": "Custom goals"
   }
 }

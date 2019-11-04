@@ -11,15 +11,15 @@
     </div>
     <div class="my-food__my-products" [hidden]="!userFillRequiredData">
       <div class="my-food__description">
-        Here are your products. You can add your food, select it today and receive daily report at your according time.
+        {{'my-food.my-food-description' | translate}}
       </div>
       <div class="my-food__actions">
-        <app-spinner-button caption="Add product" [small]="true" routerLink="/add-product" [queryParams]="{previous: 'my-food'}"></app-spinner-button>
-        <app-spinner-button caption="Find more" [small]="true" *ngIf="myProducts" (click)="findMoreProducts()"></app-spinner-button>
-        <app-spinner-button caption="My products" [small]="true" *ngIf="!myProducts" (click)="goBackToMyProducts()"></app-spinner-button>
+        <app-spinner-button caption="{{'my-food.add-product' | translate}}" [small]="true" routerLink="/add-product" [queryParams]="{previous: 'my-food'}"></app-spinner-button>
+        <app-spinner-button caption="{{'my-food.find-more' | translate}}" [small]="true" *ngIf="myProducts" (click)="findMoreProducts()"></app-spinner-button>
+        <app-spinner-button caption="{{'my-food.search' | translate}}" [small]="true" *ngIf="!myProducts" (click)="goBackToMyProducts()"></app-spinner-button>
         <app-search caption="Search" (searchEvent)="reactOnSearch($event)"></app-search>
       </div>
-      <virtual-scroller #scroll [items]="displayedProducts" *ngIf="displayedProducts">
+      <virtual-scroller #scroll [items]="displayedProducts" [bufferAmount]="2" *ngIf="displayedProducts">
         <div class="my-food__products-not-found" *ngIf="displayedProducts.length === 0">There are not products:(</div>
         <div class="my-food__product" *ngFor="let product of scroll.viewPortItems">
           <app-product
@@ -29,30 +29,20 @@
             (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
         </div>
       </virtual-scroller>
-      <!-- <div class="my-food__products" *ngIf="products">
-        <div class="my-food__products-not-found" *ngIf="displayedProducts.length === 0">There are not products:(</div>
-        <div class="my-food__product" *ngFor="let product of displayedProducts">
-          <app-product
-            [my]="myProducts"
-            [product]="product"
-            (addProductEvent)="reactOnAddProduct($event)"
-            (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
-        </div>
-      </div> -->
     </div>
     <div class="my-food__right-bar" [hidden]="!userFillRequiredData">
-      <app-categories (selectCategoryEvent)="reactOnSelectProductCategoryEvent($event)" caption="Product categories" [options]="productCategories"></app-categories>
-      <app-categories (selectCategoryEvent)="reactOnSelectDishCategoryEvent($event)" caption="Dish categories" [options]="dishCategories"></app-categories>
+      <app-categories (selectCategoryEvent)="reactOnSelectProductCategoryEvent($event)" caption="{{'my-food.product-categories' | translate}}" [options]="productCategories"></app-categories>
+      <app-categories (selectCategoryEvent)="reactOnSelectDishCategoryEvent($event)" caption="{{'my-food.dish-categories' | translate}}" [options]="dishCategories"></app-categories>
       <div class="my-food__options">
-        <div class="my-food__options-title">Food options</div>
+        <div class="my-food__options-title">{{'my-food.food-options' | translate}}</div>
         <div class="progress__trigger" *ngIf="user">
-          <app-toggle caption="Disable tips" [small]="true" [value]="user.disableTips" (change)="reactOnChangeTips($event)"></app-toggle>
+          <app-toggle caption="{{'my-food.disable-tips' | translate}}" [small]="true" [value]="user.disableTips" (change)="reactOnChangeTips($event)"></app-toggle>
         </div>
         <div class="progress__trigger" *ngIf="user">
-          <app-toggle caption="Use custom goals" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.ownGoal" (change)="reactOnChangeGoal($event)"></app-toggle>
+          <app-toggle caption="{{'my-food.use-custom-goals' | translate}}" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.ownGoal" (change)="reactOnChangeGoal($event)"></app-toggle>
         </div>
         <div class="progress__actions">
-          <app-spinner-button caption="Custom goals" [small]="true" appOpenCustomGoals></app-spinner-button>
+          <app-spinner-button caption="{{'my-food.custom-goals' | translate}}" [small]="true" appOpenCustomGoals></app-spinner-button>
         </div>
       </div>
       <div class="my-food__advice" @toRightAnimation *ngIf="user && !user?.disableTips">

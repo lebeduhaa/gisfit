@@ -1,20 +1,20 @@
 <div class="progress">
-  <div class="progress__title">My Progress</div>
+  <div class="progress__title">{{'my-food.my-progress' | translate}}</div>
   <div class="progress__content">
     <div class="progress__item">
-      <div class="progress__item-title" [class.progress__error]="currentCalories > caloriesGoal">Calories {{currentCalories}}<span class="progress__item-title-preview" *ngIf="caloriesPreviewNumber">(+{{caloriesPreviewNumber}})</span>/{{caloriesGoal}}kcal</div>
+      <div class="progress__item-title" [class.progress__error]="currentCalories > caloriesGoal">{{'my-food.calories' | translate}} {{currentCalories}}<span class="progress__item-title-preview" *ngIf="caloriesPreviewNumber">(+{{caloriesPreviewNumber}})</span>/{{caloriesGoal}}{{'my-food.kcal' | translate}}</div>
       <app-progress [value]="currentCaloriesPercent" [preview]="caloriesPreview" color="#d4195e"></app-progress>
     </div>
     <div class="progress__item">
-      <div class="progress__item-title" [class.progress__error]="currentProtein > proteinGoal">Protein {{currentProtein}}<span class="progress__item-title-preview" *ngIf="proteinPreviewNumber">(+{{proteinPreviewNumber}})</span>/{{proteinGoal}}g</div>
+      <div class="progress__item-title" [class.progress__error]="currentProtein > proteinGoal">{{'my-food.protein' | translate}} {{currentProtein}}<span class="progress__item-title-preview" *ngIf="proteinPreviewNumber">(+{{proteinPreviewNumber}})</span>/{{proteinGoal}}{{'my-food.g' | translate}}</div>
       <app-progress [value]="currentProteinPercent" [preview]="proteinPreview" color="#5147da"></app-progress>
     </div>
     <div class="progress__item">
-      <div class="progress__item-title" [class.progress__error]="currentFats > fatsGoal">Fats {{currentFats}}<span class="progress__item-title-preview" *ngIf="fatsPreviewNumber">(+{{fatsPreviewNumber}})</span>/{{fatsGoal}}g</div>
+      <div class="progress__item-title" [class.progress__error]="currentFats > fatsGoal">{{'my-food.fats' | translate}} {{currentFats}}<span class="progress__item-title-preview" *ngIf="fatsPreviewNumber">(+{{fatsPreviewNumber}})</span>/{{fatsGoal}}{{'my-food.g' | translate}}</div>
       <app-progress [value]="currentFatsPercent" [preview]="fatsPreview" color="#2fb5b5"></app-progress>
     </div>
     <div class="progress__item">
-      <div class="progress__item-title" [class.progress__error]="currentCarbohydrates > carbohydratesGoal">Carbohydrates {{currentCarbohydrates}}<span class="progress__item-title-preview" *ngIf="carbohydratesPreviewNumber">(+{{carbohydratesPreviewNumber}})</span>/{{carbohydratesGoal}}g</div>
+      <div class="progress__item-title" [class.progress__error]="currentCarbohydrates > carbohydratesGoal">{{'my-food.carbohydrates' | translate}} {{currentCarbohydrates}}<span class="progress__item-title-preview" *ngIf="carbohydratesPreviewNumber">(+{{carbohydratesPreviewNumber}})</span>/{{carbohydratesGoal}}{{'my-food.g' | translate}}</div>
       <app-progress [value]="currentCarbohydratesPercent" [preview]="carbohydratesPreview" color="#a79a00"></app-progress>
     </div>
   </div>

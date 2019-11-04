@@ -151,6 +151,7 @@ html {
 .scrollable-content {
   display: flex;
   flex-wrap: wrap;
+  padding-top: 15px;
 }
 @keyframes popup {
   20% {
