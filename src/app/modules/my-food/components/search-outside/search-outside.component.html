@@ -1,0 +1,15 @@
+<mat-dialog-content>
+  <div class="search-outside">
+    <div class="search-outside__title">Search product outside</div>
+    <div class="search-outside__content">
+      <div class="search-outside__control">
+        <app-input-text placeholder="Product name" icon="search">
+          <input type="text" [(ngModel)]="currentKey" (keydown.enter)="search()">
+        </app-input-text>
+      </div>
+      <div class="search-outside__search">
+        <app-spinner-button caption="Search" [small]="true"></app-spinner-button>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

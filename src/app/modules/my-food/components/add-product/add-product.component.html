@@ -1,51 +1,51 @@
 <div class="add-product" [formGroup]="productForm" [class.add-product_dish]="!isProductPage">
-  <div class="add-product__title">{{isProductPage ? 'Add new product' : 'Add new dish'}}</div>
+  <div class="add-product__title">{{(isProductPage ? 'my-food.add-new-product' : 'my-food.add-new-dish') | translate}}</div>
   <div class="add-product__progress-bar" *ngIf="progressBarVisibility">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
   <div class="add-product__content">
     <div class="add-product__dish" *ngIf="!isProductPage">
-      <app-textarea placeholder="Describe your dish" *ngIf="!isProductPage">
+      <app-textarea placeholder="{{'dishes.describe' | translate}}" *ngIf="!isProductPage">
         <textarea formControlName="description" #textarea></textarea>
       </app-textarea>
-      <app-textarea [detectChanges]="detectChangesSubject" placeholder="Ingredients" *ngIf="!isProductPage">
+      <app-textarea [detectChanges]="detectChangesSubject" placeholder="{{'dishes.ingredients' | translate}}" *ngIf="!isProductPage">
         <textarea formControlName="ingredients" #textarea></textarea>
       </app-textarea>
-      <app-textarea placeholder="Describe recipe *" *ngIf="!isProductPage">
+      <app-textarea placeholder="{{'dishes.describe-recipe' | translate}}" *ngIf="!isProductPage">
         <textarea formControlName="recipe" #textarea></textarea>
       </app-textarea>
     </div>
     <div class="add-product__left">
       <div class="add-product__control">
-        <app-input-text [placeholder]="isProductPage ? 'Product Name' : 'Dish Name'" icon="create">
+        <app-input-text placeholder="{{(isProductPage ? 'my-food.product-name' : 'my-food.dish-name') | translate}}" icon="create">
           <input type="text" formControlName="productName">
         </app-input-text>
       </div>
       <div class="add-product__control">
-        <app-select (change)="reactOnSelectCategory($event)" icon="list_alt" placeholder="Category">
+        <app-select (change)="reactOnSelectCategory($event)" icon="list_alt" placeholder="{{'my-food.category' | translate}}">
           <app-select-option
             *ngFor="let category of categories"
-            [value]="category"
-            [displayedValue]="category"></app-select-option>
+            [value]="category.value"
+            [displayedValue]="category.value"></app-select-option>
         </app-select>
       </div>
       <div class="add-product__control">
-        <app-input-text [detectChanges]="detectChangesSubject" icon="bubble_chart" placeholder="Calories (kcal/100g)">
+        <app-input-text [detectChanges]="detectChangesSubject" icon="bubble_chart" placeholder="{{'my-food.add-calories' | translate}}">
           <input type="text" formControlName="calories" appNumericControl>
         </app-input-text>
       </div>
       <div class="add-product__control">
-        <app-input-text [detectChanges]="detectChangesSubject" icon="scatter_plot" placeholder="Protein (g/100g)">
+        <app-input-text [detectChanges]="detectChangesSubject" icon="scatter_plot" placeholder="{{'my-food.add-protein' | translate}}">
           <input type="text" formControlName="protein" appNumericControl>
         </app-input-text>
       </div>
       <div class="add-product__control">
-        <app-input-text [detectChanges]="detectChangesSubject" icon="share" placeholder="Fats (g/100g)">
+        <app-input-text [detectChanges]="detectChangesSubject" icon="share" placeholder="{{'my-food.add-fats' | translate}}">
           <input type="text" formControlName="fats" appNumericControl>
         </app-input-text>
       </div>
       <div class="add-product__control">
-        <app-input-text [detectChanges]="detectChangesSubject" icon="grain" placeholder="Carbohydrates (g/100g)">
+        <app-input-text [detectChanges]="detectChangesSubject" icon="grain" placeholder="{{'my-food.add-carbohydrates' | translate}}">
           <input type="text" formControlName="carbohydrates" appNumericControl>
         </app-input-text>
       </div>
@@ -56,19 +56,20 @@
           <img [src]="productPreloadedPhoto ? productPreloadedPhoto : 'assets/img/no-photo.jpg'">
         </div>
         <app-input-file
-          caption="Upload image"
+          caption="{{'buttons.upload-image' | translate}}"
           (fileSelected)="reactOnSelectProductImage($event)"
           [clearFilesSubject]="clearFilesSubject"
         ></app-input-file>
-        <app-spinner-button *ngIf="!isProductPage" appOpenAutoCalc (calculation)="reactOnCalculation($event)" caption="Calculate attributes automatically" [small]="true"></app-spinner-button>
+        <app-spinner-button *ngIf="!isProductPage" appOpenAutoCalc (calculation)="reactOnCalculation($event)" caption="{{'dishes.calculate-automatically' | translate}}" [small]="true"></app-spinner-button>
+        <app-spinner-button *ngIf="isProductPage" appSearchOutside caption="Search from outside" [small]="true"></app-spinner-button>
       </div>
-      <app-input-text [detectChanges]="detectChangesSubject" icon="looks_one" [placeholder]="isProductPage ? 'Average mass of one piece(g)' : 'Average mass of serving'">
+      <app-input-text [detectChanges]="detectChangesSubject" icon="looks_one" placeholder="{{(isProductPage ? 'my-food.average-mass-of-one-piece' : 'my-food.average-mass-of-serving') | translate}}">
         <input type="text" formControlName="averageMassOfOnePiece" appNumericControl>
       </app-input-text>
     </div>
   </div>
   <div class="add-product__actions">
-    <app-custom-button color="accent" caption="Save" [disabled]="productForm.invalid" (click)="save()"></app-custom-button>
-    <app-custom-button color="warn" caption="Back" [routerLink]="'/' + previousPage"></app-custom-button>
+    <app-custom-button color="accent" caption="{{'buttons.save' | translate}}" [disabled]="productForm.invalid" (click)="save()"></app-custom-button>
+    <app-custom-button color="warn" caption="{{'buttons.back' | translate}}" [routerLink]="'/' + previousPage"></app-custom-button>
   </div>
 </div>

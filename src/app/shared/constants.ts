@@ -216,5 +216,6 @@ export const APP = {
     'THU',
     'FRI',
     'SAT'
-  ]
+  ],
+  searchOutsideUrl: 'https://e-dostavka.by/search/'
 };

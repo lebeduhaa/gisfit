@@ -16,8 +16,8 @@
       <div class="my-food__actions">
         <app-spinner-button caption="{{'my-food.add-product' | translate}}" [small]="true" routerLink="/add-product" [queryParams]="{previous: 'my-food'}"></app-spinner-button>
         <app-spinner-button caption="{{'my-food.find-more' | translate}}" [small]="true" *ngIf="myProducts" (click)="findMoreProducts()"></app-spinner-button>
-        <app-spinner-button caption="{{'my-food.search' | translate}}" [small]="true" *ngIf="!myProducts" (click)="goBackToMyProducts()"></app-spinner-button>
-        <app-search caption="Search" (searchEvent)="reactOnSearch($event)"></app-search>
+        <app-spinner-button caption="{{'my-food.my-products' | translate}}" [small]="true" *ngIf="!myProducts" (click)="goBackToMyProducts()"></app-spinner-button>
+        <app-search caption="{{'my-food.search' | translate}}" (searchEvent)="reactOnSearch($event)"></app-search>
       </div>
       <virtual-scroller #scroll [items]="displayedProducts" [bufferAmount]="2" *ngIf="displayedProducts">
         <div class="my-food__products-not-found" *ngIf="displayedProducts.length === 0">There are not products:(</div>

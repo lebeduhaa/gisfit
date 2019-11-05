@@ -36,6 +36,8 @@ import { EditProductComponent } from '../components/edit-product/edit-product.co
 import { OpenEditProductDirective } from '../directives/open-edit-product.directive';
 import { DishDetailsModule } from 'src/app/shared/components/dish-details/dish-details.module';
 import { ProductInfoModule } from 'src/app/shared/components/product-info/product-info.module';
+import { SearchOutsideComponent } from '../components/search-outside/search-outside.component';
+import { SearchOutsideDirective } from '../directives/search-outside.directive';
 
 @NgModule({
   imports: [
@@ -74,14 +76,17 @@ import { ProductInfoModule } from 'src/app/shared/components/product-info/produc
     AdviceComponent,
     AutoCalcComponent,
     EditProductComponent,
+    SearchOutsideComponent,
     OpenCustomGoalsDirective,
     OpenAutoCalcDirective,
-    OpenEditProductDirective
+    OpenEditProductDirective,
+    SearchOutsideDirective
   ],
   entryComponents: [
     CustomGoalsComponent,
     AutoCalcComponent,
-    EditProductComponent
+    EditProductComponent,
+    SearchOutsideComponent
   ],
   exports: [
     MyFoodComponent

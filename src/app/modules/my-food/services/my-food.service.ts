@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
@@ -18,8 +20,13 @@ export class MyFoodService {
   constructor(
     private firestore: AngularFirestore,
     private localStorageHelper: LocalStorageHelper,
-    private fireStorage: AngularFireStorage
+    private fireStorage: AngularFireStorage,
+    private http: HttpClient
   ) {}
+
+  public searchOutside(key: string): Observable<any> {
+    return this.http.get(`${APP.searchOutsideUrl}?searchtext=${key}&lazy_steep=${1}`);
+  }
 
   public deleteProduct(productId: string): Promise<any> {
     const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);

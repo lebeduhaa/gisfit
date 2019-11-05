@@ -24,13 +24,13 @@
               <mat-icon>{{likeAlreadySet() ? 'favorite' : 'favorite_border'}}</mat-icon>
             </button>
             <div class="dish__info-likes">
-              {{dish.likes.length}} likes
+              {{dish.likes.length}} {{'dishes.likes' | translate}}
             </div>
             <button mat-icon-button class="dish__comment-icon" (click)="openComments($event)" appScrollToBottom>
               <mat-icon>chat</mat-icon>
             </button>
             <div class="dish__info-comments">
-              {{dish.comments.length}} comments
+              {{dish.comments.length}} {{'dishes.comments' | translate}}
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
             <mat-icon>undo</mat-icon>
           </button>
         </div>
-        <div class="dish__comments-title">Comments</div>
+        <div class="dish__comments-title">{{'dishes.comments' | translate}}</div>
         <div class="dish__comments-chat">
           <div class="dish__comments-comment" *ngFor="let comment of dish.comments">
             <span class="dish__comments-comment-nickname">{{comment.nickname}}: </span>

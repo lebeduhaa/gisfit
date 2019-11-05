@@ -27,7 +27,9 @@
     "save": "Save",
     "cancel": "Cancel",
     "change-avatar": "Change Avatar",
-    "change-password": "Change Password"
+    "change-password": "Change Password",
+    "back": "Back",
+    "upload-image": "Upload image"
   },
   "cropper": {
     "preview": "Preview",
@@ -80,6 +82,30 @@
     "accept": "Accept",
     "how-much-did-you-eat": "How much did you eat?",
     "gram": "Gram",
-    "amount": "Amount"
+    "amount": "Amount",
+    "my-products": "My products",
+    "add-new-product": "Add new product",
+    "add-new-dish": "Добавление нового блюда",
+    "product-name": "Product name",
+    "dish-name": "Dish name",
+    "category": "Category",
+    "add-calories": "Calories (kcal/100g)",
+    "add-protein": "Protein (g/100g)",
+    "add-fats": "Fats (g/100g)",
+    "add-carbohydrates": "Carbohydrates (g/100g)",
+    "average-mass-of-one-piece": "Average mass of one piece (g)",
+    "average-mass-of-serving": "Average mass of serving (g)"
+  },
+  "dishes": {
+    "dishes": "Dishes",
+    "description": "You can add your dishes and use it as a product in your food. Discuss your dishes with other users. If you liked someone else’s dish you can use it as your food.",
+    "add-dish": "Add dish",
+    "search-dishes": "Search dish",
+    "likes": "Likes",
+    "comments": "Comments",
+    "describe": "Describe your dish",
+    "ingredients": "Ingredients",
+    "describe-recipe": "Describe recipe *",
+    "calculate-automatically": "Calculate attributes automatically"
   }
 }
