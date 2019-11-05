@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Subscription, Subject } from 'rxjs';
@@ -15,7 +15,8 @@ import { APP } from 'src/app/shared/constants';
 @Component({
   selector: 'app-change-password',
   templateUrl: 'change-password.component.html',
-  styleUrls: ['change-password.component.css']
+  styleUrls: ['change-password.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangePasswordComponent implements OnInit, OnDestroy {
 

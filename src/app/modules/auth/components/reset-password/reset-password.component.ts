@@ -1,14 +1,17 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+
 import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
+
 import { APP } from 'src/app/shared/constants';
 import { AuthService } from '../../services/auth.service';
 import { SubjectService } from 'src/app/shared/services/subject.service';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: 'reset-password.component.html',
-  styleUrls: ['reset-password.component.css']
+  styleUrls: ['reset-password.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResetPasswordComponent {
 

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
@@ -12,7 +12,8 @@ import { APP } from 'src/app/shared/constants';
 @Component({
   selector: 'app-edit-product',
   templateUrl: 'edit-product.component.html',
-  styleUrls: ['edit-product.component.css']
+  styleUrls: ['edit-product.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditProductComponent implements OnInit {
 

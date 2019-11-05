@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -7,7 +7,8 @@ import { Product } from 'src/app/shared/models/product.model';
 @Component({
   selector: 'app-history-food',
   templateUrl: 'history-food.component.html',
-  styleUrls: ['history-food.component.css']
+  styleUrls: ['history-food.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HistoryFoodComponent {
 

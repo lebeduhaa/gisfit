@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 import { Subject, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +15,8 @@ import { flatEquality } from 'src/app/shared/helpers';
 @Component({
   selector: 'app-custom-goals',
   templateUrl: 'custom-goals.component.html',
-  styleUrls: ['custom-goals.component.css']
+  styleUrls: ['custom-goals.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomGoalsComponent implements OnInit, OnDestroy {
 

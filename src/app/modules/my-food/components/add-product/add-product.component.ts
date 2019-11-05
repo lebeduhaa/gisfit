@@ -15,6 +15,7 @@ import { Product } from 'src/app/shared/models/product.model';
 import { User } from 'src/app/shared/models/user.model';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { Calculation } from 'src/app/shared/models/calculation.model';
+import { Category } from 'src/app/shared/models/category.model';
 
 @AutoUnsubscribe()
 @Component({
@@ -26,7 +27,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   public clearFilesSubject = new Subject<boolean>();
   public productPreloadedPhoto: string | ArrayBuffer;
-  public categories: string[];
+  public categories: Category[];
   public productForm: FormGroup;
   public progressBarVisibility: boolean;
   public previousPage: string;
@@ -111,8 +112,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
       });
   }
 
-  public reactOnSelectCategory(category: string): void {
-    this.productForm.controls.category.reset(category);
+  public reactOnSelectCategory(category: Category): void {
+    this.productForm.controls.category.reset(category.value);
   }
 
   private initForm(): void {

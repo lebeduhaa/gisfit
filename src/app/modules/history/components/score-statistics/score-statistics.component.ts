@@ -1,4 +1,4 @@
-import { Component, AfterContentInit, OnDestroy, NgZone } from '@angular/core';
+import { Component, AfterContentInit, OnDestroy, NgZone, ChangeDetectionStrategy } from '@angular/core';
 
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -14,7 +14,8 @@ am4core.useTheme(am4themes_animated);
 @Component({
   selector: 'app-score-statistics',
   templateUrl: 'score-statistics.component.html',
-  styleUrls: ['score-statistics.component.css']
+  styleUrls: ['score-statistics.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
 

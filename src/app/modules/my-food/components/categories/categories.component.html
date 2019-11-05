@@ -3,9 +3,9 @@
   <div class="categories__content">
     <button
       class="categories__category"
-      [class.categories__category_selected]="categorySelected(category)"
+      [class.categories__category_selected]="categorySelected(category.value)"
       *ngFor="let category of options"
-      (click)="selectCategory(category)"
-    >{{category}}</button>
+      (click)="selectCategory(category.value)"
+    >{{category.title | translate}}</button>
   </div>
 </div>

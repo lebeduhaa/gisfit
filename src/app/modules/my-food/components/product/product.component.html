@@ -31,18 +31,18 @@
     </div>
     <div class="flip-card-back">
       <div class="product__selection" (clickOutside)="onClickedOutside()">
-        <div class="product__selection-title">How much did you eat?</div>
-        <app-input-text [small]="true" icon="grain" placeholder="{{weightKind ? 'Gram' : 'Amount'}}">
+        <div class="product__selection-title">{{'my-food.how-much-did-you-eat' | translate}}</div>
+        <app-input-text [small]="true" icon="grain" placeholder="{{(weightKind ? 'my-food.gram' : 'my-food.amount') | translate}}">
           <input type="text" appNumericControl [(ngModel)]="resultProductSelection">
         </app-input-text>
         <div class="product__selection-kind">
           <mat-radio-group (change)="reactOnSelectKind($event)">
-            <mat-radio-button [value]="'weight'" [checked]="true">weight</mat-radio-button>
-            <mat-radio-button [value]="'by the piece'" [checked]="false">by the piece</mat-radio-button>
+            <mat-radio-button [value]="'weight'" [checked]="true">{{'my-food.weight' | translate}}</mat-radio-button>
+            <mat-radio-button [value]="'by the piece'" [checked]="false">{{'my-food.by-the-piece' | translate}}</mat-radio-button>
           </mat-radio-group>
         </div>
         <div class="product__selection-action">
-          <app-custom-button [small]="true" caption="Accept" (click)="acceptProduct($event)" [disabled]="!resultProductSelection"></app-custom-button>
+          <app-custom-button [small]="true" caption="{{ 'my-food.accept' | translate }}" (click)="acceptProduct($event)" [disabled]="!resultProductSelection"></app-custom-button>
         </div>
         <div class="product__selection-back">
           <mat-icon (click)="onClickedOutside()">undo</mat-icon>

@@ -28,7 +28,7 @@
   </div>
   <app-flying-product [selection]="true"></app-flying-product>
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions *ngIf="products">
   <app-custom-button [disabled]="!selectedProducts?.length" caption="Calculate" color="accent" (click)="calculate()"></app-custom-button>
   <app-custom-button caption="Back" color="warn" (click)="close()"></app-custom-button>
 </mat-dialog-actions>

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Subject } from 'rxjs';
@@ -14,7 +14,8 @@ import { APP } from 'src/app/shared/constants';
 @Component({
   selector: 'app-edit-dish',
   templateUrl: 'edit-dish.component.html',
-  styleUrls: ['edit-dish.component.css']
+  styleUrls: ['edit-dish.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditDishComponent implements OnInit {
 

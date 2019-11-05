@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
@@ -15,7 +15,8 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
 @Component({
   selector: 'app-video-play',
   templateUrl: 'video-play.component.html',
-  styleUrls: ['video-play.component.css']
+  styleUrls: ['video-play.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VideoPlayComponent implements OnInit, OnDestroy {
 
