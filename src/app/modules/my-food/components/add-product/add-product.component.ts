@@ -114,7 +114,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   public reactOnSelectCategory(category: string): void {
     this.productForm.controls.category.reset(category);
-    console.log(this.productForm.value);
   }
 
   private initForm(): void {
