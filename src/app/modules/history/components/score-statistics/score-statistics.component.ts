@@ -1,4 +1,4 @@
-import { Component, AfterContentInit, OnDestroy, NgZone, ChangeDetectionStrategy } from '@angular/core';
+import { Component, AfterContentInit, OnDestroy, NgZone, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -25,7 +25,8 @@ export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
 
   constructor(
     private historyService: HistoryService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngAfterContentInit() {
@@ -65,6 +66,7 @@ export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
     this.chart.cursor = new am4charts.XYCursor();
     this.chart.cursor.xAxis = dateAxis;
     this.chart.cursor.snapToSeries = series;
+    this.changeDetectorRef.markForCheck();
   }
 
   ngOnDestroy() {

@@ -1,4 +1,4 @@
-import { Component, NgZone, AfterViewInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, NgZone, AfterViewInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -26,7 +26,8 @@ export class DailyStatisticsComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private ngZone: NgZone,
-    private historyService: HistoryService
+    private historyService: HistoryService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   private async getStatisticsData(): Promise<any> {
@@ -59,6 +60,7 @@ export class DailyStatisticsComponent implements AfterViewInit, OnDestroy {
 
         this.chart.legend = new am4charts.Legend();
         this.chart.cursor = new am4charts.XYCursor();
+        this.changeDetectorRef.markForCheck();
       }, 100);
     });
   }

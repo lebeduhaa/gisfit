@@ -76,6 +76,7 @@ export class CustomGoalsComponent implements OnInit, OnDestroy {
         this.user = user;
         this.tempUser = {...user};
         this.disableAcceptButton = true;
+        this.changeDetectorRef.markForCheck();
       });
   }
 

@@ -39,10 +39,10 @@ const getResult = user => {
 };
 
 const getTotalScore = (user) => {
-  let caloriesPercent = (user.currentDay.currentCalories / user.caloriesGoal) * 100;
-  let proteinPercent = (user.currentDay.currentProtein / user.proteinGoal) * 100;
-  let fatsPercent = (user.currentDay.currentFats / user.fatsGoal) * 100;
-  let carbohydratesPercent = (user.currentDay.currentCarbohydrates / user.carbohydratesGoal) * 100;
+  let caloriesPercent = (user.currentDay.currentCalories / (user.ownGoal ? user.customCaloriesGoal : user.caloriesGoal)) * 100;
+  let proteinPercent = (user.currentDay.currentProtein / (user.ownGoal ? user.customProteinGoal : user.proteinGoal)) * 100;
+  let fatsPercent = (user.currentDay.currentFats / (user.ownGoal ? user.customFatsGoal : user.fatsGoal)) * 100;
+  let carbohydratesPercent = (user.currentDay.currentCarbohydrates / (user.ownGoal ? user.customCarbohydratesGoal : user.carbohydratesGoal)) * 100;
 
   if (caloriesPercent > 100) {
     caloriesPercent = 200 - caloriesPercent;

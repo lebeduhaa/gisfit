@@ -235,6 +235,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   }
 
   private getMyProducts(): void {
+    this.progressBarVisibility = true;
     this.myFoodService.getMyProducts(this.user)
       .then(products => {
         this.progressBarVisibility = false;

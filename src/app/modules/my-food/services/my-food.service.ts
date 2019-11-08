@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -25,7 +25,8 @@ export class MyFoodService {
   ) {}
 
   public searchOutside(key: string): Observable<any> {
-    return this.http.get(`${APP.searchOutsideUrl}?searchtext=${key}&lazy_steep=${1}`);
+    // return this.http.get(`${APP.searchOutsideUrl}?searchtext=${key}&lazy_steep=${1}`);
+    return this.http.get(`http://localhost:3000?searchtext=${key}&lazy_steep=${1}`);
   }
 
   public deleteProduct(productId: string): Promise<any> {

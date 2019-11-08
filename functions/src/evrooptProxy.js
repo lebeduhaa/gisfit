@@ -3,22 +3,19 @@ const express = require('express');
 
 const app = express();
 
-app.use((request, response, next) => {
-  response.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-
-app.get('/search-outside', (request, response) => {
-  const { searchtext, lazy_steep } = request.query;
+app.get('/search-outside', (req, res) => {
 
   request(
-    { url: `https://e-dostavka.by/search/?searchtext=${searchtext}&lazy_steep${lazy_steep}` },
+    // { url: `https://e-dostavka.by/search/`, qs: req.query },
+    { url: 'https://swapi.co/api/' },
     (error, result, body) => {
-      if (error || response.statusCode !== 200) {
-        return res.status(500).json({ type: 'error', message: err.message });
+      if (error || res.statusCode !== 200) {
+        console.log(result);
+        return res.status(500).json({ type: 'error', message: error.message });
       }
 
-      response.send(result);
+      res.header('Access-Control-Allow-Origin', '*');
+      res.send(result);
     }
   )
 });

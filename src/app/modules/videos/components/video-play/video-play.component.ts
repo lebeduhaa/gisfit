@@ -151,8 +151,8 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
       .subscribe(user => {
         this.user = user;
         this.contentVisibility = true;
-        this.changeDetectorRef.markForCheck();
         this.getVideoElement();
+        this.changeDetectorRef.markForCheck();
       });
   }
 

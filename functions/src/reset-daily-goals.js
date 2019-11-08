@@ -2,10 +2,10 @@ const admin = require('firebase-admin');
 const moment = require('moment');
 
 const getTotalScore = (user) => {
-  let caloriesPercent = (user.currentDay.currentCalories / user.caloriesGoal) * 100;
-  let proteinPercent = (user.currentDay.currentProtein / user.proteinGoal) * 100;
-  let fatsPercent = (user.currentDay.currentFats / user.fatsGoal) * 100;
-  let carbohydratesPercent = (user.currentDay.currentCarbohydrates / user.carbohydratesGoal) * 100;
+  let caloriesPercent = (user.currentDay.currentCalories / (user.ownGoal ? user.customCaloriesGoal : user.caloriesGoal)) * 100;
+  let proteinPercent = (user.currentDay.currentProtein / (user.ownGoal ? user.customProteinGoal : user.proteinGoal)) * 100;
+  let fatsPercent = (user.currentDay.currentFats / (user.ownGoal ? user.customFatsGoal : user.fatsGoal)) * 100;
+  let carbohydratesPercent = (user.currentDay.currentCarbohydrates / (user.ownGoal ? user.customCarbohydratesGoal : user.carbohydratesGoal)) * 100;
 
   if (caloriesPercent > 100) {
     caloriesPercent = 200 - caloriesPercent;
@@ -43,19 +43,23 @@ module.exports = async (request, response) => {
   const users = [...usersRef.docs.map(doc => doc.data())];
 
   users.forEach(user => {
-    resultObject[user.id] = {
-      caloriesGoal: user.ownGoal ? user.customCaloriesGoal : user.caloriesGoal,
-      proteinGoal: user.ownGoal ? user.customProteinGoal : user.proteinGoal,
-      fatsGoal: user.ownGoal ? user.customFatsGoal : user.fatsGoal,
-      carbohydratesGoal: user.ownGoal ? user.customCarbohydratesGoal : user.carbohydratesGoal,
-      resultCalories: user.currentDay.currentCalories,
-      resultProtein: user.currentDay.currentProtein,
-      resultFats: user.currentDay.currentFats,
-      resultCarbohydrates: user.currentDay.currentCarbohydrates,
-      products: user.currentDay.products,
-      totalScore: getTotalScore(user)
+    if (user.caloriesGoal) {
+      resultObject[user.id] = {
+        caloriesGoal: user.ownGoal ? user.customCaloriesGoal : user.caloriesGoal,
+        proteinGoal: user.ownGoal ? user.customProteinGoal : user.proteinGoal,
+        fatsGoal: user.ownGoal ? user.customFatsGoal : user.fatsGoal,
+        carbohydratesGoal: user.ownGoal ? user.customCarbohydratesGoal : user.carbohydratesGoal,
+        resultCalories: user.currentDay.currentCalories,
+        resultProtein: user.currentDay.currentProtein,
+        resultFats: user.currentDay.currentFats,
+        resultCarbohydrates: user.currentDay.currentCarbohydrates,
+        products: user.currentDay.products,
+        totalScore: getTotalScore(user)
+      }
     }
   });
+
+  console.log(resultObject);
 
   totalArrayPromises.push(admin.firestore().collection('history').doc(storeKey.toString()).set(resultObject));
   await Promise.all(totalArrayPromises);
