@@ -217,5 +217,6 @@ export const APP = {
     'FRI',
     'SAT'
   ],
-  searchOutsideUrl: 'https://e-dostavka.by/search/'
+  searchOutsideUrl: 'https://e-dostavka.by/search/',
+  isMobile: window.outerWidth < 500
 };

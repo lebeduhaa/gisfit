@@ -56,3 +56,22 @@
   font-family: 'Niveau Grotesk ExtraLight';
   margin-left: 10px;
 }
+
+@media screen and (max-width: 500px) {
+  .header__wrapper {
+    height: 60px;
+    width: auto;
+  }
+  .header__logo {
+    height: 50px;
+  }
+  .header__logo-title {
+    font-size: 31px;
+  }
+  .header__logo-img {
+    margin-left: 5px;
+  }
+  .header__user {
+    margin-right: 5px;
+  }
+}

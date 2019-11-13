@@ -1,4 +1,4 @@
-<div class="my-food">
+<div class="my-food" *ngIf="!isMobile">
   <div class="my-food__progress-bar" *ngIf="progressBarVisibility">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>

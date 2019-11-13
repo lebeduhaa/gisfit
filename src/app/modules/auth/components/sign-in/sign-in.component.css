@@ -32,3 +32,14 @@
   border: 1px solid #9d1d1d !important;
   box-shadow: inset 0px 0px 5px #8d3939;
 }
+
+@media screen and (max-width: 500px) {
+  .sign-in__title {
+    margin-bottom: 0px;
+  }
+  .sign-in__title {
+    font-size: 16px;
+    margin-top: 15px;
+    text-align: center;
+  }
+}

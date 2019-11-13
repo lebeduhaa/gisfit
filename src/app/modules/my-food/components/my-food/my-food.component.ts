@@ -37,6 +37,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   public user: User;
   public productCategories = APP.categories;
   public dishCategories = APP.dishCategories;
+  public isMobile: boolean;
 
   private currentUserSubscription: Subscription;
   private currentSearch: string;
@@ -56,6 +57,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   }
 
   ngOnInit() {
+    this.isMobile = APP.isMobile;
     this.subscribeToCurrentUser();
   }
 

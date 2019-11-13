@@ -6,7 +6,10 @@
       </div>
       <div class="header__logo-title">Gisfit</div>
     </div>
-    <div class="header__items">
+    <div class="header__user" *ngIf="user">
+      <app-user-icon [small]="true" [fakeAvatar]="user.fakeAvatarUrl" [avatar]="user.avatar"></app-user-icon>
+    </div>
+    <div class="header__items" *ngIf="!isMobile">
       <div class="header__item" routerLink="/my-food" routerLinkActive="header__item_active">{{'menu-items.my-food' | translate}}</div>
       <div class="header__item" routerLink="/dishes" routerLinkActive="header__item_active">{{'dishes.dishes' | translate}}</div>
       <div class="header__item" routerLink="/videos" routerLinkActive="header__item_active">Videos</div>

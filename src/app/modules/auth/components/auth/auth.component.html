@@ -10,13 +10,15 @@
           <div class="auth__logo-description">eat right</div>
         </div>
       </div>
-      <div class="auth__form">
-        <div class="auth__form-navigation">
-          <div class="auth__form-navigation-item" routerLink="/auth/sign-in" routerLinkActive="auth__form-navigation-item_active">Sign in</div>
-          <div class="auth__form-navigation-item" routerLink="/auth/sign-up" routerLinkActive="auth__form-navigation-item_active">Sign up</div>
-        </div>
-        <div [@authRouteAnimations]="prepareRoute(outlet)">
-          <router-outlet #outlet="outlet"></router-outlet>
+      <div class="auth__form-mobile-wrapper">
+        <div class="auth__form">
+          <div class="auth__form-navigation">
+            <div class="auth__form-navigation-item" routerLink="/auth/sign-in" routerLinkActive="auth__form-navigation-item_active">Sign in</div>
+            <div class="auth__form-navigation-item" routerLink="/auth/sign-up" routerLinkActive="auth__form-navigation-item_active">Sign up</div>
+          </div>
+          <div [@authRouteAnimations]="prepareRoute(outlet)">
+            <router-outlet #outlet="outlet"></router-outlet>
+          </div>
         </div>
       </div>
     </div>
