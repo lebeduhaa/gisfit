@@ -5,12 +5,14 @@ import { SharedModule } from '../../modules/shared.module';
 import { HeaderComponent } from './header.component';
 import { OpenActivityDirective } from './open-activity.directive';
 import { UserIconModule } from '../user-icon/user-icon.module';
+import { MaterialModule } from '../../modules/material.module';
 
 @NgModule({
   imports: [
     SharedModule,
     RouterModule,
-    UserIconModule
+    UserIconModule,
+    MaterialModule
   ],
   declarations: [
     HeaderComponent,

@@ -1,0 +1,15 @@
+.rect-icon {
+  background-color: #3a3a3a;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+.rect-icon mat-icon {
+  color: #8e8e8e;
+}
+.rect-icon_active mat-icon {
+  color: white;
+}

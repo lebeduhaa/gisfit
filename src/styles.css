@@ -153,6 +153,19 @@ html {
   flex-wrap: wrap;
   padding-top: 15px;
 }
+.app__popup-close {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+}
+.app__popup-close mat-icon {
+  color: #787878;
+}
+.app__popup-close mat-icon:hover {
+  cursor: pointer;
+  color: white;
+}
+
 @keyframes popup {
   20% {
     box-shadow: 0 0 15px #ffffff52;
@@ -204,5 +217,12 @@ html {
   .app__background {
     width: auto;
     left: calc(-50% - (100vw / 2));
+  }
+  .app__popup-close {
+    right: -15px;
+    top: -15px;
+  }
+  .mat-dialog-content {
+    max-height: 100vh !important;
   }
 }

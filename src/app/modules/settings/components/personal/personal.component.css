@@ -36,3 +36,17 @@ app-custom-button:first-child {
   flex-direction: column;
   align-items: center;
 }
+
+@media screen and (max-width: 500px) {
+  .personal__row {
+    display: block;
+    padding: 0 15px;
+  }
+  .personal__control {
+    width: 100%;
+    margin-top: 18px;
+  }
+  .personal__avatar-wrapper {
+    padding-top: 7px;
+  }
+}

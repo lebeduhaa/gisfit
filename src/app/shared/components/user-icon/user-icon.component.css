@@ -5,18 +5,23 @@
 }
 .user-icon__small {
   width: 50px;
-  height: 50px;  
+  height: 50px;
+}
+.user-icon__mobile {
+  width: 42px;
+  height: 42px;
 }
 .user-icon__img, .user-icon__img img, .user-icon__trim {
   width: 100%;
   height: 100%;
-
 }
 .user-icon__img {
   border: 2px solid white;
   border-radius: 50%;
   box-shadow: 0 0 10px white;
-  overflow: hidden;  
+  /* overflow: hidden; */
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .user-icon__trim {
   border: 2px solid white;

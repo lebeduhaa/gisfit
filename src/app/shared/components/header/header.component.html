@@ -1,15 +1,33 @@
 <div class="header">
-  <div class="header__wrapper">
-    <div class="header__logo" routerLink="/my-food">
-      <div class="header__logo-img">
-        <img class="header__logo-img" src="assets/img/logo.png">
+  <div class="header__desktop-wrapper">
+    <div class="header__wrapper">
+      <div class="header__logo" routerLink="/my-food">
+        <div class="header__logo-img">
+          <img class="header__logo-img" src="assets/img/logo.png">
+        </div>
+        <div class="header__logo-title">Gisfit</div>
       </div>
-      <div class="header__logo-title">Gisfit</div>
+      <div class="header__user" *ngIf="user && isMobile">
+        <app-user-icon [mobile]="true" [fakeAvatar]="user.fakeAvatarUrl" [avatar]="user.avatar"></app-user-icon>
+        <div class="header__user-menu">
+          <button (click)="toggleMobileMenu()" mat-icon-button>
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="header__items" *ngIf="!isMobile">
+        <div class="header__item" routerLink="/my-food" routerLinkActive="header__item_active">{{'menu-items.my-food' | translate}}</div>
+        <div class="header__item" routerLink="/dishes" routerLinkActive="header__item_active">{{'dishes.dishes' | translate}}</div>
+        <div class="header__item" routerLink="/videos" routerLinkActive="header__item_active">Videos</div>
+        <div class="header__item" routerLink="/history" routerLinkActive="header__item_active">History</div>
+        <div class="header__item" appOpenActivity [class.header__item_active]="activitySelected">Activity</div>
+        <div class="header__item" routerLink="/settings" routerLinkActive="header__item_active">{{'menu-items.settings' | translate}}</div>
+        <div class="header__item" (click)="logout()">{{'menu-items.log-out' | translate}}</div>
+      </div>
     </div>
-    <div class="header__user" *ngIf="user">
-      <app-user-icon [small]="true" [fakeAvatar]="user.fakeAvatarUrl" [avatar]="user.avatar"></app-user-icon>
-    </div>
-    <div class="header__items" *ngIf="!isMobile">
+  </div>
+  <div class="header__mobile-wrapper" *ngIf="isMobile && mobileMenuIsOpened" @expandAnimation>
+    <div class="header__mobile-menu">
       <div class="header__item" routerLink="/my-food" routerLinkActive="header__item_active">{{'menu-items.my-food' | translate}}</div>
       <div class="header__item" routerLink="/dishes" routerLinkActive="header__item_active">{{'dishes.dishes' | translate}}</div>
       <div class="header__item" routerLink="/videos" routerLinkActive="header__item_active">Videos</div>

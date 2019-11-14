@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class UserIconComponent {
 
   @Input() small: boolean;
+  @Input() mobile: boolean;
   @Input() avatar: string;
   @Input() fakeAvatar: string;
   @Input() preload: string | ArrayBuffer;

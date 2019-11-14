@@ -8,18 +8,23 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
 import { User } from '../../models/user.model';
 import { RealTimeDataService } from '../../services/real-time-data.service';
+import { expandAnimation } from '../../animations';
 
 @AutoUnsubscribe()
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
-  styleUrls: ['header.component.css']
+  styleUrls: ['header.component.css'],
+  animations: [
+    expandAnimation
+  ]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
   public activitySelected: boolean;
   public user: User;
   public isMobile: boolean;
+  public mobileMenuIsOpened: boolean;
 
   private userSubscription: Subscription;
 
@@ -45,6 +50,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
 
+  public toggleMobileMenu(): void {
+    this.mobileMenuIsOpened = !this.mobileMenuIsOpened;
+  }
+
   private detectCurrentUrl(): void {
     this.activitySelected = this.router.url.includes('activity');
   }
@@ -52,6 +61,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private parseRouterEvent(event: Event): void {
     if (event instanceof NavigationEnd) {
       this.activitySelected = event.url.includes('activity');
+      this.mobileMenuIsOpened = false;
     }
   }
 

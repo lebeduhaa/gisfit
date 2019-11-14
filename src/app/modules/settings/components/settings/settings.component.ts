@@ -24,10 +24,6 @@ export class SettingsComponent extends FirebaseCloudMessaging implements OnInit,
 
   private userSubscription: Subscription;
 
-  public prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
-  }
-
   constructor(
     protected messaging: AngularFireMessaging,
     protected settingsService: SettingsService,
@@ -35,6 +31,10 @@ export class SettingsComponent extends FirebaseCloudMessaging implements OnInit,
     private realTimeDataService: RealTimeDataService
   ) {
     super(messaging, settingsService, dialog);
+  }
+
+  public prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 
   ngOnInit() {

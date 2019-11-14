@@ -1,6 +1,6 @@
-<div class="user-icon" [class.user-icon__small]="small">
+<div class="user-icon" [ngClass]="{'user-icon__small': small, 'user-icon__mobile': mobile}">
   <div class="user-icon__img" *ngIf="avatar || preload">
-    <img class="user-icon__real" [src]="preload ? preload : avatar">   
+    <img class="user-icon__real" [src]="preload ? preload : avatar">
     <img class="user-icon__fake" [src]="fakeAvatar" *ngIf="fakeAvatar">
   </div>
 </div>

@@ -56,6 +56,10 @@
   font-family: 'Niveau Grotesk ExtraLight';
   margin-left: 10px;
 }
+.header__user {
+  display: flex;
+  align-items: center;
+}
 
 @media screen and (max-width: 500px) {
   .header__wrapper {
@@ -72,6 +76,19 @@
     margin-left: 5px;
   }
   .header__user {
-    margin-right: 5px;
+    margin-right: 10px;
+  }
+  .header__user app-user-icon {
+    margin-right: 10px;
+  }
+  .header__item {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 45px;
+  }
+  .header__mobile-wrapper {
+    padding-bottom: 15px;
+    overflow: hidden;
   }
 }

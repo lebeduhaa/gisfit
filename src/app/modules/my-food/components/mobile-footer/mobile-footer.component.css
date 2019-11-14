@@ -1,0 +1,23 @@
+.mobile-footer {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  font-family: 'Lato', sans-serif;
+  color: #8e8e8e;
+}
+.mobile-footer mat-icon {
+  color: #8e8e8e;
+}
+.mobile-footer__item {
+  flex-basis: 33.3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #3a3a3a;
+}
+.mobile-footer__item_active mat-icon {
+  color: white;
+}

@@ -50,7 +50,8 @@ export const APP = {
     videoPlay: 'videoPlay',
     autoCalc: 'autoCalc',
     editProduct: 'editProduct',
-    editDish: 'editDish'
+    editDish: 'editDish',
+    mobileProgress: 'mobileProgress'
   },
   routesWithHeader: [
     'settings',

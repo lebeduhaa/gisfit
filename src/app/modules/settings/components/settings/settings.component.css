@@ -39,3 +39,27 @@
 .settings__menu-item_active {
   color: white;
 }
+
+@media screen and (max-width: 500px) {
+  .settings__content {
+    width: 100vw;
+    position: static;
+  }
+  .settings__title {
+    font-size: 22px;
+  }
+  .settings__menu {
+    display: none;
+  }
+  .settings__mobile-menu {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    overflow: hidden;
+    border: .5px solid #505050;
+    border-left: none;
+    z-index: 100;
+  }
+}

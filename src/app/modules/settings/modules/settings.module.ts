@@ -18,6 +18,7 @@ import { SelectModule } from 'src/app/shared/components/select/modules/select.mo
 import { OpenChangePasswordDirective } from '../directives/open-change-password.directive';
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 import { ToggleModule } from 'src/app/shared/components/toggle/toggle.module';
+import { RectIconButtonModule } from 'src/app/shared/components/rect-icon-button/rect-icon-button.module';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { ToggleModule } from 'src/app/shared/components/toggle/toggle.module';
     DirectivesModule,
     MaterialModule,
     SelectModule,
-    ToggleModule
+    ToggleModule,
+    RectIconButtonModule
   ],
   declarations: [
     SettingsComponent,

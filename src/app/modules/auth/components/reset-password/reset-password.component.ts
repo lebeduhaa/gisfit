@@ -48,7 +48,7 @@ export class ResetPasswordComponent {
     }
   }
 
-  private close(): void {
+  public close(): void {
     this.dialog.getDialogById(APP.dialogs.passwordReset).close(this.email);
   }
 

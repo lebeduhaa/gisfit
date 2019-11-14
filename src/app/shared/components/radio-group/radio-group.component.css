@@ -9,5 +9,15 @@
   left: 13px;
 }
 .mat-radio-button {
-  margin-left: 15px;  
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 500px) {
+  .radio-group__title {
+    display: none;
+  }
+  .radio-group__male {
+    display: flex;
+    justify-content: center;
+  }
 }

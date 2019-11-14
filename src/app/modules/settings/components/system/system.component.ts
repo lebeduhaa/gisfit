@@ -22,6 +22,7 @@ export class SystemComponent implements OnInit, OnDestroy {
   public user: User;
   public progressBarVisibility: boolean;
   public languages: string[] = APP.languages;
+  public isMobile = APP.isMobile;
 
   private currentUserSubscription: Subscription;
 

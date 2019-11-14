@@ -22,3 +22,23 @@
   position: absolute;
   width: 100%;
 }
+
+@media screen and (max-width: 500px) {
+  .system {
+    width: auto;
+  }
+  .system__notification {
+    width: 90%;
+  }
+  .system__change-pass {
+    margin-top: 0;
+  }
+  .system__toggles {
+    width: 90%;
+    padding: 0;
+    margin: 20px auto 0 auto;
+  }
+  .system__progress {
+    top: 0;
+  }
+}

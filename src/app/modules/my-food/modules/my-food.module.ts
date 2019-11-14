@@ -38,6 +38,9 @@ import { DishDetailsModule } from 'src/app/shared/components/dish-details/dish-d
 import { ProductInfoModule } from 'src/app/shared/components/product-info/product-info.module';
 import { SearchOutsideComponent } from '../components/search-outside/search-outside.component';
 import { SearchOutsideDirective } from '../directives/search-outside.directive';
+import { MobileFooterComponent } from '../components/mobile-footer/mobile-footer.component';
+import { OpenMobileProgressDirective } from '../directives/open-mobile-progress.directive';
+import { MobileProgressComponent } from '../components/mobile-progress/mobile-progress.component';
 
 @NgModule({
   imports: [
@@ -77,16 +80,20 @@ import { SearchOutsideDirective } from '../directives/search-outside.directive';
     AutoCalcComponent,
     EditProductComponent,
     SearchOutsideComponent,
+    MobileFooterComponent,
+    MobileProgressComponent,
     OpenCustomGoalsDirective,
     OpenAutoCalcDirective,
     OpenEditProductDirective,
-    SearchOutsideDirective
+    SearchOutsideDirective,
+    OpenMobileProgressDirective
   ],
   entryComponents: [
     CustomGoalsComponent,
     AutoCalcComponent,
     EditProductComponent,
-    SearchOutsideComponent
+    SearchOutsideComponent,
+    MobileProgressComponent
   ],
   exports: [
     MyFoodComponent

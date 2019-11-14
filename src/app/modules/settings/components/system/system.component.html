@@ -2,6 +2,9 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 <div class="system" *ngIf="user">
+  <div class="system__change-pass">
+    <app-spinner-button caption="{{'buttons.change-password' | translate}}" [small]="true" appOpenChangePassword></app-spinner-button>
+  </div>
   <div class="system__notification">
     <app-select [value]="user.notificationTime" (change)="reactOnSelectHour($event)" icon="access_alarm" placeholder="{{'settings.notification-time' | translate}}">
       <app-select-option
@@ -19,12 +22,12 @@
     </app-select>
   </div>
   <div class="system__toggles">
-    <app-toggle caption="{{'settings.notification-sound' | translate}}" [value]="user.notificationSound" (change)="reactOnChangeNotificationSound($event)"></app-toggle>
+    <app-toggle [small]="isMobile" caption="{{'settings.notification-sound' | translate}}" [value]="user.notificationSound" (change)="reactOnChangeNotificationSound($event)"></app-toggle>
   </div>
   <div class="system__toggles">
-    <app-toggle caption="{{'settings.send-report' | translate}}" [value]="user.sendDailyReportOnEmail" (change)="reactOnChangeSendDailyReportOnEmail($event)"></app-toggle>
+    <app-toggle [small]="isMobile" caption="{{'settings.send-report' | translate}}" [value]="user.sendDailyReportOnEmail" (change)="reactOnChangeSendDailyReportOnEmail($event)"></app-toggle>
   </div>
-  <div class="system__change-pass">
+  <div class="system__change-pass" *ngIf="!isMobile">
     <app-spinner-button caption="{{'buttons.change-password' | translate}}" [small]="true" appOpenChangePassword></app-spinner-button>
   </div>
 </div>

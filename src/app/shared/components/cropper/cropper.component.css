@@ -1,6 +1,7 @@
 .cropper {
   color: white;
   font-family: 'Lato', sans-serif;
+  position: relative;
 }
 .cropper__content {
   display: flex;
@@ -45,4 +46,24 @@ mat-dialog-actions {
 .cropper__preview img {
   width: 170px;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .cropper__content {
+    display: block;
+  }
+  .cropper__result {
+    width: 100%;
+    max-width: 100%;
+  }
+  .cropper__preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 7px;
+    margin-top: 10px;
+  }
+  image-cropper {
+    max-height: 255px;
+  }
 }

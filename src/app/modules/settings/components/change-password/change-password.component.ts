@@ -48,12 +48,16 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
           body: `Your password was changed successfully. Since this moment you will use new password to sign in into application`,
           duration: 15000
         });
-        this.dialog.getDialogById(APP.dialogs.changePassword).close();
+        this.close();
       })
       .catch(error => {
         this.spinnerSubject.next(false);
         this.error = error.message;
       });
+  }
+
+  public close(): void {
+    this.dialog.getDialogById(APP.dialogs.changePassword).close();
   }
 
   public changePasswordFormHasError(): boolean {
