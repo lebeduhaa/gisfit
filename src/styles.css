@@ -212,7 +212,7 @@ html {
   }
   .cdk-overlay-pane {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
   }
   .app__background {
     width: auto;
@@ -224,5 +224,8 @@ html {
   }
   .mat-dialog-content {
     max-height: 100vh !important;
+  }
+  .scrollable-content {
+    justify-content: space-around;
   }
 }

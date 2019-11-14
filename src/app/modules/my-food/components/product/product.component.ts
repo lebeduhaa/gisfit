@@ -27,6 +27,7 @@ export class ProductComponent implements OnInit {
   public weightKind = true;
   public resultProductSelection: number;
   public userId: string;
+  public isMobile = APP.isMobile;
 
   constructor(
     private subjectService: SubjectService,

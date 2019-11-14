@@ -85,5 +85,23 @@ virtual-scroller {
 }
 
 @media screen and (max-width: 500px) {
-
+  .my-food__mobile {
+    color: white;
+    font-family: 'Lato', sans-serif;
+  }
+  virtual-scroller {
+    width: 100%;
+    justify-content: center;
+  }
+  .my-food__mobile-products-description {
+    color: silver;
+    padding-top: 5px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 13px;
+  }
+  .my-food__product {
+    height: 167px;
+    margin-bottom: 15px;
+  }
 }

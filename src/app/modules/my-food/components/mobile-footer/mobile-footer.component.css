@@ -6,6 +6,8 @@
   height: 60px;
   font-family: 'Lato', sans-serif;
   color: #8e8e8e;
+  border-top: .5px solid #6f6f6f;
+  box-shadow: 0 0 5px #ffffff80;
 }
 .mobile-footer mat-icon {
   color: #8e8e8e;
@@ -16,7 +18,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #3a3a3a;
+  background-color: #202020;
+}
+.mobile-footer__item {
+  border-right: .5px solid #565656;
+}
+.mobile-footer__item:last-child {
+  border-right: none;
 }
 .mobile-footer__item_active mat-icon {
   color: white;

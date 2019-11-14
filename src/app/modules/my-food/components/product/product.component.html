@@ -2,7 +2,7 @@
   <div class="flip-card-inner">
     <div class="flip-card-front">
       <div class="product" appOpenProductInfo [product]="product" [class.product_dish]="product.dish">
-        <div class="product__actions" (click)="catchClick($event)">
+        <div class="product__actions" (click)="catchClick($event)" *ngIf="!isMobile">
           <div class="product__actions-left">
             <div class="product__action" (click)="selectProduct()">
               <mat-icon color="primary">check</mat-icon>
@@ -24,7 +24,7 @@
         <div class="product__image">
           <img [src]="product.image">
           <img [src]="product.fakeImage">
-          <div class="product__image-tonner"></div>
+          <div class="product__image-tonner" *ngIf="!isMobile"></div>
         </div>
         <div class="product__title">{{trimProductName()}}</div>
       </div>

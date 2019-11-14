@@ -149,3 +149,22 @@
 .product__selection .mat-icon:hover {
   color: white;
 }
+
+@media screen and (max-width: 500px) {
+  .flip-card {
+    width: 140px;
+    height: 167px;
+  }
+  .product__image {
+    width: 140px;
+    height: 140px;
+  }
+  .product__title {
+    font-size: 11px;
+    height: 30px;
+    width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
