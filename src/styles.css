@@ -59,6 +59,7 @@ html {
   background-size: cover;
   background-position: center center;
   position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: -2;
@@ -199,5 +200,9 @@ html {
   .cdk-overlay-pane {
     width: 100vw;
     height: 100vh;
+  }
+  .app__background {
+    width: auto;
+    left: calc(-50% - (100vw / 2));
   }
 }
