@@ -1,0 +1,9 @@
+<mat-dialog-content>
+  <div class="filter">
+    <div class="app__popup-close">
+      <mat-icon (click)="close()">clear</mat-icon>
+    </div>
+    <app-categories (selectCategoryEvent)="reactOnSelectProductCategoryEvent($event)" caption="{{'my-food.product-categories' | translate}}" [options]="productCategories"></app-categories>
+    <app-categories (selectCategoryEvent)="reactOnSelectDishCategoryEvent($event)" caption="{{'my-food.dish-categories' | translate}}" [options]="dishCategories"></app-categories>
+  </div>
+</mat-dialog-content>

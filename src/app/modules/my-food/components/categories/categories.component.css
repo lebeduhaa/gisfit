@@ -34,3 +34,10 @@
 .categories__category_selected:hover {
   background-color: #30ac95;
 }
+
+@media screen and (max-width: 500px) {
+  .categories__category {
+    padding: 9px 20px;
+    font-size: 14px;
+  }
+}

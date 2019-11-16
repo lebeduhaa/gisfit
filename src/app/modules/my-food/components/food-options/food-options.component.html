@@ -1,0 +1,12 @@
+<div class="my-food__options">
+  <div class="my-food__options-title">{{'my-food.food-options' | translate}}</div>
+  <div class="progress__trigger" *ngIf="user">
+    <app-toggle caption="{{'my-food.disable-tips' | translate}}" [small]="true" [value]="user.disableTips" (change)="reactOnChangeTips($event)"></app-toggle>
+  </div>
+  <div class="progress__trigger" *ngIf="user">
+    <app-toggle caption="{{'my-food.use-custom-goals' | translate}}" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.ownGoal" (change)="reactOnChangeGoal($event)"></app-toggle>
+  </div>
+  <div class="progress__actions">
+    <app-spinner-button caption="{{'my-food.custom-goals' | translate}}" [small]="true" appOpenCustomGoals></app-spinner-button>
+  </div>
+</div>

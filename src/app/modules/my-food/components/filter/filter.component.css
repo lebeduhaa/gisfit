@@ -1,0 +1,8 @@
+mat-dialog-content {
+  overflow: visible;
+}
+.filter {
+  position: relative;
+  color: white;
+  font-family: 'Lato', sans-serif;
+}

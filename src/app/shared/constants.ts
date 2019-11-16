@@ -51,7 +51,10 @@ export const APP = {
     autoCalc: 'autoCalc',
     editProduct: 'editProduct',
     editDish: 'editDish',
-    mobileProgress: 'mobileProgress'
+    mobileProgress: 'mobileProgress',
+    filter: 'filter',
+    mobileFoodOptions: 'mobileFoodOptions',
+    currentEating: 'currentEating'
   },
   routesWithHeader: [
     'settings',

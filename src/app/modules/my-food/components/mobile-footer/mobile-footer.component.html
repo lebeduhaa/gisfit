@@ -1,5 +1,5 @@
 <div class="mobile-footer">
-  <div class="mobile-footer__item" matRipple matRippleColor="rgba(255, 255, 255, .1)">
+  <div class="mobile-footer__item" matRipple matRippleColor="rgba(255, 255, 255, .1)" appOpenMobileEating>
     <mat-icon>outdoor_grill</mat-icon>
     eat
   </div>
@@ -7,8 +7,19 @@
     <mat-icon>sort</mat-icon>
     progress
   </div>
-  <div class="mobile-footer__item" matRipple matRippleColor="rgba(255, 255, 255, .1)">
+  <div
+    class="mobile-footer__item"
+    matRipple
+    matRippleColor="rgba(255, 255, 255, .1)"
+    (selectProductCategory)="reactOnSelectProductCategoryEvent($event)"
+    (selectDishCategory)="reactOnSelectDishCategoryEvent($event)"
+    appOpenFilter
+  >
     <mat-icon>filter_list</mat-icon>
     filters
+  </div>
+  <div class="mobile-footer__item" matRipple matRippleColor="rgba(255, 255, 255, .1)" appOpenFoodOptions>
+    <mat-icon>build</mat-icon>
+    options
   </div>
 </div>

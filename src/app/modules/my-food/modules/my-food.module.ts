@@ -41,6 +41,13 @@ import { SearchOutsideDirective } from '../directives/search-outside.directive';
 import { MobileFooterComponent } from '../components/mobile-footer/mobile-footer.component';
 import { OpenMobileProgressDirective } from '../directives/open-mobile-progress.directive';
 import { MobileProgressComponent } from '../components/mobile-progress/mobile-progress.component';
+import { FilterComponent } from '../components/filter/filter.component';
+import { OpenFilterDirective } from '../directives/open-filter.direcitve';
+import { FoodOptionsComponent } from '../components/food-options/food-options.component';
+import { MobileOptionsComponent } from '../components/mobile-options/mobile-options.component';
+import { OpenMobileFoodOptionsDirective } from '../directives/open-food-options.directive';
+import { MobileEatingComponent } from '../components/mobile-eating/mobile-eating.component';
+import { OpenMobileEatingDirective } from '../directives/open-mobile-eating.directive';
 
 @NgModule({
   imports: [
@@ -82,18 +89,28 @@ import { MobileProgressComponent } from '../components/mobile-progress/mobile-pr
     SearchOutsideComponent,
     MobileFooterComponent,
     MobileProgressComponent,
+    FilterComponent,
+    FoodOptionsComponent,
+    MobileOptionsComponent,
+    MobileEatingComponent,
     OpenCustomGoalsDirective,
     OpenAutoCalcDirective,
     OpenEditProductDirective,
     SearchOutsideDirective,
-    OpenMobileProgressDirective
+    OpenMobileProgressDirective,
+    OpenFilterDirective,
+    OpenMobileFoodOptionsDirective,
+    OpenMobileEatingDirective
   ],
   entryComponents: [
     CustomGoalsComponent,
     AutoCalcComponent,
     EditProductComponent,
     SearchOutsideComponent,
-    MobileProgressComponent
+    FilterComponent,
+    MobileOptionsComponent,
+    MobileProgressComponent,
+    MobileEatingComponent
   ],
   exports: [
     MyFoodComponent

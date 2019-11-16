@@ -3,17 +3,18 @@
   display: flex;
   position: fixed;
   bottom: 0;
-  height: 60px;
+  height: 47px;
   font-family: 'Lato', sans-serif;
   color: #8e8e8e;
   border-top: .5px solid #6f6f6f;
   box-shadow: 0 0 5px #ffffff80;
+  font-size: 12px;
 }
 .mobile-footer mat-icon {
   color: #8e8e8e;
 }
 .mobile-footer__item {
-  flex-basis: 33.3%;
+  flex-basis: 25%;
   display: flex;
   justify-content: center;
   align-items: center;

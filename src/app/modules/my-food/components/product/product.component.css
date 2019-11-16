@@ -167,4 +167,23 @@
     justify-content: center;
     align-items: center;
   }
+  .product:hover {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  .product__selection-title {
+    margin-bottom: 12px;
+  }
+  .product__selection-kind {
+    margin-top: 5px;
+  }
+  .product__selection-kind mat-radio-button {
+    margin-bottom: 4px;
+  }
+  .product__selection {
+    transform: scale(1);
+  }
+  .product__selection-action {
+    margin-top: 2px;
+  }
 }

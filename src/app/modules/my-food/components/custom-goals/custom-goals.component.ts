@@ -57,7 +57,7 @@ export class CustomGoalsComponent implements OnInit, OnDestroy {
       customCarbohydratesGoal: Number(this.tempUser.customCarbohydratesGoal)
     }, this.user.id)
       .then(() => {
-        this.dialog.getDialogById(APP.dialogs.customGoals).close();
+        this.close();
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Custom goals',
           body: 'Great! You have configured your own goals, now you can use it for your daily progress',
@@ -68,6 +68,10 @@ export class CustomGoalsComponent implements OnInit, OnDestroy {
         this.error = error.message;
         this.changeDetectorRef.markForCheck();
       });
+  }
+
+  public close(): void {
+    this.dialog.getDialogById(APP.dialogs.customGoals).close();
   }
 
   private subscribeToCurrentUser(): void {

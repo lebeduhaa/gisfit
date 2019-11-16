@@ -60,18 +60,6 @@ virtual-scroller {
   position: relative;
   height: calc(100vh - 80px);
 }
-.my-food__options-title {
-  font-size: 20px;
-  text-align: center;
-  margin: 10px 0;
-}
-.progress__trigger {
-  margin: 10px 0;
-}
-.progress__actions {
-  display: flex;
-  justify-content: center;
-}
 .my-food__advice {
   position: absolute;
   bottom: 0;
@@ -92,6 +80,7 @@ virtual-scroller {
   virtual-scroller {
     width: 100%;
     justify-content: center;
+    height: 100%;
   }
   .my-food__mobile-products-description {
     color: silver;

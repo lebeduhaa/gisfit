@@ -33,18 +33,7 @@
     <div class="my-food__right-bar" [hidden]="!userFillRequiredData">
       <app-categories (selectCategoryEvent)="reactOnSelectProductCategoryEvent($event)" caption="{{'my-food.product-categories' | translate}}" [options]="productCategories"></app-categories>
       <app-categories (selectCategoryEvent)="reactOnSelectDishCategoryEvent($event)" caption="{{'my-food.dish-categories' | translate}}" [options]="dishCategories"></app-categories>
-      <div class="my-food__options">
-        <div class="my-food__options-title">{{'my-food.food-options' | translate}}</div>
-        <div class="progress__trigger" *ngIf="user">
-          <app-toggle caption="{{'my-food.disable-tips' | translate}}" [small]="true" [value]="user.disableTips" (change)="reactOnChangeTips($event)"></app-toggle>
-        </div>
-        <div class="progress__trigger" *ngIf="user">
-          <app-toggle caption="{{'my-food.use-custom-goals' | translate}}" [disabled]="disableGoalTrigger()" [small]="true" [value]="user.ownGoal" (change)="reactOnChangeGoal($event)"></app-toggle>
-        </div>
-        <div class="progress__actions">
-          <app-spinner-button caption="{{'my-food.custom-goals' | translate}}" [small]="true" appOpenCustomGoals></app-spinner-button>
-        </div>
-      </div>
+      <app-food-options></app-food-options>
       <div class="my-food__advice" @toRightAnimation *ngIf="user && !user?.disableTips">
         <app-advice></app-advice>
       </div>
@@ -63,19 +52,23 @@
     <div class="my-food__mobile-products-description">
       {{'my-food.my-food-description' | translate}}
     </div>
-    <virtual-scroller #scroll [items]="displayedProducts" [bufferAmount]="2" *ngIf="displayedProducts">
-      <div class="my-food__products-not-found" *ngIf="displayedProducts.length === 0">There are not products:(</div>
-      <div class="my-food__product" *ngFor="let product of scroll.viewPortItems">
-        <app-product
-          [my]="myProducts"
-          [product]="product"
-          (addProductEvent)="reactOnAddProduct($event)"
-          (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
-      </div>
-    </virtual-scroller>
+    <div [style.height]="mobileVirtualScrollHeight + 'px'" class="my-food__mobile-scroll-wrapper">
+      <virtual-scroller #scroll [items]="displayedProducts" [bufferAmount]="2" *ngIf="displayedProducts && mobileVirtualScrollHeight">
+        <div class="my-food__products-not-found" *ngIf="displayedProducts.length === 0">There are not products:(</div>
+        <div class="my-food__product" *ngFor="let product of scroll.viewPortItems">
+          <app-product
+            [my]="myProducts"
+            [product]="product"
+            (addProductEvent)="reactOnAddProduct($event)"
+            (deleteProductEvent)="reactOnDeleteProduct($event)"></app-product>
+        </div>
+      </virtual-scroller>
+    </div>
   </div>
 </div>
 <div class="my-food__mobile-footer" *ngIf="isMobile">
-
-  <app-mobile-footer></app-mobile-footer>
+  <app-mobile-footer
+    (selectProductCategory)="reactOnSelectProductCategoryEvent($event)"
+    (selectDishCategory)="reactOnSelectDishCategoryEvent($event)"
+  ></app-mobile-footer>
 </div>

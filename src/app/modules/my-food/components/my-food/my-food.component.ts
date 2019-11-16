@@ -3,6 +3,8 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy, ViewChild } from '@ang
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
 import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
+import { MatDialog } from '@angular/material/dialog';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 import { MyFoodService } from '../../services/my-food.service';
 import { Product } from 'src/app/shared/models/product.model';
@@ -12,9 +14,7 @@ import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { toRightAnimation } from 'src/app/shared/animations';
-import { AngularFireMessaging } from '@angular/fire/messaging';
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
-import { MatDialog } from '@angular/material/dialog';
 
 @AutoUnsubscribe()
 @Component({
@@ -38,6 +38,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   public productCategories = APP.categories;
   public dishCategories = APP.dishCategories;
   public isMobile: boolean;
+  public mobileVirtualScrollHeight: number;
 
   private currentUserSubscription: Subscription;
   private currentSearch: string;
@@ -58,19 +59,8 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
 
   ngOnInit() {
     this.isMobile = APP.isMobile;
+    this.calcMobileVirtualScrollHeight();
     this.subscribeToCurrentUser();
-  }
-
-  public reactOnChangeTips(disableTips: boolean): void {
-    this.settingsService.updateUserData({disableTips}, this.user.id)
-      .then(() => this.user.disableTips = disableTips)
-      .catch(error => {
-        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
-          title: 'ERROR',
-          body: error.message,
-          duration: 15000
-        });
-      });
   }
 
   public reactOnSelectProductCategoryEvent(selectedCategories: string[]): void {
@@ -99,10 +89,6 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
           duration: 15000
         });
       });
-  }
-
-  public disableGoalTrigger(): boolean {
-    return !(this.user && this.user.customCaloriesGoal && this.user.customProteinGoal && this.user.customFatsGoal && this.user.customCarbohydratesGoal);
   }
 
   public findMoreProducts(): void {
@@ -213,6 +199,16 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
 
         return search && (productCategory || dishCategory);
       });
+    }
+  }
+
+  private calcMobileVirtualScrollHeight(): void {
+    if (this.isMobile) {
+      setTimeout(() => {
+        const descriptionHeight = document.querySelector('.my-food__mobile-products-description').clientHeight;
+
+        this.mobileVirtualScrollHeight = window.innerHeight - 117 - descriptionHeight;
+      }, 0);
     }
   }
 

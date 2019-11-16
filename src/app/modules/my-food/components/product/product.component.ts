@@ -5,6 +5,7 @@ import { appearAnimation } from 'src/app/shared/animations';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
 @Component({
   selector: 'app-product',
@@ -31,7 +32,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private subjectService: SubjectService,
-    private localStorageHelper: LocalStorageHelper
+    private localStorageHelper: LocalStorageHelper,
+    private sharedDataService: SharedDataService
   ) {}
 
   ngOnInit() {
@@ -81,20 +83,18 @@ export class ProductComponent implements OnInit {
   public acceptProduct(event: MouseEvent): void {
     const button = (event.target as HTMLElement);
     const buttonCoordinates = button.getBoundingClientRect();
-
-    this.selectionVisibility = false;
-    this.subjectService.emitSubject(APP.subjects.newProduct, {
+    const newProduct = {
       weight: this.weightKind,
       howMuch: this.resultProductSelection,
       product: this.product
-    });
-    this.subjectService.emitSubject(APP.subjects.flyingProduct, {
+    };
+    const flyingProduct = {
       startX: buttonCoordinates.left,
       startY: buttonCoordinates.top,
       image: this.product.image,
       productName: this.trimProductName()
-    });
-    this.subjectService.emitSubject(APP.subjects.preview, {
+    };
+    const preview = {
       add: true,
       calories: this.weightKind ?
         (this.product.calories * this.resultProductSelection) / 100 :
@@ -108,7 +108,17 @@ export class ProductComponent implements OnInit {
       carbohydrates: this.weightKind ?
         (this.product.carbohydrates * this.resultProductSelection) / 100 :
         (this.product.carbohydrates * (this.resultProductSelection * this.product.averageMassOfOnePiece)) / 100,
-    });
+    };
+
+    this.selectionVisibility = false;
+    this.subjectService.emitSubject(APP.subjects.flyingProduct, flyingProduct);
+
+    if (this.isMobile) {
+      // this.sharedDataService.currentEating.push(newProduct);
+    } else {
+      this.subjectService.emitSubject(APP.subjects.newProduct, newProduct);
+      this.subjectService.emitSubject(APP.subjects.preview, preview);
+    }
 
     this.resultProductSelection = null;
   }

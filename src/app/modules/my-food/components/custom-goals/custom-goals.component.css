@@ -21,3 +21,15 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 500px) {
+  .goals__control {
+    width: auto;
+  }
+  .goals {
+    position: relative;
+  }
+  mat-dialog-content {
+    overflow: visible;
+  }
+}

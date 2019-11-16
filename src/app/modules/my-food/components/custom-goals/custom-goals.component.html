@@ -1,5 +1,8 @@
 <mat-dialog-content>
   <div class="goals">
+    <div class="app__popup-close">
+      <mat-icon (click)="close()">clear</mat-icon>
+    </div>
     <div class="goals__title">Customize your goals</div>
     <div class="goals__description">You can create your custom goals for daily progress</div>
     <div class="goals__content" *ngIf="tempUser">

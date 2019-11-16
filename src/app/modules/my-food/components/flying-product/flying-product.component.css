@@ -1,6 +1,7 @@
 .flying-product {
   position: absolute;
   transition: .6s;
+  z-index: 1000;
 }
 .flying-product__header {
   width: 130px;

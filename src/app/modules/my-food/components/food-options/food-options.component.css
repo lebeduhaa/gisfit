@@ -1,0 +1,12 @@
+.my-food__options-title {
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0;
+}
+.progress__trigger {
+  margin: 10px 0;
+}
+.progress__actions {
+  display: flex;
+  justify-content: center;
+}

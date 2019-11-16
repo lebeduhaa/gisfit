@@ -226,6 +226,10 @@ html {
     max-height: 100vh !important;
   }
   .scrollable-content {
-    justify-content: space-around;
+    justify-content: space-evenly;
+    padding-top: 0;
+  }
+  .product__selection .mat-radio-label-content {
+    font-size: 13px;
   }
 }

@@ -1,7 +1,11 @@
 <div
   *ngIf="flyingProductVisibility"
   class="flying-product"
-  [ngStyle]="{'top': startY + 'px', 'left': startX + 'px'}"
+  [ngStyle]="{
+    'top': startY + 'px',
+    'left': startX + 'px',
+    'transform': resize ? 'scale(0.1)': 'scale(1)'
+  }"
 >
   <div class="flying-product__header">
     <img [src]="image">
