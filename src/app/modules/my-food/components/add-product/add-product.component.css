@@ -57,3 +57,32 @@
 app-spinner-button {
   margin-top: 20px;
 }
+
+@media screen and (max-width: 500px) {
+  .add-product {
+    width: 92%;
+    margin: 0 auto;
+    padding-top: 10px;
+  }
+  .add-product__content {
+    flex-direction: column-reverse;
+    margin-top: 0;
+  }
+  .add-product__right, .add-product__left {
+    width: auto;
+  }
+  .add-product__image {
+    height: 350px;
+    margin-bottom: 0;
+  }
+  .add-product__control {
+    margin-bottom: 20px;
+  }
+  .add-product__left {
+    margin-top: 20px;
+  }
+  .add-product__actions {
+    margin-top: 0;
+    padding-bottom: 20px;
+  }
+}

@@ -93,4 +93,12 @@ virtual-scroller {
     height: 167px;
     margin-bottom: 15px;
   }
+  .my-food__mobile-actions {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 5px;
+  }
+  .my-food__progress-bar {
+    margin-top: -3px;
+  }
 }

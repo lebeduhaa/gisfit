@@ -50,6 +50,8 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
     this.myFoodService.submitCurrentEating(this.sharedDataService.products)
       .then(() => {
         this.sharedDataService.products = [];
+        this.subjectService.emitSubject(APP.subjects.subCurrentProducts, this.sharedDataService.products.length);
+        this.subjectService.emitSubject(APP.subjects.closeMobileEatings, {});
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Current Eating',
           body: 'Your current eating was submit successfully, track you daily progress!',
@@ -67,14 +69,16 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
 
   public reactOnDelete(index: number): void {
     const product = this.sharedDataService.products[index];
-
-    this.subjectService.emitSubject(APP.subjects.preview, {
+    const preview = {
       add: false,
       calories: product.calories,
       protein: product.protein,
       fats: product.fats,
       carbohydrates: product.carbohydrates
-    });
+    };
+
+    this.sharedDataService.previewData.push(preview);
+    this.subjectService.emitSubject(APP.subjects.preview, preview);
     this.sharedDataService.products.splice(index, 1);
     this.subjectService.emitSubject(APP.subjects.subCurrentProducts, 1);
 

@@ -205,7 +205,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   private calcMobileVirtualScrollHeight(): void {
     if (this.isMobile) {
       setTimeout(() => {
-        const descriptionHeight = document.querySelector('.my-food__mobile-products-description').clientHeight;
+        const descriptionHeight = document.querySelector('.my-food__mobile-actions').clientHeight;
 
         this.mobileVirtualScrollHeight = window.innerHeight - 117 - descriptionHeight;
       }, 0);

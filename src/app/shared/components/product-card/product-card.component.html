@@ -6,6 +6,11 @@
     <div class="current-eating__remove" *ngIf="!history">
       <mat-icon (click)="reactOnDelete()">close</mat-icon>
     </div>
+    <div class="current-eating__mobile-remove" *ngIf="!history">
+      <button mat-mini-fab (click)="reactOnDelete()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
     <div class="current-eating__product-info-value">Calories: {{product.calories}}kcal</div>
     <div class="current-eating__product-info-value">Protein: {{product.protein}}g</div>
     <div class="current-eating__product-info-value">Fats: {{product.fats}}g</div>

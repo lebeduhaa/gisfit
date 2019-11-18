@@ -48,9 +48,15 @@
 </div>
 <app-flying-product></app-flying-product>
 <div class="my-food__mobile" *ngIf="isMobile">
+  <div class="my-food__progress-bar" *ngIf="progressBarVisibility">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
   <div class="my-food__mobile-products">
-    <div class="my-food__mobile-products-description">
-      {{'my-food.my-food-description' | translate}}
+    <div class="my-food__mobile-actions">
+      <app-spinner-button caption="{{'my-food.add-product' | translate}}" [small]="true" routerLink="/add-product" [queryParams]="{previous: 'my-food'}"></app-spinner-button>
+      <app-spinner-button caption="{{'my-food.find-more' | translate}}" [small]="true" *ngIf="myProducts" (click)="findMoreProducts()"></app-spinner-button>
+      <app-spinner-button caption="{{'my-food.my-products' | translate}}" [small]="true" *ngIf="!myProducts" (click)="goBackToMyProducts()"></app-spinner-button>
+      <app-search caption="{{'my-food.search' | translate}}" (searchEvent)="reactOnSearch($event)"></app-search>
     </div>
     <div [style.height]="mobileVirtualScrollHeight + 'px'" class="my-food__mobile-scroll-wrapper">
       <virtual-scroller #scroll [items]="displayedProducts" [bufferAmount]="2" *ngIf="displayedProducts && mobileVirtualScrollHeight">

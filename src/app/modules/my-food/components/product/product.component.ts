@@ -123,6 +123,7 @@ export class ProductComponent implements OnInit {
     if (this.isMobile) {
       this.sharedDataService.currentEating.push(newProduct);
       this.subjectService.emitSubject(APP.subjects.mobileEating, newProduct);
+      this.sharedDataService.previewData.push(preview);
     } else {
       this.subjectService.emitSubject(APP.subjects.newProduct, newProduct);
       this.subjectService.emitSubject(APP.subjects.preview, preview);
