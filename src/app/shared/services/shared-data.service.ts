@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+
+import { CurrentEat } from '../models/current-eat.model';
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -8,6 +10,7 @@ export class SharedDataService {
 
   public selectedProductCategories: string[] = [];
   public selectedDishCategories: string[] = [];
-  public currentEating: Product[] = [];
+  public currentEating: CurrentEat[] = [];
+  public products: Product[] = [];
 
 }

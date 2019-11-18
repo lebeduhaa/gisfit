@@ -17,3 +17,13 @@
 .current-eating__actions app-spinner-button:last-of-type {
   margin-left: 20px;
 }
+
+@media screen and (max-width: 500px) {
+  .current-eating__content {
+    max-height: auto !important;
+  }
+  .current-eating__product {
+    width: 80%;
+    margin: 20px auto 0 auto;
+  }
+}

@@ -6,6 +6,7 @@ import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
+import { MobileSelection } from 'src/app/shared/models/mobile-selection.model';
 
 @Component({
   selector: 'app-product',
@@ -38,6 +39,12 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.getUserId();
+  }
+
+  public reactOnMobileSelect(mobileSelection: MobileSelection): void {
+    this.weightKind = mobileSelection.weightKind;
+    this.resultProductSelection = mobileSelection.resultProductSelection;
+    this.acceptProduct(mobileSelection.event);
   }
 
   public reactOnConfirmAddProduct(confirmation: boolean): void {
@@ -114,7 +121,8 @@ export class ProductComponent implements OnInit {
     this.subjectService.emitSubject(APP.subjects.flyingProduct, flyingProduct);
 
     if (this.isMobile) {
-      // this.sharedDataService.currentEating.push(newProduct);
+      this.sharedDataService.currentEating.push(newProduct);
+      this.subjectService.emitSubject(APP.subjects.mobileEating, newProduct);
     } else {
       this.subjectService.emitSubject(APP.subjects.newProduct, newProduct);
       this.subjectService.emitSubject(APP.subjects.preview, preview);

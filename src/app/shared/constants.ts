@@ -38,7 +38,10 @@ export const APP = {
     flyingProduct: 'flyingProduct',
     preview: 'preview',
     clearPreview: 'clearPreview',
-    history: 'history'
+    history: 'history',
+    mobileEating: 'mobileEating',
+    closeMobileEatings: 'closeMobileEating',
+    subCurrentProducts: 'subCurrentProducts'
   },
   dialogs: {
     passwordReset: 'passwordReset',
@@ -54,7 +57,9 @@ export const APP = {
     mobileProgress: 'mobileProgress',
     filter: 'filter',
     mobileFoodOptions: 'mobileFoodOptions',
-    currentEating: 'currentEating'
+    currentEating: 'currentEating',
+    mobileSelect: 'mobileSelect',
+    mobileEating: 'mobileEating'
   },
   routesWithHeader: [
     'settings',

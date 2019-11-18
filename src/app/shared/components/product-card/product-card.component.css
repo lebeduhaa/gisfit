@@ -34,3 +34,21 @@
 .current-eating__product-image img {
   width: 100%;
 }
+
+@media screen and (max-width: 500px) {
+  .current-eating__product {
+    width: 100%;
+    height: auto;
+  } 
+  .current-eating__product-image {
+    width: 100%;
+    height: 100%;
+  }
+  .current-eating__product-info {
+    margin-top: -4px;
+    font-size: 14px;
+  }
+  .current-eating__remove .mat-icon {
+    display: block !important;
+  }
+}

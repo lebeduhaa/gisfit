@@ -1,3 +1,8 @@
 <mat-dialog-content>
-  <app-current-eating></app-current-eating>
+  <div class="mobile-eating">
+    <div class="app__popup-close">
+      <mat-icon (click)="close()">clear</mat-icon>
+    </div>
+    <app-current-eating></app-current-eating>
+  </div>
 </mat-dialog-content>

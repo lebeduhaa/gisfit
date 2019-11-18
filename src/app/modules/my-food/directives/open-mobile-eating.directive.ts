@@ -1,4 +1,4 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, Input } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 
@@ -10,15 +10,19 @@ import { MobileEatingComponent } from '../components/mobile-eating/mobile-eating
 })
 export class OpenMobileEatingDirective {
 
+  @Input() disabled: boolean;
+
   constructor(
     private dialog: MatDialog
   ) {}
 
   @HostListener('click')
   openMobileEating(): void {
-    this.dialog.open(MobileEatingComponent, {
-      id: APP.dialogs.currentEating
-    });
+    if (!this.disabled) {
+      this.dialog.open(MobileEatingComponent, {
+        id: APP.dialogs.mobileEating
+      });
+    }
   }
 
 }
