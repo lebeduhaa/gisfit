@@ -86,3 +86,13 @@ video {
   border-radius: 2px;
   transition: .3s;
 }
+
+@media screen and (max-width: 500px) {
+  .video__preview {
+    width: 100%
+  }
+  .video__preview > img {
+    width: 100%;
+    height: auto;
+  }
+}

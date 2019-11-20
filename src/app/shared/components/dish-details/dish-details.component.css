@@ -39,3 +39,31 @@ mat-dialog-content {
   width: 100%;
   white-space: pre-wrap;
 }
+.dish-details__title {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 500px) {
+  .dish-details__content {
+    display: block;
+  }
+  .dish-details__title {
+    margin-bottom: 10px;
+  }
+  .dish-details__dish-image {
+    width: 100%;
+  }
+  .dish-details__left {
+    margin: 0;
+  }
+  mat-dialog-content {
+    padding: 0 10px;
+    overflow: visible;
+  }
+  .dish-details {
+    position: relative;
+  }
+  .dish-details .app__popup-close {
+    right: -7px;
+  }
+}

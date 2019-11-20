@@ -223,7 +223,7 @@ html {
     top: -15px;
   }
   .mat-dialog-content {
-    max-height: 100vh !important;
+    max-height: 133vh !important;
   }
   .scrollable-content {
     justify-content: space-evenly;

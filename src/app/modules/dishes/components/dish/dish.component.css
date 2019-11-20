@@ -143,3 +143,9 @@
 .dish__comments-comment-body {
   word-break: break-all;
 }
+
+@media screen and (max-width: 500px) {
+  .dish:hover {
+    transform: scale(1);
+  }
+}

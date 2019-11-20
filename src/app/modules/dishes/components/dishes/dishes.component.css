@@ -33,3 +33,19 @@
 app-spinner-button {
   margin-right: 10px;
 }
+
+@media screen and (max-width: 500px) {
+  .dishes {
+    width: auto;
+  }
+  .dishes__title {
+    display: none;
+  }
+  .dishes__content {
+    display: block;
+    padding-top: 15px;
+  }
+  .dishes__dish {
+    margin-bottom: 20px;
+  }
+}

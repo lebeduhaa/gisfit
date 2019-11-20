@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { DishDetailsComponent } from './dish-details.component';
+import { APP } from '../../constants';
 
 @Directive({
   selector: '[appOpenDish]'
@@ -24,7 +25,8 @@ export class OpenDishDirective {
       maxWidth: '700px',
       data: {
         dish: this.dish
-      }
+      },
+      id: APP.dialogs.dishDetails
     });
   }
 

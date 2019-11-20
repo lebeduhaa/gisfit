@@ -37,3 +37,25 @@ app-spinner-button {
   text-align: center;
   width: 100%;
 }
+
+@media screen and (max-width: 500px) {
+  .videos {
+    width: auto;
+  }
+  .videos__video {
+    margin-right: 0;
+    width: 90%;
+  }
+  .videos__items {
+    justify-content: center;
+  }
+  .videos__description {
+    display: none;
+  }
+  .videos__actions {
+    margin-bottom: 15px;
+  }
+  mat-dialog-content {
+    padding: 10px;
+  }
+}

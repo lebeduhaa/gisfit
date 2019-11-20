@@ -1,6 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+
 import { Product } from 'src/app/shared/models/product.model';
+import { APP } from '../../constants';
 
 @Component({
   selector: 'app-dish-details',
@@ -12,11 +15,14 @@ export class DishDetailsComponent {
   public dish: Product;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private dialogData
+    @Inject(MAT_DIALOG_DATA) private dialogData,
+    private dialog: MatDialog
   ) {
     this.dish = dialogData.dish;
   }
 
-
+  public close(): void {
+    this.dialog.getDialogById(APP.dialogs.dishDetails).close();
+  }
 
 }

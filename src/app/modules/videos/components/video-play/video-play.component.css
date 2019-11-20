@@ -137,3 +137,40 @@
 .play__duration {
   margin-left: 20px;
 }
+
+@media screen and (max-width: 500px) {
+  .play {
+    position: relative;
+  }
+  .play__video {
+    padding: 0;
+  }
+  video {
+    width: 100%;
+    height: auto;
+  }
+  mat-dialog-content {
+    padding: 10px;
+    overflow: visible;
+  }
+  .play__info {
+    display: block;
+  }
+  .play__title {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  .play__description {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+  }
+  .play__comments {
+    padding: 0;
+  }
+  .play__comments /deep/ .textarea {
+    width: 100%;
+  }
+  .play__info-right {
+    justify-content: center;
+  }
+}

@@ -59,7 +59,8 @@ export const APP = {
     mobileFoodOptions: 'mobileFoodOptions',
     currentEating: 'currentEating',
     mobileSelect: 'mobileSelect',
-    mobileEating: 'mobileEating'
+    mobileEating: 'mobileEating',
+    dishDetails: 'dishDetails'
   },
   routesWithHeader: [
     'settings',

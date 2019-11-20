@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 
-import * as moment from 'moment';
-
 import { Video } from 'src/app/shared/models/video.model';
 import { VideosService } from '../../services/videos.service';
+import { APP } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-video',
@@ -14,6 +13,8 @@ export class VideoComponent {
 
   @Input() video: Video;
 
+  private isMobile = APP.isMobile;
+
   constructor(
     private videosService: VideosService
   ) {}
@@ -23,11 +24,15 @@ export class VideoComponent {
   }
 
   public reactOnMouseEnter(event): void {
-    event.target.querySelector('video').play();
+    if (!this.isMobile) {
+      event.target.querySelector('video').play();
+    }
   }
 
   public reactOnMouseLeave(event): void {
-    event.target.querySelector('video').pause();
+    if (!this.isMobile) {
+      event.target.querySelector('video').pause();
+    }
   }
 
   public getTrimTitle(): string {
