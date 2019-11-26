@@ -186,4 +186,31 @@
   .product__selection-action {
     margin-top: 2px;
   }
+  .product__mobile-actions {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -140px;
+    transition: .3s;
+    flex-wrap: wrap;
+  }
+  .product__mobile-actions_active {
+    top: 0;
+  }
+  .product__mobile-actions button {
+    background-color: #5147da;
+    height: 50px;
+    width: 50px;
+  }
+  .product__mobile-button-wrapper {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

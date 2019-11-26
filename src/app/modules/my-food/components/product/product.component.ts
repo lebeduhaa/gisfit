@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { appearAnimation } from 'src/app/shared/animations';
@@ -30,15 +30,32 @@ export class ProductComponent implements OnInit {
   public resultProductSelection: number;
   public userId: string;
   public isMobile = APP.isMobile;
+  public mobileActionsVisibility: boolean;
 
   constructor(
     private subjectService: SubjectService,
     private localStorageHelper: LocalStorageHelper,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.getUserId();
+  }
+
+  public closeMobileActions(): void {
+    if (this.isMobile && this.mobileActionsVisibility) {
+      this.mobileActionsVisibility = false;
+    }
+  }
+
+  public openMobileActions(): void {
+    setTimeout(() => {
+      if (this.isMobile) {
+        this.mobileActionsVisibility = true;
+        this.changeDetectorRef.markForCheck();
+      }
+    }, 0);
   }
 
   public reactOnMobileSelect(mobileSelection: MobileSelection): void {

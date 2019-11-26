@@ -1,5 +1,10 @@
 <mat-dialog-content>
-  <div class="are-you-sure__title">{{title}}</div>
+  <div class="are-you-sure">
+    <div class="app__popup-close">
+      <mat-icon (click)="close(false)">clear</mat-icon>
+    </div>
+    <div class="are-you-sure__title">{{title}}</div>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <app-custom-button caption="Accept" color="accent" [small]="true" (click)="close(true)"></app-custom-button>
