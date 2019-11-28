@@ -2,7 +2,12 @@
   <mat-spinner></mat-spinner>
 </div>
 <div class="play" *ngIf="contentVisibility">
-  <div class="play__close">
+  <div class="app__popup-close" *ngIf="isMobile">
+    <button class="mat-icon-button" (click)="close()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+  <div class="play__close" *ngIf="!isMobile">
     <button mat-icon-button (click)="close()">
       <mat-icon>close</mat-icon>
     </button>
@@ -16,7 +21,7 @@
       (click)="playOrPause()"
       (timeupdate)="reactOnVideoTimeUpdate()"
     ></video>
-    <div class="play__video-controls">
+    <div class="play__video-controls" [style.transform]="controlsAreHidden ? 'translateY(39px)' : 'translateY(0)'">
       <div class="play__vide-timeline-wrapper" (click)="setPosition($event)">
         <div
           class="play__video-timeline"

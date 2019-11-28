@@ -97,7 +97,7 @@
   height: 80px;
   background-color: rgba(0, 0, 0, 0.692);
   transition: .2s;
-  transform: translateY(73px);
+  transform: translateY(39px);
 }
 .play__video-timeline {
   height: 5px;
@@ -144,6 +144,9 @@
   }
   .play__video {
     padding: 0;
+    width: 100vw;
+    margin-left: -24px;
+    margin-top: -24px;
   }
   video {
     width: 100%;
@@ -166,11 +169,37 @@
   }
   .play__comments {
     padding: 0;
+    margin: 10px;
   }
   .play__comments /deep/ .textarea {
     width: 100%;
   }
   .play__info-right {
     justify-content: center;
+  }
+  .play__video-controls {
+    height: 45px;
+    padding: 0 !important;
+  }
+  mat-slider {
+    min-width: 60px;
+    padding: 0;
+    margin-left: -10px;
+  }
+  .play__duration {
+    font-size: 10px;
+    margin-left: 12px;
+  }
+  .play__control-panel {
+    height: 38px;
+    justify-content: space-around;
+  }
+  .play .app__popup-close {
+    right: -28px;
+    top: 3px;
+    z-index: 100;
+  }
+  .play .app__popup-close mat-icon {
+    color: #131313;
   }
 }
