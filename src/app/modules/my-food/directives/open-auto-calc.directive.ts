@@ -1,6 +1,7 @@
 import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
+
 import { AutoCalcComponent } from '../components/auto-calc/auto-calc.component';
 import { APP } from 'src/app/shared/constants';
 import { Calculation } from 'src/app/shared/models/calculation.model';
@@ -20,7 +21,7 @@ export class OpenAutoCalcDirective {
   openAutoCalc(): void {
     const dialogRef = this.dialog.open(AutoCalcComponent, {
       width: '1300px',
-      height: '80vh',
+      height: APP.isMobile ? '100%' : '80vh',
       id: APP.dialogs.autoCalc
     });
 

@@ -2,7 +2,7 @@
 <div class="flip-card" [class.flip-card_flip]="commentsVisibility">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <div class="dish" appOpenDish [dish]="dish">
+      <div class="dish" (clickOutside)="toggleMobileActions(false)" appOpenDish [disabled]="isMobile" [dish]="dish" (click)="toggleMobileActions(true)">
         <div class="dish__header">
           <div class="dish__header-user">
             <div class="dish__header-icon">
@@ -17,6 +17,18 @@
           </div>
         </div>
         <div class="dish__image">
+          <div class="dish__mobile-actions" [class.dish__mobile-actions_active]="mobileActionsVisibility">
+            <div class="dish__mobile-actions-wrapper">
+              <button mat-mini-fab appOpenDish [dish]="dish">
+                <mat-icon>priority_high</mat-icon>
+              </button>
+            </div>
+            <div class="dish__mobile-actions-wrapper">
+              <button mat-mini-fab appOpenEditDish [dish]="dish">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </div>
           <img [src]="dish.image">
           <img [src]="dish.fakeImage">
           <div class="dish__info">

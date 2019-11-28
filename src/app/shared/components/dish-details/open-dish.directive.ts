@@ -12,6 +12,7 @@ import { APP } from '../../constants';
 export class OpenDishDirective {
 
   @Input() dish: Product;
+  @Input() disabled: boolean;
 
   constructor(
     private dialog: MatDialog
@@ -19,15 +20,17 @@ export class OpenDishDirective {
 
   @HostListener('click', ['$event'])
   openDialog(event: MouseEvent): void {
-    event.stopPropagation();
-    this.dialog.open(DishDetailsComponent, {
-      width: '700px',
-      maxWidth: '700px',
-      data: {
-        dish: this.dish
-      },
-      id: APP.dialogs.dishDetails
-    });
+    if (!this.disabled) {
+      event.stopPropagation();
+      this.dialog.open(DishDetailsComponent, {
+        width: '700px',
+        maxWidth: '700px',
+        data: {
+          dish: this.dish
+        },
+        id: APP.dialogs.dishDetails
+      });
+    }
   }
 
 }

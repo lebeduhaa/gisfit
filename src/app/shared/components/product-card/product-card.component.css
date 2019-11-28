@@ -60,8 +60,8 @@
   .current-eating__mobile-remove {
     display: block;
     position: absolute;
-    top: 17px;
-    left: 155px;
+    top: 23px;
+    right: 15px;
   }
   .current-eating__remove {
     display: none;

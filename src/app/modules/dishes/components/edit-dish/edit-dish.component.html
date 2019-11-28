@@ -1,5 +1,8 @@
 <mat-dialog-content>
   <div class="edit-dish">
+    <div class="app__popup-close" (click)="close()">
+      <mat-icon>clear</mat-icon>
+    </div>
     <div class="edit-dish__title">Edit dish</div>
     <div class="edit-dish__content" [formGroup]="editDishForm">
       <div class="edit-dish__control">

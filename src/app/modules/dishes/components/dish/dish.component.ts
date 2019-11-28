@@ -22,6 +22,8 @@ export class DishComponent implements OnInit {
   public commentsVisibility: boolean;
   public currentComment: string;
   public userId: string;
+  public isMobile = APP.isMobile;
+  public mobileActionsVisibility: boolean;
 
   constructor(
     private localStorageHelper: LocalStorageHelper,
@@ -30,6 +32,10 @@ export class DishComponent implements OnInit {
 
   ngOnInit() {
     this.getUserId();
+  }
+
+  public toggleMobileActions(value: boolean): void {
+    this.mobileActionsVisibility = value;
   }
 
   public trimDishName(): string {

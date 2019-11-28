@@ -38,6 +38,10 @@ export class EditDishComponent implements OnInit {
     this.dishHasChanges();
   }
 
+  public close(): void {
+    this.dialog.getDialogById(APP.dialogs.editDish).close();
+  }
+
   public edit(): void {
     this.spinnerStateSubject.next(true);
 
@@ -85,9 +89,5 @@ export class EditDishComponent implements OnInit {
       ingredients: [this.dish.ingredients, Validators.required],
       recipe: [this.dish.recipe]
     });
-  }
-
-  private close(): void {
-    this.dialog.getDialogById(APP.dialogs.editDish).close();
   }
 }
