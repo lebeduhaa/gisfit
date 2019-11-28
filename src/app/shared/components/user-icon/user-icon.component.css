@@ -19,9 +19,9 @@
   border: 2px solid white;
   border-radius: 50%;
   box-shadow: 0 0 10px white;
-  /* overflow: hidden; */
   overflow-x: hidden;
   overflow-y: hidden;
+  position: relative;
 }
 .user-icon__trim {
   border: 2px solid white;

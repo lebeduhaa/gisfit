@@ -3,12 +3,11 @@
     <div class="flip-card-front">
       <div
         class="product"
-        appOpenMobileSelect
-        (mobileSelect)="reactOnMobileSelect($event)"
         appOpenProductInfo
         [disabled]="isMobile"
         [product]="product"
         [class.product_dish]="product.dish"
+        (click)="openMobileActions()"
       >
         <div class="product__actions" (click)="catchClick($event)" *ngIf="!isMobile">
           <div class="product__actions-left">
@@ -30,6 +29,46 @@
           </div>
         </div>
         <div class="product__image">
+          <div class="product__mobile-actions"  (clickOutside)="closeMobileActions()" [class.product__mobile-actions_active]="mobileActionsVisibility" *ngIf="isMobile">
+            <div class="product__mobile-button-wrapper">
+              <button
+                mat-mini-fab
+                appOpenMobileSelect
+                (mobileSelect)="reactOnMobileSelect($event)"
+              >
+                <mat-icon>check</mat-icon>
+              </button>
+            </div>
+            <div class="product__mobile-button-wrapper" *ngIf="!my && !selection">
+              <button
+                mat-mini-fab
+                (confirmationEvent)="reactOnConfirmAddProduct($event)"
+                appOpenAreYouSure
+                caption="Do you really want to add product '{{product.productName}}' to your food?"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            <div class="product__mobile-button-wrapper">
+              <button
+                mat-mini-fab
+                appOpenProductInfo
+                [product]="product"
+              >
+                <mat-icon>priority_high</mat-icon>
+              </button>
+            </div>
+            <div class="product__mobile-button-wrapper"  *ngIf="product.user.id === userId">
+              <button  appEditProduct [product]="product" mat-mini-fab>
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+            <div class="product__mobile-button-wrapper">
+              <button mat-mini-fab *ngIf="my && !selection" (confirmationEvent)="reactOnConfirmDeleteProduct($event)" appOpenAreYouSure caption="Do you really want to delete product '{{product.productName}}'?">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
           <img [src]="product.image">
           <img [src]="product.fakeImage">
           <div class="product__image-tonner" *ngIf="!isMobile"></div>

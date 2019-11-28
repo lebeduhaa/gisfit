@@ -148,4 +148,36 @@
   .dish:hover {
     transform: scale(1);
   }
+  .dish__mobile-actions {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: calc(100% - 46px);
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.637);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transform: translateY(-224px);
+    transition: .3s;
+  }
+  .dish__mobile-actions-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dish__mobile-actions-wrapper button {
+    width: 80px;
+    height: 80px;
+    background-color: #5147da;
+  }
+  .dish__mobile-actions-wrapper button mat-icon {
+    font-size: 35px;
+    margin-top: -10px;
+    margin-left: -9px;
+  }
+  .dish__mobile-actions_active {
+    transform: translateY(0);
+  }
 }

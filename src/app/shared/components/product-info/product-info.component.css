@@ -40,3 +40,22 @@
 .mat-dialog-content {
   max-height: 100vh;
 }
+mat-dialog-content {
+  overflow: visible;
+}
+.product-info {
+  position: relative;
+}
+
+@media screen and (max-width: 500px) {
+  .product-info__img {
+    width: 100%;
+    height: auto;
+  }
+  .product-info__value {
+    width: 100%;  
+  }
+  .product-info__title {
+    font-size: 22px;
+  }
+}

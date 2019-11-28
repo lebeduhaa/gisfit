@@ -1,5 +1,8 @@
 <mat-dialog-content>
   <div class="product-edit">
+    <div class="app__popup-close" (click)="close()">
+      <mat-icon>clear</mat-icon>
+    </div>
     <div class="product-edit__title">Edit product</div>
     <div class="product-edit__content" [formGroup]="productEditForm">
       <app-input-text placeholder="Product Name" icon="create">
@@ -9,5 +12,5 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <app-spinner-button [small]="true" caption="Edit product" (click)="edit()" [spinnerStateSubject]="spinnerSubject"></app-spinner-button>
+  <app-spinner-button [disabled]="editButtonIsDisabled()" [small]="true" caption="Edit product" (click)="edit()" [spinnerStateSubject]="spinnerSubject"></app-spinner-button>
 </mat-dialog-actions>

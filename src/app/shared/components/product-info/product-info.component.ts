@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 import { Product } from 'src/app/shared/models/product.model';
+import { APP } from '../../constants';
 
 @Component({
   selector: 'app-product-info',
@@ -13,9 +14,14 @@ export class ProductInfoComponent {
   public product: Product;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private dialogData
+    @Inject(MAT_DIALOG_DATA) private dialogData,
+    private dialog: MatDialog
   ) {
     this.product = dialogData.product;
+  }
+
+  public close(): void {
+    this.dialog.getDialogById(APP.dialogs.productDetails).close();
   }
 
 }

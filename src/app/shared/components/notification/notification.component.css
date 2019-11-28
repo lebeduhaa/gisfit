@@ -25,3 +25,19 @@
 .notification__body {
   font-size: 13px;
 }
+
+@media screen and (max-width: 500px) {
+  .notification__title {
+    font-size: 14px;
+  }  
+  .notification__body {
+    font-size: 12px;
+  }
+  .notification {
+    min-width: 0;
+    bottom: 17px;
+    right: 17px;
+    top: auto;
+    max-width: 75%;
+  }
+}

@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 
 import { Product } from 'src/app/shared/models/product.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MyFoodService } from '../../services/my-food.service';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
@@ -35,6 +35,14 @@ export class EditProductComponent implements OnInit {
     this.initProductEditForm();
   }
 
+  public close(): void {
+    this.dialog.getDialogById(APP.dialogs.editProduct).close();
+  }
+
+  public editButtonIsDisabled(): boolean {
+    return this.productEditForm.invalid || this.productEditForm.controls.productName.value === this.product.productName;
+  }
+
   public edit(): void {
     this.spinnerSubject.next(true);
 
@@ -62,10 +70,6 @@ export class EditProductComponent implements OnInit {
     this.productEditForm = this.formBuilder.group({
       productName: [this.product.productName, Validators.required]
     });
-  }
-
-  private close(): void {
-    this.dialog.getDialogById(APP.dialogs.editProduct).close();
   }
 
 }

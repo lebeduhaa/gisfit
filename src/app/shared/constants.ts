@@ -60,7 +60,8 @@ export const APP = {
     currentEating: 'currentEating',
     mobileSelect: 'mobileSelect',
     mobileEating: 'mobileEating',
-    dishDetails: 'dishDetails'
+    dishDetails: 'dishDetails',
+    productDetails: 'productDetails'
   },
   routesWithHeader: [
     'settings',

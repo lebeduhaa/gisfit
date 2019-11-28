@@ -1,6 +1,7 @@
 .edit-dish {
   font-family: 'Lato', sans-serif;
   color: white;
+  position: relative;
 }
 .edit-dish__control {
   margin-bottom: 30px;
@@ -13,4 +14,19 @@ mat-dialog-actions {
   font-size: 23px;
   margin-bottom: 30px;
   text-align: center;
+}
+mat-dialog-content {
+  overflow: visible;
+}
+
+@media screen and (max-width: 500px) {
+  .edit-dish__control {
+    margin-bottom: 20px;
+  }
+  .edit-dish__title {
+    font-size: 20px;
+  }
+  mat-dialog-actions {
+    margin-top: -18px;
+  }
 }

@@ -49,7 +49,10 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
   public submitCurrentEating(): void {
     this.myFoodService.submitCurrentEating(this.sharedDataService.products)
       .then(() => {
+        this.subjectService.emitSubject(APP.subjects.subCurrentProducts, this.sharedDataService.products.length);
         this.sharedDataService.products = [];
+        this.sharedDataService.currentEating = [];
+        this.sharedDataService.previewData = [];
         this.subjectService.emitSubject(APP.subjects.subCurrentProducts, this.sharedDataService.products.length);
         this.subjectService.emitSubject(APP.subjects.closeMobileEatings, {});
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {

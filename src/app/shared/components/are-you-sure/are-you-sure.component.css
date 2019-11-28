@@ -10,3 +10,18 @@ mat-dialog-actions {
 app-custom-button:last-of-type {
   margin-left: 15px;
 }
+
+@media screen and (max-width: 500px) {
+  mat-dialog-content {
+    overflow: visible;
+  }
+  mat-dialog-actions {
+    justify-content: center;
+  }
+  .are-you-sure {
+    position: relative;
+  }
+  .are-you-sure__title {
+    text-align: center;
+  }
+}

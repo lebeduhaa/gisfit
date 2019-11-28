@@ -85,4 +85,13 @@ app-spinner-button {
     margin-top: 0;
     padding-bottom: 20px;
   }
+  .add-product__dish {
+    width: auto;
+  }
+  .add-product_dish .add-product__image {
+    height: 410px;
+  }
+  .add-product /deep/ .textarea {
+    padding-bottom: 20px;
+  }
 }
