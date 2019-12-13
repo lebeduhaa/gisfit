@@ -122,3 +122,28 @@ app-input-text {
   text-align: center;
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 500px) {
+  .uploader__content {
+    flex-direction: column-reverse;
+    height: auto;
+    margin: 15px auto;
+  }
+  .uploader__title {
+    font-size: 20px;
+  }
+  .uploader {
+    padding-top: 10px;
+  }
+  .uploader__content-right {
+    margin-left: 0;
+  }
+  .uploader__image-wrapper {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .uploader__content-right img, .uploader__content-right video {
+    height: auto;
+    width: 100%;
+  }
+}

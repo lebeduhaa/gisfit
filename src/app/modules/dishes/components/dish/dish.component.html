@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="dish__image">
-          <div class="dish__mobile-actions" [class.dish__mobile-actions_active]="mobileActionsVisibility">
+          <div class="dish__mobile-actions" *ngIf="isMobile" [class.dish__mobile-actions_active]="mobileActionsVisibility">
             <div class="dish__mobile-actions-wrapper">
               <button mat-mini-fab appOpenDish [dish]="dish">
                 <mat-icon>priority_high</mat-icon>

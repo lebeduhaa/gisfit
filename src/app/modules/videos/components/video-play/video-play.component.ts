@@ -26,10 +26,13 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
   public playNow = true;
   public currentTimelineWidth = 0;
   public videoElement: HTMLVideoElement;
+  public isMobile = APP.isMobile;
+  public controlsAreHidden: boolean;
 
   private user: User;
   private userSubscription: Subscription;
   private tempVolume: number;
+  private timeout;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private dialogData,
@@ -44,6 +47,10 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscribeToCurrentUser();
     this.setTempVolume();
+
+    if (this.isMobile) {
+      this.hideMobileControls();
+    }
   }
 
   public setPosition(event: MouseEvent): void {
@@ -82,6 +89,8 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
   }
 
   public playOrPause(): void {
+    this.controlsAreHidden = false;
+
     if (this.playNow) {
       this.videoElement.pause();
     } else {
@@ -89,6 +98,7 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
     }
 
     this.playNow = !this.playNow;
+    this.hideMobileControls();
   }
 
   public toggleVolume(): void {
@@ -154,6 +164,14 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
         this.getVideoElement();
         this.changeDetectorRef.markForCheck();
       });
+  }
+
+  private hideMobileControls(): void {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.controlsAreHidden = true;
+      this.changeDetectorRef.markForCheck();
+    }, 3000);
   }
 
   private setLike(): void {
