@@ -8,7 +8,6 @@ import { RealTimeDataService } from '../../services/real-time-data.service';
 import { User } from '../../models/user.model';
 import { RouterHelper } from '../../services/router.service';
 import { APP } from '../../constants';
-import { ActivityService } from 'src/app/modules/activity/services/activity.service';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { GoogleApiService } from '../../services/gapi.service';
 

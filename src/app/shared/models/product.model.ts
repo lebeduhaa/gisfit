@@ -21,4 +21,5 @@ export interface Product {
   dish?: boolean;
   user?: User;
   amount?: number;
+  popularity?: number;
 }

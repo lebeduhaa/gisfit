@@ -83,12 +83,13 @@ module.exports = async (request, response) => {
       if (user.sendDailyReportOnEmail) {
         let html = '<ul>';
         let results = resultString.split('\n');
-        
+
         for (let i = 0; i < results.length - 1; i++) {
           html += `<li>${results[i]}</li>`;
         }
 
         html += '</ul>'
+        console.log(user);
         promises.push(mailer.sendMail('Daily report about your progress', html, user.email));
       }
     }

@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router, Event, NavigationEnd, RouterOutlet } from '@angular/router';
 
-import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -25,8 +24,6 @@ export class RootComponent implements OnInit, OnDestroy {
   public headerVisibility: boolean;
   public backgroundImageUrl: string;
   public fakeBackgroundImageUrl: string;
-
-  private userSubscription: Subscription;
 
   constructor(
     private router: Router,

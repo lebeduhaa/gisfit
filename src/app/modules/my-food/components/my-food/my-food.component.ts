@@ -27,7 +27,7 @@ import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
 })
 export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, OnDestroy {
 
-  @ViewChild('scroll', { static: false }) scroll: VirtualScrollerComponent;
+  @ViewChild('scroll') scroll: VirtualScrollerComponent;
 
   public progressBarVisibility: boolean;
   public products: Product[];

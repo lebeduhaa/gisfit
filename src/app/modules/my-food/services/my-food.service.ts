@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -88,13 +88,13 @@ export class MyFoodService {
   }
 
   public async getMyProducts(user: User): Promise<any> {
-    const products = await this.firestore.collection('products').get().toPromise();
+    const products = await this.firestore.collection('products').ref.orderBy('popularity', 'desc').get();
 
     return products.docs.map(doc => doc.data()).filter(doc => user.addedProducts.includes(doc.id));
   }
 
   public async getNotMyProducts(user: User): Promise<any> {
-    const products = await this.firestore.collection('products').get().toPromise();
+    const products = await this.firestore.collection('products').ref.orderBy('popularity', 'desc').get();
 
     return products.docs.map(doc => doc.data()).filter(doc => !user.addedProducts.includes(doc.id));
   }
@@ -106,7 +106,7 @@ export class MyFoodService {
   }
 
   public async getAllProducts(): Promise<Product[]> {
-    const products = await this.firestore.collection('products').get().toPromise();
+    const products = await this.firestore.collection('products').ref.orderBy('popularity', 'desc').get();
 
     return products.docs.map(doc => doc.data());
   }

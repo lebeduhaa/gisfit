@@ -20,7 +20,7 @@ import { SubjectService } from 'src/app/shared/services/subject.service';
 })
 export class UploaderComponent implements OnInit, OnDestroy {
 
-  @ViewChild('video', { static: false }) video: ElementRef<HTMLVideoElement>;
+  @ViewChild('video') video: ElementRef<HTMLVideoElement>;
 
   public videoPreview: string | ArrayBuffer;
   public videoPreload: SafeResourceUrl;
