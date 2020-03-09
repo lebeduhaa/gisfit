@@ -16,7 +16,7 @@ export class InputTextComponent implements OnInit, OnDestroy {
   @Input() small: boolean;
   @Input() detectChanges: Subject<void>;
 
-  @ViewChild('input') inputWrapper: ElementRef;
+  @ViewChild('input', { static: true }) inputWrapper: ElementRef;
 
   public placeholderAtTop: boolean;
 

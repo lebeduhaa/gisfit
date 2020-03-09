@@ -11,7 +11,7 @@ export class SearchComponent {
 
   @Input() caption: string;
 
-  @ViewChild('input') input: ElementRef<HTMLInputElement>;
+  @ViewChild('input', { static: true }) input: ElementRef<HTMLInputElement>;
 
   public visibility: boolean;
   public currentValue: string;

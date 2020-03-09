@@ -19,7 +19,7 @@ export class InputFileComponent implements OnInit, OnDestroy {
   @Input() clearFilesSubject: Subject<boolean>;
   @Input() video: boolean;
 
-  @ViewChild('file') input: ElementRef<HTMLInputElement>;
+  @ViewChild('file', { static: true }) input: ElementRef<HTMLInputElement>;
 
   private filesSubscription: Subscription;
 

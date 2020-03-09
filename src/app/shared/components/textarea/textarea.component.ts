@@ -12,7 +12,7 @@ export class TextareaComponent implements AfterViewInit, OnDestroy {
   @Input() placeholder: string;
   @Input() detectChanges: Subject<void>;
 
-  @ContentChild('textarea') textarea: ElementRef<HTMLTextAreaElement>;
+  @ContentChild('textarea', /* TODO: add static flag */ {}) textarea: ElementRef<HTMLTextAreaElement>;
 
   public placeholderAtTop: boolean;
 
