@@ -18,6 +18,7 @@ export class AutoCalcComponent implements OnInit {
   public selectedProducts: Product[];
   public displayedProducts: Product[];
   public products: Product[];
+  public isMobile = APP.isMobile;
 
   constructor(
     private myFoodService: MyFoodService,

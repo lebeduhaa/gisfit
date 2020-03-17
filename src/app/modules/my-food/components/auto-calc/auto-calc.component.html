@@ -17,7 +17,7 @@
         <div class="auto-calc__search">
           <app-search caption="Search products" (searchEvent)="reactOnSearchEvent($event)"></app-search>
         </div>
-        <virtual-scroller #scroll [items]="displayedProducts" [horizontal]="true" [bufferAmount]="2" *ngIf="displayedProducts">
+        <virtual-scroller #scroll [items]="displayedProducts" [horizontal]="isMobile" [bufferAmount]="2" *ngIf="displayedProducts">
           <div class="auto-calc__product" *ngFor="let product of scroll.viewPortItems">
             <app-product
               [selection]="true"
@@ -32,6 +32,6 @@
   <app-flying-product [selection]="true"></app-flying-product>
 </mat-dialog-content>
 <mat-dialog-actions *ngIf="products">
-  <app-custom-button [small]="true" [disabled]="!selectedProducts?.length" caption="Calculate" color="accent" (click)="calculate()"></app-custom-button>
-  <app-custom-button [small]="true" caption="Back" color="warn" (click)="close()"></app-custom-button>
+  <app-custom-button [small]="isMobile" [disabled]="!selectedProducts?.length" caption="Calculate" color="accent" (click)="calculate()"></app-custom-button>
+  <app-custom-button [small]="isMobile" caption="Back" color="warn" (click)="close()"></app-custom-button>
 </mat-dialog-actions>

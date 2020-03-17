@@ -69,8 +69,8 @@
               </button>
             </div>
           </div>
-          <img [src]="product.image">
-          <img [src]="product.fakeImage">
+          <img [src]="product.image" loading="lazy">
+          <img [src]="product.fakeImage" loading="lazy">
           <div class="product__image-tonner" *ngIf="!isMobile"></div>
         </div>
         <div class="product__title">{{trimProductName()}}</div>

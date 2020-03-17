@@ -1,6 +1,6 @@
 <div class="current-eating__product" appOpenProductInfo [product]="product" [style.cursor]="history ? 'pointer' : 'default'" [disabled]="!history">
   <div class="current-eating__product-image">
-    <img [src]="product.image">
+    <img loading="lazy" [src]="product.image">
   </div>
   <div class="current-eating__product-info">
     <div class="current-eating__remove" *ngIf="!history">

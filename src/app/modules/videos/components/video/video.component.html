@@ -1,8 +1,8 @@
 <div class="video" appOpenVideoPlay [video]="video" (mouseenter)="reactOnMouseEnter($event)" (mouseleave)="reactOnMouseLeave($event)" (click)="openVideo()">
   <div class="video__preview">
-    <img [src]="video.imageFile" *ngIf="video.imageFile">
+    <img loading="lazy" [src]="video.imageFile" *ngIf="video.imageFile">
     <div class="video__play">
-      <img src="assets/img/play.png" alt="">
+      <img loading="lazy" src="assets/img/play.png" alt="">
     </div>
     <!-- <img [src]="video.fakeImage" *ngIf="video.imageFile"> -->
     <video [src]="video.videoFile"></video>

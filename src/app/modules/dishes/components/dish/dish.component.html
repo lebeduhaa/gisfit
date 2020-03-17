@@ -29,8 +29,8 @@
               </button>
             </div>
           </div>
-          <img [src]="dish.image">
-          <img [src]="dish.fakeImage">
+          <img [src]="dish.image" loading="lazy">
+          <img [src]="dish.fakeImage" loading="lazy">
           <div class="dish__info">
             <button mat-icon-button (click)="setLike($event)">
               <mat-icon>{{likeAlreadySet() ? 'favorite' : 'favorite_border'}}</mat-icon>

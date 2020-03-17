@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { APP } from 'src/app/shared/constants';
-import { Subscription } from 'rxjs';
 import { SubjectService } from 'src/app/shared/services/subject.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mobile-eating',
