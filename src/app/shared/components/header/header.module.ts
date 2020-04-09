@@ -6,6 +6,7 @@ import { HeaderComponent } from './header.component';
 import { OpenActivityDirective } from './open-activity.directive';
 import { UserIconModule } from '../user-icon/user-icon.module';
 import { MaterialModule } from '../../modules/material.module';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,11 @@ import { MaterialModule } from '../../modules/material.module';
   ],
   declarations: [
     HeaderComponent,
-    OpenActivityDirective
+    OpenActivityDirective,
+    WelcomeComponent
+  ],
+  entryComponents: [
+    WelcomeComponent
   ],
   exports: [
     HeaderComponent

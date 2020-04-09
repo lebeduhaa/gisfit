@@ -1,14 +1,18 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, Event } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+
+import { Subscription } from 'rxjs';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { RouterHelper } from '../../services/router.service';
 import { APP } from '../../constants';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { Subscription } from 'rxjs';
 import { User } from '../../models/user.model';
 import { RealTimeDataService } from '../../services/real-time-data.service';
 import { expandAnimation } from '../../animations';
+import { userIsWithNecessaryData } from '../../helpers';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @AutoUnsubscribe()
 @Component({
@@ -25,14 +29,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public user: User;
   public isMobile: boolean;
   public mobileMenuIsOpened: boolean;
+  public filledUserData: boolean;
 
   private userSubscription: Subscription;
+  private popupWasOpened: boolean;
 
   constructor(
     private authService: AuthService,
     private routerHelper: RouterHelper,
     private router: Router,
-    private realTimeDataService: RealTimeDataService
+    private realTimeDataService: RealTimeDataService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -69,7 +76,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
+        this.detectFilledUserData();
       });
+  }
+
+  private detectFilledUserData(): void {
+    this.filledUserData = userIsWithNecessaryData(this.user);
+
+    if (userIsWithNecessaryData(this.user)) {
+      this.filledUserData = true;
+    } else {
+      if (!this.popupWasOpened) {
+        this.dialog.open(WelcomeComponent, {
+          width: '500px'
+        });
+        this.popupWasOpened = true;
+      }
+    }
   }
 
   ngOnDestroy() {}

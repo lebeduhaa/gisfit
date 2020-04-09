@@ -4,12 +4,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import { TranslateService } from '@ngx-translate/core';
 
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from '../../auth/services/auth.service';
-import { TranslateService } from '@ngx-translate/core';
+import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class SettingsService {
     private auth: AngularFireAuth,
     private authService: AuthService,
     private firebaseAuth: AngularFireAuth,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private localStorageHepler: LocalStorageHelper
   ) {}
 
   public uploadAvatar(base64: string, user: User): Promise<any> {
@@ -88,6 +90,11 @@ export class SettingsService {
     if (userData.interfaceLanguage) {
       this.translateService.use(userData.interfaceLanguage);
     }
+
+    const currentUserData = this.localStorageHepler.getCachedData(APP.cachedData.userData);
+    const resultUserData = {...currentUserData, ...userData};
+
+    this.localStorageHepler.cacheData(APP.cachedData.userData, resultUserData);
 
     return this.firestore.collection('users').doc(userId).update(userData);
   }

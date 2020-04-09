@@ -3,6 +3,7 @@ import { Router, Event, NavigationEnd, RouterOutlet } from '@angular/router';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { APP } from 'src/app/shared/constants';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
@@ -25,6 +26,8 @@ export class RootComponent implements OnInit, OnDestroy {
   public backgroundImageUrl: string;
   public fakeBackgroundImageUrl: string;
 
+  private routerSubscription: Subscription;
+
   constructor(
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
@@ -34,9 +37,8 @@ export class RootComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.translateService.setDefaultLang('English');
-    this.router.events
+    this.routerSubscription = this.router.events
       .subscribe(event => this.parseRouterEvent(event));
-
   }
 
   public prepareRoute(outlet: RouterOutlet) {

@@ -47,7 +47,7 @@ export class FoodOptionsComponent implements OnInit {
 
   private subscribeToCurrentUser(): void {
     this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
-      .subscribe(user => (console.log(user), this.user = user));
+      .subscribe(user => this.user = user);
   }
 
 }

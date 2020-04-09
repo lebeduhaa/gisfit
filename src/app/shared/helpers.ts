@@ -1,4 +1,5 @@
 import { APP } from './constants';
+import { User } from './models/user.model';
 
 export const parseError = (errors: any, controlName: string): string => {
   const error = Object.keys(errors)[0];
@@ -48,3 +49,5 @@ export const getClosestByClassName = (element: HTMLElement, className: string): 
     return getClosestByClassName(element.parentElement, className);
   }
 };
+
+export const userIsWithNecessaryData = (user: User): boolean => user?.activity && user?.goal && user?.height && user?.weight && user?.age && !!user?.sex;

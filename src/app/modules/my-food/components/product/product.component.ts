@@ -150,7 +150,7 @@ export class ProductComponent implements OnInit {
   }
 
   private getUserId(): void {
-    this.userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    this.userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
   }
 
 }

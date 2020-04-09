@@ -17,7 +17,7 @@ export class SearchOutsideComponent {
 
   public search(): void {
     this.myFoodService.searchOutside(this.currentKey)
-      .subscribe(result => console.log(result));
+      .subscribe(result => console.log(result.body));
   }
 
 }

@@ -4,6 +4,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { LocalStorageHelper } from './services/local-storage.service';
 import { APP } from './constants';
 import { RouterHelper } from './services/router.service';
+import { userIsWithNecessaryData } from './helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,20 @@ export class AuthGuard implements CanActivate {
   }
 
   private checkLogin(url: string): boolean {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userData = this.localStorageHelper.getCachedData(APP.cachedData.userData);
 
-    if (userId) {
-      return true;
+    if (userData) {
+      if (url.includes(APP.pages.settings)) {
+        return true;
+      } else {
+        if (userIsWithNecessaryData(userData)) {
+          return true;
+        } else {
+          this.routerHelper.navigateToPage(APP.pages.settings);
+
+          return false;
+        }
+      }
     } else {
       this.routerHelper.navigateToPage(APP.pages.signIn);
 

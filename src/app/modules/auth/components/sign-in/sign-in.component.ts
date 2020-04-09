@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 
 import { APP } from 'src/app/shared/constants';
-import { parseError } from 'src/app/shared/helpers';
+import { parseError, userIsWithNecessaryData } from 'src/app/shared/helpers';
 import { AuthService } from '../../services/auth.service';
 import { RouterHelper } from 'src/app/shared/services/router.service';
 
@@ -37,8 +37,13 @@ export class SignInComponent implements OnInit, OnDestroy {
     this.spinnerStateSubject.next(true);
     this.error = '';
     this.authService.signIn(this.signInForm.value)
-      .then(result => {
-        this.routerHelper.navigateToPage(APP.pages.myFood);
+      .then(user => {
+        if (userIsWithNecessaryData(user)) {
+          this.routerHelper.navigateToPage(APP.pages.myFood);
+        } else {
+          this.routerHelper.navigateToPage(APP.pages.settings);
+        }
+
         this.spinnerStateSubject.next(false);
       })
       .catch(error => {

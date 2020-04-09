@@ -6,11 +6,11 @@ const app = express();
 app.get('/search-outside', (req, res) => {
 
   request(
-    // { url: `https://e-dostavka.by/search/`, qs: req.query },
-    { url: 'https://swapi.co/api/' },
+    { url: `https://e-dostavka.by/search/`, qs: req.query },
     (error, result, body) => {
       if (error || res.statusCode !== 200) {
         console.log(result);
+        console.log(error);
         return res.status(500).json({ type: 'error', message: error.message });
       }
 

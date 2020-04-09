@@ -34,12 +34,12 @@ export class AuthService {
   }
 
   public signOut(): Promise<any> {
-    this.localStorageService.clearCachedData(APP.cachedData.userId);
+    this.localStorageService.clearCachedData(APP.cachedData.userData);
 
     return this.firebaseAuth.auth.signOut();
   }
 
-  public signIn(user: User): Promise<any> {
+  public signIn(user: User): Promise<User> {
     return new Promise((resolve, reject) => {
       this.firebaseAuth.auth.signInWithEmailAndPassword(user.email, user.password)
         .then(signInResult => {
@@ -48,8 +48,8 @@ export class AuthService {
               .then(userSnapshot => {
                 const userData = userSnapshot.docs[0].data();
 
-                this.localStorageService.cacheData(APP.cachedData.userId, userData.id);
-                resolve();
+                this.localStorageService.cacheData(APP.cachedData.userData, userData);
+                resolve(userData);
               }).catch(error => reject(error));
           } else {
             reject('Email address not verified!');

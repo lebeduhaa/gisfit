@@ -1,0 +1,17 @@
+mat-dialog-content {
+  overflow: visible;
+}
+.welcome {
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+  position: relative;
+}
+.welcome__title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.welcome__subtitle {
+  font-size: 14px;
+  color: #c3c3c3;
+}

@@ -21,7 +21,7 @@ export class HistoryService {
   ) {}
 
   public async getUserHistory(date: Date): Promise<History> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
     const momentDate = moment(date);
     const history = await this.firestore.collection('history').ref
       .where('year', '==', momentDate.year())
@@ -36,7 +36,7 @@ export class HistoryService {
   }
 
   public async getCurrentDayProgress(): Promise<History> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
     const currentUser: User = (await this.firestore.collection('users').doc(userId).get().toPromise()).data();
 
     return {
@@ -54,7 +54,7 @@ export class HistoryService {
 
   public async getScoreStatistics(): Promise<any> {
     const result: ScoreChartData[] = [];
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
     const statistics = (await this.firestore.collection('history').get().toPromise()).docs.map(doc => doc.data());
 
     statistics.forEach(history => {
@@ -75,7 +75,7 @@ export class HistoryService {
 
   public async getDailyStatistics(): Promise<Statistics[]> {
     const result: Statistics[] = [];
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
     const statistics = (await this.firestore.collection('history').get().toPromise()).docs.map(doc => doc.data());
 
     statistics.forEach(history => {

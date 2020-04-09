@@ -74,7 +74,8 @@ export const APP = {
     'activity'
   ],
   cachedData: {
-    userId: 'userId'
+    userId: 'userId',
+    userData: 'userData'
   },
   defaultAvatar: 'unknown-user.jpg',
   hours: [
@@ -228,6 +229,8 @@ export const APP = {
     'FRI',
     'SAT'
   ],
-  searchOutsideUrl: 'https://e-dostavka.by/search/',
+  // searchOutsideUrl: 'https://e-dostavka.by/search/',
+  // searchOutsideUrl: 'https://us-central1-gisfit-production.cloudfunctions.net/evrooptProxy/search-outside',
+  searchOutsideUrl: 'http://localhost:3000/search-outside',
   isMobile: window.outerWidth < 500
 };

@@ -28,13 +28,13 @@ export class DishesService {
   }
 
   public setLike(dishId: string): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
 
     return this.firestore.collection('products').doc(dishId).update({likes: firebase.firestore.FieldValue.arrayUnion(userId)});
   }
 
   public unsetLike(dishId: string): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
 
     return this.firestore.collection('products').doc(dishId).update({likes: firebase.firestore.FieldValue.arrayRemove(userId)});
   }

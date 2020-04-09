@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { RootComponent } from '../component/root.component';
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { RootRoutingModule } from './root-routing.module';
 import { AuthModule } from '../../auth/modules/auth.module';
@@ -16,6 +15,8 @@ import { DailyReportModule } from 'src/app/shared/components/daily-report/daily-
 import { VideosModule } from '../../videos/modules/videos.module';
 import { HistoryModule } from '../../history/modules/history.module';
 import { ActivityModule } from '../../activity/modules/activity.module';
+import { MaterialModule } from 'src/app/shared/modules/material.module';
+import { RootComponent } from '../components/root.component';
 
 @NgModule({
   imports: [
@@ -23,16 +24,16 @@ import { ActivityModule } from '../../activity/modules/activity.module';
     RootRoutingModule,
     HeaderModule,
     NotificationModule,
-    TranslateModule.forChild(),
     AuthModule,
     SettingsModule,
     MyFoodModule,
     DishesModule,
     VideosModule,
-    TranslateModule.forChild(),
     DailyReportModule,
     HistoryModule,
-    ActivityModule
+    ActivityModule,
+    MaterialModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     RootComponent,

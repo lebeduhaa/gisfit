@@ -28,7 +28,7 @@ export class VideosService {
   }
 
   public setLike(videoId: string): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
 
     return this.firestore.collection('videos').doc(videoId).update({
       dislikes: firebase.firestore.FieldValue.arrayRemove(userId),
@@ -37,7 +37,7 @@ export class VideosService {
   }
 
   public setDislike(videoId: string): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
 
     return this.firestore.collection('videos').doc(videoId).update({
       dislikes: firebase.firestore.FieldValue.arrayUnion(userId),
@@ -46,7 +46,7 @@ export class VideosService {
   }
 
   public unsetLike(videoId: string): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
 
     return this.firestore.collection('videos').doc(videoId).update({
       likes: firebase.firestore.FieldValue.arrayRemove(userId)
@@ -54,7 +54,7 @@ export class VideosService {
   }
 
   public unsetDislike(videoId: string): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
 
     return this.firestore.collection('videos').doc(videoId).update({
       dislikes: firebase.firestore.FieldValue.arrayRemove(userId)

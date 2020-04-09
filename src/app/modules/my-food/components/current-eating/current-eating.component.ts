@@ -101,6 +101,9 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
   }
 
   private reactOnNewProduct(newProduct: CurrentEat): void {
+    
+    console.log(newProduct.howMuch);
+
     if (newProduct.weight) {
       this.sharedDataService.products.push({
         productName: newProduct.product.productName,
@@ -115,11 +118,11 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
       for (let index = 0; index < newProduct.howMuch; index++) {
         const product = {...newProduct.product};
 
-        product.calories = Number((product.calories * product.averageMassOfOnePiece * 0.01).toFixed(3));
-        product.protein = Number((product.protein * product.averageMassOfOnePiece * 0.01).toFixed(3));
-        product.fats = Number((product.fats * product.averageMassOfOnePiece * 0.01).toFixed(3));
-        product.carbohydrates = Number((product.carbohydrates * product.averageMassOfOnePiece * 0.01).toFixed(3));
-        this.sharedDataService.products.push({...product, weight: newProduct.product.averageMassOfOnePiece});
+        product.calories = Number((product.calories * product.averageMassOfOnePiece * (newProduct.howMuch >= 1 ? 1 : newProduct.howMuch) * 0.01).toFixed(3));
+        product.protein = Number((product.protein * product.averageMassOfOnePiece * (newProduct.howMuch >= 1 ? 1 : newProduct.howMuch) * 0.01).toFixed(3));
+        product.fats = Number((product.fats * product.averageMassOfOnePiece * (newProduct.howMuch >= 1 ? 1 : newProduct.howMuch) * 0.01).toFixed(3));
+        product.carbohydrates = Number((product.carbohydrates * product.averageMassOfOnePiece * (newProduct.howMuch >= 1 ? 1 : newProduct.howMuch) * 0.01).toFixed(3));
+        this.sharedDataService.products.push({...product, weight: newProduct.product.averageMassOfOnePiece * (newProduct.howMuch >= 1 ? 1 : newProduct.howMuch)});
       }
     }
   }

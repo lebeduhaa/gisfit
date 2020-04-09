@@ -71,6 +71,9 @@ virtual-scroller {
   text-align: center;
   width: 100%;
 }
+.my-food /deep/ .scrollable-content {
+  height: auto;
+}
 
 @media screen and (max-width: 500px) {
   .my-food__mobile {

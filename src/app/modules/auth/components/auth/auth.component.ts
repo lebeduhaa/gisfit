@@ -30,7 +30,7 @@ export class AuthComponent implements OnInit {
   }
 
   private redirectAuthenticated(): void {
-    if (this.localStorageHelper.getCachedData(APP.cachedData.userId)) {
+    if (this.localStorageHelper.getCachedData(APP.cachedData.userData)) {
       this.routerHelper.navigateToPage(APP.pages.myFood);
     }
   }

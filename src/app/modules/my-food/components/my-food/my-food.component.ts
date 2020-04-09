@@ -101,12 +101,14 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
         this.displayedProducts = [...products];
         this.changeDetectorRef.markForCheck();
         this.getRouteState();
+        this.filterProducts();
       });
   }
 
   public goBackToMyProducts(): void {
     this.myProducts = true;
     this.getMyProducts();
+    this.filterProducts();
   }
 
   public reactOnSearch(searchKey: string): void {

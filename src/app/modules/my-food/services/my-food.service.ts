@@ -25,18 +25,17 @@ export class MyFoodService {
   ) {}
 
   public searchOutside(key: string): Observable<any> {
-    // return this.http.get(`${APP.searchOutsideUrl}?searchtext=${key}&lazy_steep=${1}`);
-    return this.http.get(`http://localhost:3000?searchtext=${key}&lazy_steep=${1}`);
+    return this.http.get(`${APP.searchOutsideUrl}?searchtext=${key}&lazy_steep=${1}`);
   }
 
   public deleteProduct(productId: string): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
 
     return this.firestore.collection('users').doc(userId).update({addedProducts: firebase.firestore.FieldValue.arrayRemove(productId)});
   }
 
   public async submitCurrentEating(products: Product[]): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
     const user = await this.firestore.collection('users').doc(userId).get().toPromise();
     const currentDay: Day = user.data().currentDay;
 
@@ -59,7 +58,7 @@ export class MyFoodService {
 
   public async createMyProduct(product: Product): Promise<any> {
     const id = this.firestore.createId();
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
     const base64 = product.image;
     const pureBase64 = base64.slice(base64.toString().indexOf('base64,') + 7);
 
@@ -67,6 +66,7 @@ export class MyFoodService {
     product.protein = Number(product.protein);
     product.fats = Number(product.fats);
     product.carbohydrates = Number(product.carbohydrates);
+    product.popularity = 0;
 
     delete product.image;
 
@@ -100,7 +100,7 @@ export class MyFoodService {
   }
 
   public addProductToMyFood(productId: string): Promise<any> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
 
     return this.firestore.collection('users').doc(userId).update({addedProducts: firebase.firestore.FieldValue.arrayUnion(productId)});
   }

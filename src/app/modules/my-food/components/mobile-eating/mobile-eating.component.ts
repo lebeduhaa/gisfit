@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { APP } from 'src/app/shared/constants';
 import { SubjectService } from 'src/app/shared/services/subject.service';

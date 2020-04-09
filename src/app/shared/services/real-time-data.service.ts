@@ -19,7 +19,7 @@ export class RealTimeDataService {
   ) {}
 
   public subscribeToCurrentUserData(): Observable<User> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData)?.id;
 
     if (userId) {
       return this.firestore.collection('users').doc(userId).valueChanges();
@@ -29,9 +29,9 @@ export class RealTimeDataService {
   }
 
   public subscribeToProducts(): Observable<DocumentChangeAction<unknown>[]> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userData = this.localStorageHelper.getCachedData(APP.cachedData.userData);
 
-    if (userId) {
+    if (userData) {
       return this.firestore.collection('products').stateChanges();
     }
 
@@ -39,9 +39,9 @@ export class RealTimeDataService {
   }
 
   public subscribeToVideos(): Observable<DocumentChangeAction<unknown>[]> {
-    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userId);
+    const userData = this.localStorageHelper.getCachedData(APP.cachedData.userData);
 
-    if (userId) {
+    if (userData) {
       return this.firestore.collection('videos').stateChanges();
     }
 

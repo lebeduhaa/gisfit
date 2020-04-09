@@ -61,7 +61,7 @@
           [clearFilesSubject]="clearFilesSubject"
         ></app-input-file>
         <app-spinner-button *ngIf="!isProductPage" appOpenAutoCalc (calculation)="reactOnCalculation($event)" caption="{{'dishes.calculate-automatically' | translate}}" [small]="true"></app-spinner-button>
-        <app-spinner-button *ngIf="false" appSearchOutside caption="Search from outside" [small]="true"></app-spinner-button>
+        <app-spinner-button appSearchOutside caption="Search from outside" [small]="true"></app-spinner-button>
       </div>
       <app-input-text [detectChanges]="detectChangesSubject" icon="looks_one" placeholder="{{(isProductPage ? 'my-food.average-mass-of-one-piece' : 'my-food.average-mass-of-serving') | translate}}">
         <input type="text" formControlName="averageMassOfOnePiece" appNumericControl>
