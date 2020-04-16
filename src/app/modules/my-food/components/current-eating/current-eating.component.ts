@@ -101,9 +101,6 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
   }
 
   private reactOnNewProduct(newProduct: CurrentEat): void {
-    
-    console.log(newProduct.howMuch);
-
     if (newProduct.weight) {
       this.sharedDataService.products.push({
         productName: newProduct.product.productName,
@@ -139,6 +136,8 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.sharedDataService.products = [];
+  }
 
 }

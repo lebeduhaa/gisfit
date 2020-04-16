@@ -48,7 +48,7 @@ mat-dialog-actions {
   border-radius: 5px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .cropper__content {
     display: block;
   }

@@ -37,3 +37,35 @@ app-spinner-button {
   margin-top: 10px;
   text-align: center;
 }
+
+@media(max-width: 576px) {
+  .history {
+    flex-direction: column;
+    width: 100%;
+  }
+  .history__calendar {
+    margin-right: 0;
+    flex-direction: column-reverse;
+    display: flex;
+  }
+  .history__actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  app-spinner-button {
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
+  .history__actions::ng-deep button {
+    font-size: 13px;
+    padding: 9px 13px;
+  }
+  .history__progress::ng-deep .progress__title {
+    margin-bottom: 15px;
+  }
+  .history__progress {
+    width: 90%;
+    padding-bottom: 50px;
+  }
+}

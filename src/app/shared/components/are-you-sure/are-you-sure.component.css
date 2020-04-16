@@ -11,7 +11,7 @@ app-custom-button:last-of-type {
   margin-left: 15px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   mat-dialog-content {
     overflow: visible;
   }

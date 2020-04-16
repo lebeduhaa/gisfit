@@ -19,7 +19,7 @@ mat-dialog-content {
   overflow: visible;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .edit-dish__control {
     margin-bottom: 20px;
   }

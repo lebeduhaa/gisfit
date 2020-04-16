@@ -48,17 +48,25 @@
 }
 .select__options {
   margin-top: 55px;
-  height: 275px;
+  max-height: 275px;
   overflow: auto;
   position: absolute;
   width: 100%;
   left: 0;
   top: 0;
   z-index: 1;
+  box-shadow: 0 2px 3px #ffffff5e;
 }
 .select_opened .select__header {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom: 1px solid #3d3d3d;
   z-index: 2;
+}
+
+
+@media(max-width: 576px) {
+  .select__options {
+    font-size: 15px;
+  }
 }

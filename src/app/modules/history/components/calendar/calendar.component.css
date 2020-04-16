@@ -79,3 +79,29 @@
 .calendar__month_disabled {
   display: none;
 }
+
+@media(max-width: 576px) {
+  .calendar__content {
+    margin-top: 0;
+    padding: 5px;
+    border-bottom: 1px solid #ffffff47;
+    border-top: 1px solid #ffffff47;
+    margin-top: 10px;
+  }
+  .calendar__year {
+    font-size: 20px;
+  }
+  .calendar__months {
+    margin-top: 0;
+    font-size: 13px;
+  }
+  .calendar__month {
+    padding: 2px;
+  }
+  .calendar__days-of-week {
+    font-size: 13px;
+  }
+  .calendar__day {
+    height: 40px;
+  }
+}

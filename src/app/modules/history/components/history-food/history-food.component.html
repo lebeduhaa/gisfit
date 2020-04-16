@@ -1,11 +1,12 @@
-<mat-dialog-content>
-  <div class="history-food">
-    <div class="history-food__title">Your food</div>
-    <div class="history-food__content">
-      <div class="history-food__empty" *ngIf="products.length === 0">It looks like you did not eat that day. It's too bad.</div>
-      <div class="history-food__product" *ngFor="let product of products">
-        <app-product-card [product]="product" [history]="true"></app-product-card>
-      </div>
+<div class="history-food">
+  <div class="history-food__title" mat-dialog-title>Your food</div>
+  <div class="app__popup-close" mat-dialog-close>
+    <mat-icon>clear</mat-icon>
+  </div>
+  <div class="history-food__content" mat-dialog-content>
+    <div class="history-food__empty" *ngIf="products.length === 0">It looks like you did not eat that day. It's too bad.</div>
+    <div class="history-food__product" *ngFor="let product of products">
+      <app-product-card [product]="product" [history]="true"></app-product-card>
     </div>
   </div>
-</mat-dialog-content>
+</div>

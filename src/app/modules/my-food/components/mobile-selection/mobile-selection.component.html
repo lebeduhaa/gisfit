@@ -1,0 +1,21 @@
+<mat-dialog-content>
+  <div class="mobile-selection" id="mobile-selection">
+    <div class="app__popup-close">
+      <mat-icon mat-dialog-close>clear</mat-icon>
+    </div>
+    <div class="mobile-selection__title">Select product</div>
+    <div class="mobile-selection__search">
+      <app-search caption="Search product" (searchEvent)="reactOnSearchEvent($event)"></app-search>
+    </div>
+    <div class="mobile-selection__content">
+      <virtual-scroller #scroll [items]="displayedProducts" [bufferAmount]="2" *ngIf="displayedProducts">
+        <div class="mobile-selection__product" *ngFor="let product of scroll.viewPortItems">
+          <app-product (acceptProductEvent)="reactOnAcceptProductEvent($event)" [product]="product"></app-product>
+        </div>
+      </virtual-scroller>
+    </div>
+    <div class="mobile-selection__spinner" *ngIf="spinnerVisibility">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>  
+</mat-dialog-content>

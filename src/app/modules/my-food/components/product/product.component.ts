@@ -7,6 +7,7 @@ import { APP } from 'src/app/shared/constants';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { MobileSelection } from 'src/app/shared/models/mobile-selection.model';
+import { CurrentEat } from 'src/app/shared/models/current-eat.model';
 
 @Component({
   selector: 'app-product',
@@ -20,6 +21,7 @@ export class ProductComponent implements OnInit {
 
   @Output() deleteProductEvent = new EventEmitter<string>();
   @Output() addProductEvent = new EventEmitter<string>();
+  @Output() acceptProductEvent = new EventEmitter<CurrentEat>();
 
   @Input() product: Product;
   @Input() my: boolean;
@@ -140,7 +142,9 @@ export class ProductComponent implements OnInit {
     if (this.isMobile) {
       this.sharedDataService.currentEating.push(newProduct);
       this.subjectService.emitSubject(APP.subjects.mobileEating, newProduct);
+      this.subjectService.emitSubject(APP.subjects.newProduct, newProduct);
       this.sharedDataService.previewData.push(preview);
+      this.acceptProductEvent.emit(newProduct);
     } else {
       this.subjectService.emitSubject(APP.subjects.newProduct, newProduct);
       this.subjectService.emitSubject(APP.subjects.preview, preview);

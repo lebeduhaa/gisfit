@@ -61,7 +61,7 @@
   align-items: center;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .header__wrapper {
     height: 60px;
     width: auto;

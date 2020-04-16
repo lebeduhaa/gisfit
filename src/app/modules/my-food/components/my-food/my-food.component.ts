@@ -15,6 +15,7 @@ import { User } from 'src/app/shared/models/user.model';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { toRightAnimation } from 'src/app/shared/animations';
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -52,7 +53,8 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
     private subjectService: SubjectService,
     protected settingsService: SettingsService,
     protected messaging: AngularFireMessaging,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    private sharedDataService: SharedDataService
   ) {
     super(messaging, settingsService, dialog);
   }
@@ -61,6 +63,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
     this.isMobile = APP.isMobile;
     this.calcMobileVirtualScrollHeight();
     this.subscribeToCurrentUser();
+    this.clearSelectedProducts();
   }
 
   public reactOnSelectProductCategoryEvent(selectedCategories: string[]): void {
@@ -173,6 +176,10 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
       });
   }
 
+  private clearSelectedProducts(): void {
+    this.sharedDataService.currentEating = [];
+  }
+
   private filterProducts(): void {
     if (this.products) {
       this.displayedProducts = this.products.filter(product => {
@@ -256,6 +263,8 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
     }
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.sharedDataService.previewData = [];
+  }
 
 }

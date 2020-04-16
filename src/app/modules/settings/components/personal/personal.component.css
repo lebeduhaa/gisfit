@@ -37,7 +37,7 @@ app-custom-button:first-child {
   align-items: center;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .personal__row {
     display: block;
     padding: 0 15px;

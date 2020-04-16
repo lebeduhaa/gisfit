@@ -62,6 +62,7 @@ export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
     const scrollbarX = new am4charts.XYChartScrollbar();
     scrollbarX.series.push(series);
     this.chart.scrollbarX = scrollbarX;
+    // this.chart.responsive.enabled = true;
 
     this.chart.cursor = new am4charts.XYCursor();
     this.chart.cursor.xAxis = dateAxis;

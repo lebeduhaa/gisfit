@@ -50,6 +50,9 @@ import { MobileEatingComponent } from '../components/mobile-eating/mobile-eating
 import { OpenMobileEatingDirective } from '../directives/open-mobile-eating.directive';
 import { MobileSelectComponent } from '../components/mobile-select/mobile-select.component';
 import { OpenMobileSelectDirective } from '../directives/open-mobile-select.directive';
+import { MobileAutoCalcComponent } from '../components/mobile-auto-calc/mobile-auto-calc.component';
+import { MobileSelectionComponent } from '../components/mobile-selection/mobile-selection.component';
+import { OpenMobileSelectionDirective } from '../directives/open-mobile-selection.directive';
 
 @NgModule({
   imports: [
@@ -104,7 +107,10 @@ import { OpenMobileSelectDirective } from '../directives/open-mobile-select.dire
     OpenFilterDirective,
     OpenMobileFoodOptionsDirective,
     OpenMobileEatingDirective,
-    OpenMobileSelectDirective
+    OpenMobileSelectDirective,
+    MobileAutoCalcComponent,
+    MobileSelectionComponent,
+    OpenMobileSelectionDirective
   ],
   entryComponents: [
     CustomGoalsComponent,

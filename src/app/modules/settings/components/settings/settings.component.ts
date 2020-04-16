@@ -10,6 +10,7 @@ import { settingsRouteAnimation } from 'src/app/shared/animations';
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
 import { SettingsService } from '../../services/settings.service';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
+import { APP } from 'src/app/shared/constants';
 
 @AutoUnsubscribe()
 @Component({
@@ -21,6 +22,8 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
   ]
 })
 export class SettingsComponent extends FirebaseCloudMessaging implements OnInit, OnDestroy {
+
+  public isMobile = APP.isMobile;
 
   private userSubscription: Subscription;
 

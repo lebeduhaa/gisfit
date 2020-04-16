@@ -28,7 +28,7 @@
   color: #ff6a6a;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .progress__title {
     margin-bottom: 60px;
   }

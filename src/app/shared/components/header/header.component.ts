@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -13,6 +13,7 @@ import { RealTimeDataService } from '../../services/real-time-data.service';
 import { expandAnimation } from '../../animations';
 import { userIsWithNecessaryData } from '../../helpers';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { LocalStorageHelper } from '../../services/local-storage.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -39,7 +40,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private routerHelper: RouterHelper,
     private router: Router,
     private realTimeDataService: RealTimeDataService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private changeDetectorRef: ChangeDetectorRef,
+    private localStorageService: LocalStorageHelper
   ) {}
 
   ngOnInit() {
@@ -77,6 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(user => {
         this.user = user;
         this.detectFilledUserData();
+        this.changeDetectorRef.markForCheck();
       });
   }
 
@@ -85,6 +89,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     if (userIsWithNecessaryData(this.user)) {
       this.filledUserData = true;
+      this.localStorageService.cacheData(APP.cachedData.userData, this.user);
     } else {
       if (!this.popupWasOpened) {
         this.dialog.open(WelcomeComponent, {

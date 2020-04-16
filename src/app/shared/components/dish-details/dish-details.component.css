@@ -43,7 +43,7 @@ mat-dialog-content {
   font-size: 18px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .dish-details__content {
     display: block;
   }

@@ -1,0 +1,50 @@
+mat-dialog-content {
+  overflow: visible;
+  height: calc(100% - 35px);
+}
+mat-dialog-actions {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 20px;
+}
+virtual-scroller {
+  height: calc(100vh - 63px);
+  width: 100vw;
+  margin-left: -24px;
+}
+.mobile-selection {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  position: relative;
+}
+.mobile-selection__title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.mobile-selection__search {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mobile-selection__search::ng-deep .search, .mobile-selection__search::ng-deep app-search {
+  width: 100%;
+}
+#mobile-selection .mobile-selection__search::ng-deep .search__button {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+#mobile-selection .mobile-selection__search::ng-deep input {
+  width: 90% !important;
+  max-width: 90% !important;
+}
+.mobile-selection__product {
+  margin-bottom: 10px;
+}
+.mobile-selection__spinner {
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}

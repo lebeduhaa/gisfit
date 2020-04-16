@@ -62,7 +62,7 @@ app-custom-button:first-of-type {
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .auto-calc__content {
     display: block;
   }
@@ -74,8 +74,8 @@ app-custom-button:first-of-type {
   }
   virtual-scroller {
     width: 100vw;
-    height: 75%;
     margin-left: -24px;
+    padding-bottom: 20px;
   }
   mat-dialog-content {
     height: 100%;
@@ -99,16 +99,18 @@ app-custom-button:first-of-type {
   }
   .auto-calc__products-wrapper {
     height: 50%;
+
   }
   .auto-calc /deep/ .scrollable-content {
-    flex-wrap: nowrap;
+    justify-content: space-evenly;
   }
   .auto-calc .auto-calc__product {
     height: 165px;
     margin-bottom: 0;
-    /* margin-right: 30px; */
+    margin-bottom: 10px;
   }
-  .auto-calc .auto-calc__product:first-of-type {
-    /* margin-left: 380px; */
+  .auto-calc__search {
+    margin-bottom: 5px;
+    margin-top: 5px;
   }
 }

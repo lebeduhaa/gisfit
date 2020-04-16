@@ -61,7 +61,8 @@ export const APP = {
     mobileSelect: 'mobileSelect',
     mobileEating: 'mobileEating',
     dishDetails: 'dishDetails',
-    productDetails: 'productDetails'
+    productDetails: 'productDetails',
+    mobileSelection: 'mobileSelection'
   },
   routesWithHeader: [
     'settings',
@@ -232,5 +233,5 @@ export const APP = {
   // searchOutsideUrl: 'https://e-dostavka.by/search/',
   // searchOutsideUrl: 'https://us-central1-gisfit-production.cloudfunctions.net/evrooptProxy/search-outside',
   searchOutsideUrl: 'http://localhost:3000/search-outside',
-  isMobile: window.outerWidth < 500
+  isMobile: window.outerWidth < 576
 };

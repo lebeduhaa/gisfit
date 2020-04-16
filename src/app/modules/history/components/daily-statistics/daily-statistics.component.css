@@ -10,3 +10,6 @@
   display: flex;
   justify-content: center;
 }
+mat-dialog-content {
+  padding: 0;
+}

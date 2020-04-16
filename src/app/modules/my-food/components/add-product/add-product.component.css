@@ -58,7 +58,7 @@ app-spinner-button {
   margin-top: 20px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .add-product {
     width: 92%;
     margin: 0 auto;

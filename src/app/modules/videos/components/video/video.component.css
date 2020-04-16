@@ -87,7 +87,7 @@ video {
   transition: .3s;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .video__preview {
     width: 100%
   }

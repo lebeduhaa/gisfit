@@ -17,7 +17,7 @@
         <div class="auto-calc__search">
           <app-search caption="Search products" (searchEvent)="reactOnSearchEvent($event)"></app-search>
         </div>
-        <virtual-scroller #scroll [items]="displayedProducts" [horizontal]="isMobile" [bufferAmount]="2" *ngIf="displayedProducts">
+        <virtual-scroller #scroll [items]="displayedProducts" [bufferAmount]="2" *ngIf="displayedProducts">
           <div class="auto-calc__product" *ngFor="let product of scroll.viewPortItems">
             <app-product
               [selection]="true"

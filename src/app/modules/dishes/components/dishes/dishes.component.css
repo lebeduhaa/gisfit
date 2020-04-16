@@ -34,7 +34,7 @@ app-spinner-button {
   margin-right: 10px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .dishes {
     width: auto;
   }

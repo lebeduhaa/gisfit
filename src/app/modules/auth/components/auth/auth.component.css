@@ -71,7 +71,7 @@
   margin-top: -2px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .auth__form {
     width: 300px;
     padding: 10px;

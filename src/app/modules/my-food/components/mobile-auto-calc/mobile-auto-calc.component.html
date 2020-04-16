@@ -1,0 +1,18 @@
+<mat-dialog-content>
+  <div class="mobile-auto-calc">
+    <div class="app__popup-close">
+      <mat-icon (click)="close()">clear</mat-icon>
+    </div>
+    <div class="mobile-auto-calc__title">Calculation</div>
+    <div class="mobile-auto-calc__actions">
+      <app-custom-button [small]="isMobile" [disabled]="!selectedProducts?.length" caption="Calculate" color="accent" (click)="calculate()"></app-custom-button>
+      <app-custom-button appOpenMobileSelection [small]="isMobile" caption="Select products" color="primary"></app-custom-button>
+    </div>
+    <div class="mobile-auto-calc__content">
+      <div class="mobile-auto-calc__content_empty" *ngIf="!selectedProducts.length">Sorry, you have no selected products</div>
+      <div class="mobile-auto-calc__product" *ngFor="let product of selectedProducts">
+        <app-product-card [product]="product" (delete)="reactOnDelete(i)"></app-product-card>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

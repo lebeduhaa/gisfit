@@ -4,10 +4,11 @@
       <div class="cropper__result">
         <image-cropper
           [imageChangedEvent]="imageChangedEvent"
-          [aspectRatio]="0.5"
+          [aspectRatio]="1"
           (imageCropped)="imageCropped($event)"
           (startCropImage)="reactOnStartCropImage()"
           [roundCropper]="false"
+          [roundCropper]="round"
         ></image-cropper>
       </div>
       <div class="cropper__preview">

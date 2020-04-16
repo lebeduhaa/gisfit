@@ -10,3 +10,16 @@
   display: flex;
   justify-content: center;
 }
+mat-dialog-content {
+  padding: 0;
+}
+
+@media(max-width: 576px) {
+  #chartdiv {
+    height: 250px;
+    width: 90%;
+  }
+  mat-dialog-content {
+    padding: 0;
+  }
+}

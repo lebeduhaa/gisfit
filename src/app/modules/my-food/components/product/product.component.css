@@ -150,7 +150,7 @@
   color: white;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .flip-card {
     width: 140px;
     height: 167px;

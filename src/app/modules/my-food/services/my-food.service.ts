@@ -38,6 +38,7 @@ export class MyFoodService {
     const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
     const user = await this.firestore.collection('users').doc(userId).get().toPromise();
     const currentDay: Day = user.data().currentDay;
+    const promises = [];
 
     currentDay.products = currentDay.products.concat(products);
 
@@ -53,7 +54,13 @@ export class MyFoodService {
     currentDay.currentFats = Number(currentDay.currentFats.toFixed(3));
     currentDay.currentCarbohydrates = Number(currentDay.currentCarbohydrates.toFixed(3));
 
-    await user.ref.update({currentDay});
+    promises.push(user.ref.update({currentDay}));
+    
+    products.forEach(product => {
+      promises.push(this.firestore.collection('products').doc(product.id).update({popularity: firebase.firestore.FieldValue.increment(1)}));
+    });
+
+    await Promise.all(promises);
   }
 
   public async createMyProduct(product: Product): Promise<any> {

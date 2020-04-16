@@ -16,6 +16,7 @@ import { User } from 'src/app/shared/models/user.model';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { Calculation } from 'src/app/shared/models/calculation.model';
 import { Category } from 'src/app/shared/models/category.model';
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -47,7 +48,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
     private routerHelper: RouterHelper,
     private subjectService: SubjectService,
     private router: ActivatedRoute,
-    private realTimeDataService: RealTimeDataService
+    private realTimeDataService: RealTimeDataService,
+    private sharedDataService: SharedDataService
   ) {}
 
   ngOnInit() {
@@ -56,6 +58,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this.subscribeToUser();
     this.initForm();
     this.subscribeToFormChanges();
+    this.clearSelectedProducts();
   }
 
   public reactOnCalculation(calculation: Calculation): void {
@@ -114,6 +117,11 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   public reactOnSelectCategory(category: string): void {
     this.productForm.controls.category.reset(category);
+  }
+
+  private clearSelectedProducts(): void {
+    this.sharedDataService.currentEating = [];
+    console.log(this.sharedDataService.currentEating);
   }
 
   private initForm(): void {
