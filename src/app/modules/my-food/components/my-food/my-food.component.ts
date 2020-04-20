@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,6 @@ import { toRightAnimation } from 'src/app/shared/animations';
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-my-food',
   templateUrl: 'my-food.component.html',
@@ -26,7 +25,7 @@ import { SharedDataService } from 'src/app/shared/services/shared-data.service';
     toRightAnimation
   ]
 })
-export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, OnDestroy {
+export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
 
   @ViewChild('scroll') scroll: VirtualScrollerComponent;
 
@@ -41,7 +40,6 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   public isMobile: boolean;
   public mobileVirtualScrollHeight: number;
 
-  private currentUserSubscription: Subscription;
   private currentSearch: string;
   private currentProductCategories: string[];
   private currentDishCategories: string[];
@@ -74,24 +72,6 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   public reactOnSelectDishCategoryEvent(selectedCategories: string[]): void {
     this.currentDishCategories = selectedCategories;
     this.filterProducts();
-  }
-
-  public reactOnChangeGoal(ownGoal: boolean): void {
-    this.settingsService.updateUserData({ownGoal}, this.user.id)
-      .then(() => {
-        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
-          title: ownGoal ? 'Custom goals' : 'Calculated goals',
-          body: ownGoal ? 'Now you use the custom goals' : 'Now you use the calculated goals',
-          duration: 5000
-        });
-      })
-      .catch(error => {
-        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
-          title: 'ERROR',
-          body: error.message,
-          duration: 15000
-        });
-      });
   }
 
   public findMoreProducts(): void {
@@ -223,7 +203,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
 
   private subscribeToCurrentUser(): void {
     this.progressBarVisibility = true;
-    this.currentUserSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         if (user.height && user.weight && user.activity && user.goal && user.age && user.sex) {
           this.userFillRequiredData = true;
@@ -264,6 +244,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit, O
   }
 
   ngOnDestroy() {
+    super.ngOnDestroy();
     this.sharedDataService.previewData = [];
   }
 

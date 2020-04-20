@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import * as moment from 'moment';
 
 import { ActivityService } from '../../services/activity.service';
@@ -10,13 +10,14 @@ import { GoogleFit } from 'src/app/shared/models/google-fit.model';
 import { ActivityChartData } from 'src/app/shared/models/activity-chart-data.model';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { GoogleApiService } from 'src/app/shared/services/gapi.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
 @Component({
   selector: 'app-activity',
   templateUrl: 'activity.component.html',
   styleUrls: ['activity.component.css']
 })
-export class ActivityComponent implements OnInit, OnDestroy {
+export class ActivityComponent extends Unsubscribe implements OnInit {
 
   public weight: ActivityChartData[] = [];
   public steps: ActivityChartData[] = [];
@@ -26,7 +27,6 @@ export class ActivityComponent implements OnInit, OnDestroy {
   public stepsSubject = new Subject<ActivityChartData[]>();
   public heartSubject = new Subject<ActivityChartData[]>();
 
-  private currentUserSubscription: Subscription;
   private user: User;
   private intervalId;
 
@@ -36,7 +36,9 @@ export class ActivityComponent implements OnInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private settingsService: SettingsService,
     private googleApiService: GoogleApiService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.subscribeToCurrentUser();
@@ -72,7 +74,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
   private subscribeToCurrentUser(): void {
     this.progressBarVisibility = true;
 
-    this.currentUserSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
         this.getActivity(true);
@@ -157,6 +159,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    super.ngOnDestroy();
     clearInterval(this.intervalId);
   }
 

@@ -17,14 +17,15 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
 import { Calculation } from 'src/app/shared/models/calculation.model';
 import { Category } from 'src/app/shared/models/category.model';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
+import { AngularFirestore } from '@angular/fire/firestore';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-add-product',
   templateUrl: 'add-product.component.html',
   styleUrls: ['add-product.component.css']
 })
-export class AddProductComponent implements OnInit, OnDestroy {
+export class AddProductComponent extends Unsubscribe implements OnInit {
 
   public clearFilesSubject = new Subject<boolean>();
   public productPreloadedPhoto: string | ArrayBuffer;
@@ -35,9 +36,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
   public isProductPage: boolean;
   public detectChangesSubject = new Subject<void>();
 
-  private formChangesSubscription: Subscription;
-  private dialogSubscription: Subscription;
-  private userSubscription: Subscription;
   private user: User;
 
   constructor(
@@ -49,8 +47,11 @@ export class AddProductComponent implements OnInit, OnDestroy {
     private subjectService: SubjectService,
     private router: ActivatedRoute,
     private realTimeDataService: RealTimeDataService,
-    private sharedDataService: SharedDataService
-  ) {}
+    private sharedDataService: SharedDataService,
+    private firestore: AngularFirestore
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.detectPreviousPage();
@@ -94,15 +95,18 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
     this.myFoodService.createMyProduct(product)
       .then(createdId => {
-        this.routerHelper.navigateToPageWithState(this.previousPage, {
-          createdId,
-          image: this.productPreloadedPhoto
-        });
-        this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
-          title: 'Product was added successfully',
-          body: 'You have added you product. Now you can use it as your food for the progress calculation.',
-          duration: 15000
-        });
+        this.subscribeTo = this.firestore.collection('products').doc(createdId).valueChanges()
+          .subscribe((product: Product) => {
+            if (product?.image) {
+              this.routerHelper.navigateToPage(this.previousPage);
+              this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
+                title: 'Product was added successfully',
+                body: 'You have added you product. Now you can use it as your food for the progress calculation.',
+                duration: 15000
+              });
+            }
+          });
+
       })
       .catch(error => {
         this.progressBarVisibility = false;
@@ -121,7 +125,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   private clearSelectedProducts(): void {
     this.sharedDataService.currentEating = [];
-    console.log(this.sharedDataService.currentEating);
   }
 
   private initForm(): void {
@@ -157,7 +160,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.dialogSubscription = dialogRef.afterClosed()
+    this.subscribeTo = dialogRef.afterClosed()
       .subscribe(async base64 => {
         this.clearFilesSubject.next(true);
         this.productPreloadedPhoto = base64;
@@ -176,7 +179,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToUser(): void {
-    this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => this.user = user);
   }
 
@@ -189,7 +192,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToFormChanges(): void {
-    this.formChangesSubscription = this.productForm.valueChanges
+    this.subscribeTo = this.productForm.valueChanges
       .subscribe(() => this.detectChangesSubject.next());
   }
 
@@ -218,7 +221,5 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
     return result;
   }
-
-  ngOnDestroy() {}
 
 }

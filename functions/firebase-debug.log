@@ -1,0 +1,116 @@
+[debug] [2020-04-16T20:49:48.027Z] ----------------------------------------------------------------------
+[debug] [2020-04-16T20:49:48.029Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2020-04-16T20:49:48.029Z] CLI Version:   8.1.0
+[debug] [2020-04-16T20:49:48.029Z] Platform:      win32
+[debug] [2020-04-16T20:49:48.029Z] Node Version:  v12.16.1
+[debug] [2020-04-16T20:49:48.030Z] Time:          Thu Apr 16 2020 23:49:48 GMT+0300 (GMT+03:00)
+[debug] [2020-04-16T20:49:48.030Z] ----------------------------------------------------------------------
+[debug] [2020-04-16T20:49:48.030Z] 
+[debug] [2020-04-16T20:49:48.036Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-16T20:49:48.037Z] > authorizing via signed-in user
+[debug] [2020-04-16T20:49:48.037Z] [iam] checking project gisfit-production for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-04-16T20:49:48.039Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/gisfit-production:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-04-16T20:49:48.329Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 16 Apr 2020 20:49:47 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=139","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-16T20:49:48.330Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/gisfit-production/serviceAccounts/gisfit-production@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-04-16T20:49:48.800Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 16 Apr 2020 20:49:47 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'gisfit-production'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] +  functions: Finished running predeploy script.
+[debug] [2020-04-16T20:49:51.435Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.9.0",
+    "firebase-functions": "^3.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[debug] [2020-04-16T20:49:51.436Z] Error: ENOENT: no such file or directory, stat 'functions\package.json'
+    at Object.statSync (fs.js:932:3)
+    at Object.load (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cjson\index.js:200:12)
+    at getRuntimeChoice (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\parseRuntimeAndValidateSDK.js:55:26)
+    at module.exports (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js:26:29)
+    at _chain (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:22:40)
+    at C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:63:16
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2020-04-16T20:51:28.872Z] ----------------------------------------------------------------------
+[debug] [2020-04-16T20:51:28.873Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2020-04-16T20:51:28.874Z] CLI Version:   8.1.0
+[debug] [2020-04-16T20:51:28.874Z] Platform:      win32
+[debug] [2020-04-16T20:51:28.874Z] Node Version:  v12.16.1
+[debug] [2020-04-16T20:51:28.874Z] Time:          Thu Apr 16 2020 23:51:28 GMT+0300 (GMT+03:00)
+[debug] [2020-04-16T20:51:28.875Z] ----------------------------------------------------------------------
+[debug] [2020-04-16T20:51:28.875Z] 
+[debug] [2020-04-16T20:51:28.880Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-16T20:51:28.880Z] > authorizing via signed-in user
+[debug] [2020-04-16T20:51:28.880Z] [iam] checking project gisfit-production for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-04-16T20:51:28.882Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/gisfit-production:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-04-16T20:51:29.137Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 16 Apr 2020 20:51:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=133","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-16T20:51:29.141Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/gisfit-production/serviceAccounts/gisfit-production@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-04-16T20:51:29.500Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 16 Apr 2020 20:51:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'gisfit-production'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] +  functions: Finished running predeploy script.
+[debug] [2020-04-16T20:51:32.165Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.9.0",
+    "firebase-functions": "^3.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[debug] [2020-04-16T20:51:32.166Z] Error: ENOENT: no such file or directory, stat 'functions\package.json'
+    at Object.statSync (fs.js:932:3)
+    at Object.load (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cjson\index.js:200:12)
+    at getRuntimeChoice (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\parseRuntimeAndValidateSDK.js:55:26)
+    at module.exports (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js:26:29)
+    at _chain (C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:22:40)
+    at C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:63:16
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.

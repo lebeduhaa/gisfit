@@ -1,32 +1,30 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { CurrentEat } from 'src/app/shared/models/current-eat.model';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-mobile-footer',
   templateUrl: 'mobile-footer.component.html',
   styleUrls: ['mobile-footer.component.css']
 })
-export class MobileFooterComponent implements OnInit, OnDestroy {
+export class MobileFooterComponent extends Unsubscribe implements OnInit {
 
   @Output() selectProductCategory = new EventEmitter<string[]>();
   @Output() selectDishCategory = new EventEmitter<string[]>();
 
   public currentEatingItemsNumber = 0;
 
-  private currentEatingSubscription: Subscription;
-  private subEatingSubscription: Subscription;
-
   constructor(
     private subjectService: SubjectService,
     private changeDetectionRef: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.subscribeToCurrentEating();
@@ -42,7 +40,7 @@ export class MobileFooterComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToCurrentEating(): void {
-    this.currentEatingSubscription = this.subjectService.getSubject(APP.subjects.mobileEating)
+    this.subscribeTo = this.subjectService.getSubject(APP.subjects.mobileEating)
       .subscribe((newProduct: CurrentEat) => {
         setTimeout(() => {
           this.currentEatingItemsNumber += (newProduct.weight ? 1 : Number(newProduct.howMuch));
@@ -52,13 +50,11 @@ export class MobileFooterComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToSubEating(): void {
-    this.subEatingSubscription = this.subjectService.getSubject(APP.subjects.subCurrentProducts)
+    this.subscribeTo = this.subjectService.getSubject(APP.subjects.subCurrentProducts)
       .subscribe(value => {
         this.currentEatingItemsNumber -= value;
         this.changeDetectionRef.markForCheck();
       });
   }
-
-  ngOnDestroy() {}
 
 }

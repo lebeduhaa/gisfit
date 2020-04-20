@@ -9,17 +9,20 @@ import { Video } from 'src/app/shared/models/video.model';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { APP } from 'src/app/shared/constants';
 import { Comment } from 'src/app/shared/models/comment.model';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VideosService {
+export class VideosService extends Unsubscribe {
 
   constructor(
     private firestore: AngularFirestore,
     private storage: AngularFireStorage,
     private localStorageHelper: LocalStorageHelper
-  ) {}
+  ) {
+    super();
+  }
 
   public sendComment(comment: Comment, videoId: string): Promise<any> {
     return this.firestore.collection('videos').doc(videoId).ref.update({
@@ -89,11 +92,11 @@ export class VideosService {
             this.storage.ref(`video-previews/${videoId}.jpg`).putString(pureBase64, 'base64', {contentType: 'image'})
             .then(() => {
 
-              ref.put(video.videoFile, {contentType: 'video'}).percentageChanges()
+              this.subscribeTo = ref.put(video.videoFile, {contentType: 'video'}).percentageChanges()
                 .subscribe(percent => subscriber.next(percent));
             });
           } else {
-            ref.put(video.videoFile, {contentType: 'video'}).percentageChanges()
+            this.subscribeTo = ref.put(video.videoFile, {contentType: 'video'}).percentageChanges()
               .subscribe(percent => subscriber.next(percent));
           }
         });

@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { Subject, Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
 import { VideosService } from '../../services/videos.service';
@@ -11,14 +10,14 @@ import { APP } from 'src/app/shared/constants';
 import { CropperComponent } from 'src/app/shared/components/cropper/cropper.component';
 import { RouterHelper } from 'src/app/shared/services/router.service';
 import { SubjectService } from 'src/app/shared/services/subject.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-uploader',
   templateUrl: 'uploader.component.html',
   styleUrls: ['uploader.component.css']
 })
-export class UploaderComponent implements OnInit, OnDestroy {
+export class UploaderComponent extends Unsubscribe implements OnInit {
 
   @ViewChild('video') video: ElementRef<HTMLVideoElement>;
 
@@ -32,8 +31,6 @@ export class UploaderComponent implements OnInit, OnDestroy {
   public currentProgress: number;
   public progressVisibility: boolean;
 
-  private percentSubscription: Subscription;
-  private dialogSubscription: Subscription;
   private duration: number;
 
   constructor(
@@ -44,7 +41,9 @@ export class UploaderComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private routerHelper: RouterHelper,
     private subjectService: SubjectService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.initForm();
@@ -60,7 +59,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
 
   public save(): void {
     this.progressVisibility = true;
-    this.percentSubscription = this.videosService.saveVideo(this.videoForm.value)
+    this.subscribeTo = this.videosService.saveVideo(this.videoForm.value)
       .subscribe(percent => {
         this.currentProgress = percent;
         this.changeDetectorRef.markForCheck();
@@ -86,7 +85,7 @@ export class UploaderComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.dialogSubscription = dialogRef.afterClosed()
+    this.subscribeTo = dialogRef.afterClosed()
       .subscribe(async base64 => {
         this.imageClearFilesSubject.next(true);
         this.videoPreview = base64;
@@ -133,7 +132,5 @@ export class UploaderComponent implements OnInit, OnDestroy {
       duration: ['', Validators.required]
     });
   }
-
-  ngOnDestroy() {}
 
 }

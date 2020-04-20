@@ -1,27 +1,24 @@
-import { Directive, HostListener, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Directive, HostListener, EventEmitter, Output } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { MobileSelectComponent } from '../components/mobile-select/mobile-select.component';
 import { APP } from 'src/app/shared/constants';
 import { MobileSelection } from 'src/app/shared/models/mobile-selection.model';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Directive({
   selector: '[appOpenMobileSelect]'
 })
-export class OpenMobileSelectDirective implements OnDestroy {
+export class OpenMobileSelectDirective extends Unsubscribe {
 
   @Output() mobileSelect = new EventEmitter<MobileSelection>();
 
-  private dialogSubscription: Subscription;
-  private event: MouseEvent;
-
   constructor(
     private dialog: MatDialog
-  ) {}
+  ) {
+    super();
+  }
 
   @HostListener('click', ['$event'])
   openMobileSelect(event: MouseEvent): void {
@@ -29,15 +26,12 @@ export class OpenMobileSelectDirective implements OnDestroy {
       id: APP.dialogs.mobileSelect
     });
 
-    this.event = event;
-    this.dialogSubscription = dialogRef.afterClosed()
+    this.subscribeTo = dialogRef.afterClosed()
       .subscribe(mobileSelection => {
         if (mobileSelection) {
           this.mobileSelect.emit({...mobileSelection, event});
         }
       });
   }
-
-  ngOnDestroy() {}
 
 }

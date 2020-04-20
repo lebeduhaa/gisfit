@@ -7,25 +7,23 @@ import { SettingsService } from 'src/app/modules/settings/services/settings.serv
 import { APP } from 'src/app/shared/constants';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { User } from 'src/app/shared/models/user.model';
 import { flatEquality } from 'src/app/shared/helpers';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-custom-goals',
   templateUrl: 'custom-goals.component.html',
   styleUrls: ['custom-goals.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomGoalsComponent implements OnInit, OnDestroy {
+export class CustomGoalsComponent extends Unsubscribe implements OnInit {
 
   public error: string;
   public spinnerStateSubject = new Subject<boolean>();
   public tempUser: User;
   public disableAcceptButton: boolean;
 
-  private currentUserSubscription: Subscription;
   private user: User;
 
   constructor(
@@ -34,7 +32,9 @@ export class CustomGoalsComponent implements OnInit, OnDestroy {
     private subjectService: SubjectService,
     private changeDetectorRef: ChangeDetectorRef,
     private realTimeDataService: RealTimeDataService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.subscribeToCurrentUser();
@@ -75,7 +75,7 @@ export class CustomGoalsComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToCurrentUser(): void {
-    this.currentUserSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
         this.tempUser = {...user};
@@ -83,7 +83,5 @@ export class CustomGoalsComponent implements OnInit, OnDestroy {
         this.changeDetectorRef.markForCheck();
       });
   }
-
-  ngOnDestroy() {}
 
 }

@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import * as recursiveDiff from 'recursive-diff';
 
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
@@ -14,19 +13,16 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
 import { APP } from 'src/app/shared/constants';
 
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-videos',
   templateUrl: 'videos.component.html',
   styleUrls: ['videos.component.css']
 })
-export class VideosComponent extends FirebaseCloudMessaging implements OnInit, OnDestroy {
+export class VideosComponent extends FirebaseCloudMessaging implements OnInit {
 
   public videos: Video[];
   public displayedVideos: Video[];
   public progressBarVisibility: boolean;
-
-  private realTimeDataSubscription: Subscription;
 
   constructor(
     protected messaging: AngularFireMessaging,
@@ -65,7 +61,7 @@ export class VideosComponent extends FirebaseCloudMessaging implements OnInit, O
   }
 
   private subscribeToRealTimeData(): void {
-    this.realTimeDataSubscription = this.realTimeDataService.subscribeToVideos()
+    this.subscribeTo = this.realTimeDataService.subscribeToVideos()
       .subscribe(changes => {
         switch (changes[0].type) {
           case APP.dataActions.modified: {
@@ -81,7 +77,5 @@ export class VideosComponent extends FirebaseCloudMessaging implements OnInit, O
         }
       });
   }
-
-  ngOnDestroy() {}
 
 }

@@ -1,24 +1,23 @@
-import { Component, Input, OnDestroy, AfterContentInit, NgZone, DoCheck, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, AfterContentInit, NgZone, ChangeDetectorRef } from '@angular/core';
 
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import am4themes_dark from '@amcharts/amcharts4/themes/amchartsdark';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { ActivityChartData } from 'src/app/shared/models/activity-chart-data.model';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
 am4core.useTheme(am4themes_dark);
 am4core.useTheme(am4themes_animated);
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-chart',
   templateUrl: 'chart.component.html',
   styleUrls: ['chart.component.css']
 })
-export class ChartComponent implements  AfterContentInit, OnDestroy {
+export class ChartComponent extends Unsubscribe implements  AfterContentInit {
 
   @Input() caption: string;
   @Input() axisTitle: string;
@@ -26,12 +25,13 @@ export class ChartComponent implements  AfterContentInit, OnDestroy {
   @Input() renderSubject: Subject<ActivityChartData[]>;
 
   private chart: am4charts.XYChart;
-  private renderSubscription: Subscription;
 
   constructor(
     private ngZone: NgZone,
     private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngAfterContentInit() {
     this.subscribeToRender();
@@ -69,7 +69,7 @@ export class ChartComponent implements  AfterContentInit, OnDestroy {
   }
 
   private subscribeToRender(): void {
-    this.renderSubscription = this.renderSubject
+    this.subscribeTo = this.renderSubject
       .subscribe(chartData => {
         this.initChart(chartData);
         this.changeDetectorRef.markForCheck();
@@ -85,6 +85,7 @@ export class ChartComponent implements  AfterContentInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    super.ngOnDestroy();
     this.disposeChart();
   }
 

@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { User } from 'src/app/shared/models/user.model';
 import { APP } from 'src/app/shared/constants';
@@ -9,13 +9,14 @@ import { CropperComponent } from 'src/app/shared/components/cropper/cropper.comp
 import { SettingsService } from '../../services/settings.service';
 import { flatEquality, collectChanges } from 'src/app/shared/helpers';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
 @Component({
   selector: 'app-personal',
   templateUrl: 'personal.component.html',
   styleUrls: ['personal.component.css']
 })
-export class PersonalComponent implements OnInit, OnDestroy {
+export class PersonalComponent extends Unsubscribe implements OnInit {
 
   public user: User;
   public tempUser: User;
@@ -26,15 +27,14 @@ export class PersonalComponent implements OnInit, OnDestroy {
   public activities = APP.activities;
   public rerender = false;
 
-  private dialogSubscription: Subscription;
-  private userDataSubscription: Subscription;
-
   constructor(
     private dialog: MatDialog,
     private changeDetectorRef: ChangeDetectorRef,
     private settingsService: SettingsService,
     private realTimeDataService: RealTimeDataService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.subscribeToUser();
@@ -60,7 +60,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
 
   private subscribeToUser(): void {
     this.progressBarVisibility = true;
-    this.userDataSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
         this.tempUser = {...this.user};
@@ -85,7 +85,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.dialogSubscription = dialogRef.afterClosed()
+    this.subscribeTo = dialogRef.afterClosed()
       .subscribe(async base64 => {
           this.clearFilesSubject.next(true);
           this.preloadedImg = base64;
@@ -109,13 +109,6 @@ export class PersonalComponent implements OnInit, OnDestroy {
   public async save(): Promise<any> {
     this.progressBarVisibility = true;
     await this.settingsService.updateUser(collectChanges(this.tempUser, this.user), this.user.id);
-  }
-
-  ngOnDestroy() {
-    if (this.dialogSubscription) {
-      this.dialogSubscription.unsubscribe();
-      this.userDataSubscription.unsubscribe();
-    }
   }
 
 }

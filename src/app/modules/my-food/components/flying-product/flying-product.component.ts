@@ -1,19 +1,18 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Subscription } from 'rxjs';
 
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { FlyingProduct } from 'src/app/shared/models/flying-product.model';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-flying-product',
   templateUrl: 'flying-product.component.html',
   styleUrls: ['flying-product.component.css']
 })
-export class FlyingProductComponent implements OnInit, OnDestroy {
+export class FlyingProductComponent extends Unsubscribe implements OnInit, OnDestroy {
 
   @Input() selection: boolean;
 
@@ -27,12 +26,12 @@ export class FlyingProductComponent implements OnInit, OnDestroy {
   public isMobile = APP.isMobile;
   public resize: boolean;
 
-  private subjectSubscription: Subscription;
-
   constructor(
     private subjectService: SubjectService,
     private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.subscribeToSubject();
@@ -40,13 +39,14 @@ export class FlyingProductComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToSubject(): void {
-    this.subjectSubscription = this.subjectService.getSubject(APP.subjects.flyingProduct)
+    this.subscribeTo = this.subjectService.getSubject(APP.subjects.flyingProduct)
       .subscribe((flyingProduct: FlyingProduct) => {
         this.flyingProductVisibility = true;
         this.startX = flyingProduct.startX;
         this.startY = flyingProduct.startY;
         this.image = flyingProduct.image;
         this.productName = flyingProduct.productName;
+        this.getFinishCoordinates();
         this.changeDetectorRef.markForCheck();
 
         setTimeout(() => {
@@ -65,18 +65,16 @@ export class FlyingProductComponent implements OnInit, OnDestroy {
 
   private getFinishCoordinates(): void {
     if (this.isMobile) {
-      setTimeout(() => {
-        const element = document.querySelector('.mobile-footer__item');
+      const element = document.querySelector('.mobile-footer__item');
 
-        if (element) {
-          const finishCoordinates = element.getBoundingClientRect();
+      if (element) {
+        const finishCoordinates = element.getBoundingClientRect();
 
-          this.finishX = finishCoordinates.left - 35;
-          this.finishY = finishCoordinates.top - 55;
-        }
-      }, 0);
+        this.finishX = finishCoordinates.left - 35;
+        this.finishY = finishCoordinates.top - 55;
+      }
     } else {
-      const element = document.querySelector('.current-eating');
+      const element = document.querySelector('.current-eating__wrapper');
 
       if (element) {
         const finishCoordinates = element.getBoundingClientRect();
@@ -86,7 +84,5 @@ export class FlyingProductComponent implements OnInit, OnDestroy {
       }
     }
   }
-
-  ngOnDestroy() {}
 
 }

@@ -1,24 +1,23 @@
-import { Component, Inject, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { Video } from 'src/app/shared/models/video.model';
 import { APP } from 'src/app/shared/constants';
 import { VideosService } from '../../services/videos.service';
 import { User } from 'src/app/shared/models/user.model';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-video-play',
   templateUrl: 'video-play.component.html',
   styleUrls: ['video-play.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VideoPlayComponent implements OnInit, OnDestroy {
+export class VideoPlayComponent extends Unsubscribe implements OnInit {
 
   public video: Video;
   public currentComment: string;
@@ -30,7 +29,6 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
   public controlsAreHidden: boolean;
 
   private user: User;
-  private userSubscription: Subscription;
   private tempVolume: number;
   private timeout;
 
@@ -41,6 +39,7 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
     private realTimeDataService: RealTimeDataService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
+    super();
     this.video = dialogData.video;
   }
 
@@ -157,7 +156,7 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
   }
 
   public subscribeToCurrentUser(): void {
-    this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
         this.contentVisibility = true;
@@ -199,7 +198,5 @@ export class VideoPlayComponent implements OnInit, OnDestroy {
   private setTempVolume(): void {
     this.tempVolume = 100;
   }
-
-  ngOnDestroy() {}
 
 }

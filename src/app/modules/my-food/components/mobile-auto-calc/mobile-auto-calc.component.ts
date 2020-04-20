@@ -1,21 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { APP } from 'src/app/shared/constants';
 import { Product } from 'src/app/shared/models/product.model';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { CurrentEat } from 'src/app/shared/models/current-eat.model';
 import { TotalCalculation, Calculation } from 'src/app/shared/models/calculation.model';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-mobile-auto-calc',
   templateUrl: 'mobile-auto-calc.component.html',
   styleUrls: ['mobile-auto-calc.component.css']
 })
-export class MobileAutoCalcComponent implements OnDestroy, OnInit {
+export class MobileAutoCalcComponent extends Unsubscribe implements OnInit {
 
   public isMobile = APP.isMobile;
   public selectedProducts: Product[] = [];
@@ -23,7 +22,9 @@ export class MobileAutoCalcComponent implements OnDestroy, OnInit {
   constructor(
     private dialog: MatDialog,
     private subjectService: SubjectService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.subscribeToProductSelection();
@@ -65,7 +66,7 @@ export class MobileAutoCalcComponent implements OnDestroy, OnInit {
   }
 
   private subscribeToProductSelection(): void {
-    this.subjectService.getSubject(APP.subjects.mobileEating)
+    this.subscribeTo = this.subjectService.getSubject(APP.subjects.mobileEating)
       .subscribe(product => this.reactOnNewProduct(product));
   }
 
@@ -92,7 +93,5 @@ export class MobileAutoCalcComponent implements OnDestroy, OnInit {
       }
     }
   }
-
-  ngOnDestroy() {}
 
 }

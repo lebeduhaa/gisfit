@@ -1,7 +1,5 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import * as moment from 'moment';
 
 import { Hour } from 'src/app/shared/models/hour.model';
@@ -9,14 +7,14 @@ import { APP } from 'src/app/shared/constants';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { User } from 'src/app/shared/models/user.model';
 import { SettingsService } from '../../services/settings.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-system',
   templateUrl: 'system.component.html',
   styleUrls: ['system.component.css']
 })
-export class SystemComponent implements OnInit, OnDestroy {
+export class SystemComponent extends Unsubscribe implements OnInit {
 
   public hours: Hour[] = APP.hours;
   public user: User;
@@ -24,13 +22,13 @@ export class SystemComponent implements OnInit, OnDestroy {
   public languages: string[] = APP.languages;
   public isMobile = APP.isMobile;
 
-  private currentUserSubscription: Subscription;
-
   constructor(
     private realTimeDataService: RealTimeDataService,
     private changeDetectorRef: ChangeDetectorRef,
     private settingsService: SettingsService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.subscribeToCurrentUser();
@@ -61,13 +59,11 @@ export class SystemComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToCurrentUser(): void {
-    this.currentUserSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
         this.changeDetectorRef.markForCheck();
       });
   }
-
-  ngOnDestroy() {}
 
 }

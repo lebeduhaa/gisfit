@@ -4,11 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { AreYouSureComponent } from './are-you-sure.component';
 import { APP } from '../../constants';
+import { Unsubscribe } from '../../classes/unsubscribe.class';
 
 @Directive({
   selector: '[appOpenAreYouSure]'
 })
-export class OpenAreYouSureDirective {
+export class OpenAreYouSureDirective extends Unsubscribe {
 
   @Output() confirmationEvent = new EventEmitter<boolean>();
 
@@ -16,7 +17,9 @@ export class OpenAreYouSureDirective {
 
   constructor(
     private dialog: MatDialog
-  ) {}
+  ) {
+    super();
+  }
 
   @HostListener('click')
   openAreYouSure(): void {
@@ -27,7 +30,7 @@ export class OpenAreYouSureDirective {
       id: APP.dialogs.areYouSure
     });
 
-    dialogRef.afterClosed()
+    this.subscribeTo = dialogRef.afterClosed()
       .subscribe(result => this.confirmationEvent.emit(result));
   }
 

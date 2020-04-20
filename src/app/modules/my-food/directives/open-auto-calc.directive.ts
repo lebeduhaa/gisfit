@@ -6,17 +6,20 @@ import { AutoCalcComponent } from '../components/auto-calc/auto-calc.component';
 import { APP } from 'src/app/shared/constants';
 import { Calculation } from 'src/app/shared/models/calculation.model';
 import { MobileAutoCalcComponent } from '../components/mobile-auto-calc/mobile-auto-calc.component';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
 @Directive({
   selector: '[appOpenAutoCalc]'
 })
-export class OpenAutoCalcDirective {
+export class OpenAutoCalcDirective extends Unsubscribe {
 
   @Output() calculation = new EventEmitter<Calculation>();
 
   constructor(
     private dialog: MatDialog
-  ) {}
+  ) {
+    super();
+  }
 
   @HostListener('click')
   openAutoCalc(): void {
@@ -26,7 +29,7 @@ export class OpenAutoCalcDirective {
       id: APP.dialogs.autoCalc
     });
 
-    dialogRef.afterClosed()
+    this.subscribeTo = dialogRef.afterClosed()
       .subscribe(calculation => {
         if (calculation) {
           this.calculation.emit(calculation);

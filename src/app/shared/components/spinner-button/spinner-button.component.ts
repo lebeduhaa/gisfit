@@ -1,13 +1,14 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { Unsubscribe } from '../../classes/unsubscribe.class';
 
 @Component({
   selector: 'app-spinner-button',
   templateUrl: 'spinner-button.component.html',
   styleUrls: ['spinner-button.component.css']
 })
-export class SpinnerButtonComponent implements OnInit, OnDestroy {
+export class SpinnerButtonComponent extends Unsubscribe implements OnInit {
 
   @Input() spinnerStateSubject: Subject<boolean>;
   @Input() caption: string;
@@ -16,11 +17,9 @@ export class SpinnerButtonComponent implements OnInit, OnDestroy {
 
   public spinnerVisibility: boolean;
 
-  private spinnerStateSubscription: Subscription;
-
   ngOnInit() {
     if (this.spinnerStateSubject) {
-      this.spinnerStateSubscription = this.spinnerStateSubject
+      this.subscribeTo = this.spinnerStateSubject
         .subscribe(spinnerVisibility => this.spinnerVisibility = spinnerVisibility);
     }
   }
@@ -28,12 +27,6 @@ export class SpinnerButtonComponent implements OnInit, OnDestroy {
   public onClick(event: MouseEvent): void {
     if (this.disabled) {
       event.stopPropagation();
-    }
-  }
-
-  ngOnDestroy() {
-    if (this.spinnerStateSubject) {
-      this.spinnerStateSubscription.unsubscribe();
     }
   }
 

@@ -1,27 +1,24 @@
-import { Directive, HostListener, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { Subscription } from 'rxjs';
 
 import { FilterComponent } from '../components/filter/filter.component';
 import { APP } from 'src/app/shared/constants';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Directive({
   selector: '[appOpenFilter]'
 })
-export class OpenFilterDirective implements OnDestroy {
+export class OpenFilterDirective extends Unsubscribe {
 
   @Output() selectProductCategory = new EventEmitter<string[]>();
   @Output() selectDishCategory = new EventEmitter<string[]>();
 
-  private productSubscription: Subscription;
-  private dishSubscription: Subscription;
-
   constructor(
     private dialog: MatDialog
-  ) {}
+  ) {
+    super();
+  }
 
   @HostListener('click')
   openFilter(): void {
@@ -29,12 +26,10 @@ export class OpenFilterDirective implements OnDestroy {
       id: APP.dialogs.filter
     });
 
-    this.productSubscription = dialogRef.componentInstance.selectProductCategory
+    this.subscribeTo = dialogRef.componentInstance.selectProductCategory
       .subscribe(categories => this.selectProductCategory.emit(categories));
-    this.productSubscription = dialogRef.componentInstance.selectDishCategory
+    this.subscribeTo = dialogRef.componentInstance.selectDishCategory
       .subscribe(categories => this.selectDishCategory.emit(categories));
   }
-
-  ngOnDestroy() {}
 
 }

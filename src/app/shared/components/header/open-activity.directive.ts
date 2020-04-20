@@ -1,7 +1,5 @@
-import { Directive, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Directive, HostListener, OnInit } from '@angular/core';
 
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 
 import { RealTimeDataService } from '../../services/real-time-data.service';
@@ -10,15 +8,13 @@ import { RouterHelper } from '../../services/router.service';
 import { APP } from '../../constants';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { GoogleApiService } from '../../services/gapi.service';
+import { Unsubscribe } from '../../classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Directive({
   selector: '[appOpenActivity]'
 })
-export class OpenActivityDirective implements OnDestroy, OnInit {
+export class OpenActivityDirective extends Unsubscribe implements OnInit {
 
-  private currentUserSubscription: Subscription;
-  private signInSubscription: Subscription;
   private user: User;
 
   constructor(
@@ -26,7 +22,9 @@ export class OpenActivityDirective implements OnDestroy, OnInit {
     private routerHelper: RouterHelper,
     private settingsService: SettingsService,
     private googleApiService: GoogleApiService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.subscribeToCurrentUser();
@@ -37,7 +35,7 @@ export class OpenActivityDirective implements OnDestroy, OnInit {
     if (this.user.accessToken) {
       this.routerHelper.navigateToPage(APP.pages.activity);
     } else {
-      this.signInSubscription = this.googleApiService.singIn()
+      this.subscribeTo = this.googleApiService.singIn()
         .subscribe(async auth => {
           const authResponse = (await auth.signIn()).getAuthResponse();
 
@@ -51,10 +49,8 @@ export class OpenActivityDirective implements OnDestroy, OnInit {
   }
 
   private subscribeToCurrentUser(): void {
-    this.currentUserSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => this.user = user);
   }
-
-  ngOnDestroy() {}
 
 }

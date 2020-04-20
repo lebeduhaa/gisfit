@@ -1,8 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -12,7 +10,6 @@ import { SettingsService } from '../../services/settings.service';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { APP } from 'src/app/shared/constants';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-settings',
   templateUrl: 'settings.component.html',
@@ -21,11 +18,9 @@ import { APP } from 'src/app/shared/constants';
     settingsRouteAnimation
   ]
 })
-export class SettingsComponent extends FirebaseCloudMessaging implements OnInit, OnDestroy {
+export class SettingsComponent extends FirebaseCloudMessaging implements OnInit {
 
   public isMobile = APP.isMobile;
-
-  private userSubscription: Subscription;
 
   constructor(
     protected messaging: AngularFireMessaging,
@@ -45,12 +40,10 @@ export class SettingsComponent extends FirebaseCloudMessaging implements OnInit,
   }
 
   private subscribeToCurrentUser(): void {
-    this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.init(user);
       });
   }
-
-  ngOnDestroy() {}
 
 }

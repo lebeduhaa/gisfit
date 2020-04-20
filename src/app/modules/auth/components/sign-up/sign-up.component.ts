@@ -10,20 +10,18 @@ import { AuthService } from '../../services/auth.service';
 import { RouterHelper } from 'src/app/shared/services/router.service';
 import { APP } from 'src/app/shared/constants';
 import { SubjectService } from 'src/app/shared/services/subject.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-sing-up',
   templateUrl: 'sign-up.component.html',
   styleUrls: ['sign-up.component.css']
 })
-export class SignUpComponent implements OnInit, OnDestroy {
+export class SignUpComponent extends Unsubscribe implements OnInit {
 
   public spinnerStateSubject = new Subject<boolean>();
   public signUpForm: FormGroup;
   public error: string;
-
-  private formSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +29,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private routerHelper: RouterHelper,
     private subjectService: SubjectService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.initForm();
@@ -96,15 +96,13 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   private subscribeFormState(): void {
-    this.formSubscription = this.signUpForm.statusChanges
+    this.subscribeTo = this.signUpForm.statusChanges
       .subscribe(status => {
         if (!this.signInFormHasError()) {
           this.error = '';
         }
       });
   }
-
-  ngOnDestroy() {}
 
 }
 

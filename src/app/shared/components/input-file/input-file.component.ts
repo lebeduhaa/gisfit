@@ -1,16 +1,17 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { SubjectService } from '../../services/subject.service';
 import { APP } from '../../constants';
+import { Unsubscribe } from '../../classes/unsubscribe.class';
 
 @Component({
   selector: 'app-input-file',
   templateUrl: 'input-file.component.html',
   styleUrls: ['input-file.component.css']
 })
-export class InputFileComponent implements OnInit, OnDestroy {
+export class InputFileComponent extends Unsubscribe implements OnInit {
 
 
   @Output() fileSelected = new EventEmitter<File>();
@@ -21,11 +22,11 @@ export class InputFileComponent implements OnInit, OnDestroy {
 
   @ViewChild('file', { static: true }) input: ElementRef<HTMLInputElement>;
 
-  private filesSubscription: Subscription;
-
   constructor(
     private subjectService: SubjectService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.initSubscriptions();
@@ -52,14 +53,8 @@ export class InputFileComponent implements OnInit, OnDestroy {
 
   private initSubscriptions(): void {
     if (this.clearFilesSubject) {
-      this.filesSubscription = this.clearFilesSubject
+      this.subscribeTo = this.clearFilesSubject
         .subscribe(event => this.clearFiles());
-    }
-  }
-
-  ngOnDestroy() {
-    if (this.filesSubscription) {
-      this.filesSubscription.unsubscribe();
     }
   }
 

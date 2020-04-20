@@ -1,7 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
-
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
@@ -9,14 +6,14 @@ import { CurrentEat } from 'src/app/shared/models/current-eat.model';
 import { Product } from 'src/app/shared/models/product.model';
 import { MyFoodService } from '../../services/my-food.service';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-current-eating',
   templateUrl: 'current-eating.component.html',
   styleUrls: ['current-eating.component.css']
 })
-export class CurrentEatingComponent implements OnInit, OnDestroy {
+export class CurrentEatingComponent extends Unsubscribe implements OnInit {
 
   @Output() selectProducts = new EventEmitter<Product[]>();
 
@@ -24,14 +21,14 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
 
   public isMobile = APP.isMobile;
 
-  private newProductSubscription: Subscription;
-
   constructor(
     private subjectService: SubjectService,
     private changeDetectorRef: ChangeDetectorRef,
     private myFoodService: MyFoodService,
     public sharedDataService: SharedDataService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.getCurrentEating();
@@ -109,7 +106,8 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
         fats: Number((newProduct.product.fats * newProduct.howMuch * 0.01).toFixed(3)),
         carbohydrates: Number((newProduct.product.carbohydrates * newProduct.howMuch * 0.01).toFixed(3)),
         weight: newProduct.howMuch,
-        image: newProduct.product.image
+        image: newProduct.product.image,
+        id: newProduct.product.id
       });
     } else {
       for (let index = 0; index < newProduct.howMuch; index++) {
@@ -125,7 +123,7 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToNewProduct(): void {
-    this.newProductSubscription = this.subjectService.getSubject(APP.subjects.newProduct)
+    this.subscribeTo = this.subjectService.getSubject(APP.subjects.newProduct)
       .subscribe((newProduct: CurrentEat) => {
         setTimeout(() => {
           this.reactOnNewProduct(newProduct);
@@ -137,6 +135,7 @@ export class CurrentEatingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    super.ngOnDestroy();
     this.sharedDataService.products = [];
   }
 

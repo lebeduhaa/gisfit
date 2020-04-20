@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ChangeDetectorRef } from '@angular/core';
 
 import { Subject, Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { Unsubscribe } from '../../classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-input-text',
   templateUrl: 'input-text.component.html',
   styleUrls: ['input-text.component.css']
 })
-export class InputTextComponent implements OnInit, OnDestroy {
+export class InputTextComponent extends Unsubscribe implements OnInit {
 
   @Input() placeholder: string;
   @Input() icon: string;
@@ -20,12 +19,13 @@ export class InputTextComponent implements OnInit, OnDestroy {
 
   public placeholderAtTop: boolean;
 
-  private changesSubscription: Subscription;
   private input: HTMLInputElement;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.getWrapperInput();
@@ -59,7 +59,7 @@ export class InputTextComponent implements OnInit, OnDestroy {
 
   private subscribeToChanges(): void {
     if (this.detectChanges) {
-      this.changesSubscription = this.detectChanges
+      this.subscribeTo = this.detectChanges
         .subscribe(() => this.calcCurrentPlaceholderPosition());
     }
   }
@@ -71,7 +71,5 @@ export class InputTextComponent implements OnInit, OnDestroy {
       }
     }, 0);
   }
-
-  ngOnDestroy() {}
 
 }

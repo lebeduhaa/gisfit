@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { RouterHelper } from '../../services/router.service';
@@ -14,8 +13,8 @@ import { expandAnimation } from '../../animations';
 import { userIsWithNecessaryData } from '../../helpers';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LocalStorageHelper } from '../../services/local-storage.service';
+import { Unsubscribe } from '../../classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
@@ -24,7 +23,7 @@ import { LocalStorageHelper } from '../../services/local-storage.service';
     expandAnimation
   ]
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent extends Unsubscribe implements OnInit {
 
   public activitySelected: boolean;
   public user: User;
@@ -32,7 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public mobileMenuIsOpened: boolean;
   public filledUserData: boolean;
 
-  private userSubscription: Subscription;
   private popupWasOpened: boolean;
 
   constructor(
@@ -43,13 +41,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private changeDetectorRef: ChangeDetectorRef,
     private localStorageService: LocalStorageHelper
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.isMobile = APP.isMobile;
     this.detectCurrentUrl();
     this.subscribeToUser();
-    this.router.events
+    this.subscribeTo = this.router.events
       .subscribe(event => this.parseRouterEvent(event));
   }
 
@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToUser(): void {
-    this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
         this.detectFilledUserData();
@@ -86,10 +86,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private detectFilledUserData(): void {
     this.filledUserData = userIsWithNecessaryData(this.user);
+    const currentUserData: User = this.localStorageService.getCachedData(APP.cachedData.userData);
 
     if (userIsWithNecessaryData(this.user)) {
       this.filledUserData = true;
-      this.localStorageService.cacheData(APP.cachedData.userData, this.user);
+      
+      if (!userIsWithNecessaryData(currentUserData)) {
+        this.localStorageService.cacheData(APP.cachedData.userData, this.user);
+      }
     } else {
       if (!this.popupWasOpened) {
         this.dialog.open(WelcomeComponent, {
@@ -99,7 +103,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     }
   }
-
-  ngOnDestroy() {}
 
 }

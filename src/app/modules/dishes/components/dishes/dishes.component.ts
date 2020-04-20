@@ -14,21 +14,17 @@ import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-dishes',
   templateUrl: 'dishes.component.html',
   styleUrls: ['dishes.component.css']
 })
-export class DishesComponent extends FirebaseCloudMessaging implements OnInit, OnDestroy {
+export class DishesComponent extends FirebaseCloudMessaging implements OnInit {
 
   public dishes: Product[];
   public displayedDishes: Product[];
   public progressBarVisibility: boolean;
   public user: User;
-
-  private productSubscription: Subscription;
-  private userSubscription: Subscription;
 
   constructor(
     private dishesService: DishesService,
@@ -76,7 +72,7 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
   }
 
   private subscribeToProductChanges(): void {
-    this.productSubscription = this.realTimeDataService.subscribeToProducts()
+    this.subscribeTo = this.realTimeDataService.subscribeToProducts()
       .subscribe(changes => {
         switch (changes[0].type) {
           case APP.dataActions.modified: {
@@ -97,7 +93,7 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
   }
 
   private subscribeToCurrentUser(): void {
-    this.userSubscription = this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         this.user = user;
         this.changeDetectorRef.markForCheck();
@@ -121,7 +117,5 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit, O
       product.image = stateData.image;
     }
   }
-
-  ngOnDestroy() {}
 
 }

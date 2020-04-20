@@ -1,32 +1,33 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { APP } from 'src/app/shared/constants';
 import { parseError, userIsWithNecessaryData } from 'src/app/shared/helpers';
 import { AuthService } from '../../services/auth.service';
 import { RouterHelper } from 'src/app/shared/services/router.service';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
 @Component({
   selector: 'app-sing-in',
   templateUrl: 'sign-in.component.html',
   styleUrls: ['sign-in.component.css']
 })
-export class SignInComponent implements OnInit, OnDestroy {
+export class SignInComponent extends Unsubscribe implements OnInit {
 
   public spinnerStateSubject = new Subject<boolean>();
   public signInForm: FormGroup;
   public error: string;
-
-  private formSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private changeDetectorRef: ChangeDetectorRef,
     private routerHelper: RouterHelper
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.initForm();
@@ -82,16 +83,12 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   private subscribeFormState(): void {
-    this.formSubscription = this.signInForm.statusChanges
+    this.subscribeTo = this.signInForm.statusChanges
       .subscribe(status => {
         if (!this.signInFormHasError()) {
           this.error = '';
         }
       });
-  }
-
-  ngOnDestroy() {
-    this.formSubscription.unsubscribe();
   }
 
 }

@@ -1,12 +1,14 @@
-<div class="current-eating" [hidden]="sharedDataService.products.length === 0">
-  <div class="current-eating__title" *ngIf="!selection">Current Eating</div>
-  <div class="current-eating__actions" *ngIf="!selection">
-    <app-spinner-button caption="Submit" [small]="true" (click)="submitCurrentEating()"></app-spinner-button>
-    <app-spinner-button caption="Clear" [small]="true" (click)="clear()"></app-spinner-button>
-  </div>
-  <div class="current-eating__content" [style.maxHeight]="isMobile ? '100%' : (selection ? 'calc(80vh - 133px)' : 'calc(100vh - 468px)')">
-    <div class="current-eating__product" *ngFor="let product of sharedDataService.products;let i = index;">
-      <app-product-card [product]="product" (delete)="reactOnDelete(i)"></app-product-card>
+<div class="current-eating__wrapper">
+  <div class="current-eating" [hidden]="sharedDataService.products.length === 0">
+    <div class="current-eating__title" *ngIf="!selection">Current Eating</div>
+    <div class="current-eating__actions" *ngIf="!selection">
+      <app-spinner-button caption="Submit" [small]="true" (click)="submitCurrentEating()"></app-spinner-button>
+      <app-spinner-button caption="Clear" [small]="true" (click)="clear()"></app-spinner-button>
+    </div>
+    <div class="current-eating__content" [style.maxHeight]="isMobile ? '100%' : (selection ? 'calc(80vh - 133px)' : 'calc(100vh - 468px)')">
+      <div class="current-eating__product" *ngFor="let product of sharedDataService.products;let i = index;">
+        <app-product-card [product]="product" (delete)="reactOnDelete(i)"></app-product-card>
+      </div>
     </div>
   </div>
 </div>

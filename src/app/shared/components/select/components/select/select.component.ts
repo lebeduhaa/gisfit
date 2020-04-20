@@ -4,18 +4,15 @@ import {
   AfterContentInit,
   ContentChildren,
   QueryList,
-  OnDestroy,
   Output,
   EventEmitter
 } from '@angular/core';
 
 import { expandAnimation } from 'src/app/shared/animations';
 import { SelectOptionComponent } from '../select-option/select-option.component';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { Subscription } from 'rxjs';
 import { flatEquality } from 'src/app/shared/helpers';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-select',
   templateUrl: 'select.component.html',
@@ -24,7 +21,7 @@ import { flatEquality } from 'src/app/shared/helpers';
     expandAnimation
   ]
 })
-export class SelectComponent implements AfterContentInit, OnDestroy {
+export class SelectComponent extends Unsubscribe implements AfterContentInit {
 
   @Output() change = new EventEmitter<any>();
 
@@ -37,8 +34,6 @@ export class SelectComponent implements AfterContentInit, OnDestroy {
   public placeholderAtTop: boolean;
   public optionsVisibility: boolean;
   public currentValue: string;
-
-  private selectValueSubscriptions = new Subscription();
 
   ngAfterContentInit() {
     this.subscribeToSelectValue();
@@ -55,14 +50,14 @@ export class SelectComponent implements AfterContentInit, OnDestroy {
 
   private subscribeToSelectValue(): void {
     this.selectOptions.forEach(selectOptionComponent => {
-      this.selectValueSubscriptions.add(selectOptionComponent.selectedOption.subscribe(value => {
+      this.subscribeTo = selectOptionComponent.selectedOption.subscribe(value => {
         if (value) {
           this.change.emit(value);
           this.currentValue = selectOptionComponent.displayedValue;
           this.optionsVisibility = false;
           this.placeholderAtTop = true;
         }
-      }));
+      });
     });
   }
 
@@ -85,7 +80,5 @@ export class SelectComponent implements AfterContentInit, OnDestroy {
 
     return this.currentValue;
   }
-
-  ngOnDestroy() {}
 
 }

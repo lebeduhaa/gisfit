@@ -54,6 +54,8 @@ export class MyFoodService {
     currentDay.currentFats = Number(currentDay.currentFats.toFixed(3));
     currentDay.currentCarbohydrates = Number(currentDay.currentCarbohydrates.toFixed(3));
 
+    console.log(currentDay);
+
     promises.push(user.ref.update({currentDay}));
     
     products.forEach(product => {

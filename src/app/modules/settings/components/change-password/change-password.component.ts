@@ -1,37 +1,36 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { Subscription, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
 import { SettingsService } from '../../services/settings.service';
 import { confirmPasswordValidator } from 'src/app/shared/validators/confirm-password.validation';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { parseError } from 'src/app/shared/helpers';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-change-password',
   templateUrl: 'change-password.component.html',
   styleUrls: ['change-password.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChangePasswordComponent implements OnInit, OnDestroy {
+export class ChangePasswordComponent extends Unsubscribe implements OnInit {
 
   public changePasswordForm: FormGroup;
   public error: string;
   public spinnerSubject = new Subject<boolean>();
-
-  private formSubscription: Subscription;
 
   constructor(
     private settingsService: SettingsService,
     private formBuilder: FormBuilder,
     private subjectService: SubjectService,
     private dialog: MatDialog
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.initChangePasswordForm();
@@ -100,14 +99,12 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToFormState(): void {
-    this.changePasswordForm.statusChanges
+    this.subscribeTo = this.changePasswordForm.statusChanges
       .subscribe(status => {
         if (!this.changePasswordFormHasError()) {
           this.error = '';
         }
       });
   }
-
-  ngOnDestroy() {}
 
 }

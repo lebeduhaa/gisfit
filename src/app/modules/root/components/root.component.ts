@@ -1,16 +1,15 @@
-import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, Event, NavigationEnd, RouterOutlet } from '@angular/router';
 
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { APP } from 'src/app/shared/constants';
 import { RealTimeDataService } from 'src/app/shared/services/real-time-data.service';
 import { settingsRouteAnimation } from 'src/app/shared/animations';
+import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-root',
   templateUrl: 'root.component.html',
@@ -20,24 +19,24 @@ import { settingsRouteAnimation } from 'src/app/shared/animations';
     settingsRouteAnimation
   ]
 })
-export class RootComponent implements OnInit, OnDestroy {
+export class RootComponent extends Unsubscribe implements OnInit {
 
   public headerVisibility: boolean;
   public backgroundImageUrl: string;
   public fakeBackgroundImageUrl: string;
-
-  private routerSubscription: Subscription;
 
   constructor(
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
     private translateService: TranslateService,
     private realTimeDataService: RealTimeDataService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.translateService.setDefaultLang('English');
-    this.routerSubscription = this.router.events
+    this.subscribeTo = this.router.events
       .subscribe(event => this.parseRouterEvent(event));
   }
 
@@ -99,14 +98,12 @@ export class RootComponent implements OnInit, OnDestroy {
   }
 
   private setCurrentUserInterfaceLanguage(): void {
-    this.realTimeDataService.subscribeToCurrentUserData()
+    this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         if (user) {
           this.translateService.use(user.interfaceLanguage);
         }
       });
   }
-
-  ngOnDestroy() {}
 
 }
