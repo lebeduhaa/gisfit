@@ -1,10 +1,9 @@
-import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { CropperComponent } from 'src/app/shared/components/cropper/cropper.component';
 import { APP } from 'src/app/shared/constants';
@@ -31,7 +30,6 @@ export class AddProductComponent extends Unsubscribe implements OnInit {
   public productPreloadedPhoto: string | ArrayBuffer;
   public categories: Category[];
   public productForm: FormGroup;
-  public progressBarVisibility: boolean;
   public previousPage: string;
   public isProductPage: boolean;
   public detectChangesSubject = new Subject<void>();
@@ -79,7 +77,7 @@ export class AddProductComponent extends Unsubscribe implements OnInit {
 
   public save(): void {
     const product = {...this.productForm.value} as Product;
-    this.progressBarVisibility = true;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
     this.changeDetectorRef.markForCheck();
 
     if (!this.isProductPage) {
@@ -97,7 +95,9 @@ export class AddProductComponent extends Unsubscribe implements OnInit {
       .then(createdId => {
         this.subscribeTo = this.firestore.collection('products').doc(createdId).valueChanges()
           .subscribe((product: Product) => {
+
             if (product?.image) {
+              this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
               this.routerHelper.navigateToPage(this.previousPage);
               this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
                 title: 'Product was added successfully',
@@ -109,7 +109,7 @@ export class AddProductComponent extends Unsubscribe implements OnInit {
 
       })
       .catch(error => {
-        this.progressBarVisibility = false;
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'ERROR',
           body: error.message,

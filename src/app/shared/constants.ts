@@ -41,7 +41,8 @@ export const APP = {
     history: 'history',
     mobileEating: 'mobileEating',
     closeMobileEatings: 'closeMobileEating',
-    subCurrentProducts: 'subCurrentProducts'
+    subCurrentProducts: 'subCurrentProducts',
+    spinnerVisibility: 'spinnerVisibility'
   },
   dialogs: {
     passwordReset: 'passwordReset',
@@ -233,5 +234,5 @@ export const APP = {
   // searchOutsideUrl: 'https://e-dostavka.by/search/',
   // searchOutsideUrl: 'https://us-central1-gisfit-production.cloudfunctions.net/evrooptProxy/search-outside',
   searchOutsideUrl: 'http://localhost:3000/search-outside',
-  isMobile: window.outerWidth < 576
+isMobile: window.outerWidth ? window.outerWidth < 576 : false
 };

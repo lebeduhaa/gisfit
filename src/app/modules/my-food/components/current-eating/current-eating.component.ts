@@ -44,8 +44,10 @@ export class CurrentEatingComponent extends Unsubscribe implements OnInit {
   }
 
   public submitCurrentEating(): void {
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
     this.myFoodService.submitCurrentEating(this.sharedDataService.products)
       .then(() => {
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.subjectService.emitSubject(APP.subjects.subCurrentProducts, this.sharedDataService.products.length);
         this.sharedDataService.products = [];
         this.sharedDataService.currentEating = [];
@@ -59,6 +61,7 @@ export class CurrentEatingComponent extends Unsubscribe implements OnInit {
         });
       })
       .catch(error => {
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Current Eating ERROR',
           body: error.message,

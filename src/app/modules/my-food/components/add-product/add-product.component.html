@@ -1,8 +1,5 @@
 <div class="add-product" [formGroup]="productForm" [class.add-product_dish]="!isProductPage">
   <div class="add-product__title">{{(isProductPage ? 'my-food.add-new-product' : 'my-food.add-new-dish') | translate}}</div>
-  <div class="add-product__progress-bar" *ngIf="progressBarVisibility">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </div>
   <div class="add-product__content">
     <div class="add-product__dish" *ngIf="!isProductPage">
       <app-textarea placeholder="{{'dishes.describe' | translate}}" *ngIf="!isProductPage">

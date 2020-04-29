@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Subscription } from 'rxjs';
+import * as deepEqual from 'deep-equal';
 
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { RouterHelper } from '../../services/router.service';
@@ -86,12 +86,11 @@ export class HeaderComponent extends Unsubscribe implements OnInit {
 
   private detectFilledUserData(): void {
     this.filledUserData = userIsWithNecessaryData(this.user);
-    const currentUserData: User = this.localStorageService.getCachedData(APP.cachedData.userData);
 
     if (userIsWithNecessaryData(this.user)) {
       this.filledUserData = true;
       
-      if (!userIsWithNecessaryData(currentUserData)) {
+      if (!deepEqual(this.user, this.localStorageService.getCachedData(APP.cachedData.userData))) {
         this.localStorageService.cacheData(APP.cachedData.userData, this.user);
       }
     } else {

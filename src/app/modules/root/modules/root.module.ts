@@ -16,7 +16,8 @@ import { VideosModule } from '../../videos/modules/videos.module';
 import { HistoryModule } from '../../history/modules/history.module';
 import { ActivityModule } from '../../activity/modules/activity.module';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
-import { RootComponent } from '../components/root.component';
+import { RootComponent } from '../components/root/root.component';
+import { SpinnerComponent } from '../components/spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { RootComponent } from '../components/root.component';
   ],
   declarations: [
     RootComponent,
-    MoveBackgroundDirective
+    MoveBackgroundDirective,
+    SpinnerComponent
   ],
   exports: [
     RootComponent

@@ -44,10 +44,12 @@ export class MobileSelectionComponent implements OnInit {
   }
 
   private async getAllProducts(): Promise<void> {
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
     this.spinnerVisibility = true;
     this.products = await this.myFoodService.getAllProducts();
     this.displayedProducts = this.products;
     this.spinnerVisibility = false;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
     this.changeDetectorRef.markForCheck();
   }
 

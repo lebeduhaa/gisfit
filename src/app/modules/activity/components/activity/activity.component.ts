@@ -11,6 +11,8 @@ import { ActivityChartData } from 'src/app/shared/models/activity-chart-data.mod
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { GoogleApiService } from 'src/app/shared/services/gapi.service';
 import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
+import { SubjectService } from 'src/app/shared/services/subject.service';
+import { APP } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-activity',
@@ -35,7 +37,8 @@ export class ActivityComponent extends Unsubscribe implements OnInit {
     private realTimeDataService: RealTimeDataService,
     private changeDetectorRef: ChangeDetectorRef,
     private settingsService: SettingsService,
-    private googleApiService: GoogleApiService
+    private googleApiService: GoogleApiService,
+    private subjectService: SubjectService
   ) {
     super();
   }
@@ -64,7 +67,7 @@ export class ActivityComponent extends Unsubscribe implements OnInit {
     this.groupWeight(activity);
     this.groupSteps(activity);
     this.groupHeartRate(activity);
-    this.progressBarVisibility = false;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
 
     if (render) {
       this.changeDetectorRef.markForCheck();
@@ -72,7 +75,7 @@ export class ActivityComponent extends Unsubscribe implements OnInit {
   }
 
   private subscribeToCurrentUser(): void {
-    this.progressBarVisibility = true;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
 
     this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {

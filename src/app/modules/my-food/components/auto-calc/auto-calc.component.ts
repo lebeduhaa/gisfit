@@ -6,6 +6,7 @@ import { Product } from 'src/app/shared/models/product.model';
 import { MyFoodService } from '../../services/my-food.service';
 import { APP } from 'src/app/shared/constants';
 import { TotalCalculation, Calculation } from 'src/app/shared/models/calculation.model';
+import { SubjectService } from 'src/app/shared/services/subject.service';
 
 @Component({
   selector: 'app-auto-calc',
@@ -23,7 +24,8 @@ export class AutoCalcComponent implements OnInit {
   constructor(
     private myFoodService: MyFoodService,
     private dialog: MatDialog,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private subjectService: SubjectService
   ) {}
 
   ngOnInit() {
@@ -74,8 +76,10 @@ export class AutoCalcComponent implements OnInit {
   }
 
   private async getAllProducts(): Promise<void> {
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
     this.products = await this.myFoodService.getAllProducts();
     this.displayedProducts = this.products;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
     this.changeDetectorRef.markForCheck();
   }
 

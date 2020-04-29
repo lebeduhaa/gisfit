@@ -49,6 +49,7 @@ export class CustomGoalsComponent extends Unsubscribe implements OnInit {
   }
 
   public acceptCustomGoals(): void {
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
     this.spinnerStateSubject.next(true);
     this.settingsService.updateUserData({
       customCaloriesGoal: Number(this.tempUser.customCaloriesGoal),
@@ -57,6 +58,7 @@ export class CustomGoalsComponent extends Unsubscribe implements OnInit {
       customCarbohydratesGoal: Number(this.tempUser.customCarbohydratesGoal)
     }, this.user.id)
       .then(() => {
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.close();
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Custom goals',
@@ -65,6 +67,7 @@ export class CustomGoalsComponent extends Unsubscribe implements OnInit {
         });
       })
       .catch(error => {
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.error = error.message;
         this.changeDetectorRef.markForCheck();
       });

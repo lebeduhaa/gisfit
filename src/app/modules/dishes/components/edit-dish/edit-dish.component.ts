@@ -44,6 +44,7 @@ export class EditDishComponent implements OnInit {
 
   public edit(): void {
     this.spinnerStateSubject.next(true);
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
 
     this.myFoodService.editProduct(this.dish.id, this.editDishForm.value)
       .then(() => {
@@ -52,6 +53,7 @@ export class EditDishComponent implements OnInit {
           body: 'Your dish was edit successfully!',
           duration: 5000
         });
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.close();
       })
       .catch(error => {
@@ -61,6 +63,7 @@ export class EditDishComponent implements OnInit {
           error: true,
           duration: 10000
         });
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.close();
       });
   }

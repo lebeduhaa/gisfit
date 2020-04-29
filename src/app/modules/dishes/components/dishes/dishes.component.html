@@ -1,13 +1,10 @@
 <div class="dishes">
-  <div class="dishes__progress-bar" *ngIf="progressBarVisibility">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </div>
-  <div class="dishes__title" *ngIf="!progressBarVisibility">{{'dishes.description' | translate}}</div>
-  <div class="dishes__actions" *ngIf="!progressBarVisibility">
+  <div class="dishes__title">{{'dishes.description' | translate}}</div>
+  <div class="dishes__actions">
     <app-spinner-button caption="{{'dishes.add-dish' | translate}}" [small]="true" routerLink="/add-product" [queryParams]="{previous: 'dishes'}"></app-spinner-button>
     <app-search caption="{{'dishes.search-dishes' | translate}}" (searchEvent)="reactOnSearchEvent($event)"></app-search>
   </div>
-  <div class="dishes__content" *ngIf="!progressBarVisibility">
+  <div class="dishes__content">
     <div class="dishes__dish" *ngFor="let dish of displayedDishes">
       <app-dish [user]="user" [dish]="dish" (setLikeEvent)="reactOnSetLike($event)" (unsetLikeEvent)="reactOnUnsetLike($event)"></app-dish>
     </div>

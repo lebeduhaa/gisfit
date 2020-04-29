@@ -45,9 +45,11 @@ export class EditProductComponent implements OnInit {
 
   public edit(): void {
     this.spinnerSubject.next(true);
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
 
     this.myFoodService.editProduct(this.product.id, this.productEditForm.value)
       .then(() => {
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Edit product',
           body: 'Product was edited successfully',
@@ -56,6 +58,7 @@ export class EditProductComponent implements OnInit {
         this.close();
       })
       .catch(error => {
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Edit product ERROR',
           body: error,

@@ -16,6 +16,7 @@ import { SettingsService } from 'src/app/modules/settings/services/settings.serv
 import { toRightAnimation } from 'src/app/shared/animations';
 import { FirebaseCloudMessaging } from 'src/app/shared/classes/fcm';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
+import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-my-food',
@@ -29,7 +30,6 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
 
   @ViewChild('scroll') scroll: VirtualScrollerComponent;
 
-  public progressBarVisibility: boolean;
   public products: Product[];
   public displayedProducts: Product[];
   public userFillRequiredData: boolean;
@@ -52,7 +52,8 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
     protected settingsService: SettingsService,
     protected messaging: AngularFireMessaging,
     protected dialog: MatDialog,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private localStorageHelper: LocalStorageHelper
   ) {
     super(messaging, settingsService, dialog);
   }
@@ -76,10 +77,10 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
 
   public findMoreProducts(): void {
     this.myProducts = false;
-    this.progressBarVisibility = true;
-    this.myFoodService.getNotMyProducts(this.user)
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
+    this.myFoodService.getNotMyProducts(this.localStorageHelper.getCachedData(APP.cachedData.userData))
       .then(products => {
-        this.progressBarVisibility = false;
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.products = products;
         this.displayedProducts = [...products];
         this.changeDetectorRef.markForCheck();
@@ -100,10 +101,11 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
   }
 
   public reactOnAddProduct(productId: string): void {
-    this.progressBarVisibility = true;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
 
     this.myFoodService.addProductToMyFood(productId)
     .then(() => {
+      this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
       const productIndex = this.products.findIndex(product => product.id === productId);
 
       this.products.splice(productIndex, 1);
@@ -112,7 +114,6 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
         body: 'Your product was added to your food successfully!',
         duration: 10000
       });
-      this.progressBarVisibility = false;
       this.reactOnSearch(this.currentSearch);
       this.changeDetectorRef.markForCheck();
     })
@@ -123,12 +124,12 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
         duration: 20000,
         error: true
       });
-      this.progressBarVisibility = false;
+      this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
     });
   }
 
   public reactOnDeleteProduct(productId: string): void {
-    this.progressBarVisibility = true;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
 
     this.myFoodService.deleteProduct(productId)
       .then(() => {
@@ -141,7 +142,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
         });
         this.products.splice(productIndex, 1);
         this.filterProducts();
-        this.progressBarVisibility = false;
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.changeDetectorRef.markForCheck();
       })
       .catch(error => {
@@ -151,7 +152,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
           duration: 20000,
           error: true
         });
-        this.progressBarVisibility = false;
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.changeDetectorRef.markForCheck();
       });
   }
@@ -202,7 +203,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
   }
 
   private subscribeToCurrentUser(): void {
-    this.progressBarVisibility = true;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
     this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
       .subscribe(user => {
         if (user.height && user.weight && user.activity && user.goal && user.age && user.sex) {
@@ -222,10 +223,11 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
   }
 
   private getMyProducts(): void {
-    this.progressBarVisibility = true;
-    this.myFoodService.getMyProducts(this.user)
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
+
+    this.myFoodService.getMyProducts(this.localStorageHelper.getCachedData(APP.cachedData.userData))
       .then(products => {
-        this.progressBarVisibility = false;
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.products = products;
         this.displayedProducts = [...products];
         this.changeDetectorRef.markForCheck();

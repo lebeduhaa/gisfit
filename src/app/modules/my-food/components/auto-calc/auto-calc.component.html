@@ -3,9 +3,6 @@
     <div class="app__popup-close" (click)="close()">
       <mat-icon>clear</mat-icon>
     </div>
-    <div class="auto-calc__spinner" *ngIf="!products">
-      <mat-spinner></mat-spinner>
-    </div>
     <div class="auto-calc__content" [style.visibility]="products ? 'visible' : 'hidden'">
       <div class="auto-calc__selection">
         <div class="auto-calc__title">Selected products</div>

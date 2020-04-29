@@ -1,0 +1,7 @@
+:host {
+  height: 100%;
+}
+.root {
+  overflow-x: hidden;
+  min-height: 100vh;
+}

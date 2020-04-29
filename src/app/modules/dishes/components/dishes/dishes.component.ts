@@ -1,7 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
-import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import * as recursiveDiff from 'recursive-diff';
 import { MatDialog } from '@angular/material/dialog';
 import { AngularFireMessaging } from '@angular/fire/messaging';
@@ -13,6 +11,7 @@ import { RealTimeDataService } from 'src/app/shared/services/real-time-data.serv
 import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
+import { SubjectService } from 'src/app/shared/services/subject.service';
 
 @Component({
   selector: 'app-dishes',
@@ -23,7 +22,6 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit {
 
   public dishes: Product[];
   public displayedDishes: Product[];
-  public progressBarVisibility: boolean;
   public user: User;
 
   constructor(
@@ -32,7 +30,8 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit {
     private realTimeDataService: RealTimeDataService,
     protected messaging: AngularFireMessaging,
     protected settingsService: SettingsService,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    private subjectService: SubjectService
   ) {
     super(messaging, settingsService, dialog);
   }
@@ -60,12 +59,12 @@ export class DishesComponent extends FirebaseCloudMessaging implements OnInit {
   }
 
   private getDishes(): void {
-    this.progressBarVisibility = true;
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
     this.dishesService.getDishes()
       .then(dishes => {
         this.dishes = dishes;
         this.displayedDishes = dishes;
-        this.progressBarVisibility = false;
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.getRouteState();
         this.changeDetectorRef.markForCheck();
       });
