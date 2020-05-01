@@ -205,18 +205,22 @@ html {
   to {background-position: top right;}
 }
 
-@media screen and (max-width: 576px) {
-  .app__background img {
-    width: auto;
+@media screen and (max-width: 992px) {
+  .app__background {
+    display: none;
+  }
+  .app__mobile-background {
     height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-size: cover;
   }
   .cdk-overlay-pane {
     width: 100vw;
     height: 100%;
-  }
-  .app__background {
-    width: auto;
-    left: calc(-50% - (100vw / 2));
   }
   .app__popup-close {
     right: -15px;

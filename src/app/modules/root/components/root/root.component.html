@@ -5,6 +5,7 @@
   <div class="root__content" [@settingsRouteAnimation]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
+  <div class="app__mobile-background" [style.background-image]="'url(' + backgroundImageUrl + ')'"></div>
   <div class="app__background" id="app__background" appMoveBackground>
     <img [src]="backgroundImageUrl">
   </div>
