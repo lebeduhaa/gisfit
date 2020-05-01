@@ -75,7 +75,7 @@ virtual-scroller {
   height: auto;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .my-food__mobile {
     color: white;
     font-family: 'Lato', sans-serif;

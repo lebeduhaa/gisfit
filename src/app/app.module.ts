@@ -17,7 +17,7 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { RootComponent } from './modules/root/components/root/root.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({

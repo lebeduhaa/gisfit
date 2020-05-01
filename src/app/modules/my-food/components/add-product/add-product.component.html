@@ -50,7 +50,7 @@
     <div class="add-product__right">
       <div class="add-product__image">
         <div class="add-product__image-preload">
-          <img loading="lazy" [src]="productPreloadedPhoto ? productPreloadedPhoto : 'assets/img/no-photo.jpg'">
+          <img [src]="productPreloadedPhoto ? productPreloadedPhoto : 'assets/img/no-photo.jpg'">
         </div>
         <app-input-file
           caption="{{'buttons.upload-image' | translate}}"

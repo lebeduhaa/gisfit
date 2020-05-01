@@ -20,7 +20,6 @@ import { Unsubscribe } from 'src/app/shared/classes/unsubscribe.class';
 export class CustomGoalsComponent extends Unsubscribe implements OnInit {
 
   public error: string;
-  public spinnerStateSubject = new Subject<boolean>();
   public tempUser: User;
   public disableAcceptButton: boolean;
 
@@ -50,7 +49,6 @@ export class CustomGoalsComponent extends Unsubscribe implements OnInit {
 
   public acceptCustomGoals(): void {
     this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
-    this.spinnerStateSubject.next(true);
     this.settingsService.updateUserData({
       customCaloriesGoal: Number(this.tempUser.customCaloriesGoal),
       customProteinGoal: Number(this.tempUser.customProteinGoal),

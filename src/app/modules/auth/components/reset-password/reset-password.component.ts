@@ -17,7 +17,6 @@ export class ResetPasswordComponent {
 
   public email: string;
   public error: string;
-  public spinnerSubject = new Subject<boolean>();
 
   constructor(
     private dialog: MatDialog,
@@ -28,10 +27,10 @@ export class ResetPasswordComponent {
 
   public resetPassword(): void {
     if (this.email) {
-      this.spinnerSubject.next(true);
+      this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
       this.authService.resetPassword(this.email)
         .then(result => {
-          this.spinnerSubject.next(false);
+          this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
           this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
             title: 'Password reset request',
             body: `We have sent message about password reset on the email ${this.email}. Follow it and create new password for your account.`,
@@ -41,7 +40,7 @@ export class ResetPasswordComponent {
           this.changeDetectorRef.markForCheck();
         })
         .catch(error => {
-          this.spinnerSubject.next(false);
+          this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
           this.error = error.message;
           this.changeDetectorRef.markForCheck();
         });

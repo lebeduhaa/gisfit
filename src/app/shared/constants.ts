@@ -234,5 +234,5 @@ export const APP = {
   // searchOutsideUrl: 'https://e-dostavka.by/search/',
   // searchOutsideUrl: 'https://us-central1-gisfit-production.cloudfunctions.net/evrooptProxy/search-outside',
   searchOutsideUrl: 'http://localhost:3000/search-outside',
-isMobile: window.outerWidth ? window.outerWidth < 576 : false
+isMobile: window.outerWidth ? window.outerWidth < 992 : false
 };

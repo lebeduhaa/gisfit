@@ -35,7 +35,7 @@
   background-color: #30ac95;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .categories__category {
     padding: 9px 20px;
     font-size: 14px;

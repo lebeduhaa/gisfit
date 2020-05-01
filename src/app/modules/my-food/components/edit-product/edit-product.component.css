@@ -21,7 +21,7 @@ mat-dialog-actions {
   padding-top: 30px;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .product-edit__content {
     width: 100%;
   }

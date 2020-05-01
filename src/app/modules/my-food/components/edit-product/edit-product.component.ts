@@ -18,7 +18,6 @@ import { APP } from 'src/app/shared/constants';
 export class EditProductComponent implements OnInit {
 
   public product: Product;
-  public spinnerSubject = new Subject<boolean>();
   public productEditForm: FormGroup;
 
   constructor(
@@ -44,7 +43,6 @@ export class EditProductComponent implements OnInit {
   }
 
   public edit(): void {
-    this.spinnerSubject.next(true);
     this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
 
     this.myFoodService.editProduct(this.product.id, this.productEditForm.value)

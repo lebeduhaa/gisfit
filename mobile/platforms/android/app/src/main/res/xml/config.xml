@@ -4,12 +4,15 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="CDVOrientation">
+        <param name="android-package" value="cordova.plugins.screenorientation.CDVOrientation" />
+    </feature>
     <name>Gisfit</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Application for proper nutrition that allows you track you daily food.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="lebedevgrisha1996@mail.ru" href="http://cordova.io">
+        Lebedev Grigory
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -19,7 +22,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <icon density="mdpi" height="57" src="./www/mobile-icon.png" width="57" />
+    <icon density="mdpi" height="57" src="./www/favicon.ico" width="57" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
 </widget>

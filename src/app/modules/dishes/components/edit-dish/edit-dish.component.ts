@@ -21,7 +21,6 @@ export class EditDishComponent implements OnInit {
 
   public dish: Product;
   public editDishForm: FormGroup;
-  public spinnerStateSubject = new Subject<boolean>();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private dialogData,
@@ -43,7 +42,6 @@ export class EditDishComponent implements OnInit {
   }
 
   public edit(): void {
-    this.spinnerStateSubject.next(true);
     this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
 
     this.myFoodService.editProduct(this.dish.id, this.editDishForm.value)

@@ -8,6 +8,8 @@ import am4themes_dark from '@amcharts/amcharts4/themes/amchartsdark';
 import { HistoryService } from '../../services/history.service';
 import { Statistics } from 'src/app/shared/models/statistics.model';
 import { ChartData } from 'src/app/shared/models/chart-data.model';
+import { SubjectService } from 'src/app/shared/services/subject.service';
+import { APP } from 'src/app/shared/constants';
 
 am4core.useTheme(am4themes_dark);
 am4core.useTheme(am4themes_animated);
@@ -27,17 +29,23 @@ export class DailyStatisticsComponent implements AfterViewInit, OnDestroy {
   constructor(
     private ngZone: NgZone,
     private historyService: HistoryService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private subjectService: SubjectService
   ) {}
 
   private async getStatisticsData(): Promise<any> {
+    setTimeout(() => {
+      this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
+    });
     this.statisticsData = await this.historyService.getDailyStatistics();
   }
 
   async ngAfterViewInit() {
+    screen.orientation.lock('landscape-primary');
     await this.getStatisticsData();
     this.ngZone.runOutsideAngular(() => {
       setTimeout(() => {
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.chart = am4core.create('chartdiv', am4charts.XYChart);
         this.chart.colors.step = 6;
         this.chart.data = this.generateChartData();
@@ -147,6 +155,8 @@ export class DailyStatisticsComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    screen.orientation.unlock();
+
     this.ngZone.runOutsideAngular(() => {
       if (this.chart) {
         this.chart.dispose();

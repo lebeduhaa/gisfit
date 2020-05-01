@@ -8,7 +8,7 @@ mat-dialog-actions {
   padding-bottom: 20px;
 }
 virtual-scroller {
-  height: calc(100vh - 63px);
+  height: calc(100vh - 108px);
   width: 100vw;
   margin-left: -24px;
 }

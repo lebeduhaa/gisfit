@@ -144,7 +144,7 @@
   word-break: break-all;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .dish:hover {
     transform: scale(1);
   }

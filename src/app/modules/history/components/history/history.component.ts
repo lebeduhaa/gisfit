@@ -63,8 +63,4 @@ export class HistoryComponent extends FirebaseCloudMessaging {
 
   }
 
-  private getCurrentDayProgress(): void {
-
-  }
-
 }

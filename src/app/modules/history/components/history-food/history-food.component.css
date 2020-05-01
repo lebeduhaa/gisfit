@@ -24,7 +24,7 @@
   width: 100%;
 }
 
-@media(max-width: 576px) {
+@media(max-width: 992px) {
   .history-food__product {
     flex-basis: 48.5%;
     margin-bottom: 0px;

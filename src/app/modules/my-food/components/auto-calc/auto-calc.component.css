@@ -62,7 +62,7 @@ app-custom-button:first-of-type {
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .auto-calc__content {
     display: block;
   }

@@ -44,7 +44,7 @@
   display: none;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .settings__content {
     width: 100vw;
     position: static;

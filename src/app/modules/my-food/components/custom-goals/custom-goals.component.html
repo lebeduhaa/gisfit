@@ -31,5 +31,5 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <app-spinner-button [spinnerStateSubject]="spinnerStateSubject" *ngIf="tempUser" caption="Accept" [small]="true" [disabled]="disableAcceptButton" (click)="acceptCustomGoals()"></app-spinner-button>
+  <app-spinner-button *ngIf="tempUser" caption="Accept" [small]="true" [disabled]="disableAcceptButton" (click)="acceptCustomGoals()"></app-spinner-button>
 </mat-dialog-actions>

@@ -21,7 +21,6 @@ export class ChangePasswordComponent extends Unsubscribe implements OnInit {
 
   public changePasswordForm: FormGroup;
   public error: string;
-  public spinnerSubject = new Subject<boolean>();
 
   constructor(
     private settingsService: SettingsService,
@@ -38,10 +37,10 @@ export class ChangePasswordComponent extends Unsubscribe implements OnInit {
   }
 
   public changePassword(): void {
-    this.spinnerSubject.next(true);
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
     this.settingsService.updateUserPassword(this.changePasswordForm.value.oldPassword, this.changePasswordForm.value.password)
       .then(() => {
-        this.spinnerSubject.next(false);
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Change password',
           body: `Your password was changed successfully. Since this moment you will use new password to sign in into application`,
@@ -50,7 +49,7 @@ export class ChangePasswordComponent extends Unsubscribe implements OnInit {
         this.close();
       })
       .catch(error => {
-        this.spinnerSubject.next(false);
+        this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.error = error.message;
       });
   }

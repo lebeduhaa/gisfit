@@ -123,7 +123,7 @@ app-input-text {
   margin-bottom: 20px;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .uploader__content {
     flex-direction: column-reverse;
     height: auto;

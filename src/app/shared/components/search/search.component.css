@@ -51,7 +51,7 @@
   color: white;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .search__button {
     font-size: 14px;
     padding: 9px 18px;

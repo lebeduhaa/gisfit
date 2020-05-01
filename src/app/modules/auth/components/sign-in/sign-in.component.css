@@ -33,7 +33,7 @@
   box-shadow: inset 0px 0px 5px #8d3939;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .sign-in__title {
     margin-bottom: 0px;
   }

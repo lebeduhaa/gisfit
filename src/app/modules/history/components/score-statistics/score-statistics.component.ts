@@ -31,6 +31,7 @@ export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit() {
     setTimeout(async () => {
+      screen.orientation.lock('landscape-primary');
       await this.initChart();
     }, 200);
   }
@@ -71,6 +72,7 @@ export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    screen.orientation.unlock();
     this.ngZone.runOutsideAngular(() => {
       if (this.chart) {
         this.chart.dispose();

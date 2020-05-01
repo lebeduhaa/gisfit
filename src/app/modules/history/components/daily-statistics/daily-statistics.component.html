@@ -1,9 +1,11 @@
 <mat-dialog-content>
-  <div id="chartdiv" [hidden]="!statisticsData?.length"></div>
-  <div class="daily__spinner" *ngIf="!statisticsData">
-    <mat-spinner></mat-spinner>
-  </div>
-  <div class="daily__empty" *ngIf="statisticsData && !statisticsData?.length">
-    It seems you still do not have enough data to collect statistics
+  <div class="daily">
+    <div class="app__popup-close">
+      <mat-icon mat-dialog-close>clear</mat-icon>
+    </div>
+    <div id="chartdiv" [hidden]="!statisticsData?.length"></div>
+    <div class="daily__empty" *ngIf="statisticsData && !statisticsData?.length">
+      It seems you still do not have enough data to collect statistics
+    </div>
   </div>
 </mat-dialog-content>

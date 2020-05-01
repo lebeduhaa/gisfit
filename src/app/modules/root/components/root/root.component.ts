@@ -44,6 +44,7 @@ export class RootComponent extends Unsubscribe implements OnInit {
       .subscribe(spinnerVisibility => {
         console.log(spinnerVisibility);
         this.spinnerVisibility = spinnerVisibility;
+        console.log(spinnerVisibility);
         this.changeDetectorRef.markForCheck();
       });
   }

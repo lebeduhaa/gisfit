@@ -198,7 +198,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
         const descriptionHeight = document.querySelector('.my-food__mobile-actions').clientHeight;
 
         this.mobileVirtualScrollHeight = window.innerHeight - 117 - descriptionHeight;
-      }, 0);
+      }, 100);
     }
   }
 

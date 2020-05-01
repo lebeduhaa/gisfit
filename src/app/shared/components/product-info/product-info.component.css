@@ -47,7 +47,7 @@ mat-dialog-content {
   position: relative;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .product-info__img {
     width: 100%;
     height: auto;
