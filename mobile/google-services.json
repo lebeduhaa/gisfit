@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "256573430882",
+    "firebase_url": "https://gisfit-production.firebaseio.com",
+    "project_id": "gisfit-production",
+    "storage_bucket": "gisfit-production.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256573430882:android:48dc2826c223d89b43853b",
+        "android_client_info": {
+          "package_name": "gisfit.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256573430882-kqp0jdg4cv3nav20jqd5iefuu500e6vc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwSn38Xpwi8rbsOUQi5fIeRR0-zYZhbsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256573430882-kqp0jdg4cv3nav20jqd5iefuu500e6vc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
