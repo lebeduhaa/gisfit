@@ -56,7 +56,7 @@
         <framework src="com.google.android.gms:play-services-tagmanager:16.+"/>
         <framework src="com.google.firebase:firebase-auth:18.+"/>
         <framework src="com.google.firebase:firebase-core:17.+"/>
-        <framework src="com.google.firebase:firebase-messaging:19.+"/>
+        <framework src="com.google.firebase:firebase-messaging:20.+"/>
         <framework src="com.google.firebase:firebase-config:18.+"/>
         <framework src="com.google.firebase:firebase-perf:18.+"/>
     </platform>

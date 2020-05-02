@@ -297,7 +297,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-tagmanager:16.+"
     implementation "com.google.firebase:firebase-auth:18.+"
     implementation "com.google.firebase:firebase-core:17.+"
-    implementation "com.google.firebase:firebase-messaging:19.+"
+    implementation "com.google.firebase:firebase-messaging:20.+"
     implementation "com.google.firebase:firebase-config:18.+"
     implementation "com.google.firebase:firebase-perf:18.+"
     // SUB-PROJECT DEPENDENCIES END
