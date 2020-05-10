@@ -21,27 +21,34 @@ export class FirebaseCloudMessaging extends Unsubscribe implements OnDestroy {
   }
 
   protected init(user: User): void {
-    super.unsubscribe();
-    this.subscribeTo = this.messaging.requestToken
-      .subscribe(token => this.updateUserDeviceToken(token));
-    this.subscribeTo = this.messaging.messages
-      .subscribe(message => {
-        const sound = new Audio('./assets/audio/notification.mp3');
-        const { body, title } = (message as any).notification;
-
-        this.dialog.open(DailyReportComponent, {
-          data: {
-            body,
-            title
-          },
-          id: APP.dialogs.dailyReport,
-          width: '650px'
-        });
-
-        if (user.notificationSound) {
-          sound.play();
-        }
+    if ((window as any).FirebasePlugin) {
+      (window as any).FirebasePlugin.getToken(token => {
+        this.updateUserDeviceToken(token);
       });
+    }
+    else {
+      super.unsubscribe();
+      this.subscribeTo = this.messaging.requestToken
+        .subscribe(token => this.updateUserDeviceToken(token));
+      this.subscribeTo = this.messaging.messages
+        .subscribe(message => {
+          const sound = new Audio('./assets/audio/notification.mp3');
+          const { body, title } = (message as any).notification;
+  
+          this.dialog.open(DailyReportComponent, {
+            data: {
+              body,
+              title
+            },
+            id: APP.dialogs.dailyReport,
+            width: '650px'
+          });
+  
+          if (user.notificationSound) {
+            sound.play();
+          }
+        });
+    }
   }
 
   private updateUserDeviceToken(token: string): void {
