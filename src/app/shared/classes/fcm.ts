@@ -2,7 +2,6 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
 
 import { MatDialog } from '@angular/material/dialog';
 import { OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { APP } from '../constants';
@@ -23,13 +22,13 @@ export class FirebaseCloudMessaging extends Unsubscribe implements OnDestroy {
   protected init(user: User): void {
     if ((window as any).FirebasePlugin) {
       (window as any).FirebasePlugin.getToken(token => {
-        this.updateUserDeviceToken(token);
+        this.addUserDevice(user, token);
       });
     }
     else {
       super.unsubscribe();
       this.subscribeTo = this.messaging.requestToken
-        .subscribe(token => this.updateUserDeviceToken(token));
+        .subscribe(token => this.addUserDevice(user, token));
       this.subscribeTo = this.messaging.messages
         .subscribe(message => {
           const sound = new Audio('./assets/audio/notification.mp3');
@@ -51,10 +50,10 @@ export class FirebaseCloudMessaging extends Unsubscribe implements OnDestroy {
     }
   }
 
-  private updateUserDeviceToken(token: string): void {
-    const userId = JSON.parse(localStorage.getItem(APP.cachedData.userData)).id;
-
-    Promise.resolve(this.settingsService.updateUserData({deviceToken: token}, userId));
+  private addUserDevice(user: User, token: string): void {
+    if (user.deviceTokens.every(userDevice => userDevice !== token)) {
+      this.settingsService.addDeviceToken(token);
+    }
   }
 
   ngOnDestroy() {

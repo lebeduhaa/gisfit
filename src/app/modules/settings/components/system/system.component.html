@@ -2,7 +2,7 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 <div class="system" *ngIf="user">
-  <div class="system__change-pass">
+  <div class="system__change-pass" *ngIf="isMobile">
     <app-spinner-button caption="{{'buttons.change-password' | translate}}" [small]="true" appOpenChangePassword></app-spinner-button>
   </div>
   <div class="system__notification">

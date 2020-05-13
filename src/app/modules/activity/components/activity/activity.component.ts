@@ -123,29 +123,31 @@ export class ActivityComponent extends Unsubscribe implements OnInit {
   private groupSteps(googleFit: GoogleFit[]): void {
     const tempSteps: ActivityChartData[] = [];
 
-    googleFit[1].point.forEach(stepPoint => {
-      let newValue = true;
-
-      tempSteps.forEach(tempStep => {
-        if (this.equalDates(new Date(stepPoint.startTimeNanos / 1000000), new Date(tempStep.date))) {
-          tempStep.data += stepPoint.value[0].intVal;
-          newValue = false;
+    if (googleFit[1].point.length) {
+      googleFit[1].point.forEach(stepPoint => {
+        let newValue = true;
+  
+        tempSteps.forEach(tempStep => {
+          if (this.equalDates(new Date(stepPoint.startTimeNanos / 1000000), new Date(tempStep.date))) {
+            tempStep.data += stepPoint.value[0].intVal;
+            newValue = false;
+          }
+        });
+  
+        if (newValue) {
+          tempSteps.push({
+            data: stepPoint.value[0].intVal,
+            date: new Date(stepPoint.startTimeNanos / 1000000)
+          });
         }
       });
-
-      if (newValue) {
-        tempSteps.push({
-          data: stepPoint.value[0].intVal,
-          date: new Date(stepPoint.startTimeNanos / 1000000)
-        });
+  
+      if (this.steps.length !== tempSteps.length || this.steps[this.steps.length - 1].data !== tempSteps[tempSteps.length - 1].data) {
+        this.steps = tempSteps;
+        setTimeout(() => {
+          this.stepsSubject.next(this.steps);
+        }, 0);
       }
-    });
-
-    if (this.steps.length !== tempSteps.length || this.steps[this.steps.length - 1].data !== tempSteps[tempSteps.length - 1].data) {
-      this.steps = tempSteps;
-      setTimeout(() => {
-        this.stepsSubject.next(this.steps);
-      }, 0);
     }
   }
 

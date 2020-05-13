@@ -70,15 +70,17 @@ module.exports = async (request, response) => {
     if (user.notificationTime && user.notificationTime.utc === currentHours) {
       const resultString = `Your total score today = ${getTotalScore(user)}\n${getResult(user)}`;
       console.log('send to ' + user.nickname);
-      promises.push(admin.messaging().sendToDevice(user.deviceToken, {
-        notification: {
-          title: 'Daily report about your progress',
-          body: resultString,
-          icon: 'favicon.ico',
-          clickAction: 'https://gisfit-production.web.app/my-food',
-          sound: 'notification.mp3'
-        }
-      }));
+      user.deviceTokens.forEach(deviceToken => {
+        promises.push(admin.messaging().sendToDevice(deviceToken, {
+          notification: {
+            title: 'Daily report about your progress',
+            body: resultString,
+            icon: 'favicon.ico',
+            clickAction: 'https://gisfit-production.web.app/my-food',
+            sound: 'notification.mp3'
+          }
+        }));
+      });
 
       if (user.sendDailyReportOnEmail) {
         let html = '<ul>';

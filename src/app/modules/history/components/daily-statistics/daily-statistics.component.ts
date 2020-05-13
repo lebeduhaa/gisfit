@@ -41,7 +41,8 @@ export class DailyStatisticsComponent implements AfterViewInit, OnDestroy {
   }
 
   async ngAfterViewInit() {
-    screen.orientation.lock('landscape-primary');
+    screen.orientation.lock('landscape-primary').catch(console.log);
+
     await this.getStatisticsData();
     this.ngZone.runOutsideAngular(() => {
       setTimeout(() => {

@@ -15,7 +15,7 @@ export interface User {
   email?: string;
   password?: string;
   id?: string;
-  deviceToken?: string;
+  deviceTokens?: string[];
   notificationTime?: Hour;
   interfaceLanguage?: string;
   notificationSound?: boolean;

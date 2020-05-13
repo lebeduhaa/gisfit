@@ -9,7 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { APP } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models/user.model';
-import { AuthService } from '../../auth/services/auth.service';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 
 @Injectable({
@@ -22,11 +21,20 @@ export class SettingsService {
     private fireStorage: AngularFireStorage,
     private subjectService: SubjectService,
     private auth: AngularFireAuth,
-    private authService: AuthService,
     private firebaseAuth: AngularFireAuth,
     private translateService: TranslateService,
-    private localStorageHepler: LocalStorageHelper
+    private localStorageHelper: LocalStorageHelper
   ) {}
+
+  public removeDeviceToken(userId: string, token: string): Promise<any> {
+    return this.firestore.collection('users').doc(userId).update({deviceTokens: firebase.firestore.FieldValue.arrayRemove(token)});
+  }
+
+  public addDeviceToken(token: string): Promise<any> {
+    const userId = this.localStorageHelper.getCachedData(APP.cachedData.userData).id;
+    
+    return this.firestore.collection('users').doc(userId).update({deviceTokens: firebase.firestore.FieldValue.arrayUnion(token)});
+  }
 
   public uploadAvatar(base64: string, user: User): Promise<any> {
     if (base64) {
@@ -74,7 +82,7 @@ export class SettingsService {
           body: `It seems like you changed your email address. You have to verify it again to use this application!`,
           duration: 10000
         });
-        await this.authService.sendEmailVerification();
+        await this.firebaseAuth.auth.currentUser.sendEmailVerification();
       }
     });
   }
@@ -91,10 +99,10 @@ export class SettingsService {
       this.translateService.use(userData.interfaceLanguage);
     }
 
-    const currentUserData = this.localStorageHepler.getCachedData(APP.cachedData.userData);
+    const currentUserData = this.localStorageHelper.getCachedData(APP.cachedData.userData);
     const resultUserData = {...currentUserData, ...userData};
 
-    this.localStorageHepler.cacheData(APP.cachedData.userData, resultUserData);
+    this.localStorageHelper.cacheData(APP.cachedData.userData, resultUserData);
 
     return this.firestore.collection('users').doc(userId).update(userData);
   }

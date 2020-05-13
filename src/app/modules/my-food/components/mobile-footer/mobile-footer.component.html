@@ -1,5 +1,5 @@
 <div class="mobile-footer">
-  <div class="mobile-footer__item" matRipple matRippleColor="rgba(255, 255, 255, .1)" appOpenMobileEating [disabled]="!currentEatingItemsNumber">
+  <div class="mobile-footer__item" [class.mobile-footer__item_disabled]="!currentEatingItemsNumber" matRipple matRippleColor="rgba(255, 255, 255, .1)" appOpenMobileEating [disabled]="!currentEatingItemsNumber">
     <div class="mobile-footer__amount" *ngIf="currentEatingItemsNumber">{{currentEatingItemsNumber}}</div>
     <mat-icon>outdoor_grill</mat-icon>
     eat

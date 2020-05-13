@@ -7,6 +7,8 @@ import * as moment from 'moment';
 import { User } from 'src/app/shared/models/user.model';
 import { LocalStorageHelper } from 'src/app/shared/services/local-storage.service';
 import { APP } from 'src/app/shared/constants';
+import { SettingsService } from '../../settings/services/settings.service';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,9 @@ export class AuthService {
   constructor(
     private firestore: AngularFirestore,
     private firebaseAuth: AngularFireAuth,
-    private localStorageService: LocalStorageHelper
+    private localStorageService: LocalStorageHelper,
+    private settingsService: SettingsService,
+    private messaging: AngularFireMessaging
   ) {}
 
   public signUp(user: User): Promise<any> {
@@ -34,7 +38,17 @@ export class AuthService {
   }
 
   public signOut(): Promise<any> {
+    const userId = this.localStorageService.getCachedData(APP.cachedData.userData).id;
+
     this.localStorageService.clearCachedData(APP.cachedData.userData);
+
+    if ((window as any).FirebasePlugin) {
+      (window as any).FirebasePlugin.getToken(token => this.settingsService.removeDeviceToken(userId, token));
+    }
+    else {
+      this.messaging.requestToken
+        .subscribe(token => this.settingsService.removeDeviceToken(userId, token));
+    }
 
     return this.firebaseAuth.auth.signOut();
   }
@@ -89,6 +103,7 @@ export class AuthService {
         products: []
       },
       addedProducts: [],
+      deviceTokens: [],
       notificationTime: {
         title: '21:00',
         value: 21,

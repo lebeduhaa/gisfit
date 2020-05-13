@@ -7,6 +7,8 @@ import am4themes_dark from '@amcharts/amcharts4/themes/amchartsdark';
 
 import { HistoryService } from '../../services/history.service';
 import { ScoreChartData } from 'src/app/shared/models/score-chart-data.model';
+import { SubjectService } from 'src/app/shared/services/subject.service';
+import { APP } from 'src/app/shared/constants';
 
 am4core.useTheme(am4themes_dark);
 am4core.useTheme(am4themes_animated);
@@ -26,12 +28,14 @@ export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
   constructor(
     private historyService: HistoryService,
     private ngZone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private subjectService: SubjectService
   ) {}
 
   ngAfterContentInit() {
     setTimeout(async () => {
-      screen.orientation.lock('landscape-primary');
+      screen.orientation.lock('landscape-primary').catch(console.log);
+      this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
       await this.initChart();
     }, 200);
   }
@@ -43,6 +47,7 @@ export class ScoreStatisticsComponent implements AfterContentInit, OnDestroy {
   private async initChart(): Promise<any> {
     this.chart = am4core.create('chartdiv', am4charts.XYChart);
     await this.getChartData();
+    this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
     this.chart.data = this.chartData;
     const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.minGridDistance = 50;

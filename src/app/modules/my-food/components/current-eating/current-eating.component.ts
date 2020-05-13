@@ -39,21 +39,23 @@ export class CurrentEatingComponent extends Unsubscribe implements OnInit {
     this.subjectService.emitSubject(APP.subjects.subCurrentProducts, this.sharedDataService.products.length);
     this.sharedDataService.products = [];
     this.sharedDataService.currentEating = [];
+    this.sharedDataService.previewData = [];
     this.subjectService.emitSubject(APP.subjects.closeMobileEatings, {});
     this.subjectService.emitSubject(APP.subjects.clearPreview, {});
   }
 
   public submitCurrentEating(): void {
+    const products = this.sharedDataService.products;
     this.subjectService.emitSubject(APP.subjects.spinnerVisibility, true);
-    this.myFoodService.submitCurrentEating(this.sharedDataService.products)
+    this.clear();
+    this.myFoodService.submitCurrentEating(products)
       .then(() => {
         this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
-        this.subjectService.emitSubject(APP.subjects.subCurrentProducts, this.sharedDataService.products.length);
-        this.sharedDataService.products = [];
-        this.sharedDataService.currentEating = [];
-        this.sharedDataService.previewData = [];
-        this.subjectService.emitSubject(APP.subjects.subCurrentProducts, this.sharedDataService.products.length);
-        this.subjectService.emitSubject(APP.subjects.closeMobileEatings, {});
+        
+        if (!APP.isMobile) {
+          this.subjectService.emitSubject(APP.subjects.subCurrentProducts, products.length);
+        }
+
         this.subjectService.emitSubject(APP.subjects.notificationVisibility, {
           title: 'Current Eating',
           body: 'Your current eating was submit successfully, track you daily progress!',

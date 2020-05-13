@@ -20,10 +20,15 @@
   align-items: center;
   flex-direction: column;
   background-color: #202020;
-}
-.mobile-footer__item {
   border-right: .5px solid #565656;
   position: relative;
+}
+.mobile-footer__item_disabled {
+  background-color: #565656;
+  color: #787878;
+}
+.mobile-footer__item_disabled mat-icon {
+  color: #787878;
 }
 .mobile-footer__item:last-child {
   border-right: none;

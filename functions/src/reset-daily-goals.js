@@ -59,8 +59,6 @@ module.exports = async (request, response) => {
     }
   });
 
-  console.log(resultObject);
-
   totalArrayPromises.push(admin.firestore().collection('history').doc(storeKey.toString()).set(resultObject));
   await Promise.all(totalArrayPromises);
   response.send({message: 'success'});
