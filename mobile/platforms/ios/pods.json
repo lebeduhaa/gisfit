@@ -1,0 +1,51 @@
+{
+    "declarations": {
+        "use_frameworks!": {
+            "declaration": "use_frameworks!",
+            "count": 1
+        }
+    },
+    "sources": {
+        "https://github.com/CocoaPods/Specs.git": {
+            "source": "https://github.com/CocoaPods/Specs.git",
+            "count": 1
+        }
+    },
+    "libraries": {
+        "Firebase/Core": {
+            "name": "Firebase/Core",
+            "spec": "5.20.2",
+            "count": 1
+        },
+        "Firebase/Auth": {
+            "name": "Firebase/Auth",
+            "spec": "5.20.2",
+            "count": 1
+        },
+        "Firebase/Messaging": {
+            "name": "Firebase/Messaging",
+            "spec": "5.20.2",
+            "count": 1
+        },
+        "Firebase/Performance": {
+            "name": "Firebase/Performance",
+            "spec": "5.20.2",
+            "count": 1
+        },
+        "Firebase/RemoteConfig": {
+            "name": "Firebase/RemoteConfig",
+            "spec": "5.20.2",
+            "count": 1
+        },
+        "Fabric": {
+            "name": "Fabric",
+            "spec": "1.10.2",
+            "count": 1
+        },
+        "Crashlytics": {
+            "name": "Crashlytics",
+            "spec": "3.13.2",
+            "count": 1
+        }
+    }
+}
