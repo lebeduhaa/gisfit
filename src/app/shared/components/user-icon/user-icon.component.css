@@ -14,13 +14,13 @@
 .user-icon__img, .user-icon__img img, .user-icon__trim {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .user-icon__img {
   border: 2px solid white;
   border-radius: 50%;
   box-shadow: 0 0 10px white;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   position: relative;
 }
 .user-icon__trim {
