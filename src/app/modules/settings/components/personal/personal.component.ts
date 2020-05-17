@@ -23,8 +23,6 @@ export class PersonalComponent extends Unsubscribe implements OnInit {
   public preloadedImg: string | ArrayBuffer;
   public clearFilesSubject = new Subject<boolean>();
   public progressBarVisibility: boolean;
-  public goals = APP.goals;
-  public activities = APP.activities;
   public rerender = false;
 
   constructor(

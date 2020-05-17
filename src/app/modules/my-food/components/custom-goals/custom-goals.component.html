@@ -3,26 +3,26 @@
     <div class="app__popup-close">
       <mat-icon (click)="close()">clear</mat-icon>
     </div>
-    <div class="goals__title">Customize your goals</div>
-    <div class="goals__description">You can create your custom goals for daily progress</div>
+    <div class="goals__title">{{'custom-goals.title' | translate}}</div>
+    <div class="goals__description">{{'custom-goals.subtitle' | translate}}</div>
     <div class="goals__content" *ngIf="tempUser">
       <div class="goals__control">
-        <app-input-text icon="bubble_chart" placeholder="Calories (kcal/100g)">
+        <app-input-text icon="bubble_chart" placeholder="{{'my-food.calories' | translate}}">
           <input type="text" (input)="reactOnInput($event, 'customCaloriesGoal')" [(ngModel)]="tempUser.customCaloriesGoal" appNumericControl>
         </app-input-text>
       </div>
       <div class="goals__control">
-        <app-input-text icon="scatter_plot" placeholder="Protein (g/100g)">
+        <app-input-text icon="scatter_plot" placeholder="{{'my-food.protein' | translate}}">
           <input type="text" (input)="reactOnInput($event, 'customProteinGoal')" [(ngModel)]="tempUser.customProteinGoal" appNumericControl>
         </app-input-text>
       </div>
       <div class="goals__control">
-        <app-input-text icon="share" placeholder="Fats (g/100g)">
+        <app-input-text icon="share" placeholder="{{'my-food.fats' | translate}}">
           <input type="text" (input)="reactOnInput($event, 'customFatsGoal')" [(ngModel)]="tempUser.customFatsGoal" appNumericControl>
         </app-input-text>
       </div>
       <div class="goals__control">
-        <app-input-text icon="grain" placeholder="Carbohydrates (g/100g)">
+        <app-input-text icon="grain" placeholder="{{'my-food.carbohydrates' | translate}}">
           <input type="text" (input)="reactOnInput($event, 'customCarbohydratesGoal')" [(ngModel)]="tempUser.customCarbohydratesGoal" appNumericControl>
         </app-input-text>
       </div>
@@ -31,5 +31,5 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <app-spinner-button *ngIf="tempUser" caption="Accept" [small]="true" [disabled]="disableAcceptButton" (click)="acceptCustomGoals()"></app-spinner-button>
+  <app-spinner-button *ngIf="tempUser" caption="{{'my-food.accept' | translate}}" [small]="true" [disabled]="disableAcceptButton" (click)="acceptCustomGoals()"></app-spinner-button>
 </mat-dialog-actions>

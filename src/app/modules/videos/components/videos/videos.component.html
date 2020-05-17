@@ -3,15 +3,13 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
   <div class="videos__content" *ngIf="!progressBarVisibility">
-    <div class="videos__description">
-      Here is video hosting. You can add your video or watch videos of other users. It helps you get something new for your healthy style of life.
-    </div>
+    <div class="videos__description">{{'videos.description' | translate}}</div>
     <div class="videos__actions" *ngIf="!progressBarVisibility">
-      <app-spinner-button caption="Add video" [small]="true" routerLink="/add-video"></app-spinner-button>
-      <app-search caption="Search video" (searchEvent)="reactOnSearchEvent($event)"></app-search>
+      <app-spinner-button caption="{{'videos.add-video' | translate}}" [small]="true" routerLink="/add-video"></app-spinner-button>
+      <app-search caption="{{'videos.search-video' | translate}}" (searchEvent)="reactOnSearchEvent($event)"></app-search>
     </div>
     <div class="videos__items">
-      <div class="videos__empty" *ngIf="!displayedVideos.length">There are not videos:(</div>
+      <div class="videos__empty" *ngIf="!displayedVideos.length">{{'videos.no-videos' | translate}}</div>
       <div class="videos__video" *ngFor="let video of displayedVideos">
         <app-video [video]="video"></app-video>
       </div>

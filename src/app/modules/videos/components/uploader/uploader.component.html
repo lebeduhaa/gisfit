@@ -1,5 +1,5 @@
 <div class="uploader" [formGroup]="videoForm">
-  <div class="uploader__title">Upload your video</div>
+  <div class="uploader__title">{{'videos.add.title' | translate}}</div>
   <div class="uploader__progress" *ngIf="progressVisibility">
     <div class="uploader__progress-title">{{currentProgress ? getCurrentPercent() : 0}} %</div>
     <app-progress [value]="currentProgress" color="#5147da" [pending]="true"></app-progress>
@@ -7,19 +7,19 @@
   <div class="uploader__content" *ngIf="!progressVisibility">
     <div class="uploader__content-left">
       <div class="uploader__control">
-        <app-input-text placeholder="Title">
+        <app-input-text placeholder="{{'videos.add.title-control' | translate}}">
           <input type="text" formControlName="title">
         </app-input-text>
       </div>
       <div class="uploader__control">
-        <app-textarea placeholder="Description">
+        <app-textarea placeholder="{{'videos.add.description' | translate}}">
           <textarea #textarea formControlName="description"></textarea>
         </app-textarea>
       </div>
       <div class="uploader__file-controls">
         <div class="uploader__input-file">
           <app-input-file
-            caption="Select video file"
+            caption="{{'videos.add.select-video-file' | translate}}"
             (fileSelected)="reactOnSelectVideoFile($event)"
             [video]="true"
             [clearFilesSubject]="videoClearFilesSubject"
@@ -27,7 +27,7 @@
         </div>
         <div class="uploader__input-file">
           <app-input-file
-            caption="Select video`s preview"
+            caption="{{'videos.add.select-preview' | translate}}"
             (fileSelected)="reactOnSelectPreviewFile($event)"
             [clearFilesSubject]="imageClearFilesSubject"
           ></app-input-file>
@@ -61,7 +61,7 @@
     </div>
   </div>
   <div class="uploader__actions" *ngIf="!progressVisibility">
-    <app-custom-button caption="Save" color="accent" [disabled]="videoForm.invalid" (click)="save()"></app-custom-button>
-    <app-custom-button caption="Back" color="warn" routerLink="/videos"></app-custom-button>
+    <app-custom-button caption="{{'buttons.save' | translate}}" color="accent" [disabled]="videoForm.invalid" (click)="save()"></app-custom-button>
+    <app-custom-button caption="{{'buttons.back' | translate}}" color="warn" routerLink="/videos"></app-custom-button>
   </div>
 </div>

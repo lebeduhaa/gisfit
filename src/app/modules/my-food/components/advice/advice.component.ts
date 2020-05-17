@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { APP } from 'src/app/shared/constants';
-import { Advice } from 'src/app/shared/models/advice.model';
 
 @Component({
   selector: 'app-advice',
@@ -11,7 +10,7 @@ import { Advice } from 'src/app/shared/models/advice.model';
 export class AdviceComponent implements OnInit {
 
   public advices = APP.advice;
-  public currentAdvice: Advice;
+  public currentAdvice: string;
 
   private currentIndex = 0;
   private interval;

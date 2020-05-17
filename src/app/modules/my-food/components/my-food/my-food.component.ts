@@ -92,7 +92,6 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
   public goBackToMyProducts(): void {
     this.myProducts = true;
     this.getMyProducts();
-    this.filterProducts();
   }
 
   public reactOnSearch(searchKey: string): void {
@@ -215,7 +214,6 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
 
         if (!this.products) {
           this.getMyProducts();
-          this.filterProducts();
         }
 
         this.changeDetectorRef.markForCheck();
@@ -230,6 +228,7 @@ export class MyFoodComponent extends FirebaseCloudMessaging implements OnInit {
         this.subjectService.emitSubject(APP.subjects.spinnerVisibility, false);
         this.products = products;
         this.displayedProducts = [...products];
+        this.filterProducts();
         this.changeDetectorRef.markForCheck();
         this.getRouteState();
       });

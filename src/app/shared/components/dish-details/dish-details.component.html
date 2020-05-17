@@ -3,7 +3,7 @@
     <div class="app__popup-close">
       <mat-icon (click)="close()">clear</mat-icon>
     </div>
-    <div class="dish-details__title">Dish details: {{dish.productName}}</div>
+    <div class="dish-details__title">{{'dishes.detail.title' | translate}}: {{dish.productName}}</div>
     <div class="dish-details__content">
       <div class="dish-details__left">
         <div class="dish-details__dish-image">
@@ -11,19 +11,19 @@
         </div>
       </div>
       <div class="dish-details__right">
-        <div class="dish-details__info-item"><span class="dish-details__key">Description</span>: {{dish.description}}</div>
-        <div class="dish-details__info-item"><span class="dish-details__key">Category</span>: {{dish.category}}</div>
-        <div class="dish-details__info-item"><span class="dish-details__key">Calories</span>: {{dish.calories}}kcal</div>
-        <div class="dish-details__info-item"><span class="dish-details__key">Protein</span>: {{dish.protein}}g</div>
-        <div class="dish-details__info-item"><span class="dish-details__key">Fats</span>: {{dish.fats}}g</div>
-        <div class="dish-details__info-item"><span class="dish-details__key">Carbohydrates</span>: {{dish.carbohydrates}}g</div>
-        <div class="dish-details__info-item"><span class="dish-details__key">Mass of serving</span>: {{dish.averageMassOfOnePiece}}g</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">{{'dishes.detail.description' | translate}}</span>: {{dish.description}}</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">{{'my-food.category' | translate}}</span>: {{dish.category}}</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">{{'my-food.calories' | translate}}</span>: {{dish.calories}}kcal</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">{{'my-food.protein' | translate}}</span>: {{dish.protein}}g</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">{{'my-food.fats' | translate}}</span>: {{dish.fats}}g</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">{{'my-food.carbohydrates' | translate}}</span>: {{dish.carbohydrates}}g</div>
+        <div class="dish-details__info-item"><span class="dish-details__key">{{'dishes.detail.mass-of-serving' | translate}}</span>: {{dish.averageMassOfOnePiece}}g</div>
       </div>
     </div>
-    <app-expand *ngIf="dish.ingredients" caption="Ingredients" secondCaption="Close ingredients">
+    <app-expand *ngIf="dish.ingredients" caption="{{'dishes.ingredients' | translate}}" secondCaption="Close ingredients">
       <div class="dish-details__recipe">{{dish.ingredients}}</div>
     </app-expand>
-    <app-expand *ngIf="dish.recipe" caption="Recipe" secondCaption="Close recipe">
+    <app-expand *ngIf="dish.recipe" caption="{{'dishes.detail.recipe' | translate}}" secondCaption="Close recipe">
       <div class="dish-details__recipe">{{dish.recipe}}</div>
     </app-expand>
   </div>

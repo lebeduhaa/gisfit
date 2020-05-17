@@ -5,7 +5,8 @@ import {
   ContentChildren,
   QueryList,
   Output,
-  EventEmitter
+  EventEmitter,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { expandAnimation } from 'src/app/shared/animations';
@@ -34,6 +35,12 @@ export class SelectComponent extends Unsubscribe implements AfterContentInit {
   public placeholderAtTop: boolean;
   public optionsVisibility: boolean;
   public currentValue: string;
+
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
+    super();
+  }
 
   ngAfterContentInit() {
     this.subscribeToSelectValue();
@@ -65,9 +72,12 @@ export class SelectComponent extends Unsubscribe implements AfterContentInit {
     if (this.value) {
       this.selectOptions.forEach(selectOptionComponent => {
         if (flatEquality(selectOptionComponent.value, this.value)) {
-          this.currentValue = selectOptionComponent.displayedValue;
-          this.optionsVisibility = false;
-          this.placeholderAtTop = true;
+          setTimeout(() => {
+            this.currentValue = selectOptionComponent.displayedValue;
+            this.optionsVisibility = false;
+            this.placeholderAtTop = true;
+            this.changeDetectorRef.markForCheck();
+          });
         }
       });
     }

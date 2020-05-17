@@ -1,11 +1,19 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appNumericControl]'
 })
-export class NumericControlDirective {
+export class NumericControlDirective implements OnInit {
 
-  private allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', '.'];
+  @Input() integer: boolean;
+
+  private allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+
+  ngOnInit() {
+    if (!this.integer) {
+      this.allowedKeys.push('.');
+    }
+  }
 
   @HostListener('keydown', ['$event'])
   inputHandler(event: KeyboardEvent): void {

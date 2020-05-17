@@ -72,14 +72,14 @@
       <button mat-icon-button (click)="reactOnDislikeClick()" [class.play__active-button]="dislikeSet()">
         <mat-icon>thumb_down</mat-icon>
       </button>
-      <div class="play__title">{{video.views}} views</div>
+      <div class="play__title">{{video.views}} {{'videos.views' | translate}}</div>
     </div>
   </div>
   <div class="play__comments">
-    <app-textarea placeholder="Leave comment">
+    <app-textarea placeholder="{{'videos.leave-comment' | translate}}">
       <textarea (keydown.enter)="sendComment()" [(ngModel)]="currentComment" #textarea></textarea>
     </app-textarea>
-    <app-spinner-button caption="Send" [small]="true" (click)="sendComment()"></app-spinner-button>
+    <app-spinner-button caption="{{'videos.send' | translate}}" [small]="true" (click)="sendComment()"></app-spinner-button>
     <div class="play__comments-items">
       <div class="play__comment" *ngFor="let comment of video.comments">
         <app-user-icon [small]="true" [avatar]="comment.userAvatar" [fakeAvatar]="comment.userFakeAvatar"></app-user-icon>

@@ -2,11 +2,11 @@
   <div class="mobile-footer__item" [class.mobile-footer__item_disabled]="!currentEatingItemsNumber" matRipple matRippleColor="rgba(255, 255, 255, .1)" appOpenMobileEating [disabled]="!currentEatingItemsNumber">
     <div class="mobile-footer__amount" *ngIf="currentEatingItemsNumber">{{currentEatingItemsNumber}}</div>
     <mat-icon>outdoor_grill</mat-icon>
-    eat
+    {{'mobile.eat' | translate}}
   </div>
   <div class="mobile-footer__item" matRipple matRippleColor="rgba(255, 255, 255, .1)" appOpenMobileProgress>
     <mat-icon>sort</mat-icon>
-    progress
+    {{'mobile.progress' | translate}}
   </div>
   <div
     class="mobile-footer__item"
@@ -17,10 +17,10 @@
     appOpenFilter
   >
     <mat-icon>filter_list</mat-icon>
-    filters
+    {{'mobile.filters' | translate}}
   </div>
   <div class="mobile-footer__item" matRipple matRippleColor="rgba(255, 255, 255, .1)" appOpenFoodOptions>
     <mat-icon>build</mat-icon>
-    options
+    {{'mobile.options' | translate}}
   </div>
 </div>

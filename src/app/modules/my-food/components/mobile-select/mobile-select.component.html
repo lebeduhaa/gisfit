@@ -6,7 +6,7 @@
     <div class="mobile-select__content">
         <div class="mobile-select__title">{{'my-food.how-much-did-you-eat' | translate}}</div>
         <app-input-text icon="grain" placeholder="{{(weightKind ? 'my-food.gram' : 'my-food.amount') | translate}}">
-          <input type="text" appNumericControl [(ngModel)]="resultProductSelection">
+          <input type="text" appNumericControl [integer]="true" [(ngModel)]="resultProductSelection">
         </app-input-text>
         <div class="mobile-select__selection-kind">
           <mat-radio-group (change)="reactOnSelectKind($event)">

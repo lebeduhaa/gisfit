@@ -9,9 +9,9 @@
     <div class="video__title">
       <div class="video__title-value">{{getTrimTitle()}}</div>
       <div class="video__title-info">
-        <div class="video__title-info-item">Views: {{video.views}}</div>|
-        <div class="video__title-info-item">Likes: {{video.likes.length}}</div>|
-        <div class="video__title-info-item">Comments: {{video.comments.length}}</div>
+        <div class="video__title-info-item">{{'videos.views' | translate}}: {{video.views}}</div>|
+        <div class="video__title-info-item">{{'videos.likes' | translate}}: {{video.likes.length}}</div>|
+        <div class="video__title-info-item">{{'videos.comments' | translate}}: {{video.comments.length}}</div>
       </div>
     </div>
     <div class="video__duration">{{video.duration | duration}}</div>

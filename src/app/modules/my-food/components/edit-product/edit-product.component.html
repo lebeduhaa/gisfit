@@ -3,14 +3,14 @@
     <div class="app__popup-close" (click)="close()">
       <mat-icon>clear</mat-icon>
     </div>
-    <div class="product-edit__title">Edit product</div>
+    <div class="product-edit__title">{{'edit.edit-product' | translate}}</div>
     <div class="product-edit__content" [formGroup]="productEditForm">
-      <app-input-text placeholder="Product Name" icon="create">
+      <app-input-text placeholder="{{'my-food.product-name' | translate}}" icon="create">
         <input type="text" formControlName="productName">
       </app-input-text>
     </div>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <app-spinner-button [disabled]="editButtonIsDisabled()" [small]="true" caption="Edit product" (click)="edit()"></app-spinner-button>
+  <app-spinner-button [disabled]="editButtonIsDisabled()" [small]="true" caption="{{'edit.edit-product' | translate}}" (click)="edit()"></app-spinner-button>
 </mat-dialog-actions>

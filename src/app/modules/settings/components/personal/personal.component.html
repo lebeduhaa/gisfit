@@ -29,18 +29,20 @@
   <div class="personal__row" *ngIf="!rerender">
     <div class="personal__control">
       <app-select [value]="tempUser.activity" (change)="reactOnSelectActivity($event)" icon="sports_basketball" placeholder="Activity">
-        <app-select-option
-          *ngFor="let activity of activities"
-          [value]="activity"
-          [displayedValue]="activity"></app-select-option>
+        <app-select-option [value]="'no physical activity'" displayedValue="{{'activities.no' | translate}}"></app-select-option>
+        <app-select-option [value]="'3 trainings per week'" displayedValue="{{'activities.3' | translate}}"></app-select-option>
+        <app-select-option [value]="'5 intense trainings per week'" displayedValue="{{'activities.5' | translate}}"></app-select-option>
+        <app-select-option [value]="'5 trainings per week'" displayedValue="{{'activities.5-intense' | translate}}"></app-select-option>
+        <app-select-option [value]="'training every day'" displayedValue="{{'activities.every-day' | translate}}"></app-select-option>
+        <app-select-option [value]="'intense trainings every day or more than one time per day'" displayedValue="{{'activities.intense-every-day' | translate}}"></app-select-option>
+        <app-select-option [value]="'daily physical activity plus physical work'" displayedValue="{{'activities.max' | translate}}"></app-select-option>
       </app-select>
     </div>
     <div class="personal__control">
       <app-select [value]="tempUser.goal" (change)="reactOnSelectGoal($event)" icon="event_available" placeholder="Goal">
-        <app-select-option
-          *ngFor="let goal of goals"
-          [value]="goal"
-          [displayedValue]="goal"></app-select-option>
+        <app-select-option [value]="'lose weight'" displayedValue="{{'goals.lose' | translate}}"></app-select-option>
+        <app-select-option [value]="'maintain weight'" displayedValue="{{'goals.maintain' | translate}}"></app-select-option>
+        <app-select-option [value]="'gain weight'" displayedValue="{{'goals.gain' | translate}}"></app-select-option>
       </app-select>
     </div>
   </div>

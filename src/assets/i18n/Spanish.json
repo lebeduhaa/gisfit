@@ -1,0 +1,247 @@
+{
+  "menu-items": {
+    "my-food": "Mi comida",
+    "settings": "Configuración",
+    "log-out": "Cerrar sesión"
+  },
+  "settings": {
+    "profile-settings": "Configuración de perfil",
+    "personal": "Personal",
+    "system": "Sistema",
+    "notification-time": "Tiempo de notificación",
+    "interface-language": "Lenguaje de interfaz",
+    "notification-sound": "Sonido de notificación",
+    "send-report": "Enviar informe diario por correo electrónico"
+  },
+  "controls": {
+    "nickname": "Apodo",
+    "email": "Correo electrónico",
+    "height": "Altura (sm)",
+    "weight": "Peso (kg)",
+    "age": "Años",
+    "male-title": "Sexo",
+    "male": "masculino",
+    "female": "masculina"
+  },
+  "buttons": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "change-avatar": "Cambiar avatar",
+    "change-password": "Cambia la contraseña",
+    "back": "atrás",
+    "upload-image": "Cargar imagen"
+  },
+  "cropper": {
+    "preview": "Avance",
+    "wait": "Por favor espere el procesamiento de la imagen"
+  },
+  "toggle": {
+    "on": "en",
+    "off": "de"
+  },
+  "my-food": {
+    "my-progress": "Mi progreso",
+    "calories": "Calorías",
+    "protein": "Proteína",
+    "fats": "Grasas",
+    "carbohydrates": "Carbohidratos",
+    "kcal": "kcal",
+    "g": "sol",
+    "my-food-description": "Aquí están tus productos. Puede agregar su comida, seleccionarla hoy y recibir un informe diario a su hora correspondiente.",
+    "add-product": "Añadir Producto",
+    "find-more": "Encuentra más",
+    "search": "Buscar",
+    "product-categories": "Categorías de Producto",
+    "dish-categories": "Categorías de platos",
+    "food-options": "Opciones de comida",
+    "disable-tips": "Desactivar consejos",
+    "use-custom-goals": "Utiliza objetivos personalizados.",
+    "custom-goals": "Objetivos personalizados",
+    "vegetables": "Verduras",
+    "fruits": "Frutas",
+    "grains": "Granos",
+    "dairy": "Lechería",
+    "pasta": "Pasta",
+    "oils": "Aceites",
+    "meat": "Carne",
+    "fish": "Pez",
+    "nuts": "Nueces",
+    "desert": "Desierto",
+    "pizza": "Pizza",
+    "drink": "Beber",
+    "other": "Otro",
+    "soups": "Sopas",
+    "salads": "Ensaladas",
+    "sandwiches": "Sandwiches y Wraps",
+    "breakfast": "Desayuno",
+    "dinner": "Cena",
+    "supper": "Cena",
+    "lunch": "Almuerzo",
+    "weight": "Peso",
+    "by-the-piece": "Por pieza",
+    "accept": "Accept",
+    "how-much-did-you-eat": "¿Cuánto comiste?",
+    "gram": "Gramo",
+    "amount": "Cantidad",
+    "my-products": "Mis productos",
+    "add-new-product": "Agregar nuevo producto",
+    "add-new-dish": "Agregar nuevo plato",
+    "product-name": "Nombre del producto",
+    "dish-name": "Nombre del plato",
+    "category": "Categoría",
+    "add-calories": "Calorías (kcal/100g)",
+    "add-protein": "Proteína (g/100g)",
+    "add-fats": "Grasas (g/100g)",
+    "add-carbohydrates": "Carbohidratos (g/100g)",
+    "average-mass-of-one-piece": "Masa promedio de una pieza (g)",
+    "average-mass-of-serving": "Masa promedio de servicio (g)"
+  },
+  "dishes": {
+    "dishes": "Platos",
+    "description": "Puede agregar sus platos y usarlo como producto en sus alimentos. Discuta sus platos con otros usuarios. Si te gustó el plato de otra persona, puedes usarlo como comida.",
+    "add-dish": "Añadir plato",
+    "search-dishes": "Plato de búsqueda",
+    "likes": "Gustos",
+    "comments": "Comentarios",
+    "describe": "Describe tu plato",
+    "ingredients": "Ingredientes",
+    "describe-recipe": "Describa la receta.*",
+    "calculate-automatically": "Calcular atributos automáticamente",
+    "detail": {
+      "title": "Detalles del plato",
+      "description": "Descripción",
+      "mass-of-serving": "Misa de servir",
+      "recipe": "Receta"
+    }
+  },
+  "advices": {
+    "titles": {
+      "be-active": "Ser activo",
+      "more-foods-with-fiber": "Más alimentos con fibra.",
+      "give-preference-to-fish": "Give preference to fish",
+      "less-salt": "Menos sal",
+      "more-water": "Mas agua",
+      "avoid-alcohol": "Evite el alcohol",
+      "appreciate-the-food": "Aprecio la comida",
+      "less-sugar": "Menos azucar",
+      "consume-fats-wisely": "Consume grasas sabiamente",
+      "start-with-breakfast": "Comience con el desayuno."
+    },
+    "contents": {
+      "be-active": "La ingesta y el consumo de energía deben ser equilibrados. Para mantener un metabolismo normal y una buena salud, debe moverse y reducir el tiempo que pasa durante el día en una posición sentada, especialmente detrás de varias pantallas.",
+      "more-foods-with-fiber": "Para que su menú tenga suficiente fibra necesaria para la digestión normal, debe comer tanto productos de cereales como frutas, verduras y bayas. Reduzca su consumo de alimentos de harina blanca y coma más granos integrales ricos en fibra y más nutritivos. Coma trigo sarraceno y otros cereales, prefiera las opciones de granos integrales a la pasta y el arroz normales, y use harina integral para hornear. Un buen desayuno es cereal y cereal integral de alto contenido de fibra.",
+      "give-preference-to-fish": "El pescado debe estar en nuestra mesa 2-3 veces a la semana, ya que contiene los ácidos grasos omega-3 necesarios para el cuerpo, que reducen el riesgo de desarrollar enfermedades comunes, como, por ejemplo, enfermedades del sistema cardiovascular. El pescado también es una fuente indispensable de vitamina D, que a su vez ayuda al cuerpo a absorber mejor el calcio, lo que contribuye a la salud de los huesos. Necesita comer pescado rojo y blanco, comer menos pescado enlatado, pescado salado y ahumado, ya que contienen mucha sal. Dependiendo del tipo de pescado, se deben comer al menos 200 gramos por semana.",
+      "less-salt": "La mayor parte del exceso de sal va en un plato contra nuestra voluntad con alimentos enlatados y preparados. De hecho, obtenemos mucha sal de los alimentos cotidianos como el pan, el queso y el jamón. Para consumir menos sal, busque alternativas menos saladas entre productos similares y dé preferencia a los productos que usted mismo cocina con ingredientes frescos, en lugar de comprar alimentos. Al cocinar, en lugar de sal, puede usar hierbas picantes y otros condimentos. Sirviendo comidas preparadas en la mesa, puede agregarles una pizca de sal.",
+      "more-water": "El agua es esencial para transportar nutrientes y sus residuos, el funcionamiento normal de los jugos digestivos y más. En total, un adulto necesita 28–35 ml de agua por kilogramo de peso corporal, es decir, está bien. 2-3 litros. Si una persona come normalmente, recibe la mayor parte del líquido de los alimentos, por ejemplo, de frutas y verduras, sopas y bebidas. Un adulto también debe tomar 2-3 vasos de agua por día, y en climas cálidos y si está involucrado en deportes, incluso más. La mejor bebida es agua pura.",
+      "avoid-alcohol": "El metabolismo en el cuerpo humano no necesita alcohol. Al beber alcohol, los hombres no deben beber más de cuatro, y las mujeres no deben beber más de dos unidades de alcohol por día. Una unidad es una cantidad que contiene 10 gramos de alcohol absoluto. Cada semana debe ser al menos tres días completamente libre de alcohol. También debe recordarse que, además de otros posibles efectos nocivos, el alcohol en grandes cantidades proporciona energía adicional. Por ejemplo, una unidad de alcohol es aproximadamente 4 cl de alcohol fuerte al 40% o 12 cl de vino al 12%; 0.5 litros de cerveza (5.2%) son dos unidades de alcohol.",
+      "appreciate-the-food": "Aprenda a cocinar alimentos usted mismo y hágalo lentamente y con placer, y aún mejor, en compañía. Como regla general, las personas que se cocinan comen alimentos más saludables. Los alimentos semiacabados comprados en la tienda que se pueden calentar y tragar rápidamente contienen demasiada grasa, azúcar y / o sal, y poca fibra dietética, vitaminas y minerales. La alimentación poco saludable es a menudo el resultado de un estilo de vida cómodo y demasiado rápido. Cuando rápidamente toma un refrigerio junto al refrigerador o come frente al televisor, puede perder fácilmente el control sobre la cantidad que come.",
+      "less-sugar": "Los azúcares agregados son azúcares que se agregan a los alimentos en la industria alimentaria (por ejemplo, en dulces, confitería, refrescos y jugos, pastas cuajadas, yogures, así como en algunos productos cárnicos), o que se agregan al cocinar (para ejemplo en café, té o postres). Algunas tazas de yogurt pueden contener aproximadamente 40 gramos de azúcar, y en una botella de 500 ml con un refresco, más de 50 gramos de azúcar agregada. Si consume tales alimentos, el mismo día ya no podrá comer azúcar y otros dulces. Recuerda que los refrescos no sacian tu sed. La sed se calma mejor con agua. En lugar de dulces y pasteles, coma fruta fresca o seca para el postre.",
+      "consume-fats-wisely": "Nuestro cuerpo necesariamente necesita grasas, pero en pequeñas cantidades. Por lo tanto, al cocinar, debe preferir cocinar al vapor, hervir, guisar u hornear en el horno, en lugar de freír mucha grasa. Para reducir el contenido de ácidos grasos saturados en los alimentos, antes de cocinar, retire la piel del producto (incluido el pollo), elimine la grasa y la manteca de cerdo visibles a simple vista. Tenga cuidado con las grasas ocultas que se encuentran, por ejemplo, en pasteles, pasteles y carnes procesadas. Use aceite de cocina para cocinar. Intente diversificar su menú agregando nueces, almendras y semillas. ¡No tengas miedo al aceite de pescado!",
+      "start-with-breakfast": "El desayuno debe ser lo suficientemente abundante como para tener energía durante todo el día. Por la noche, el cuerpo consume las reservas de carbohidratos que se han acumulado en el hígado, y por la mañana deben ser restaurados. Si no desayuna, el cuerpo comenzará a descomponer sus propias reservas, lo que puede conducir a una disminución en la eficiencia del funcionamiento del cuerpo, por ejemplo, una disminución en la capacidad de trabajo, la capacidad de aprendizaje y la concentración. Los carbohidratos que obtenemos con el desayuno se usan de inmediato y el cuerpo no los pone como grasa. El desayuno debe estar saturado con carbohidratos de absorción lenta. Varios cereales son buenos, especialmente los cereales integrales. Los sándwiches también son adecuados, y puede permitirse un pequeño lujo para el desayuno."
+    }
+  },
+  "custom-goals": {
+    "title": "Personaliza tus objetivos",
+    "subtitle": "Puedes crear tus objetivos personalizados para el progreso diario"
+  },
+  "auto-calc": {
+    "selected-products": "Productos seleccionados",
+    "no-selected": "Aún no has seleccionado productos",
+    "select-products": "Seleccione productos para su plato",
+    "calculate": "Calcular",
+    "search-products": "Buscar Productos"
+  },
+  "videos": {
+    "menu": "Videos",
+    "description": "Aquí está el alojamiento de videos. Puede agregar su video o mirar videos de otros usuarios. Le ayuda a obtener algo nuevo para su estilo de vida saludable.",
+    "add-video": "Añadir video",
+    "search-video": "Buscar video",
+    "views": "Puntos de vista",
+    "likes": "Gustos",
+    "comments": "Comentarios",
+    "leave-comment": "Deje un comentario",
+    "send": "Enviar",
+    "no-videos": "No hay videos :(",
+    "add": {
+      "title": "Sube tu video",
+      "title-control": "Título",
+      "description": "Descripción",
+      "select-video-file": "Seleccionar archivo de video",
+      "select-preview": "Seleccionar vista previa del video"
+    }
+  },
+  "history": {
+    "menu": "Historia",
+    "view-daily": "Ver estadísticas diarias",
+    "view-score": "Ver estadísticas de puntaje",
+    "view-food": "Ver comida",
+    "no-eat": "Ese día todavía no usaste Gisfit",
+    "jan": "ENE",
+    "feb": "FEB",
+    "mar": "MAR",
+    "apr": "ABR",
+    "may": "MAY",
+    "jun": "JUN",
+    "jul": "JUL", 
+    "aug": "AGO",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "DIC",
+    "sun": "dom",
+    "mon": "lun",
+    "tue": "mar",
+    "wed": "mié",
+    "thu": "jue",
+    "fri": "vie",
+    "sat": "sáb",
+    "your-food": "Tu comida",
+    "no-food": "Parece que no comiste ese día. Es muy malo.",
+    "points": "Puntos",
+    "no-data": "Parece que todavía no tienes suficientes datos para recopilar estadísticas"
+  },
+  "activity": {
+    "menu": "Actividad",
+    "title": "Su actividad",
+    "description": "Si tiene un rastreador de estado físico como un teléfono inteligente, relojes inteligentes o brazalete de ejercicios, ¡tiene la capacidad de sincronizar sus datos con gisfit! Solo necesita sincronizar estos datos con la aplicación Google Fit para su teléfono inteligente.",
+    "weight": "Peso",
+    "steps": "Pasos",
+    "heart-rate": "Ritmo cardiaco"
+  },
+  "activities": {
+    "no": "sin actividad física",
+    "3": "sin actividad física",
+    "5": "5 entrenamientos por semana",
+    "5-intense": "5 entrenamientos intensos por semana",
+    "every-day": "entrenar todos los días",
+    "intense-every-day": "entrenamientos intensos todos los días o más de una vez por día",
+    "max": "actividad física diaria más trabajo físico"
+  },
+  "goals": {
+    "lose": "perder peso",
+    "maintain": "mantener el peso",
+    "gain": "gain weight"
+  },
+  "change": {
+    "title": "Ganar peso",
+    "description": "Debe confirmar su contraseña anterior y luego ingresar nueva.",
+    "old": "Contraseña anterior",
+    "new": "Nueva contraseña",
+    "confirm": "Confirmar nueva contraseña"
+  },
+  "mobile": {
+    "eat": "comer",
+    "progress": "progreso",
+    "filters": "filtros",
+    "options": "opciones"
+  },
+  "edit": {
+    "edit-dish": "Editar plato",
+    "edit-product": "Edit product"
+  },
+  "current-eating": {
+    "title": "Current Eating",
+    "submit": "Enviar",
+    "clear": "Claro"
+  }
+}

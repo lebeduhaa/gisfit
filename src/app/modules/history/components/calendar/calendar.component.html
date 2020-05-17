@@ -18,10 +18,10 @@
           'calendar__month_active': viewedMonth === i
         }"
         (click)="setMonth(i)"
-      >{{month}}</div>
+      >{{('history.' + month) | translate}}</div>
     </div>
     <div class="calendar__days-of-week">
-      <div class="calendar__day-of-week" *ngFor="let dayOfWeek of daysOfWeek">{{dayOfWeek}}</div>
+      <div class="calendar__day-of-week" *ngFor="let dayOfWeek of daysOfWeek">{{('history.' + dayOfWeek) | translate}}</div>
     </div>
     <div class="calendar__days">
       <div class="calendar__day" *ngFor="let skippedDay of skippedDays"></div>

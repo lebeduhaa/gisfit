@@ -5,12 +5,12 @@
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
     </div>
-    <div class="advice__title-value">{{currentAdvice.title}}</div>
+    <div class="advice__title-value">{{('advices.titles.' + currentAdvice) | translate}}</div>
     <div class="advice__title-right">
       <button mat-icon-button color="primary" (click)="nextAdvice()">
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </div>
   </div>
-  <div class="advice__content">{{currentAdvice.content}}</div>
+  <div class="advice__content">{{('advices.contents.' + currentAdvice) | translate}}</div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { APP } from 'src/app/shared/constants';
 
@@ -20,7 +20,8 @@ export class FoodOptionsComponent extends Unsubscribe implements OnInit {
   constructor(
     private settingsService: SettingsService,
     private subjectService: SubjectService,
-    private realTimeDataService: RealTimeDataService
+    private realTimeDataService: RealTimeDataService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     super();
   }
@@ -65,7 +66,10 @@ export class FoodOptionsComponent extends Unsubscribe implements OnInit {
 
   private subscribeToCurrentUser(): void {
     this.subscribeTo = this.realTimeDataService.subscribeToCurrentUserData()
-      .subscribe(user => this.user = user);
+      .subscribe(user => {
+        this.user = user;
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
 }
