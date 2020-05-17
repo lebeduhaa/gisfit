@@ -2,6 +2,7 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
 
 import { MatDialog } from '@angular/material/dialog';
 import { OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { SettingsService } from 'src/app/modules/settings/services/settings.service';
 import { APP } from '../constants';
@@ -10,6 +11,12 @@ import { User } from '../models/user.model';
 import { Unsubscribe } from './unsubscribe.class';
 
 export class FirebaseCloudMessaging extends Unsubscribe implements OnDestroy {
+
+  private internalSubscriptions: Subscription[] = [];
+
+  set internalSubscribeTo(subscription: Subscription) {
+    this.internalSubscriptions.push(subscription);
+  }
 
   constructor(
     protected messaging: AngularFireMessaging,
@@ -26,10 +33,10 @@ export class FirebaseCloudMessaging extends Unsubscribe implements OnDestroy {
       });
     }
     else {
-      super.unsubscribe();
-      this.subscribeTo = this.messaging.requestToken
+      this.internalUnsubscribe();
+      this.internalSubscribeTo = this.messaging.requestToken
         .subscribe(token => this.addUserDevice(user, token));
-      this.subscribeTo = this.messaging.messages
+      this.internalSubscribeTo = this.messaging.messages
         .subscribe(message => {
           const sound = new Audio('./assets/audio/notification.mp3');
           const { body, title } = (message as any).notification;
@@ -50,6 +57,10 @@ export class FirebaseCloudMessaging extends Unsubscribe implements OnDestroy {
     }
   }
 
+  private internalUnsubscribe(): void {
+    this.internalSubscriptions.forEach(internalSubscription => internalSubscription.unsubscribe());
+  }
+
   private addUserDevice(user: User, token: string): void {
     if (user.deviceTokens.every(userDevice => userDevice !== token)) {
       this.settingsService.addDeviceToken(token);
@@ -57,6 +68,7 @@ export class FirebaseCloudMessaging extends Unsubscribe implements OnDestroy {
   }
 
   ngOnDestroy() {
+    this.internalUnsubscribe();
     super.ngOnDestroy();
   }
 
