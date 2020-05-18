@@ -56,6 +56,7 @@ export class HeaderComponent extends Unsubscribe implements OnInit {
   public logout(): void {
     this.authService.signOut()
       .then(result => {
+        this.localStorageService.clearAll();
         this.routerHelper.navigateToPage(APP.pages.signIn);
       });
   }

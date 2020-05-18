@@ -37,13 +37,18 @@ export class AuthService {
     });
   }
 
-  public signOut(): Promise<any> {
+  public async signOut(): Promise<any> {
     const userId = this.localStorageService.getCachedData(APP.cachedData.userData).id;
 
     this.localStorageService.clearCachedData(APP.cachedData.userData);
 
     if ((window as any).FirebasePlugin) {
-      (window as any).FirebasePlugin.getToken(token => this.settingsService.removeDeviceToken(userId, token));
+      await new Promise((resolve, reject) => {
+        (window as any).FirebasePlugin.getToken(async token => {
+          await this.settingsService.removeDeviceToken(userId, token);
+          resolve();
+        });
+      });
     }
     else {
       this.messaging.requestToken
